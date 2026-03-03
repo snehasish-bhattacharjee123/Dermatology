@@ -1,55 +1,62 @@
 import { Link } from 'react-router-dom'
 import { MapPin, Phone, Mail, Clock, ExternalLink } from 'lucide-react'
-import { RevealWrapper, ParallaxImage } from '../hooks/useAnimations'
+import { RevealWrapper } from '../hooks/useAnimations'
+import { Heading, Text, Caption } from '../components/ui/Typography'
 import { locations } from '../data/siteData'
 
 export default function Locations() {
     return (
         <>
-            {/* Page Hero */}
-            <section className="relative pt-40 pb-24 overflow-hidden" style={{ background: 'var(--color-bg-cream)' }}>
+            {/* Page Hero - Consistent */}
+            <section className="page-hero">
                 <div className="container">
                     <RevealWrapper>
-                        <p className="text-sm tracking-[3px] uppercase mb-4" style={{ color: 'var(--color-gold)' }}>Visit Us</p>
-                        <h1 style={{ fontFamily: 'var(--font-heading)' }}>Our Locations</h1>
-                        <p className="max-w-2xl text-lg mt-4" style={{ color: 'var(--color-text-muted)' }}>
+                        <Caption variant="overline">Visit Us</Caption>
+                        <Heading variant="page">Our Locations</Heading>
+                        <Text size="lg" color="muted" className="max-w-2xl mt-5">
                             AAYNA Clinic has state-of-the-art centers across Delhi NCR and Ludhiana. Find a clinic near you.
-                        </p>
+                        </Text>
                     </RevealWrapper>
                 </div>
             </section>
 
-            {/* Locations */}
+            {/* Locations - Improved Grid */}
             <section className="section">
                 <div className="container">
-                    <div className="space-y-16">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
                         {locations.map((loc, i) => (
                             <RevealWrapper key={loc.id} direction={i % 2 === 0 ? 'left' : 'right'}>
-                                <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${i % 2 !== 0 ? 'direction-rtl' : ''}`}>
-                                    <div className={`${i % 2 !== 0 ? 'lg:order-2' : ''}`}>
-                                        <div className="overflow-hidden rounded-2xl h-[400px]">
-                                            <img
-                                                src={loc.image}
-                                                alt={loc.name}
-                                                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                                            />
-                                        </div>
+                                <div className="bg-white rounded-2xl overflow-hidden border hover:border-gold transition-all duration-300 hover:shadow-lg" style={{ borderColor: 'var(--color-border)' }}>
+                                    {/* Image */}
+                                    <div className="h-64 overflow-hidden">
+                                        <img
+                                            src={loc.image}
+                                            alt={loc.name}
+                                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                                        />
                                     </div>
-                                    <div className={`${i % 2 !== 0 ? 'lg:order-1' : ''}`}>
-                                        <h2 className="text-3xl mb-6" style={{ fontFamily: 'var(--font-heading)' }}>{loc.name}</h2>
+
+                                    {/* Content */}
+                                    <div className="p-8">
+                                        <Heading variant="card" className="mb-6">{loc.name}</Heading>
+
                                         <ul className="space-y-4 mb-8">
                                             <li className="flex items-start gap-4">
                                                 <MapPin size={20} className="mt-1 shrink-0" style={{ color: 'var(--color-gold)' }} />
                                                 <div>
-                                                    <p className="text-sm font-medium mb-1" style={{ color: 'var(--color-dark)' }}>Address</p>
-                                                    <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>{loc.address}</p>
+                                                    <Caption variant="label" className="mb-1">Address</Caption>
+                                                    <Text size="sm" color="muted">{loc.address}</Text>
                                                 </div>
                                             </li>
                                             <li className="flex items-start gap-4">
                                                 <Phone size={20} className="mt-1 shrink-0" style={{ color: 'var(--color-gold)' }} />
                                                 <div>
-                                                    <p className="text-sm font-medium mb-1" style={{ color: 'var(--color-dark)' }}>Phone</p>
-                                                    <a href={`tel:${loc.phone}`} className="text-sm hover:text-[var(--color-gold)] transition-colors" style={{ color: 'var(--color-text-muted)' }}>
+                                                    <Caption variant="label" className="mb-1">Phone</Caption>
+                                                    <a
+                                                        href={`tel:${loc.phone}`}
+                                                        className="text-sm hover:text-gold transition-colors"
+                                                        style={{ color: 'var(--color-text-muted)' }}
+                                                    >
                                                         {loc.phone}
                                                     </a>
                                                 </div>
@@ -57,8 +64,12 @@ export default function Locations() {
                                             <li className="flex items-start gap-4">
                                                 <Mail size={20} className="mt-1 shrink-0" style={{ color: 'var(--color-gold)' }} />
                                                 <div>
-                                                    <p className="text-sm font-medium mb-1" style={{ color: 'var(--color-dark)' }}>Email</p>
-                                                    <a href={`mailto:${loc.email}`} className="text-sm hover:text-[var(--color-gold)] transition-colors" style={{ color: 'var(--color-text-muted)' }}>
+                                                    <Caption variant="label" className="mb-1">Email</Caption>
+                                                    <a
+                                                        href={`mailto:${loc.email}`}
+                                                        className="text-sm hover:text-gold transition-colors"
+                                                        style={{ color: 'var(--color-text-muted)' }}
+                                                    >
                                                         {loc.email}
                                                     </a>
                                                 </div>
@@ -66,12 +77,13 @@ export default function Locations() {
                                             <li className="flex items-start gap-4">
                                                 <Clock size={20} className="mt-1 shrink-0" style={{ color: 'var(--color-gold)' }} />
                                                 <div>
-                                                    <p className="text-sm font-medium mb-1" style={{ color: 'var(--color-dark)' }}>Hours</p>
-                                                    <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>{loc.hours}</p>
+                                                    <Caption variant="label" className="mb-1">Hours</Caption>
+                                                    <Text size="sm" color="muted">{loc.hours}</Text>
                                                 </div>
                                             </li>
                                         </ul>
-                                        <div className="flex items-center gap-4">
+
+                                        <div className="flex items-center gap-4 flex-wrap">
                                             <Link to="/book" className="btn btn-primary">
                                                 Book Here
                                             </Link>
@@ -81,7 +93,7 @@ export default function Locations() {
                                                 rel="noopener noreferrer"
                                                 className="btn btn-outline flex items-center gap-2"
                                             >
-                                                Directions <ExternalLink size={14} />
+                                                Directions <ExternalLink size={16} />
                                             </a>
                                         </div>
                                     </div>
@@ -91,6 +103,18 @@ export default function Locations() {
                     </div>
                 </div>
             </section>
+
+            <style>{`
+                .text-gold {
+                    color: var(--color-gold);
+                }
+                .hover\:text-gold:hover {
+                    color: var(--color-gold);
+                }
+                .hover\:border-gold:hover {
+                    border-color: var(--color-gold);
+                }
+            `}</style>
         </>
     )
 }

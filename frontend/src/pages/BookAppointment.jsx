@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { ArrowRight, ArrowLeft, CheckCircle, Calendar, MapPin, User, FileText } from 'lucide-react'
 import { RevealWrapper } from '../hooks/useAnimations'
+import { Heading, Text, Caption } from '../components/ui/Typography'
 import { locations, treatments } from '../data/siteData'
 
 const steps = ['Location', 'Treatment', 'Date & Time', 'Your Details']
@@ -44,41 +45,45 @@ export default function BookAppointment() {
 
     if (submitted) {
         return (
-            <section className="min-h-screen flex items-center justify-center" style={{ background: 'var(--color-bg-cream)' }}>
+            <section 
+                className="min-h-screen flex items-center justify-center py-24"
+                style={{ background: 'var(--color-bg-cream)' }}
+            >
                 <RevealWrapper>
                     <div className="text-center max-w-lg mx-auto px-6">
                         <div
                             className="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-8"
                             style={{ background: 'var(--color-gold-glow)' }}
                         >
-                            <CheckCircle size={40} style={{ color: 'var(--color-gold)' }} />
+                            <CheckCircle size={48} style={{ color: 'var(--color-gold)' }} />
                         </div>
-                        <h2 className="mb-4" style={{ fontFamily: 'var(--font-heading)' }}>Booking Confirmed!</h2>
-                        <p className="text-lg mb-2" style={{ color: 'var(--color-text-muted)' }}>
+                        <Heading variant="section" className="mb-4">Booking Confirmed!</Heading>
+                        <Text size="md" color="muted" className="mb-2">
                             Thank you, <strong>{formData.name}</strong>. Your appointment request has been received.
-                        </p>
-                        <p className="mb-8" style={{ color: 'var(--color-text-light)' }}>
+                        </Text>
+                        <Text color="muted" className="mb-10">
                             We will send a confirmation to <strong>{formData.email}</strong> within 24 hours.
-                        </p>
-                        <div className="p-6 rounded-xl text-left space-y-3 mb-8" style={{ background: 'var(--color-bg-white)', border: '1px solid var(--color-border)' }}>
-                            <div className="flex justify-between text-sm">
-                                <span style={{ color: 'var(--color-text-light)' }}>Location</span>
-                                <span className="font-medium">{formData.location}</span>
-                            </div>
-                            <div className="flex justify-between text-sm">
-                                <span style={{ color: 'var(--color-text-light)' }}>Treatment</span>
-                                <span className="font-medium">{formData.treatment}</span>
-                            </div>
-                            <div className="flex justify-between text-sm">
-                                <span style={{ color: 'var(--color-text-light)' }}>Date</span>
-                                <span className="font-medium">{formData.date}</span>
-                            </div>
-                            <div className="flex justify-between text-sm">
-                                <span style={{ color: 'var(--color-text-light)' }}>Time</span>
-                                <span className="font-medium">{formData.time}</span>
-                            </div>
+                        </Text>
+                        <div 
+                            className="p-6 rounded-xl text-left space-y-4 mb-10"
+                            style={{ 
+                                background: 'var(--color-bg-white)', 
+                                border: '1px solid var(--color-border)'
+                            }}
+                        >
+                            {[
+                                { label: 'Location', value: formData.location },
+                                { label: 'Treatment', value: formData.treatment },
+                                { label: 'Date', value: formData.date },
+                                { label: 'Time', value: formData.time },
+                            ].map((item, i) => (
+                                <div key={i} className="flex justify-between text-sm">
+                                    <span style={{ color: 'var(--color-text-light)' }}>{item.label}</span>
+                                    <span className="font-medium" style={{ color: 'var(--color-dark)' }}>{item.value}</span>
+                                </div>
+                            ))}
                         </div>
-                        <a href="/" className="btn btn-primary">Back to Home</a>
+                        <Link to="/" className="btn btn-primary">Back to Home</Link>
                     </div>
                 </RevealWrapper>
             </section>
@@ -88,40 +93,60 @@ export default function BookAppointment() {
     return (
         <>
             {/* Page Hero */}
-            <section className="relative pt-40 pb-12 overflow-hidden" style={{ background: 'var(--color-bg-cream)' }}>
+            <section className="page-hero pb-16">
                 <div className="container">
                     <RevealWrapper>
-                        <p className="text-sm tracking-[3px] uppercase mb-4" style={{ color: 'var(--color-gold)' }}>Schedule a Visit</p>
-                        <h1 style={{ fontFamily: 'var(--font-heading)' }}>Book an Appointment</h1>
-                        <p className="max-w-2xl text-lg mt-4" style={{ color: 'var(--color-text-muted)' }}>
+                        <Caption variant="overline">Schedule a Visit</Caption>
+                        <Heading variant="page">Book an Appointment</Heading>
+                        <Text size="lg" color="muted" className="max-w-2xl mt-5">
                             Choose your preferred location, treatment, and time. We'll confirm your appointment within 24 hours.
-                        </p>
+                        </Text>
                     </RevealWrapper>
                 </div>
             </section>
 
-            {/* Progress Steps */}
-            <section className="py-8 border-b" style={{ borderColor: 'var(--color-border)' }}>
+            {/* Progress Steps - Improved */}
+            <section 
+                className="py-8 border-b sticky top-[var(--header-height-scrolled)] z-30"
+                style={{ 
+                    borderColor: 'var(--color-border)',
+                    background: 'rgba(255,255,255,0.98)',
+                    backdropFilter: 'blur(12px)'
+                }}
+            >
                 <div className="container">
-                    <div className="flex items-center justify-between max-w-2xl mx-auto">
+                    <div className="flex items-center justify-between max-w-3xl mx-auto">
                         {steps.map((step, i) => (
-                            <div key={i} className="flex items-center gap-3">
-                                <div
-                                    className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium transition-all duration-500"
-                                    style={{
-                                        background: i <= currentStep ? 'var(--color-gold)' : 'var(--color-bg-light)',
-                                        color: i <= currentStep ? '#fff' : 'var(--color-text-light)',
-                                    }}
-                                >
-                                    {i < currentStep ? <CheckCircle size={18} /> : i + 1}
+                            <div key={i} className="flex items-center flex-1 last:flex-0">
+                                <div className="flex flex-col items-center">
+                                    <div
+                                        className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold transition-all duration-500 mb-2"
+                                        style={{
+                                            background: i <= currentStep ? 'var(--color-gold)' : 'var(--color-bg-cream)',
+                                            color: i <= currentStep ? '#fff' : 'var(--color-text-light)',
+                                            border: `2px solid ${i <= currentStep ? 'var(--color-gold)' : 'var(--color-border)'}`,
+                                        }}
+                                    >
+                                        {i < currentStep ? <CheckCircle size={18} /> : i + 1}
+                                    </div>
+                                    <span 
+                                        className="text-xs hidden sm:block"
+                                        style={{ 
+                                            color: i <= currentStep ? 'var(--color-dark)' : 'var(--color-text-light)',
+                                            fontWeight: i === currentStep ? 600 : 400
+                                        }}
+                                    >
+                                        {step}
+                                    </span>
                                 </div>
-                                <span className="text-sm hidden sm:inline" style={{ color: i <= currentStep ? 'var(--color-dark)' : 'var(--color-text-light)' }}>
-                                    {step}
-                                </span>
                                 {i < steps.length - 1 && (
                                     <div
-                                        className="w-8 md:w-16 h-[2px] mx-2"
-                                        style={{ background: i < currentStep ? 'var(--color-gold)' : 'var(--color-border)' }}
+                                        className="flex-1 h-[2px] mx-2 sm:mx-4 transition-all duration-500"
+                                        style={{ 
+                                            background: i < currentStep 
+                                                ? 'var(--color-gold)' 
+                                                : 'var(--color-border)'
+                                        }}
                                     />
                                 )}
                             </div>
@@ -136,25 +161,27 @@ export default function BookAppointment() {
                     {/* Step 1: Location */}
                     {currentStep === 0 && (
                         <RevealWrapper>
-                            <h3 className="text-2xl mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-                                <MapPin size={24} className="inline mr-2" style={{ color: 'var(--color-gold)' }} />
-                                Choose Your Location
-                            </h3>
-                            <p className="mb-8 text-sm" style={{ color: 'var(--color-text-muted)' }}>Select the AAYNA clinic nearest to you.</p>
+                            <div className="mb-8">
+                                <div className="flex items-center gap-3 mb-2">
+                                    <MapPin size={24} style={{ color: 'var(--color-gold)' }} />
+                                    <Heading variant="subtitle">Choose Your Location</Heading>
+                                </div>
+                                <Text color="muted" size="sm">Select the AAYNA clinic nearest to you.</Text>
+                            </div>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 {locations.map((loc) => (
                                     <button
                                         key={loc.id}
                                         onClick={() => setFormData({ ...formData, location: loc.name })}
-                                        className="text-left p-6 rounded-xl border-2 transition-all duration-300 hover:shadow-lg"
+                                        className="text-left p-6 rounded-xl border-2 transition-all duration-300 hover:shadow-lg text-left"
                                         style={{
                                             borderColor: formData.location === loc.name ? 'var(--color-gold)' : 'var(--color-border)',
                                             background: formData.location === loc.name ? 'var(--color-gold-glow)' : 'var(--color-bg-white)',
                                         }}
                                     >
-                                        <h4 className="font-medium mb-1">{loc.name}</h4>
-                                        <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{loc.address}</p>
-                                        <p className="text-xs mt-1" style={{ color: 'var(--color-gold)' }}>{loc.phone}</p>
+                                        <h4 className="font-semibold mb-2" style={{ color: 'var(--color-dark)' }}>{loc.name}</h4>
+                                        <Text size="xs" color="muted">{loc.address}</Text>
+                                        <Text size="xs" style={{ color: 'var(--color-gold)' }} className="mt-1">{loc.phone}</Text>
                                     </button>
                                 ))}
                             </div>
@@ -164,11 +191,13 @@ export default function BookAppointment() {
                     {/* Step 2: Treatment */}
                     {currentStep === 1 && (
                         <RevealWrapper>
-                            <h3 className="text-2xl mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-                                <FileText size={24} className="inline mr-2" style={{ color: 'var(--color-gold)' }} />
-                                Choose Your Treatment
-                            </h3>
-                            <p className="mb-8 text-sm" style={{ color: 'var(--color-text-muted)' }}>Select the treatment you're interested in.</p>
+                            <div className="mb-8">
+                                <div className="flex items-center gap-3 mb-2">
+                                    <FileText size={24} style={{ color: 'var(--color-gold)' }} />
+                                    <Heading variant="subtitle">Choose Your Treatment</Heading>
+                                </div>
+                                <Text color="muted" size="sm">Select the treatment you're interested in.</Text>
+                            </div>
                             <div className="space-y-3">
                                 {treatments.map((t) => (
                                     <button
@@ -181,9 +210,9 @@ export default function BookAppointment() {
                                         }}
                                     >
                                         <img src={t.image} alt={t.title} className="w-16 h-16 rounded-lg object-cover shrink-0" />
-                                        <div className="flex-1">
-                                            <h4 className="font-medium text-sm">{t.title}</h4>
-                                            <p className="text-xs mt-1" style={{ color: 'var(--color-text-muted)' }}>{t.duration} • {t.price}</p>
+                                        <div className="flex-1 min-w-0">
+                                            <h4 className="font-semibold text-sm mb-1" style={{ color: 'var(--color-dark)' }}>{t.title}</h4>
+                                            <Text size="xs" color="muted">{t.duration} • {t.price}</Text>
                                         </div>
                                         {formData.treatment === t.title && <CheckCircle size={20} style={{ color: 'var(--color-gold)' }} />}
                                     </button>
@@ -195,30 +224,57 @@ export default function BookAppointment() {
                     {/* Step 3: Date & Time */}
                     {currentStep === 2 && (
                         <RevealWrapper>
-                            <h3 className="text-2xl mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-                                <Calendar size={24} className="inline mr-2" style={{ color: 'var(--color-gold)' }} />
-                                Pick Date & Time
-                            </h3>
-                            <p className="mb-8 text-sm" style={{ color: 'var(--color-text-muted)' }}>Choose your preferred date and time slot.</p>
-
                             <div className="mb-8">
-                                <label className="block text-xs tracking-[2px] uppercase mb-2 font-medium" style={{ color: 'var(--color-text-muted)' }}>
+                                <div className="flex items-center gap-3 mb-2">
+                                    <Calendar size={24} style={{ color: 'var(--color-gold)' }} />
+                                    <Heading variant="subtitle">Pick Date & Time</Heading>
+                                </div>
+                                <Text color="muted" size="sm">Choose your preferred date and time slot.</Text>
+                            </div>
+
+                            <div className="mb-10">
+                                <label 
+                                    className="form-label mb-3"
+                                    style={{ 
+                                        display: 'block',
+                                        fontSize: 'var(--text-xs)',
+                                        fontWeight: 600,
+                                        letterSpacing: 'var(--tracking-wider)',
+                                        textTransform: 'uppercase',
+                                        color: 'var(--color-text-muted)'
+                                    }}
+                                >
                                     Preferred Date
                                 </label>
                                 <input
                                     type="date"
                                     value={formData.date}
                                     onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                                    className="w-full px-4 py-4 border rounded-lg text-sm transition-all duration-300 focus:outline-none"
-                                    style={{ borderColor: 'var(--color-border)' }}
-                                    onFocus={(e) => e.target.style.borderColor = 'var(--color-gold)'}
-                                    onBlur={(e) => e.target.style.borderColor = 'var(--color-border)'}
+                                    className="form-input"
+                                    style={{
+                                        width: '100%',
+                                        padding: 'var(--space-4)',
+                                        fontSize: 'var(--text-base)',
+                                        border: '1px solid var(--color-border)',
+                                        borderRadius: '8px',
+                                        transition: 'all 0.2s ease'
+                                    }}
                                     min={new Date().toISOString().split('T')[0]}
                                 />
                             </div>
 
                             <div>
-                                <label className="block text-xs tracking-[2px] uppercase mb-4 font-medium" style={{ color: 'var(--color-text-muted)' }}>
+                                <label 
+                                    className="form-label mb-4"
+                                    style={{ 
+                                        display: 'block',
+                                        fontSize: 'var(--text-xs)',
+                                        fontWeight: 600,
+                                        letterSpacing: 'var(--tracking-wider)',
+                                        textTransform: 'uppercase',
+                                        color: 'var(--color-text-muted)'
+                                    }}
+                                >
                                     Preferred Time
                                 </label>
                                 <div className="grid grid-cols-3 sm:grid-cols-4 gap-3">
@@ -226,7 +282,7 @@ export default function BookAppointment() {
                                         <button
                                             key={slot}
                                             onClick={() => setFormData({ ...formData, time: slot })}
-                                            className="py-3 px-4 text-sm rounded-lg border transition-all duration-300"
+                                            className="py-3 px-2 text-sm rounded-lg border-2 transition-all duration-300"
                                             style={{
                                                 background: formData.time === slot ? 'var(--color-gold)' : 'var(--color-bg-white)',
                                                 color: formData.time === slot ? '#fff' : 'var(--color-text)',
@@ -244,67 +300,58 @@ export default function BookAppointment() {
                     {/* Step 4: Details */}
                     {currentStep === 3 && (
                         <RevealWrapper>
-                            <h3 className="text-2xl mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-                                <User size={24} className="inline mr-2" style={{ color: 'var(--color-gold)' }} />
-                                Your Details
-                            </h3>
-                            <p className="mb-8 text-sm" style={{ color: 'var(--color-text-muted)' }}>Tell us about yourself so we can prepare for your visit.</p>
+                            <div className="mb-8">
+                                <div className="flex items-center gap-3 mb-2">
+                                    <User size={24} style={{ color: 'var(--color-gold)' }} />
+                                    <Heading variant="subtitle">Your Details</Heading>
+                                </div>
+                                <Text color="muted" size="sm">Tell us about yourself so we can prepare for your visit.</Text>
+                            </div>
 
                             <div className="space-y-6">
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                     <div>
-                                        <label className="block text-xs tracking-[2px] uppercase mb-2 font-medium" style={{ color: 'var(--color-text-muted)' }}>Full Name *</label>
+                                        <label className="form-label mb-2">Full Name *</label>
                                         <input
                                             type="text"
                                             required
                                             value={formData.name}
                                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                            className="w-full px-4 py-4 border rounded-lg text-sm focus:outline-none"
-                                            style={{ borderColor: 'var(--color-border)' }}
-                                            onFocus={(e) => e.target.style.borderColor = 'var(--color-gold)'}
-                                            onBlur={(e) => e.target.style.borderColor = 'var(--color-border)'}
+                                            className="form-input"
                                             placeholder="Your full name"
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-xs tracking-[2px] uppercase mb-2 font-medium" style={{ color: 'var(--color-text-muted)' }}>Phone *</label>
+                                        <label className="form-label mb-2">Phone *</label>
                                         <input
                                             type="tel"
                                             required
                                             value={formData.phone}
                                             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                                            className="w-full px-4 py-4 border rounded-lg text-sm focus:outline-none"
-                                            style={{ borderColor: 'var(--color-border)' }}
-                                            onFocus={(e) => e.target.style.borderColor = 'var(--color-gold)'}
-                                            onBlur={(e) => e.target.style.borderColor = 'var(--color-border)'}
+                                            className="form-input"
                                             placeholder="+91 XXXXX XXXXX"
                                         />
                                     </div>
                                 </div>
                                 <div>
-                                    <label className="block text-xs tracking-[2px] uppercase mb-2 font-medium" style={{ color: 'var(--color-text-muted)' }}>Email *</label>
+                                    <label className="form-label mb-2">Email *</label>
                                     <input
                                         type="email"
                                         required
                                         value={formData.email}
                                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                        className="w-full px-4 py-4 border rounded-lg text-sm focus:outline-none"
-                                        style={{ borderColor: 'var(--color-border)' }}
-                                        onFocus={(e) => e.target.style.borderColor = 'var(--color-gold)'}
-                                        onBlur={(e) => e.target.style.borderColor = 'var(--color-border)'}
+                                        className="form-input"
                                         placeholder="your@email.com"
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-xs tracking-[2px] uppercase mb-2 font-medium" style={{ color: 'var(--color-text-muted)' }}>Additional Notes</label>
+                                    <label className="form-label mb-2">Additional Notes</label>
                                     <textarea
                                         rows={4}
                                         value={formData.notes}
                                         onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                                        className="w-full px-4 py-4 border rounded-lg text-sm focus:outline-none resize-none"
-                                        style={{ borderColor: 'var(--color-border)' }}
-                                        onFocus={(e) => e.target.style.borderColor = 'var(--color-gold)'}
-                                        onBlur={(e) => e.target.style.borderColor = 'var(--color-border)'}
+                                        className="form-input"
+                                        style={{ minHeight: '120px', resize: 'vertical' }}
                                         placeholder="Any concerns, allergies, or special requests..."
                                     />
                                 </div>
@@ -312,14 +359,17 @@ export default function BookAppointment() {
                         </RevealWrapper>
                     )}
 
-                    {/* Navigation */}
-                    <div className="flex items-center justify-between mt-12 pt-8 border-t" style={{ borderColor: 'var(--color-border)' }}>
+                    {/* Navigation - Improved */}
+                    <div 
+                        className="flex items-center justify-between mt-12 pt-8 border-t"
+                        style={{ borderColor: 'var(--color-border)' }}
+                    >
                         <button
                             onClick={() => setCurrentStep(Math.max(0, currentStep - 1))}
                             className="btn btn-outline flex items-center gap-2"
                             style={{ visibility: currentStep === 0 ? 'hidden' : 'visible' }}
                         >
-                            <ArrowLeft size={14} /> Back
+                            <ArrowLeft size={16} /> Back
                         </button>
 
                         {currentStep < steps.length - 1 ? (
@@ -329,7 +379,7 @@ export default function BookAppointment() {
                                 className="btn btn-primary"
                                 style={{ opacity: canProceed() ? 1 : 0.5, cursor: canProceed() ? 'pointer' : 'not-allowed' }}
                             >
-                                Continue <ArrowRight size={14} />
+                                Continue <ArrowRight size={16} />
                             </button>
                         ) : (
                             <button
@@ -338,12 +388,42 @@ export default function BookAppointment() {
                                 className="btn btn-primary"
                                 style={{ opacity: canProceed() ? 1 : 0.5, cursor: canProceed() ? 'pointer' : 'not-allowed' }}
                             >
-                                Confirm Booking <CheckCircle size={14} />
+                                Confirm Booking <CheckCircle size={16} />
                             </button>
                         )}
                     </div>
                 </div>
             </section>
+
+            <style>{`
+                .form-label {
+                    display: block;
+                    font-size: var(--text-xs);
+                    font-weight: 600;
+                    letter-spacing: var(--tracking-wider);
+                    text-transform: uppercase;
+                    color: var(--color-text-muted);
+                }
+                .form-input {
+                    width: 100%;
+                    padding: var(--space-4);
+                    font-family: var(--font-body);
+                    font-size: var(--text-base);
+                    color: var(--color-text);
+                    background: var(--color-bg-white);
+                    border: 1px solid var(--color-border);
+                    border-radius: 8px;
+                    transition: all 0.2s ease;
+                }
+                .form-input:focus {
+                    outline: none;
+                    border-color: var(--color-gold);
+                    box-shadow: 0 0 0 3px var(--color-gold-glow);
+                }
+                .form-input::placeholder {
+                    color: var(--color-text-light);
+                }
+            `}</style>
         </>
     )
 }

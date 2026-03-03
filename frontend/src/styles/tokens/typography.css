@@ -1,0 +1,306 @@
+/* ===== AAYNA CLINIC - TYPOGRAPHY DESIGN TOKENS ===== */
+/* Modern Fluid Type Scale using 1.25 Major Third ratio */
+
+:root {
+    /* ========================================
+     FONT FAMILIES
+     ======================================== */
+    --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'Fira Code', 'Consolas', monospace;
+
+    /* ========================================
+     FLUID TYPE SCALE (1.25 Major Third)
+     Using clamp() for responsive scaling
+     Mobile: 320px base → Desktop: 1440px+
+     ======================================== */
+
+    /* 10px → 11px */
+    --text-xs: clamp(0.625rem, 0.05vw + 0.615rem, 0.6875rem);
+
+    /* 13px → 15px */
+    --text-sm: clamp(0.8125rem, 0.17vw + 0.768rem, 0.9375rem);
+
+    /* 14px → 16px (base) */
+    --text-base: clamp(0.875rem, 0.21vw + 0.828rem, 1rem);
+
+    /* 16px → 19px */
+    --text-md: clamp(1rem, 0.29vw + 0.928rem, 1.1875rem);
+
+    /* 18px → 22px */
+    --text-lg: clamp(1.125rem, 0.38vw + 1.032rem, 1.375rem);
+
+    /* 20px → 26px */
+    --text-xl: clamp(1.25rem, 0.49vw + 1.128rem, 1.625rem);
+
+    /* 24px → 32px */
+    --text-2xl: clamp(1.5rem, 0.74vw + 1.32rem, 2rem);
+
+    /* 28px → 40px */
+    --text-3xl: clamp(1.75rem, 1.06vw + 1.484rem, 2.5rem);
+
+    /* 32px → 48px */
+    --text-4xl: clamp(2rem, 1.46vw + 1.636rem, 3rem);
+
+    /* 40px → 64px */
+    --text-5xl: clamp(2.5rem, 2.06vw + 1.992rem, 4rem);
+
+    /* 48px → 80px */
+    --text-6xl: clamp(3rem, 2.86vw + 2.285rem, 5rem);
+
+    /* ========================================
+     LINE HEIGHTS (Leading)
+     ======================================== */
+    --leading-none: 1;
+    --leading-tight: 1.2;
+    /* Headlines, display text */
+    --leading-snug: 1.35;
+    /* Subheadings, card titles */
+    --leading-normal: 1.6;
+    /* Body text */
+    --leading-relaxed: 1.75;
+    /* Long-form content, articles */
+    --leading-loose: 2;
+    /* Spacious readability */
+
+    /* ========================================
+     LETTER SPACING (Tracking)
+     ======================================== */
+    --tracking-tighter: -0.05em;
+    --tracking-tight: -0.02em;
+    /* Large headings */
+    --tracking-normal: 0;
+    /* Body text */
+    --tracking-wide: 0.05em;
+    /* Small caps, labels */
+    --tracking-wider: 0.1em;
+    /* Navigation, buttons */
+    --tracking-widest: 0.15em;
+    /* Tags, badges */
+
+    /* ========================================
+     FONT WEIGHTS
+     ======================================== */
+    --font-thin: 100;
+    --font-extralight: 200;
+    --font-light: 300;
+    --font-normal: 400;
+    --font-medium: 500;
+    --font-semibold: 600;
+    --font-bold: 700;
+    --font-extrabold: 800;
+    --font-black: 900;
+
+    /* ========================================
+     TYPOGRAPHY COMBINATIONS (Pre-defined)
+     Use these for consistent styling
+     ======================================== */
+
+    /* Display/Hero Headlines */
+    --typography-hero: var(--font-display) var(--font-medium) var(--text-5xl) / var(--leading-tight) var(--tracking-tight);
+    --typography-hero-lg: var(--font-display) var(--font-medium) var(--text-6xl) / var(--leading-tight) var(--tracking-tight);
+
+    /* Section Headings */
+    --typography-section: var(--font-display) var(--font-medium) var(--text-3xl) / var(--leading-tight) var(--tracking-tight);
+    --typography-section-lg: var(--font-display) var(--font-medium) var(--text-4xl) / var(--leading-tight) var(--tracking-tight);
+
+    /* Card Titles */
+    --typography-card-title: var(--font-display) var(--font-medium) var(--text-xl) / var(--leading-snug) var(--tracking-normal);
+    --typography-card-title-lg: var(--font-display) var(--font-medium) var(--text-2xl) / var(--leading-snug) var(--tracking-normal);
+
+    /* Subtitles */
+    --typography-subtitle: var(--font-display) var(--font-medium) var(--text-lg) / var(--leading-snug) var(--tracking-normal);
+
+    /* Body Text */
+    --typography-body: var(--font-body) var(--font-normal) var(--text-base) / var(--leading-normal) var(--tracking-normal);
+    --typography-body-lg: var(--font-body) var(--font-normal) var(--text-md) / var(--leading-normal) var(--tracking-normal);
+    --typography-body-sm: var(--font-body) var(--font-normal) var(--text-sm) / var(--leading-relaxed) var(--tracking-normal);
+
+    /* UI Elements */
+    --typography-button: var(--font-body) var(--font-semibold) var(--text-xs) / var(--leading-none) var(--tracking-widest);
+    --typography-nav: var(--font-body) var(--font-medium) var(--text-sm) / var(--leading-normal) var(--tracking-wide);
+    --typography-caption: var(--font-body) var(--font-medium) var(--text-xs) / var(--leading-normal) var(--tracking-wider);
+    --typography-label: var(--font-body) var(--font-semibold) var(--text-xs) / var(--leading-normal) var(--tracking-wider);
+    --typography-overline: var(--font-body) var(--font-semibold) var(--text-xs) / var(--leading-normal) var(--tracking-widest);
+}
+
+/* ========================================
+   UTILITY CLASSES (Optional)
+   These can be used directly in HTML/JSX
+   ======================================== */
+
+/* Font Family */
+.font-display {
+    font-family: var(--font-display);
+}
+
+.font-body {
+    font-family: var(--font-body);
+}
+
+.font-mono {
+    font-family: var(--font-mono);
+}
+
+/* Fluid Type Scale */
+.text-xs {
+    font-size: var(--text-xs);
+}
+
+.text-sm {
+    font-size: var(--text-sm);
+}
+
+.text-base {
+    font-size: var(--text-base);
+}
+
+.text-md {
+    font-size: var(--text-md);
+}
+
+.text-lg {
+    font-size: var(--text-lg);
+}
+
+.text-xl {
+    font-size: var(--text-xl);
+}
+
+.text-2xl {
+    font-size: var(--text-2xl);
+}
+
+.text-3xl {
+    font-size: var(--text-3xl);
+}
+
+.text-4xl {
+    font-size: var(--text-4xl);
+}
+
+.text-5xl {
+    font-size: var(--text-5xl);
+}
+
+.text-6xl {
+    font-size: var(--text-6xl);
+}
+
+/* Line Heights */
+.leading-none {
+    line-height: var(--leading-none);
+}
+
+.leading-tight {
+    line-height: var(--leading-tight);
+}
+
+.leading-snug {
+    line-height: var(--leading-snug);
+}
+
+.leading-normal {
+    line-height: var(--leading-normal);
+}
+
+.leading-relaxed {
+    line-height: var(--leading-relaxed);
+}
+
+.leading-loose {
+    line-height: var(--leading-loose);
+}
+
+/* Letter Spacing */
+.tracking-tighter {
+    letter-spacing: var(--tracking-tighter);
+}
+
+.tracking-tight {
+    letter-spacing: var(--tracking-tight);
+}
+
+.tracking-normal {
+    letter-spacing: var(--tracking-normal);
+}
+
+.tracking-wide {
+    letter-spacing: var(--tracking-wide);
+}
+
+.tracking-wider {
+    letter-spacing: var(--tracking-wider);
+}
+
+.tracking-widest {
+    letter-spacing: var(--tracking-widest);
+}
+
+/* Font Weights */
+.font-thin {
+    font-weight: var(--font-thin);
+}
+
+.font-extralight {
+    font-weight: var(--font-extralight);
+}
+
+.font-light {
+    font-weight: var(--font-light);
+}
+
+.font-normal {
+    font-weight: var(--font-normal);
+}
+
+.font-medium {
+    font-weight: var(--font-medium);
+}
+
+.font-semibold {
+    font-weight: var(--font-semibold);
+}
+
+.font-bold {
+    font-weight: var(--font-bold);
+}
+
+.font-extrabold {
+    font-weight: var(--font-extrabold);
+}
+
+.font-black {
+    font-weight: var(--font-black);
+}
+
+/* ========================================
+   RESPONSIVE BREAKPOINTS
+   Additional adjustments for extreme sizes
+   ======================================== */
+
+@media (max-width: 359px) {
+    :root {
+        /* Slightly reduce fluid scaling on very small screens */
+        --text-5xl: 2.25rem;
+        --text-6xl: 2.75rem;
+    }
+}
+
+@media (min-width: 1920px) {
+    :root {
+        /* Cap maximum sizes on very large screens */
+        --text-5xl: 4.5rem;
+        --text-6xl: 6rem;
+    }
+}
+
+/* ========================================
+   ACCESSIBILITY: REDUCED MOTION
+   Respect user preferences
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    /* Fluid typography can cause motion sensitivity
+     Consider using fixed sizes for users who prefer reduced motion */
+}

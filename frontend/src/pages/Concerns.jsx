@@ -1,34 +1,35 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import { RevealWrapper } from '../hooks/useAnimations'
+import { Heading, Text, Caption } from '../components/ui/Typography'
 import { concerns } from '../data/siteData'
 
 export default function Concerns() {
     return (
         <>
-            {/* Page Hero */}
-            <section className="relative pt-40 pb-24 overflow-hidden" style={{ background: 'var(--color-bg-cream)' }}>
+            {/* Page Hero - Consistent */}
+            <section className="page-hero">
                 <div className="container">
                     <RevealWrapper>
-                        <p className="text-sm tracking-[3px] uppercase mb-4" style={{ color: 'var(--color-gold)' }}>What Bothers You?</p>
-                        <h1 style={{ fontFamily: 'var(--font-heading)' }}>Concerns</h1>
-                        <p className="max-w-2xl text-lg mt-4" style={{ color: 'var(--color-text-muted)' }}>
+                        <Caption variant="overline">What Bothers You?</Caption>
+                        <Heading variant="page">Concerns</Heading>
+                        <Text size="lg" color="muted" className="max-w-2xl mt-5">
                             Skin Treatment in Delhi — Advanced Dermatology & Aesthetic Care at AAYNA. We address every skin and hair concern with precision and care.
-                        </p>
+                        </Text>
                     </RevealWrapper>
                 </div>
             </section>
 
-            {/* Concerns Grid */}
+            {/* Concerns Grid - Improved */}
             <section className="section">
                 <div className="container">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                         {concerns.map((concern, i) => (
                             <RevealWrapper key={concern.id} direction={i % 2 === 0 ? 'left' : 'right'} delay={i * 0.05}>
                                 <Link
                                     to={`/concerns/${concern.slug}`}
-                                    className="group flex flex-col sm:flex-row gap-6 p-6 rounded-2xl transition-all duration-500 hover:shadow-xl"
-                                    style={{ background: 'var(--color-bg-white)', border: '1px solid var(--color-border)' }}
+                                    className="group flex flex-col sm:flex-row gap-6 p-6 rounded-2xl transition-all duration-500 hover:shadow-xl bg-white border"
+                                    style={{ borderColor: 'var(--color-border)' }}
                                     onMouseEnter={(e) => e.currentTarget.style.borderColor = 'var(--color-gold)'}
                                     onMouseLeave={(e) => e.currentTarget.style.borderColor = 'var(--color-border)'}
                                 >
@@ -42,20 +43,26 @@ export default function Concerns() {
                                     </div>
 
                                     {/* Content */}
-                                    <div className="flex flex-col justify-between flex-1">
+                                    <div className="flex flex-col justify-between flex-1 py-1">
                                         <div>
                                             <div className="flex items-center gap-3 mb-3">
                                                 <span className="text-2xl">{concern.icon}</span>
-                                                <h3 className="text-xl group-hover:text-[var(--color-gold)] transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
+                                                <h3
+                                                    className="text-xl group-hover:text-gold transition-colors"
+                                                    style={{ fontFamily: 'var(--font-display)', color: 'var(--color-dark)' }}
+                                                >
                                                     {concern.name}
                                                 </h3>
                                             </div>
-                                            <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
+                                            <Text color="muted" size="sm" className="leading-relaxed">
                                                 {concern.shortDescription}
-                                            </p>
+                                            </Text>
                                         </div>
-                                        <div className="flex items-center gap-2 mt-4 text-sm font-medium" style={{ color: 'var(--color-gold)' }}>
-                                            Learn More <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-2" />
+                                        <div
+                                            className="flex items-center gap-2 mt-4 text-sm font-semibold transition-all duration-300 group-hover:gap-3"
+                                            style={{ color: 'var(--color-gold)' }}
+                                        >
+                                            Learn More <ArrowRight size={16} />
                                         </div>
                                     </div>
                                 </Link>
@@ -64,6 +71,15 @@ export default function Concerns() {
                     </div>
                 </div>
             </section>
+
+            <style>{`
+                .text-gold {
+                    color: var(--color-gold);
+                }
+                .group-hover\:text-gold:hover {
+                    color: var(--color-gold);
+                }
+            `}</style>
         </>
     )
 }

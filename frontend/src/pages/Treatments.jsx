@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Clock } from 'lucide-react'
 import { RevealWrapper } from '../hooks/useAnimations'
+import { Heading, Text, Caption } from '../components/ui/Typography'
 import { treatments, treatmentCategories } from '../data/siteData'
 
 export default function Treatments() {
@@ -16,38 +17,33 @@ export default function Treatments() {
 
     return (
         <>
-            {/* Hero */}
+            {/* Hero - Consistent */}
             <section className="relative pt-0 pb-0 overflow-hidden">
-                <div className="grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: '400px' }}>
+                <div className="grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: '450px' }}>
                     {/* Left - Gold panel */}
                     <div
-                        className="flex flex-col justify-center px-8 md:px-14 lg:px-16 py-14 lg:py-20"
-                        style={{ background: '#f8b84e' }}
+                        className="flex flex-col justify-center px-8 md:px-12 lg:px-16 py-16 lg:py-20"
+                        style={{ background: 'var(--color-gold)' }}
                     >
                         <RevealWrapper>
-                            <p className="text-sm font-semibold mb-1" style={{ color: '#353535' }}>
+                            <nav className="text-sm font-medium mb-6" style={{ color: 'var(--color-dark)' }}>
                                 <Link to="/" className="hover:underline">Home</Link>
-                                {' '}&gt;{' '}
+                                {' > '}
                                 <Link to="/treatments" className="hover:underline">Treatments</Link>
                                 {activeCategory !== 'all' && (
                                     <>
-                                        {' '}&gt;{' '}
-                                        <span style={{ color: '#7a5500' }}>
+                                        {' > '}
+                                        <span style={{ color: 'rgba(0,0,0,0.5)' }}>
                                             {treatmentCategories.find((c) => c.slug === activeCategory)?.name}
                                         </span>
                                     </>
                                 )}
-                            </p>
+                            </nav>
 
-                            <h1
-                                className="mb-4 mt-6"
-                                style={{
-                                    fontFamily: 'var(--font-heading)',
-                                    fontWeight: 500,
-                                    fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)',
-                                    color: '#353535',
-                                    lineHeight: 1.15,
-                                }}
+                            <Heading 
+                                variant="section" 
+                                className="mb-4"
+                                style={{ color: 'var(--color-dark)' }}
                             >
                                 {activeCategory === 'all'
                                     ? 'Our Treatments'
@@ -56,19 +52,20 @@ export default function Treatments() {
                                         : activeCategory === 'new-launches'
                                             ? 'New Launches'
                                             : treatmentCategories.find((c) => c.slug === activeCategory)?.name + ' Treatments'}
-                            </h1>
-                            <p style={{ color: '#4a3800', lineHeight: 1.7, fontSize: '0.9375rem' }}>
+                            </Heading>
+                            
+                            <Text size="md" style={{ color: 'rgba(0,0,0,0.7)', maxWidth: '500px' }}>
                                 {activeCategory === 'aayna-exclusive'
                                     ? 'AAYNA brings some of the best and latest treatments from across the world exclusively for our clients in India.'
                                     : activeCategory === 'new-launches'
                                         ? 'Experience cutting-edge treatments and breakthrough technologies now available at AAYNA.'
                                         : 'Discover our comprehensive range of skin, hair, facial, and anti-aging treatments powered by cutting-edge technology.'}
-                            </p>
+                            </Text>
                         </RevealWrapper>
                     </div>
 
                     {/* Right - Hero image */}
-                    <div className="h-56 lg:h-auto overflow-hidden">
+                    <div className="h-64 lg:h-auto overflow-hidden">
                         <img
                             src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1200&q=80"
                             alt="AAYNA Treatments"
@@ -78,10 +75,14 @@ export default function Treatments() {
                 </div>
             </section>
 
-            {/* Category Filter */}
+            {/* Category Filter - Improved */}
             <section
-                className="py-5 border-b sticky top-[70px] z-30"
-                style={{ borderColor: 'var(--color-border)', background: 'rgba(255,255,255,0.98)', backdropFilter: 'blur(8px)' }}
+                className="py-5 border-b sticky top-[var(--header-height-scrolled)] z-30"
+                style={{ 
+                    borderColor: 'var(--color-border)', 
+                    background: 'rgba(255,255,255,0.98)', 
+                    backdropFilter: 'blur(12px)' 
+                }}
             >
                 <div className="container">
                     <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-hide">
@@ -89,11 +90,11 @@ export default function Treatments() {
                             <button
                                 key={cat.slug}
                                 onClick={() => setActiveCategory(cat.slug)}
-                                className="px-5 py-2 text-[11px] tracking-[1.5px] uppercase font-semibold whitespace-nowrap rounded-full transition-all duration-300"
+                                className="px-5 py-2.5 text-[11px] tracking-[1.5px] uppercase font-semibold whitespace-nowrap rounded-full transition-all duration-300"
                                 style={{
-                                    background: activeCategory === cat.slug ? '#f8b84e' : 'transparent',
-                                    color: activeCategory === cat.slug ? '#353535' : 'var(--color-text-muted)',
-                                    border: `1.5px solid ${activeCategory === cat.slug ? '#f8b84e' : '#ddd'}`,
+                                    background: activeCategory === cat.slug ? 'var(--color-gold)' : 'transparent',
+                                    color: activeCategory === cat.slug ? 'var(--color-dark)' : 'var(--color-text-muted)',
+                                    border: `1.5px solid ${activeCategory === cat.slug ? 'var(--color-gold)' : 'var(--color-border)'}`,
                                 }}
                             >
                                 {cat.name}
@@ -103,7 +104,7 @@ export default function Treatments() {
                 </div>
             </section>
 
-            {/* Alternating Rows (AAYNA Exclusive / New Launches / All) */}
+            {/* Alternating Rows */}
             {(isAlternatingLayout || activeCategory === 'all') && (
                 <section className="py-0">
                     {filtered
@@ -115,10 +116,14 @@ export default function Treatments() {
                         .map((treatment, i) => {
                             const isReversed = i % 2 !== 0
                             return (
-                                <div key={treatment.id} className="border-b" style={{ borderColor: '#f0ede8' }}>
+                                <div 
+                                    key={treatment.id} 
+                                    className="border-b"
+                                    style={{ borderColor: 'var(--color-border-light)' }}
+                                >
                                     <div
                                         className="grid grid-cols-1 lg:grid-cols-2"
-                                        style={{ minHeight: '420px' }}
+                                        style={{ minHeight: '480px' }}
                                     >
                                         {/* Image */}
                                         <div className={`overflow-hidden ${isReversed ? 'lg:order-2' : ''}`}>
@@ -127,53 +132,32 @@ export default function Treatments() {
                                                     src={treatment.image}
                                                     alt={treatment.title}
                                                     className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-700"
-                                                    style={{ minHeight: '380px' }}
+                                                    style={{ minHeight: '400px' }}
                                                 />
                                             </RevealWrapper>
                                         </div>
 
                                         {/* Content */}
-                                        <div className={`flex items-center px-8 md:px-12 lg:px-14 py-14 ${isReversed ? 'lg:order-1' : ''}`}>
+                                        <div className={`flex items-center px-8 md:px-12 lg:px-16 py-14 ${isReversed ? 'lg:order-1' : ''}`}>
                                             <RevealWrapper direction={isReversed ? 'left' : 'right'}>
-                                                <p
-                                                    className="text-[10px] tracking-[2px] uppercase font-bold mb-4"
-                                                    style={{ color: '#d2880c' }}
-                                                >
+                                                <Caption variant="overline" className="mb-4">
                                                     {treatment.category}
-                                                </p>
-                                                <h2
-                                                    className="mb-4"
-                                                    style={{
-                                                        fontFamily: 'var(--font-heading)',
-                                                        fontWeight: 500,
-                                                        fontSize: 'clamp(1.4rem, 2.5vw, 2rem)',
-                                                        color: '#353535',
-                                                        lineHeight: 1.2,
-                                                    }}
-                                                >
+                                                </Caption>
+                                                
+                                                <Heading variant="section" className="mb-4">
                                                     {treatment.title}
-                                                </h2>
-                                                <p
-                                                    className="mb-7"
-                                                    style={{
-                                                        color: '#555',
-                                                        lineHeight: 1.8,
-                                                        fontSize: '0.9375rem',
-                                                        maxWidth: '500px',
-                                                    }}
-                                                >
+                                                </Heading>
+                                                
+                                                <Text size="md" color="muted" className="mb-8 max-w-lg" style={{ lineHeight: 1.8 }}>
                                                     {treatment.shortDescription}
-                                                </p>
+                                                </Text>
+                                                
                                                 <Link
                                                     to={`/treatments/${treatment.slug}`}
-                                                    className="inline-flex items-center gap-2 px-6 py-3 text-[11px] tracking-[2px] uppercase font-bold border-2 transition-all duration-300 group hover:bg-[#f8b84e] hover:border-[#f8b84e] hover:text-white"
-                                                    style={{
-                                                        borderColor: '#353535',
-                                                        color: '#353535',
-                                                    }}
+                                                    className="btn btn-outline"
                                                 >
-                                                    LEARN MORE
-                                                    <ArrowRight size={13} className="transition-transform group-hover:translate-x-1" />
+                                                    Learn More
+                                                    <ArrowRight size={16} />
                                                 </Link>
                                             </RevealWrapper>
                                         </div>
@@ -189,18 +173,16 @@ export default function Treatments() {
                 <section className="section">
                     <div className="container">
                         {activeCategory === 'all' && (
-                            <RevealWrapper className="mb-10">
+                            <RevealWrapper className="mb-12">
                                 <div className="section-header">
-                                    <p className="text-sm tracking-[3px] uppercase mb-3 font-semibold" style={{ color: '#d2880c' }}>
-                                        More Treatments
-                                    </p>
-                                    <h2>All Treatments</h2>
+                                    <Caption variant="overline">More Treatments</Caption>
+                                    <Heading variant="section">All Treatments</Heading>
                                     <div className="gold-line" />
                                 </div>
                             </RevealWrapper>
                         )}
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {filtered
                                 .filter((t) =>
                                     activeCategory === 'all'
@@ -213,30 +195,32 @@ export default function Treatments() {
                                             <div className="overflow-hidden relative">
                                                 <img src={treatment.image} alt={treatment.title} className="card-img" />
                                                 <div
-                                                    className="absolute top-3 left-3 px-3 py-1 text-[10px] tracking-wider uppercase text-white rounded-full font-semibold"
-                                                    style={{ background: '#f8b84e' }}
+                                                    className="absolute top-4 left-4 px-3 py-1.5 text-[10px] tracking-wider uppercase text-white rounded-full font-semibold"
+                                                    style={{ background: 'var(--color-gold)' }}
                                                 >
                                                     {treatment.category}
                                                 </div>
                                                 <div
                                                     className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                                                    style={{ background: 'rgba(248, 184, 78, 0.85)' }}
+                                                    style={{ background: 'rgba(248, 184, 78, 0.9)' }}
                                                 >
                                                     <span className="text-white text-xs tracking-[2px] uppercase flex items-center gap-2 font-semibold">
-                                                        Learn More <ArrowRight size={13} />
+                                                        Learn More <ArrowRight size={14} />
                                                     </span>
                                                 </div>
                                             </div>
                                             <div className="card-body flex flex-col flex-1">
-                                                <h3 className="group-hover:text-[#d2880c] transition-colors duration-300">
+                                                <h3 className="group-hover:text-gold transition-colors duration-300">
                                                     {treatment.title}
                                                 </h3>
-                                                <p className="mt-1.5 flex-1">{treatment.shortDescription.slice(0, 90)}...</p>
+                                                <Text color="muted" size="sm" className="mt-2 flex-1">
+                                                    {treatment.shortDescription.slice(0, 90)}...
+                                                </Text>
                                                 <div
-                                                    className="flex items-center justify-between mt-4 pt-3 border-t"
+                                                    className="flex items-center justify-between mt-5 pt-4 border-t"
                                                     style={{ borderColor: 'var(--color-border)' }}
                                                 >
-                                                    <span className="text-sm font-bold" style={{ color: '#d2880c' }}>
+                                                    <span className="text-sm font-bold" style={{ color: 'var(--color-gold-dark)' }}>
                                                         {treatment.price}
                                                     </span>
                                                     <span className="text-xs" style={{ color: 'var(--color-text-light)' }}>
@@ -255,14 +239,23 @@ export default function Treatments() {
                                 : true
                         ).length === 0 && (
                                 <div className="text-center py-20">
-                                    <p className="text-base" style={{ color: 'var(--color-text-muted)' }}>
+                                    <Text size="lg" color="muted">
                                         No treatments found in this category.
-                                    </p>
+                                    </Text>
                                 </div>
                             )}
                     </div>
                 </section>
             )}
+
+            <style>{`
+                .text-gold {
+                    color: var(--color-gold);
+                }
+                .group-hover\:text-gold:hover {
+                    color: var(--color-gold);
+                }
+            `}</style>
         </>
     )
 }
