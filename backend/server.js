@@ -80,7 +80,7 @@ app.get('/api/health', (req, res) => {
 // API documentation endpoint
 app.get('/api', (req, res) => {
     res.json({
-        message: 'AAYNA Clinic API',
+        message: 'D\'CosMedis Clinic API',
         version: '1.0.0',
         endpoints: {
             services: '/api/services',
@@ -103,7 +103,7 @@ app.use(errorHandler)
 
 // ===== START SERVER =====
 app.listen(PORT, () => {
-    console.log(`✅ AAYNA Clinic API running on http://localhost:${PORT}`)
+    console.log(`✅ D'CosMedis Clinic API running on http://localhost:${PORT}`)
     console.log(`📚 API Documentation: http://localhost:${PORT}/api`)
     console.log(`🏥 Health Check: http://localhost:${PORT}/api/health`)
     console.log('')

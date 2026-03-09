@@ -17,13 +17,18 @@ export default function Gallery() {
     return (
         <>
             {/* Page Hero - Consistent */}
-            <section className="page-hero">
-                <div className="container">
+            <section className="relative h-[50vh] min-h-[400px] flex items-center overflow-hidden" style={{ marginTop: 'var(--header-total-height)' }}>
+                <div className="absolute inset-0 bg-[#faf8f4] z-0"></div>
+                <div className="container relative z-10 text-center">
                     <RevealWrapper>
-                        <Caption variant="overline">Visual Stories</Caption>
-                        <Heading variant="page">Gallery</Heading>
-                        <Text size="lg" color="muted" className="max-w-2xl mt-5">
-                            Explore our clinic spaces, treatment sessions, and transformative results through our photo gallery.
+                        <span className="inline-block px-4 py-1.5 text-[10px] tracking-[4px] uppercase font-bold rounded-full mb-6 text-[#888]">
+                            Visual Stories
+                        </span>
+                        <Heading variant="hero" className="tracking-[4px] text-dark uppercase mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
+                            <span className="text-5xl md:text-7xl font-light">OUR</span> <span className="text-5xl md:text-7xl font-bold">GALLERY</span>
+                        </Heading>
+                        <Text className="max-w-2xl mx-auto text-sm md:text-base tracking-[1px] font-light text-[#555] leading-relaxed">
+                            Explore our cutting-edge clinic spaces, advanced treatment sessions, and transformative results through our visual portfolio.
                         </Text>
                     </RevealWrapper>
                 </div>
@@ -31,20 +36,21 @@ export default function Gallery() {
 
             {/* Category Filter - Improved */}
             <section
-                className="py-6 border-b"
+                className="py-8 bg-white border-b"
                 style={{ borderColor: 'var(--color-border)' }}
             >
                 <div className="container">
-                    <div className="flex items-center justify-center gap-2 flex-wrap">
+                    <div className="flex items-center justify-center gap-3 md:gap-4 flex-wrap">
                         {categories.map((cat) => (
                             <button
                                 key={cat}
                                 onClick={() => setActiveCategory(cat)}
-                                className="px-6 py-3 text-xs tracking-[2px] uppercase font-semibold rounded-full transition-all duration-300 capitalize"
+                                className="px-6 py-2.5 text-[10px] md:text-xs tracking-[2px] uppercase font-semibold rounded-full transition-all duration-500 capitalize"
                                 style={{
                                     background: activeCategory === cat ? 'var(--color-gold)' : 'transparent',
                                     color: activeCategory === cat ? '#fff' : 'var(--color-text-muted)',
-                                    border: `1.5px solid ${activeCategory === cat ? 'var(--color-gold)' : 'var(--color-border)'}`,
+                                    border: `1px solid ${activeCategory === cat ? 'transparent' : 'var(--color-border)'}`,
+                                    boxShadow: activeCategory === cat ? '0 10px 20px rgba(212, 175, 55, 0.2)' : 'none'
                                 }}
                             >
                                 {cat}
@@ -55,31 +61,35 @@ export default function Gallery() {
             </section>
 
             {/* Gallery Grid - Improved Masonry */}
-            <section className="section">
+            <section className="section bg-[#fff] py-20 md:py-32">
                 <div className="container">
-                    <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+                    <div className="columns-1 sm:columns-2 lg:columns-3 gap-8 space-y-8">
                         {filtered.map((img, i) => (
-                            <RevealWrapper key={img.id} direction="up" delay={i * 0.05}>
+                            <RevealWrapper key={`${img.id}-${activeCategory}`} direction="up" delay={(i % 10) * 0.05}>
                                 <div
-                                    className="break-inside-avoid cursor-pointer group relative overflow-hidden rounded-xl"
+                                    className="break-inside-avoid cursor-pointer group relative overflow-hidden rounded-sm hover-lift border border-[#f5f5f5]"
                                     onClick={() => setLightbox(img)}
                                 >
                                     <img
                                         src={img.src}
                                         alt={img.caption}
-                                        className="w-full transition-transform duration-700 group-hover:scale-105"
+                                        className="w-full transition-transform duration-[1.5s] ease-out group-hover:scale-[1.03]"
                                         style={{
-                                            height: i % 3 === 0 ? '380px' : i % 3 === 1 ? '300px' : '340px',
+                                            // Dynamic heights for masonry effect
+                                            height: i % 4 === 0 ? '450px' : i % 4 === 1 ? '320px' : i % 4 === 2 ? '500px' : '380px',
                                             objectFit: 'cover'
                                         }}
                                     />
                                     <div
-                                        className="absolute inset-0 flex items-end p-6 opacity-0 group-hover:opacity-100 transition-all duration-500"
-                                        style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)' }}
+                                        className="absolute inset-0 flex flex-col justify-end p-8 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in-out"
+                                        style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 50%, transparent 100%)' }}
                                     >
-                                        <Caption variant="caption-white" className="text-white">
+                                        <span className="text-[10px] tracking-[3px] uppercase font-bold text-white/70 mb-2 block transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100">
+                                            {img.category}
+                                        </span>
+                                        <h4 className="text-white text-lg font-serif tracking-wide transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-150">
                                             {img.caption}
-                                        </Caption>
+                                        </h4>
                                     </div>
                                 </div>
                             </RevealWrapper>

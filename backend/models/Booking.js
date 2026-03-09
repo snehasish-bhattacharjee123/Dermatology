@@ -36,7 +36,7 @@ const bookingSchema = new mongoose.Schema({
     service: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Service',
-        required: [true, 'Service is required'],
+        required: false,
     },
     serviceName: {
         type: String,
@@ -45,7 +45,7 @@ const bookingSchema = new mongoose.Schema({
     location: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Location',
-        required: [true, 'Location is required'],
+        required: false,
     },
     locationName: {
         type: String,

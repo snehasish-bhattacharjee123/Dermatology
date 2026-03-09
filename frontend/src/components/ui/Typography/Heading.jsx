@@ -8,35 +8,35 @@ import PropTypes from 'prop-types';
 
 const variantStyles = {
     // Display/Hero variants
-    hero: 'font-display text-5xl md:text-6xl font-medium leading-tight tracking-tight text-dark',
-    'hero-white': 'font-display text-5xl md:text-6xl font-medium leading-tight tracking-tight text-white',
+    hero: 'font-display text-[48px] md:text-[56px] font-medium leading-tight tracking-tight text-dark',
+    'hero-white': 'font-display text-[48px] md:text-[56px] font-medium leading-tight tracking-tight text-white',
 
     // Section headings
-    section: 'font-display text-3xl md:text-4xl font-medium leading-tight tracking-tight text-dark',
-    'section-white': 'font-display text-3xl md:text-4xl font-medium leading-tight tracking-tight text-white',
-    'section-gold': 'font-display text-3xl md:text-4xl font-medium leading-tight tracking-tight text-gold',
+    section: 'font-display text-[36px] md:text-[42px] font-medium leading-tight tracking-tight text-dark',
+    'section-white': 'font-display text-[36px] md:text-[42px] font-medium leading-tight tracking-tight text-white',
+    'section-gold': 'font-display text-[36px] md:text-[42px] font-medium leading-tight tracking-tight text-gold',
 
     // Card titles
-    card: 'font-display text-xl md:text-2xl font-medium leading-snug tracking-normal text-dark',
-    'card-white': 'font-display text-xl md:text-2xl font-medium leading-snug tracking-normal text-white',
+    card: 'font-display text-[26px] md:text-[28px] font-medium leading-snug tracking-[0.5px] text-dark',
+    'card-white': 'font-display text-[26px] md:text-[28px] font-medium leading-snug tracking-[0.5px] text-white',
 
     // Subtitles
-    subtitle: 'font-display text-lg md:text-xl font-medium leading-snug tracking-normal text-dark',
-    'subtitle-muted': 'font-display text-lg md:text-xl font-medium leading-snug tracking-normal text-text-muted',
-    'subtitle-white': 'font-display text-lg md:text-xl font-medium leading-snug tracking-normal text-white',
+    subtitle: 'font-display text-[20px] md:text-[22px] font-medium leading-snug tracking-normal text-dark',
+    'subtitle-muted': 'font-display text-[20px] md:text-[22px] font-medium leading-snug tracking-normal text-text-muted',
+    'subtitle-white': 'font-display text-[20px] md:text-[22px] font-medium leading-snug tracking-normal text-white',
 
     // Page titles
-    page: 'font-display text-4xl md:text-5xl font-medium leading-tight tracking-tight text-dark',
-    'page-white': 'font-display text-4xl md:text-5xl font-medium leading-tight tracking-tight text-white',
+    page: 'font-display text-[42px] md:text-[48px] font-medium leading-tight tracking-tight text-dark',
+    'page-white': 'font-display text-[42px] md:text-[48px] font-medium leading-tight tracking-tight text-white',
 };
 
 const levelSizes = {
-    1: 'text-5xl md:text-6xl',
-    2: 'text-3xl md:text-4xl',
-    3: 'text-xl md:text-2xl',
-    4: 'text-lg md:text-xl',
-    5: 'text-base md:text-lg',
-    6: 'text-sm md:text-base',
+    1: 'text-[48px] md:text-[56px]',
+    2: 'text-[36px] md:text-[42px]',
+    3: 'text-[26px] md:text-[28px]',
+    4: 'text-[20px] md:text-[22px]',
+    5: 'text-[16px] md:text-[18px]',
+    6: 'text-[14px] md:text-[16px]',
 };
 
 export function Heading({

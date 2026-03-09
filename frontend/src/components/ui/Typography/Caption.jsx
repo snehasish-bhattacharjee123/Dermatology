@@ -8,22 +8,22 @@ import PropTypes from 'prop-types';
 
 const variantStyles = {
     // Labels (form labels, card labels)
-    label: 'font-body text-xs font-semibold tracking-wider uppercase text-text-muted',
-    'label-white': 'font-body text-xs font-semibold tracking-wider uppercase text-white',
-    'label-gold': 'font-body text-xs font-semibold tracking-wider uppercase text-gold',
+    label: 'font-body text-[12px] font-semibold tracking-[1.5px] uppercase text-text-muted',
+    'label-white': 'font-body text-[12px] font-semibold tracking-[1.5px] uppercase text-white',
+    'label-gold': 'font-body text-[12px] font-semibold tracking-[1.5px] uppercase text-gold',
 
     // Overlines (section overlines)
-    overline: 'font-body text-xs font-semibold tracking-widest uppercase text-gold',
-    'overline-white': 'font-body text-xs font-semibold tracking-widest uppercase text-white',
-    'overline-muted': 'font-body text-xs font-semibold tracking-widest uppercase text-text-muted',
+    overline: 'font-body text-[12px] font-semibold tracking-[1.5px] uppercase text-gold',
+    'overline-white': 'font-body text-[12px] font-semibold tracking-[1.5px] uppercase text-white',
+    'overline-muted': 'font-body text-[12px] font-semibold tracking-[1.5px] uppercase text-text-muted',
 
     // Captions (image captions, metadata)
-    caption: 'font-body text-xs font-medium tracking-wide text-text-light',
-    'caption-white': 'font-body text-xs font-medium tracking-wide text-white/75',
+    caption: 'font-body text-[14px] font-medium tracking-wide text-text-light',
+    'caption-white': 'font-body text-[14px] font-medium tracking-wide text-white/75',
 
     // Badges/Tags
-    badge: 'font-body text-xs font-semibold tracking-wider uppercase text-white bg-gold px-3 py-1 rounded-full',
-    'badge-outline': 'font-body text-xs font-semibold tracking-wider uppercase text-dark border border-dark px-3 py-1 rounded-full',
+    badge: 'font-body text-[12px] font-semibold tracking-[1.5px] uppercase text-white bg-gold px-3 py-1 rounded-full',
+    'badge-outline': 'font-body text-[12px] font-semibold tracking-[1.5px] uppercase text-dark border border-dark px-3 py-1 rounded-full',
 };
 
 export function Caption({

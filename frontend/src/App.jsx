@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import About from './pages/About'
 import Treatments from './pages/Treatments'
 import TreatmentDetail from './pages/TreatmentDetail'
+import ExosomesTherapy from './pages/ExosomesTherapy'
 import Concerns from './pages/Concerns'
 import ConcernDetail from './pages/ConcernDetail'
 import Gallery from './pages/Gallery'
@@ -21,6 +22,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/treatments" element={<Treatments />} />
+          <Route path="/treatments/exosome-therapy" element={<ExosomesTherapy />} />
+          <Route path="/treatments/exosomes-therapy" element={<ExosomesTherapy />} />
           <Route path="/treatments/:slug" element={<TreatmentDetail />} />
           <Route path="/concerns" element={<Concerns />} />
           <Route path="/concerns/:slug" element={<ConcernDetail />} />

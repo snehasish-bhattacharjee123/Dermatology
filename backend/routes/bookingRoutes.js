@@ -5,7 +5,7 @@
 
 const express = require('express')
 const router = express.Router()
-const { Booking, Patient } = require('../models')
+const { Booking, Patient, Service, Location } = require('../models')
 const { asyncHandler, validateBooking, AppError } = require('../middleware')
 
 // Get all bookings (admin only)
@@ -41,8 +41,8 @@ router.get('/:id', asyncHandler(async (req, res) => {
 }))
 
 // Create new booking
-router.post('/', validateBooking, asyncHandler(async (req, res) => {
-    const { name, email, phone, service, location, date, time, notes } = req.body
+router.post('/', asyncHandler(async (req, res) => {
+    const { name, email, phone, treatment, location, date, time, notes } = req.body
 
     // Find or create patient
     let patient = await Patient.findOne({ $or: [{ email }, { phone }] })
@@ -55,16 +55,30 @@ router.post('/', validateBooking, asyncHandler(async (req, res) => {
         })
     }
 
+    // Try to find service and location by name, or use provided strings
+    let serviceObj = null
+    let locationObj = null
+    
+    if (treatment) {
+        serviceObj = await Service.findOne({ title: { $regex: new RegExp(treatment, 'i') } })
+    }
+    if (location) {
+        locationObj = await Location.findOne({ name: { $regex: new RegExp(location, 'i') } })
+    }
+
     const booking = await Booking.create({
         patient: patient._id,
         name,
         email,
         phone,
-        service,
-        location,
-        appointmentDate: new Date(date),
-        appointmentTime: time,
-        notes,
+        service: serviceObj ? serviceObj._id : null,
+        serviceName: treatment || 'General Consultation',
+        location: locationObj ? locationObj._id : null,
+        locationName: location || 'Not specified',
+        appointmentDate: date ? new Date(date) : new Date(),
+        appointmentTime: time || '10:00 AM',
+        notes: notes || '',
+        source: 'website',
     })
 
     res.status(201).json({

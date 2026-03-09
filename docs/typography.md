@@ -1,8 +1,8 @@
-# AAYNA Clinic - Typography System Documentation
+# D'CosMedis Clinic - Typography System Documentation
 
 ## Overview
 
-This document outlines the typography system for the AAYNA Clinic website, designed to establish a clear visual hierarchy, improve readability, and maintain consistency across all interface components.
+This document outlines the typography system for the D'CosMedis Clinic website, designed to establish a clear visual hierarchy, improve readability, and maintain consistency across all interface components.
 
 ## Design Principles
 
@@ -66,7 +66,7 @@ import { Heading } from '@/components/ui/Typography';
 <Heading variant="subtitle">Advanced Dermatology</Heading>
 
 // Page title
-<Heading variant="page">About AAYNA</Heading>
+<Heading variant="page">About D'CosMedis</Heading>
 
 // White variant for dark backgrounds
 <Heading variant="section-white">What Our Patients Say</Heading>
@@ -108,7 +108,7 @@ import { Caption } from '@/components/ui/Typography';
 <Caption variant="badge">New Launch</Caption>
 
 // Caption
-<Caption variant="caption">Dr. Simal Soin, Founder</Caption>
+<Caption variant="caption">Dr. Dolly Gupta, Founder</Caption>
 ```
 
 ## Usage Guidelines

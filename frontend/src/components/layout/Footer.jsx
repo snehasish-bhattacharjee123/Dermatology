@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom'
 import { Instagram, Facebook, Youtube, Twitter, ArrowUpRight } from 'lucide-react'
 import { Heading, Text, Caption } from '../ui/Typography'
+import { RevealWrapper } from '../../hooks/useAnimations'
 
 const footerLinks = {
     concerns: [
-        { name: 'Ageing', path: '/concerns/anti-ageing' },
-        { name: 'Excessive Hair', path: '/concerns/excessive-hair' },
+        { name: 'Acne', path: '/concerns/acne' },
+        { name: 'Pigmentation', path: '/concerns/pigmentation' },
         { name: 'Eyes & Lips', path: '/concerns/eyes-lips' },
         { name: 'Hair Loss', path: '/concerns/hair-loss' },
         { name: 'Hands & Foot', path: '/concerns/hands-foot' },
@@ -14,28 +15,28 @@ const footerLinks = {
         { name: 'Weight Loss', path: '/concerns/weight-loss' },
     ],
     treatments: [
-        { name: 'AAYNA Exclusive', path: '/treatments/aayna-exclusive' },
-        { name: 'AAYNA Waterless Medical Pedicure', path: '/treatments/waterless-medical-pedicure' },
+        { name: 'Exclusive', path: '/treatments/aayna-exclusive' },
+        { name: 'D\'CosMedis Waterless Medical Pedicure', path: '/treatments/waterless-medical-pedicure' },
         { name: 'ClearLift™ & ClearSkin™', path: '/treatments/clearlift-clearskin' },
         { name: 'EMSculpt®', path: '/treatments/emsculpt' },
         { name: 'Fraxel', path: '/treatments/fraxel' },
         { name: 'HydraFacial In Delhi', path: '/treatments/hydrafacial-delhi' },
         { name: 'Best Dermatologist in Delhi', path: '/best-dermatologist-delhi' },
         { name: 'HydraFacial Treatment In Gurgaon', path: '/treatments/hydrafacial-gurgaon' },
-        { name: 'Sensible Fillers, The AAYNA Way', path: '/treatments/sensible-fillers' },
+        { name: 'Sensible Fillers, The D\'CosMedis Way', path: '/treatments/sensible-fillers' },
         { name: 'Thermage', path: '/treatments/thermage' },
         { name: 'Others', path: '/treatments/others' },
         { name: 'Laser Hair Removal', path: '/treatments/laser-hair-removal' },
     ],
     navigation: [
-        { name: 'About AAYNA', path: '/about' },
+        { name: 'About D\'CosMedis', path: '/about' },
         { name: 'Blog', path: '/blog' },
         { name: 'Career', path: '/career' },
         { name: 'News & Media', path: '/news' },
         { name: 'Offers', path: '/offers' },
         { name: 'Online Consultation', path: '/consultation' },
-        { name: 'AAYNA Privacy Policy', path: '/privacy-policy' },
-        { name: 'AAYNA Refund Policy', path: '/refund-policy' },
+        { name: 'D\'CosMedis Privacy Policy', path: '/privacy-policy' },
+        { name: 'D\'CosMedis Refund Policy', path: '/refund-policy' },
         { name: 'Terms & Conditions', path: '/terms-conditions' },
     ],
     contact: [
@@ -55,41 +56,47 @@ export default function Footer() {
                 style={{ background: 'var(--color-gold)' }}
             >
                 <div className="container mx-auto text-center px-6">
-                    <Heading
-                        variant="section-white"
-                        className="mb-4 text-white"
-                    >
-                        Ready to Begin Your Skin Journey?
-                    </Heading>
-                    <Text
-                        size="md"
-                        color="white"
-                        className="text-white/90 mb-8 max-w-xl mx-auto"
-                    >
-                        Book a consultation with our expert dermatologists and discover treatments tailored to your unique needs.
-                    </Text>
-                    <Link
-                        to="/book"
-                        className="btn btn-dark inline-flex"
-                    >
-                        Book Your Consultation <ArrowUpRight size={16} />
-                    </Link>
+                    <RevealWrapper>
+                        <Heading
+                            variant="section-white"
+                            className="mb-4 text-white"
+                        >
+                            Ready to Begin Your Skin Journey?
+                        </Heading>
+                        <Text
+                            size="md"
+                            color="white"
+                            className="text-white/90 mb-8 max-w-xl mx-auto"
+                        >
+                            Book a consultation with our expert dermatologists and discover treatments tailored to your unique needs.
+                        </Text>
+                        <Link
+                            to="/book"
+                            className="btn btn-dark inline-flex hover:scale-105 transition-transform"
+                        >
+                            Book Your Consultation <ArrowUpRight size={16} />
+                        </Link>
+                    </RevealWrapper>
                 </div>
             </div>
 
             {/* Main Footer */}
-            <div className="container mx-auto py-16 lg:py-24 px-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
+            <div className="container mx-auto py-16 lg:py-20 px-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
 
                     {/* Brand & Disclaimer Column */}
                     <div className="lg:col-span-4 lg:pr-8">
                         {/* Logo */}
-                        <Link to="/" className="inline-block mb-8" aria-label="AAYNA Clinic - Home">
-                            <img
-                                src="https://www.aaynaclinic.com/wp-content/uploads/2021/09/Black_AAYNA_Logo.webp"
-                                alt="AAYNA Clinic Logo"
-                                className="h-10 w-auto invert brightness-0"
-                            />
+                        <Link to="/" className="inline-block mb-8 flex flex-col" aria-label="D'CosMedis Clinic - Home">
+                            <span
+                                className="text-2xl tracking-[6px] uppercase font-medium text-white"
+                                style={{ fontFamily: 'var(--font-display)' }}
+                            >
+                                D'COSMEDIS
+                            </span>
+                            <Caption variant="caption" className="text-white/50 tracking-wider">
+                                Advanced Aesthetics
+                            </Caption>
                         </Link>
 
                         {/* Social Icons */}
@@ -111,7 +118,7 @@ export default function Footer() {
                         {/* Disclaimer */}
                         <div className="text-white/50 text-xs leading-relaxed" style={{ fontFamily: 'var(--font-body)' }}>
                             <strong className="text-white font-medium">Disclaimer: </strong>
-                            Results may vary from person to person based on factors such as age, gender, skin type, skin condition, lifestyle, health history, and other products used. All images shown on this website are for illustrative purposes only. AAYNA, a brand of Dr. Simal Soin Skincare Pvt Ltd., does not guarantee identical results for every individual.
+                            Results may vary from person to person based on factors such as age, gender, skin type, skin condition, lifestyle, health history, and other products used. All images shown on this website are for illustrative purposes only. D'CosMedis, a brand of Dr. Dolly Gupta Skincare Pvt Ltd., does not guarantee identical results for every individual.
                         </div>
                     </div>
 
@@ -186,7 +193,7 @@ export default function Footer() {
             <div className="border-t border-white/10">
                 <div className="container mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
                     <p className="text-xs text-white/50 font-semibold uppercase tracking-[0.15em] mb-2 md:mb-0" style={{ fontFamily: 'var(--font-body)' }}>
-                        AAYNA © {new Date().getFullYear()}
+                        D'COSMEDIS © {new Date().getFullYear()}
                     </p>
                     <p className="text-xs text-white/50 font-semibold uppercase tracking-[0.15em]" style={{ fontFamily: 'var(--font-body)' }}>
                         WEBSITE BY UNHIDE

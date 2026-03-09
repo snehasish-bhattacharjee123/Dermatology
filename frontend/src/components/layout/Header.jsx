@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { Menu, X, Phone, ChevronDown } from 'lucide-react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Menu, X, Phone, ChevronDown, ArrowRight, Flame, Palette, Sparkles, Scissors, Eye, Sun, Search } from 'lucide-react'
 import { Caption } from '../ui/Typography'
 
 const navLinks = [
@@ -19,12 +19,6 @@ const navLinks = [
                     { name: 'Neocollagen Facial', path: '/treatments/neocollagen-facial' },
                     { name: 'Ultrasonic Facial (HIFU)', path: '/treatments/ultrasonic-facial' },
                     { name: 'LaserBrite (QSWITCH)', path: '/treatments/laserbrite' },
-                    { name: 'Carbon Glow', path: '/treatments/carbon-glow' },
-                    { name: 'Oxyblast', path: '/treatments/oxyblast' },
-                    { name: 'Crystal', path: '/treatments/crystal' },
-                    { name: 'Glass Gloss', path: '/treatments/glass-gloss' },
-                    { name: 'Illuminating', path: '/treatments/illuminating' },
-                    { name: 'Dermal Fillers', path: '/treatments/dermal-fillers' },
                 ]
             },
             {
@@ -38,33 +32,12 @@ const navLinks = [
                 ]
             },
             {
-                category: 'IV Infusion Drips',
-                items: [
-                    { name: 'IV Drips', path: '/treatments/iv-drips' },
-                    { name: 'Immunity Boost IV Infusion', path: '/treatments/immunity-boost' },
-                    { name: 'Energy Boost IV Infusion', path: '/treatments/energy-boost' },
-                    { name: 'Hair Restore IV Infusion', path: '/treatments/hair-restore' },
-                    { name: 'Metaboost IV Infusion', path: '/treatments/metaboost' },
-                    { name: 'Radiant Antioxidant', path: '/treatments/radiant-antioxidant' },
-                ]
-            },
-            {
                 category: 'Anti Aging',
                 items: [
                     { name: 'Exosomes Therapy', path: '/treatments/exosomes-therapy' },
                     { name: 'Dermal Fillers', path: '/treatments/dermal-fillers' },
                     { name: 'GFC', path: '/treatments/gfc' },
                     { name: 'Threadlift', path: '/treatments/threadlift' },
-                ]
-            },
-            {
-                category: 'Lifting & Contouring',
-                items: [
-                    { name: 'Uitherapy', path: '/treatments/uitherapy' },
-                    { name: 'Thermage', path: '/treatments/thermage' },
-                    { name: 'Dermalift', path: '/treatments/dermalift' },
-                    { name: 'Coolsculpt', path: '/treatments/coolsculpt' },
-                    { name: 'Emsculpt', path: '/treatments/emsculpt' },
                 ]
             },
             {
@@ -98,17 +71,53 @@ const navLinks = [
     {
         name: 'Concerns',
         path: '/concerns',
-        dropdown: [
-            { name: 'Active Acne', path: '/concerns/active-acne' },
-            { name: 'Pigmentation', path: '/concerns/pigmentation' },
-            { name: 'Anti-Aging', path: '/concerns/anti-aging' },
-            { name: 'Hair Loss', path: '/concerns/hair-loss' },
-            { name: 'Dark Circles', path: '/concerns/dark-circles' },
-            { name: 'View All', path: '/concerns' },
-        ],
+        megaMenuWithImages: [
+            {
+                title: 'Active Acne',
+                description: 'Advanced treatments for acne breakouts, inflammation, and scarring.',
+                image: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=400&q=80',
+                path: '/concerns/active-acne',
+                icon: Flame
+            },
+            {
+                title: 'Pigmentation',
+                description: 'Reduce dark spots, melasma, and uneven skin tone effectively.',
+                image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&q=80',
+                path: '/concerns/pigmentation',
+                icon: Palette
+            },
+            {
+                title: 'Anti-Aging',
+                description: 'Turn back time with wrinkle reduction, skin tightening & rejuvenation.',
+                image: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=400&q=80',
+                path: '/concerns/anti-aging',
+                icon: Sparkles
+            },
+            {
+                title: 'Hair Loss',
+                description: 'Regrow and restore with PRP, mesotherapy & hair transplant solutions.',
+                image: 'https://images.unsplash.com/photo-1522337094846-8a818192de1f?w=400&q=80',
+                path: '/concerns/hair-loss',
+                icon: Scissors
+            },
+            {
+                title: 'Dark Circles',
+                description: 'Brighten under-eye area and reduce puffiness with targeted therapies.',
+                image: 'https://images.unsplash.com/photo-1594824476967-48c8b964f137?w=400&q=80',
+                path: '/concerns/dark-circles',
+                icon: Eye
+            },
+            {
+                title: 'Dull Skin',
+                description: 'Restore glow with facials, peels, and advanced brightening treatments.',
+                image: 'https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=400&q=80',
+                path: '/concerns/dull-skin',
+                icon: Sun
+            }
+        ]
     },
     { name: 'Gallery', path: '/gallery' },
-    { name: 'Locations', path: '/locations' },
+    // { name: 'Locations', path: '/locations' },
     { name: 'Contact', path: '/contact' },
 ]
 
@@ -118,7 +127,10 @@ export default function Header() {
     const [activeDropdown, setActiveDropdown] = useState(null)
     const [activeMobileMenu, setActiveMobileMenu] = useState(null)
     const [mobileMenuStack, setMobileMenuStack] = useState([])
+    const [isSearchOpen, setIsSearchOpen] = useState(false)
+    const [searchQuery, setSearchQuery] = useState('')
     const location = useLocation()
+    const navigate = useNavigate()
 
     useEffect(() => {
         const handleScroll = () => setIsScrolled(window.scrollY > 50)
@@ -168,12 +180,12 @@ export default function Header() {
                         </a>
                         <span className="text-white/50 text-xs hidden md:inline" aria-hidden="true">|</span>
                         <Caption variant="label-white" className="hidden md:inline opacity-90">
-                            Mon – Sat: 10 AM – 7 PM
+                            Mon - Sat: 10 AM - 7 PM
                         </Caption>
                     </div>
                     <div className="flex items-center gap-4">
                         <Caption variant="badge" className="hidden sm:inline-flex bg-white/20 text-white border-0">
-                            Delhi • Gurugram • Ludhiana
+                            Delhi &bull; Gurugram &bull; Ludhiana
                         </Caption>
                     </div>
                 </div>
@@ -181,7 +193,7 @@ export default function Header() {
 
             {/* Main Nav - Refined */}
             <header
-                className="fixed left-0 w-full z-[1000] transition-all duration-500"
+                className="fixed left-0 w-full z-[1000] transition-all duration-500 overflow-visible"
                 style={{
                     top: isScrolled ? '0px' : 'var(--header-top-bar-height)',
                     background: isScrolled ? 'rgba(255,255,255,0.98)' : 'rgba(255,255,255,0.95)',
@@ -194,13 +206,13 @@ export default function Header() {
                     style={{ height: isScrolled ? 'var(--header-height-scrolled)' : 'var(--header-height)' }}
                 >
                     {/* Logo - Improved */}
-                    <Link to="/" className="flex items-center gap-3" aria-label="AAYNA Clinic - Home">
+                    <Link to="/" className="flex items-center gap-3" aria-label="D'CosMedis Clinic - Home">
                         <div className="flex flex-col">
                             <span
                                 className="text-2xl tracking-[6px] uppercase font-medium"
                                 style={{ fontFamily: 'var(--font-display)', color: 'var(--color-dark)' }}
                             >
-                                AAYNA
+                                D'COSMEDIS
                             </span>
                             <Caption variant="caption" className="text-text-light tracking-wider">
                                 Advanced Aesthetics
@@ -209,12 +221,12 @@ export default function Header() {
                     </Link>
 
                     {/* Desktop Nav - Refined spacing */}
-                    <nav className="hidden lg:flex items-center gap-3" aria-label="Main navigation">
+                    <nav className={`hidden lg:flex items-center gap-3 h-full transition-opacity duration-300 ${isSearchOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`} aria-label="Main navigation">
                         {navLinks.map((link) => (
                             <div
                                 key={link.name}
-                                className="relative group/nav z-10"
-                                onMouseEnter={() => (link.dropdown || link.megaMenu) && setActiveDropdown(link.name)}
+                                className={`group/nav z-10 h-full flex items-center ${link.dropdown ? 'relative' : ''}`}
+                                onMouseEnter={() => (link.dropdown || link.megaMenu || link.megaMenuWithImages) && setActiveDropdown(link.name)}
                                 onMouseLeave={() => setActiveDropdown(null)}
                             >
                                 <Link
@@ -225,11 +237,11 @@ export default function Header() {
                                         }`}
                                     style={{ fontFamily: 'var(--font-body)' }}
                                     aria-current={location.pathname === link.path ? 'page' : undefined}
-                                    aria-haspopup={link.dropdown || link.megaMenu ? 'true' : undefined}
-                                    aria-expanded={(link.dropdown || link.megaMenu) && activeDropdown === link.name ? 'true' : 'false'}
+                                    aria-haspopup={link.dropdown || link.megaMenu || link.megaMenuWithImages ? 'true' : undefined}
+                                    aria-expanded={(link.dropdown || link.megaMenu || link.megaMenuWithImages) && activeDropdown === link.name ? 'true' : 'false'}
                                 >
                                     {link.name}
-                                    {(link.dropdown || link.megaMenu) && (
+                                    {(link.dropdown || link.megaMenu || link.megaMenuWithImages) && (
                                         <ChevronDown
                                             size={14}
                                             className="transition-transform duration-300 group-hover/nav:rotate-180"
@@ -239,13 +251,13 @@ export default function Header() {
                                 </Link>
 
                                 {/* Improved Dropdown Menu */}
-                                {(link.dropdown || link.megaMenu) && activeDropdown === link.name && (
+                                {(link.dropdown || link.megaMenu || link.megaMenuWithImages) && activeDropdown === link.name && (
                                     <div
-                                        className={`absolute top-[100%] ${link.megaMenu ? 'left-1/2 -translate-x-1/2 w-screen max-w-[1100px]' : 'left-0 min-w-[260px]'} py-3 animate-fadeIn shadow-xl`}
+                                        className={`absolute top-[100%] left-1/2 -translate-x-1/2 animate-fadeIn shadow-xl z-[100] ${link.dropdown ? 'w-[240px]' : 'w-[95vw] max-w-[1400px]'}`}
                                         style={{
                                             background: 'rgba(255,255,255,1)',
-                                            borderRadius: '12px',
-                                            boxShadow: '0 20px 60px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05)',
+                                            borderRadius: '16px',
+                                            boxShadow: '0 25px 80px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.05)',
                                             marginTop: '0px',
                                         }}
                                         role="menu"
@@ -266,34 +278,86 @@ export default function Header() {
                                                     {item.name}
                                                 </Link>
                                             ))}
-                                            {/* Mega Menu */}
+
+                                            {/* Mega Menu - Text Only */}
                                             {link.megaMenu && (
-                                                <div className="flex flex-wrap px-6 py-4">
-                                                    {link.megaMenu.map((category) => (
-                                                        <div key={category.category} className="w-1/4 px-4 mb-6">
-                                                            <h3 className="font-medium text-gold border-b border-border/30 pb-2 mb-3 text-sm tracking-wider uppercase" style={{ fontFamily: 'var(--font-display)' }}>
-                                                                {category.category}
-                                                            </h3>
-                                                            <ul className="space-y-2 relative">
-                                                                {category.items.map((item) => (
-                                                                    <li key={item.name}>
-                                                                        <Link
-                                                                            to={item.path}
-                                                                            className={`text-[15px] transition-colors hover:text-gold block ${location.pathname === item.path ? 'text-gold font-medium' : 'text-muted'}`}
-                                                                            style={{ fontFamily: 'var(--font-body)' }}
-                                                                        >
-                                                                            {item.name}
-                                                                        </Link>
-                                                                    </li>
-                                                                ))}
-                                                            </ul>
-                                                        </div>
-                                                    ))}
-                                                    <div className="w-full mt-2 pt-4 border-t border-border/30 flex justify-between items-center bg-cream/30 -mx-6 -mb-4 px-10 pb-4 pt-4 rounded-b-xl">
+                                                <div className="px-6 py-4">
+                                                    <div className="flex flex-wrap -mx-4">
+                                                        {link.megaMenu.map((category) => (
+                                                            <div key={category.category} className="w-1/3 px-4 mb-6">
+                                                                <h3 className="font-medium text-gold border-b border-border/30 pb-2 mb-3 text-sm tracking-wider uppercase" style={{ fontFamily: 'var(--font-display)' }}>
+                                                                    {category.category}
+                                                                </h3>
+                                                                <ul className="space-y-2 relative">
+                                                                    {category.items.map((item) => (
+                                                                        <li key={item.name}>
+                                                                            <Link
+                                                                                to={item.path}
+                                                                                className={`text-[15px] transition-colors hover:text-gold block ${location.pathname === item.path ? 'text-gold font-medium' : 'text-muted'}`}
+                                                                                style={{ fontFamily: 'var(--font-body)' }}
+                                                                            >
+                                                                                {item.name}
+                                                                            </Link>
+                                                                        </li>
+                                                                    ))}
+                                                                </ul>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                    <div className="mt-2 pt-4 border-t border-border/30 flex justify-between items-center bg-cream/30 -mx-6 -mb-4 px-10 pb-4 pt-4 rounded-b-xl">
                                                         <p className="text-sm font-medium text-dark tracking-wide">Not sure which treatment is right for you?</p>
                                                         <a href="https://api.whatsapp.com/send/?phone=917738891858&text=Hello%20there!" target="_blank" rel="noreferrer" className="btn btn-primary text-xs py-2 px-5 flex items-center gap-2 rounded-full border border-gold hover:bg-gold hover:text-white transition-colors" style={{ fontFamily: 'var(--font-body)' }}>
                                                             <span>Chat with us</span>
                                                         </a>
+                                                    </div>
+                                                </div>
+                                            )}
+
+                                            {/* Mega Menu - With Images (Concerns) */}
+                                            {link.megaMenuWithImages && (
+                                                <div className="p-6">
+                                                    <div className="flex items-center justify-between mb-6 pb-4 border-b border-border/30">
+                                                        <div>
+                                                            <h3 className="text-xl font-medium text-dark" style={{ fontFamily: 'var(--font-display)' }}>
+                                                                What Bothers You?
+                                                            </h3>
+                                                            <p className="text-sm text-muted mt-1">Explore our treatments for common skin concerns</p>
+                                                        </div>
+                                                        <Link
+                                                            to="/concerns"
+                                                            className="flex items-center gap-2 text-sm font-medium text-gold hover:text-gold-dark transition-colors"
+                                                        >
+                                                            View All Concerns <ArrowRight size={16} />
+                                                        </Link>
+                                                    </div>
+                                                    <div className="grid grid-cols-3 xl:grid-cols-6 gap-4">
+                                                        {link.megaMenuWithImages.map((item) => (
+                                                            <Link
+                                                                key={item.title}
+                                                                to={item.path}
+                                                                className="group relative overflow-hidden rounded-xl transition-all duration-300 hover:shadow-lg"
+                                                            >
+                                                                <div className="relative h-40 overflow-hidden">
+                                                                    <img
+                                                                        src={item.image}
+                                                                        alt={item.title}
+                                                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                                                    />
+                                                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                                                                    <div className="absolute top-3 left-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center">
+                                                                        {item.icon && <item.icon size={18} className="text-dark" />}
+                                                                    </div>
+                                                                </div>
+                                                                <div className="absolute bottom-0 left-0 right-0 p-3">
+                                                                    <h4 className="text-white font-medium text-sm mb-1" style={{ fontFamily: 'var(--font-display)' }}>
+                                                                        {item.title}
+                                                                    </h4>
+                                                                    <p className="text-white/70 text-xs line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                                                        {item.description}
+                                                                    </p>
+                                                                </div>
+                                                            </Link>
+                                                        ))}
                                                     </div>
                                                 </div>
                                             )}
@@ -304,11 +368,19 @@ export default function Header() {
                         ))}
                     </nav>
 
-                    {/* CTA + Mobile Toggle */}
-                    <div className="flex items-center gap-4">
+                    {/* CTA + Mobile Toggle + Search Button */}
+                    <div className="flex items-center gap-1 md:gap-4">
+                        <button
+                            onClick={() => setIsSearchOpen(true)}
+                            className="w-10 h-10 flex items-center justify-center transition-all duration-300 hover:bg-black/5 hover:text-gold text-dark rounded-full"
+                            aria-label="Open Search"
+                        >
+                            <Search size={20} />
+                        </button>
+
                         <Link
                             to="/book"
-                            className="btn btn-primary hidden md:inline-flex"
+                            className="btn btn-primary hidden md:inline-flex ml-1 md:ml-0"
                         >
                             Book Appointment
                         </Link>
@@ -323,6 +395,39 @@ export default function Header() {
                         </button>
                     </div>
                 </div>
+
+                {/* Full Width Search Overlay */}
+                <div
+                    className={`absolute inset-0 bg-white z-[1010] flex items-center justify-center transition-all duration-500 origin-top overflow-hidden border-b border-black/5 ${isSearchOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0'}`}
+                >
+                    <div className="container flex items-center gap-4 h-full">
+                        <Search size={24} className="text-muted shrink-0" />
+                        <input
+                            type="text"
+                            placeholder="What are you looking for?"
+                            className="w-full h-full text-lg md:text-xl bg-transparent border-none outline-none text-dark placeholder:text-muted/50 font-medium"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter' && searchQuery.trim()) {
+                                    navigate(`/treatments?search=${encodeURIComponent(searchQuery)}`);
+                                    setIsSearchOpen(false);
+                                    setSearchQuery('');
+                                } else if (e.key === 'Escape') {
+                                    setIsSearchOpen(false);
+                                }
+                            }}
+                            autoFocus={isSearchOpen}
+                        />
+                        <button
+                            onClick={() => setIsSearchOpen(false)}
+                            className="w-10 h-10 flex items-center justify-center transition-colors hover:bg-black/5 text-dark rounded-full shrink-0"
+                            aria-label="Close Search"
+                        >
+                            <X size={24} />
+                        </button>
+                    </div>
+                </div>
             </header>
 
             {/* Mobile Menu Slide-in Concept */}
@@ -332,7 +437,7 @@ export default function Header() {
                 aria-hidden="true"
             />
             <div
-                className={`fixed top-0 left-0 h-full w-[320px] bg-white z-[1099] overflow-hidden transition-transform duration-500 lg:hidden ${isMobileOpen ? 'translate-x-0' : '-translate-x-full'}`}
+                className={`fixed top-0 left-0 h-full w-[85vw] max-w-[360px] bg-white z-[1099] overflow-hidden transition-transform duration-500 lg:hidden ${isMobileOpen ? 'translate-x-0' : '-translate-x-full'}`}
                 role="dialog"
                 aria-modal="true"
             >
@@ -368,7 +473,7 @@ export default function Header() {
                         <ul className="flex flex-col">
                             {navLinks.map((link) => (
                                 <li key={link.name} className="border-b border-black/10">
-                                    {(link.dropdown || link.megaMenu) ? (
+                                    {(link.dropdown || link.megaMenu || link.megaMenuWithImages) ? (
                                         <button
                                             onClick={() => handleMobileMenuClick(link.name)}
                                             className="w-full flex items-center justify-between h-[50px] px-5 py-0 text-left hover:bg-black/5 transition-colors"
@@ -398,7 +503,7 @@ export default function Header() {
 
                     {/* Sub-menu Layers */}
                     {navLinks.map((link) => {
-                        if (!link.dropdown && !link.megaMenu) return null;
+                        if (!link.dropdown && !link.megaMenu && !link.megaMenuWithImages) return null;
 
                         const isActive = mobileMenuStack.includes(link.name);
                         const isTop = activeMobileMenu === link.name;
@@ -454,6 +559,53 @@ export default function Header() {
                                         ))}
                                     </div>
                                 )}
+                                {link.megaMenuWithImages && (
+                                    <div className="flex flex-col pb-8">
+                                        <h4 className="text-[16px] text-gold font-medium leading-tight py-2 uppercase tracking-wide border-b border-border/30 mb-4">
+                                            What Bothers You?
+                                        </h4>
+                                        <div className="flex flex-col gap-3">
+                                            {link.megaMenuWithImages.map((item) => (
+                                                <Link
+                                                    key={item.title}
+                                                    to={item.path}
+                                                    className="flex items-center gap-4 p-3 rounded-xl transition-all duration-300 hover:bg-black/5 group"
+                                                    onClick={() => setIsMobileOpen(false)}
+                                                >
+                                                    <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0 shadow-sm">
+                                                        <img
+                                                            src={item.image}
+                                                            alt={item.title}
+                                                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                                        />
+                                                    </div>
+                                                    <div className="flex-1 min-w-0">
+                                                        <h5
+                                                            className="text-[15px] font-medium text-dark group-hover:text-gold transition-colors"
+                                                            style={{ fontFamily: 'var(--font-display)' }}
+                                                        >
+                                                            {item.title}
+                                                        </h5>
+                                                        <p
+                                                            className="text-xs mt-0.5 line-clamp-1"
+                                                            style={{ color: 'var(--color-text-muted)' }}
+                                                        >
+                                                            {item.description}
+                                                        </p>
+                                                    </div>
+                                                    <ArrowRight size={16} className="shrink-0 text-gold opacity-0 group-hover:opacity-100 transition-opacity" />
+                                                </Link>
+                                            ))}
+                                        </div>
+                                        <Link
+                                            to="/concerns"
+                                            className="mt-4 flex items-center justify-center gap-2 py-3 text-sm font-semibold text-gold border border-gold/30 rounded-xl hover:bg-gold/5 transition-colors"
+                                            onClick={() => setIsMobileOpen(false)}
+                                        >
+                                            View All Concerns <ArrowRight size={14} />
+                                        </Link>
+                                    </div>
+                                )}
                             </div>
                         );
                     })}
@@ -501,11 +653,28 @@ export default function Header() {
                 .hover\:text-gold:hover {
                     color: var(--color-gold);
                 }
+                .hover\:text-gold-dark:hover {
+                    color: var(--color-gold-dark);
+                }
                 .hover\:pl-6:hover {
                     padding-left: 1.5rem;
                 }
                 .hover\:pl-8:hover {
                     padding-left: 2rem;
+                }
+                .line-clamp-2 {
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                }
+                .grid-cols-3 {
+                    grid-template-columns: repeat(3, minmax(0, 1fr));
+                }
+                @media (min-width: 1280px) {
+                    .xl\:grid-cols-6 {
+                        grid-template-columns: repeat(6, minmax(0, 1fr));
+                    }
                 }
             `}</style>
         </>

@@ -14,7 +14,7 @@ export default function Locations() {
                         <Caption variant="overline">Visit Us</Caption>
                         <Heading variant="page">Our Locations</Heading>
                         <Text size="lg" color="muted" className="max-w-2xl mt-5">
-                            AAYNA Clinic has state-of-the-art centers across Delhi NCR and Ludhiana. Find a clinic near you.
+                            D'CosMedis Clinic has state-of-the-art centers across Delhi NCR and Ludhiana. Find a clinic near you.
                         </Text>
                     </RevealWrapper>
                 </div>
@@ -23,7 +23,7 @@ export default function Locations() {
             {/* Locations - Improved Grid */}
             <section className="section">
                 <div className="container">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                         {locations.map((loc, i) => (
                             <RevealWrapper key={loc.id} direction={i % 2 === 0 ? 'left' : 'right'}>
                                 <div className="bg-white rounded-2xl overflow-hidden border hover:border-gold transition-all duration-300 hover:shadow-lg" style={{ borderColor: 'var(--color-border)' }}>

@@ -7,11 +7,11 @@
 import PropTypes from 'prop-types';
 
 const sizeStyles = {
-    xs: 'text-xs leading-normal',
-    sm: 'text-sm leading-relaxed',
-    base: 'text-base leading-normal',
-    md: 'text-md leading-normal',
-    lg: 'text-lg leading-normal',
+    xs: 'text-[14px] leading-normal',
+    sm: 'text-[14px] leading-relaxed',
+    base: 'text-[16px] leading-normal',
+    md: 'text-[16px] leading-[1.7]',
+    lg: 'text-[18px] leading-[1.7]',
 };
 
 const weightStyles = {

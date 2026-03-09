@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { ArrowRight, ArrowLeft, CheckCircle, Calendar, MapPin, User, FileText } from 'lucide-react'
 import { RevealWrapper } from '../hooks/useAnimations'
 import { Heading, Text, Caption } from '../components/ui/Typography'
@@ -166,7 +167,7 @@ export default function BookAppointment() {
                                     <MapPin size={24} style={{ color: 'var(--color-gold)' }} />
                                     <Heading variant="subtitle">Choose Your Location</Heading>
                                 </div>
-                                <Text color="muted" size="sm">Select the AAYNA clinic nearest to you.</Text>
+                                <Text color="muted" size="sm">Select the D'CosMedis clinic nearest to you.</Text>
                             </div>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 {locations.map((loc) => (
