@@ -30,21 +30,21 @@ export function CarouselSpacing() {
     const sliderClick = (slider) => {
         console.log("slider clicked", slider);
     }
-    
+
     const slides = [
-        {image:"https://picsum.photos/200/300",title:"This is a title",description:"This is a description",clickEvent:sliderClick},
-        {image:"https://picsum.photos/600/500",title:"This is a second title",description:"This is a second description",clickEvent:sliderClick},
-        {image:"https://picsum.photos/700/600",title:"This is a third title",description:"This is a third description",clickEvent:sliderClick},
-        {image:"https://picsum.photos/500/400",title:"This is a fourth title",description:"This is a fourth description",clickEvent:sliderClick},
-        {image:"https://picsum.photos/200/300",title:"This is a fifth title",description:"This is a fifth description",clickEvent:sliderClick},
-        {image:"https://picsum.photos/800/700",title:"This is a sixth title",description:"This is a sixth description",clickEvent:sliderClick},
-        {image:"https://picsum.photos/300/400",title:"This is a seventh title",description:"This is a seventh description",clickEvent:sliderClick},
+        { image: "https://picsum.photos/200/300", title: "This is a title", description: "This is a description", clickEvent: sliderClick },
+        { image: "https://picsum.photos/600/500", title: "This is a second title", description: "This is a second description", clickEvent: sliderClick },
+        { image: "https://picsum.photos/700/600", title: "This is a third title", description: "This is a third description", clickEvent: sliderClick },
+        { image: "https://picsum.photos/500/400", title: "This is a fourth title", description: "This is a fourth description", clickEvent: sliderClick },
+        { image: "https://picsum.photos/200/300", title: "This is a fifth title", description: "This is a fifth description", clickEvent: sliderClick },
+        { image: "https://picsum.photos/800/700", title: "This is a sixth title", description: "This is a sixth description", clickEvent: sliderClick },
+        { image: "https://picsum.photos/300/400", title: "This is a seventh title", description: "This is a seventh description", clickEvent: sliderClick },
     ]
 
     return (
         <section className="section bg-white flex justify-center py-12 overflow-hidden w-full max-w-[100vw]">
             <div className="w-full max-w-6xl px-12 sm:px-16 mx-auto flex justify-center">
-                <ReactCardSlider slides={slides}/>
+                <ReactCardSlider slides={slides} />
             </div>
         </section>
     )
@@ -110,11 +110,11 @@ function HeroSection() {
                     src={slide.image}
                     alt={slide.title}
                     className="w-full h-full object-cover object-center"
-                    style={{ filter: 'brightness(0.5)' }}
+                // style={{ filter: 'brightness(0.5)' }}
                 />
                 <div
                     className="absolute inset-0"
-                    style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.55) 100%)' }}
+                // style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.55) 100%)' }}
                 />
             </div>
 
@@ -135,7 +135,7 @@ function HeroSection() {
                         <Text size="lg" className="mb-6 md:mb-10 max-w-lg text-white text-sm md:text-base lg:text-xl" style={{ color: '#ffffff' }}>
                             {slide.description}
                         </Text>
-                        <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto">
+                        <div className="flex flex-col sm:flex-row items-start justify-start gap-3 sm:gap-4 w-full sm:w-auto">
                             <Link to={slide.ctaLink} className="btn btn-primary w-full sm:w-auto text-center justify-center py-3.5 md:py-4 flex items-center">
                                 {slide.cta} <ArrowRight size={18} className="ml-2" />
                             </Link>
@@ -240,7 +240,7 @@ function AnimatedCounter({ target, suffix = '' }) {
     return <span ref={ref}>{display}</span>
 }
 
-const statIcons = ['👩‍⚕️', '😊', '🏥', '⭐']
+// const statIcons = ['👩‍⚕️', '😊', '🏥', '⭐']
 
 function StatsBar() {
     return (
@@ -253,7 +253,7 @@ function StatsBar() {
                     {stats.map((stat, i) => (
                         <RevealWrapper key={i} direction="up" delay={i * 0.1}>
                             <div className="text-center">
-                                <div className="text-3xl mb-2">{statIcons[i]}</div>
+                                {/* <div className="text-3xl mb-2">{statIcons[i]}</div> */}
                                 <div
                                     className="text-white font-medium stat-number"
                                     style={{
@@ -268,7 +268,7 @@ function StatsBar() {
                                     />
                                 </div>
                                 <p className="mt-3 text-white text-sm md:text-base font-medium opacity-90 tracking-wide uppercase"
-                                   style={{ fontFamily: 'var(--font-body)', letterSpacing: '0.08em' }}>
+                                    style={{ fontFamily: 'var(--font-body)', letterSpacing: '0.08em' }}>
                                     {stat.label}
                                 </p>
                             </div>
@@ -290,8 +290,8 @@ function ConcernsSection() {
                         <span className="inline-block text-[10px] tracking-[3px] uppercase font-bold mb-4 text-[#888]">
                             What Bothers You?
                         </span>
-                        <h2 
-                            className="text-3xl md:text-5xl font-serif mb-6" 
+                        <h2
+                            className="text-3xl md:text-5xl font-serif mb-6"
                             style={{ color: 'var(--color-dark)' }}
                         >
                             Concerns
@@ -350,8 +350,8 @@ function TreatmentsSection() {
                         <span className="inline-block text-[10px] tracking-[3px] uppercase font-bold mb-4 text-[#888]">
                             Our Expertise
                         </span>
-                        <h2 
-                            className="text-3xl md:text-5xl font-serif mb-6" 
+                        <h2
+                            className="text-3xl md:text-5xl font-serif mb-6"
                             style={{ color: 'var(--color-dark)' }}
                         >
                             Treatments
@@ -449,11 +449,11 @@ function AboutPreview() {
                             <span className="inline-block text-[10px] tracking-[3px] uppercase font-bold mb-4 text-[#888]">
                                 About D'CosMedis
                             </span>
-                            <h2 
-                                className="text-3xl md:text-5xl lg:text-5xl mb-8 font-serif leading-tight" 
+                            <h2
+                                className="text-3xl md:text-5xl lg:text-5xl mb-8 font-serif leading-tight"
                                 style={{ color: 'var(--color-dark)' }}
                             >
-                                Where Science <br/><span className="italic text-gold">Meets Beauty</span>
+                                Where Science <br /><span className="italic text-gold">Meets Beauty</span>
                             </h2>
                             <div className="space-y-6 mb-10">
                                 <div className="flex items-start gap-4">
@@ -784,8 +784,8 @@ function RealResultsSection() {
                         <span className="inline-block text-[10px] tracking-[3px] uppercase font-bold mb-4 text-[#888]">
                             Real Skin, Real Results
                         </span>
-                        <h2 
-                            className="text-3xl md:text-5xl font-serif" 
+                        <h2
+                            className="text-3xl md:text-5xl font-serif"
                             style={{ color: 'var(--color-dark)' }}
                         >
                             <span className="italic text-gold">Transformations</span>
@@ -989,8 +989,8 @@ function TreatmentsAtAGlance() {
                         <span className="inline-block text-[10px] tracking-[3px] uppercase font-bold mb-4 text-[#888]">
                             Browse Further
                         </span>
-                        <h2 
-                            className="text-3xl md:text-5xl font-serif text-white" 
+                        <h2
+                            className="text-3xl md:text-5xl font-serif text-white"
                         >
                             Treatments At A Glance
                         </h2>
@@ -1019,16 +1019,16 @@ function TreatmentsAtAGlance() {
                         >
                             <div className="relative h-[360px] md:h-[420px] rounded-sm overflow-hidden shadow-lg border border-[#333]">
                                 {/* Background Image */}
-                                <img 
-                                    src={item.image} 
-                                    alt={item.title} 
+                                <img
+                                    src={item.image}
+                                    alt={item.title}
                                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.05]"
                                     style={{ filter: 'brightness(0.6)' }}
                                 />
-                                
+
                                 {/* Overlay */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent transition-opacity duration-500"></div>
-                                
+
                                 {/* Content */}
                                 <div className="absolute inset-0 flex flex-col items-center justify-end p-8 text-white z-10">
                                     <h3 className="text-2xl md:text-3xl font-serif tracking-widest uppercase text-center mb-1 text-white">
@@ -1127,8 +1127,8 @@ function ExclusiveSection() {
                         <span className="inline-block text-[10px] tracking-[3px] uppercase font-bold mb-4 text-[#888]">
                             Global Standards
                         </span>
-                        <h2 
-                            className="text-3xl md:text-5xl font-serif mb-6" 
+                        <h2
+                            className="text-3xl md:text-5xl font-serif mb-6"
                             style={{ color: 'var(--color-dark)' }}
                         >
                             D'CosMedis Exclusive
