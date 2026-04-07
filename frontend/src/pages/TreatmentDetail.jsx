@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { ChevronDown, ArrowRight, Clock, DollarSign, ShieldCheck, Star, Phone } from 'lucide-react'
+import { ChevronDown, ArrowRight, Clock, DollarSign, ShieldCheck, Star, Phone, Play, X } from 'lucide-react'
 import { RevealWrapper } from '../hooks/useAnimations'
 import { treatments } from '../data/siteData'
 
@@ -33,6 +33,189 @@ const trustPillars = [
     { icon: Clock, label: 'Zero Downtime', sub: 'For most procedures' },
     { icon: Phone, label: 'Free Consultation', sub: 'Book a session today' },
 ]
+
+const treatmentVideos = [
+    {
+        id: 'ZYlhFKxT9dg',
+        title: 'Advanced Skin Treatment at D\'CosMedis',
+        subtitle: 'See the transformation journey',
+        thumb: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80',
+    },
+    {
+        id: 'xjLDPQXAHiE',
+        title: 'Laser Facial – What to Expect',
+        subtitle: 'Step-by-step procedure walkthrough',
+        thumb: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=800&q=80',
+    },
+    {
+        id: 'YqKUuFGRBLo',
+        title: 'Anti-Aging & Skin Rejuvenation',
+        subtitle: 'Real patient results & testimonials',
+        thumb: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80',
+    },
+]
+
+function VideoGallery() {
+    const [active, setActive] = useState(0)
+    const [lightboxOpen, setLightboxOpen] = useState(false)
+    const [playing, setPlaying] = useState(false)
+
+    const featured = treatmentVideos[active]
+
+    const openLightbox = () => { setLightboxOpen(true); setPlaying(true) }
+    const closeLightbox = () => { setLightboxOpen(false); setPlaying(false) }
+
+    return (
+        <section style={{ padding: '7rem 0', background: '#fff' }}>
+            <style>{`
+                .vg-thumb { position: relative; cursor: pointer; overflow: hidden; border: 2px solid transparent; transition: border-color 0.3s, transform 0.3s; }
+                .vg-thumb.active { border-color: var(--color-gold); }
+                .vg-thumb:hover { transform: translateX(4px); }
+                .vg-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+                .vg-thumb:hover img { transform: scale(1.05); }
+                .vg-thumb-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.45); display: flex; align-items: center; justify-content: center; transition: background 0.3s; }
+                .vg-thumb:hover .vg-thumb-overlay { background: rgba(0,0,0,0.25); }
+                .vg-play-sm { width: 2.25rem; height: 2.25rem; border-radius: 50%; background: rgba(255,255,255,0.85); display: flex; align-items: center; justify-content: center; transition: transform 0.3s, background 0.3s; }
+                .vg-thumb:hover .vg-play-sm { background: var(--color-gold); transform: scale(1.15); }
+                .vg-featured-play { width: 5rem; height: 5rem; border-radius: 50%; background: rgba(255,255,255,0.15); border: 2px solid rgba(255,255,255,0.6); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; backdrop-filter: blur(6px); }
+                .vg-featured-play:hover { background: var(--color-gold); border-color: var(--color-gold); transform: scale(1.1); box-shadow: 0 0 40px rgba(135,91,108,0.6); }
+                .vg-lightbox { position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.92); display: flex; align-items: center; justify-content: center; backdrop-filter: blur(8px); animation: vg-fade-in 0.3s ease; }
+                @keyframes vg-fade-in { from { opacity: 0; } to { opacity: 1; } }
+                .vg-lightbox-inner { position: relative; width: 90vw; max-width: 64rem; }
+                .vg-lightbox-close { position: absolute; top: -3rem; right: 0; background: none; border: none; color: #fff; cursor: pointer; opacity: 0.7; transition: opacity 0.2s; }
+                .vg-lightbox-close:hover { opacity: 1; }
+                .vg-iframe-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+                .vg-iframe-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+            `}</style>
+
+            <div className="container" style={{ maxWidth: '80rem' }}>
+                <RevealWrapper>
+                    <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+                        <span style={{ display: 'block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 800, color: 'var(--color-gold)', marginBottom: '1rem' }}>
+                            Watch &amp; Learn
+                        </span>
+                        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--color-dark)', textTransform: 'uppercase', letterSpacing: '3px' }}>
+                            Treatment Videos
+                        </h2>
+                        <div style={{ width: '3.5rem', height: '2px', background: 'var(--color-gold)', margin: '1.25rem auto 0' }} />
+                        <p style={{ color: 'var(--color-text-muted)', maxWidth: '36rem', margin: '1.25rem auto 0', lineHeight: 1.75, fontSize: '1rem' }}>
+                            Watch our expert dermatologists in action. Learn what to expect before, during, and after your treatment.
+                        </p>
+                    </div>
+                </RevealWrapper>
+
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '2rem' }}>
+                    {/* Featured large player */}
+                    <RevealWrapper direction="up">
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
+
+                            {/* Large featured thumbnail */}
+                            <div style={{ position: 'relative', overflow: 'hidden', gridColumn: 'span 2', minHeight: '380px', cursor: 'pointer' }} onClick={openLightbox}>
+                                <img src={featured.thumb} alt={featured.title} style={{ width: '100%', height: '100%', objectFit: 'cover', minHeight: '380px', transition: 'transform 0.8s ease' }} />
+                                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(30,18,25,0.75) 0%, rgba(0,0,0,0.35) 100%)' }} />
+
+                                {/* Play button */}
+                                <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '1.5rem' }}>
+                                    <button className="vg-featured-play" aria-label="Play video" onClick={openLightbox}>
+                                        <Play size={22} fill="white" style={{ color: '#fff', marginLeft: '3px' }} />
+                                    </button>
+                                </div>
+
+                                {/* Caption overlay */}
+                                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '2rem', background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%)' }}>
+                                    <span style={{ display: 'block', fontSize: '0.6rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-gold)', marginBottom: '0.4rem' }}>
+                                        {featured.subtitle}
+                                    </span>
+                                    <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.25rem, 2.5vw, 1.75rem)', color: '#fff', fontWeight: 500 }}>
+                                        {featured.title}
+                                    </h3>
+                                </div>
+
+                                {/* YouTube badge */}
+                                <div style={{ position: 'absolute', top: '1.25rem', right: '1.25rem', background: '#ff0000', padding: '0.3rem 0.75rem', borderRadius: '4px' }}>
+                                    <span style={{ fontSize: '0.6rem', fontWeight: 800, color: '#fff', letterSpacing: '1px' }}>▶ YOUTUBE</span>
+                                </div>
+                            </div>
+
+                            {/* Thumbnail sidebar */}
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                {treatmentVideos.map((v, i) => (
+                                    <div
+                                        key={v.id}
+                                        className={`vg-thumb${active === i ? ' active' : ''}`}
+                                        style={{ height: '110px', borderRadius: '2px' }}
+                                        onClick={() => { setActive(i); setPlaying(false) }}
+                                    >
+                                        <img src={v.thumb} alt={v.title} />
+                                        <div className="vg-thumb-overlay">
+                                            <div className="vg-play-sm">
+                                                <Play size={13} style={{ color: active === i ? '#fff' : 'var(--color-dark)', marginLeft: '2px' }} fill={active === i ? '#fff' : 'var(--color-dark)'} />
+                                            </div>
+                                        </div>
+                                        {/* Active indicator */}
+                                        {active === i && (
+                                            <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '3px', background: 'var(--color-gold)' }} />
+                                        )}
+                                        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '0.5rem 0.75rem', background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%)' }}>
+                                            <p style={{ fontSize: '0.7rem', color: '#fff', fontWeight: 500, lineHeight: 1.3 }}>{v.title}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </RevealWrapper>
+                </div>
+
+                {/* Counter */}
+                <RevealWrapper>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem', marginTop: '2rem' }}>
+                        {treatmentVideos.map((_, i) => (
+                            <button
+                                key={i}
+                                onClick={() => setActive(i)}
+                                style={{
+                                    width: active === i ? '2rem' : '0.5rem',
+                                    height: '0.5rem',
+                                    borderRadius: '9999px',
+                                    background: active === i ? 'var(--color-gold)' : '#ddd',
+                                    border: 'none',
+                                    cursor: 'pointer',
+                                    transition: 'all 0.4s ease',
+                                    padding: 0,
+                                }}
+                            />
+                        ))}
+                    </div>
+                </RevealWrapper>
+            </div>
+
+            {/* Lightbox */}
+            {lightboxOpen && (
+                <div className="vg-lightbox" onClick={closeLightbox}>
+                    <div className="vg-lightbox-inner" onClick={e => e.stopPropagation()}>
+                        <button className="vg-lightbox-close" onClick={closeLightbox}>
+                            <X size={28} />
+                        </button>
+                        <div className="vg-iframe-wrap">
+                            {playing && (
+                                <iframe
+                                    src={`https://www.youtube-nocookie.com/embed/${featured.id}?autoplay=1&rel=0&modestbranding=1`}
+                                    title={featured.title}
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                />
+                            )}
+                        </div>
+                        <div style={{ padding: '1rem 0' }}>
+                            <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase' }}>{featured.subtitle}</p>
+                            <h3 style={{ fontFamily: 'var(--font-heading)', color: '#fff', fontSize: '1.375rem', marginTop: '0.25rem' }}>{featured.title}</h3>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </section>
+    )
+}
 
 export default function TreatmentDetail() {
     const { slug } = useParams()
@@ -219,6 +402,9 @@ export default function TreatmentDetail() {
                     </div>
                 </div>
             </section>
+
+            {/* ─── VIDEO GALLERY ─── */}
+            <VideoGallery />
 
             {/* ─── CLINIC BANNER ─── */}
             <section style={{ position: 'relative', height: '520px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
