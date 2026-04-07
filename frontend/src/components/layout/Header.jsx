@@ -380,7 +380,7 @@ export default function Header() {
 
                         <Link
                             to="/book"
-                            className="btn btn-primary hidden md:inline-flex ml-1 md:ml-0"
+                            className="btn btn-primary hidden lg:inline-flex ml-1 lg:ml-0"
                         >
                             Book Appointment
                         </Link>
