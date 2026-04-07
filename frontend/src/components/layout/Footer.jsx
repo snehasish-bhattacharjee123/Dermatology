@@ -218,7 +218,7 @@ export default function Footer() {
                     color: var(--color-gold);
                 }
                 .hover\\:bg-gold\\/10:hover {
-                    background-color: rgba(248, 184, 78, 0.1);
+                    background-color: rgba(135, 91, 108, 0.1);
                 }
                 .hover\\:pl-1:hover {
                     padding-left: 0.25rem;

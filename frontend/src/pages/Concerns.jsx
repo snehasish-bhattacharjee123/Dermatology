@@ -9,7 +9,7 @@ export default function Concerns() {
         <>
             {/* Page Hero - Premium */}
             <section className="relative h-[50vh] min-h-[400px] flex items-center overflow-hidden" style={{ marginTop: 'var(--header-total-height)' }}>
-                <div className="absolute inset-0 bg-[#faf8f4] z-0"></div>
+                <div className="absolute inset-0 bg-[#e8e3d9] z-0"></div>
                 <div className="container relative z-10 text-center">
                     <RevealWrapper>
                         <span className="inline-block px-4 py-1.5 text-[10px] tracking-[4px] uppercase font-bold rounded-full mb-6 text-[#888]">

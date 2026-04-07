@@ -115,7 +115,7 @@ export default function Treatments() {
                         )
                         .map((treatment, i) => {
                             const isReversed = i % 2 !== 0
-                            const sectionBg = i % 2 === 0 ? '#ffffff' : '#faf8f4'
+                            const sectionBg = i % 2 === 0 ? '#ffffff' : '#e8e3d9'
                             return (
                                 <div
                                     key={treatment.id}
@@ -233,7 +233,7 @@ export default function Treatments() {
                                                 </div>
                                                 <div
                                                     className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                                                    style={{ background: 'rgba(248, 184, 78, 0.9)' }}
+                                                    style={{ background: 'rgba(135, 91, 108, 0.9)' }}
                                                 >
                                                     <span className="text-white text-xs tracking-[2px] uppercase flex items-center gap-2 font-semibold">
                                                         Learn More <ArrowRight size={14} />
@@ -281,7 +281,7 @@ export default function Treatments() {
 
             {/* Footer CTA Section */}
             <section style={{
-                background: '#faf7f2',
+                background: '#e8e3d9',
                 padding: '80px 20px',
                 textAlign: 'center'
             }}>

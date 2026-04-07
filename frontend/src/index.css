@@ -8,21 +8,23 @@
   /* ========================================
      COLORS - D'CosMedis Brand Palette
      ======================================== */
-  --color-gold: #f8b84e;
-  --color-gold-dark: #d2880c;
-  --color-gold-light: #fdd181;
-  --color-gold-glow: rgba(248, 184, 78, 0.15);
-  --color-dark: #353535;
-  --color-dark-soft: #4a4a4a;
-  --color-text: #2c2c2c;
-  --color-text-muted: #555555;
-  --color-text-light: #888888;
+  /* New Brand Palette */
+  --color-gold: #875b6c;           /* Primary: Dusty Rose */
+  --color-gold-dark: #6d4957;      /* Primary Dark: hover states */
+  --color-gold-light: #a57c8c;     /* Primary Light: subtle accents */
+  --color-gold-glow: rgba(135, 91, 108, 0.15); /* Primary glow */
+  --color-dark: #39212f;           /* Third: Dark Plum */
+  --color-dark-soft: #52303f;      /* Third Soft: slightly lighter plum */
+  --color-text: #2c1a24;
+  --color-text-muted: #6b4f5a;
+  --color-text-light: #9a7d88;
   --color-bg-white: #FFFFFF;
-  --color-bg-cream: #faf8f4;
-  --color-bg-light: #f5f5f5;
-  --color-bg-dark: #1a1a1a;
-  --color-border: #e8e6e2;
-  --color-border-light: #f0ede8;
+  --color-bg-cream: #e8e3d9;       /* Secondary Light: soft khaki tint */
+  --color-bg-secondary: #c9bfa6;   /* Secondary: Khaki/Beige */
+  --color-bg-light: #f5f2ee;
+  --color-bg-dark: #25151e;        /* Darker plum for deep sections */
+  --color-border: #d5cfc7;
+  --color-border-light: #e8e3db;
   --color-error: #E53935;
   --color-success: #43A047;
 
@@ -500,7 +502,7 @@ img {
   background: var(--color-gold-dark);
   border-color: var(--color-gold-dark);
   transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(248, 184, 78, 0.4);
+  box-shadow: 0 8px 28px rgba(135, 91, 108, 0.4);
 }
 
 .btn-outline {
@@ -940,11 +942,11 @@ img {
 
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(248, 184, 78, 0.4);
+    box-shadow: 0 0 0 0 rgba(135, 91, 108, 0.4);
   }
 
   50% {
-    box-shadow: 0 0 0 10px rgba(248, 184, 78, 0);
+    box-shadow: 0 0 0 10px rgba(135, 91, 108, 0);
   }
 }
 

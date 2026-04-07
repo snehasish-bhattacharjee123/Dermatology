@@ -14,7 +14,7 @@ export default function Home() {
             <StatsBar />
             <ConcernsSection />
             <TreatmentsSection />
-            <TreatmentsAtAGlance />
+            {/* <TreatmentsAtAGlance /> */}
             <ExclusiveSection />
             <AboutPreview />
             <RealResultsSection />
@@ -283,7 +283,7 @@ function StatsBar() {
 // ===== CONCERNS SECTION - PREMIUM =====
 function ConcernsSection() {
     return (
-        <section className="section bg-[#faf8f4] py-20 md:py-32">
+        <section className="section bg-[#e8e3d9] py-20 md:py-32">
             <div className="container max-w-6xl">
                 <RevealWrapper>
                     <div className="text-center mb-16 md:mb-20">
@@ -307,7 +307,7 @@ function ConcernsSection() {
                         <RevealWrapper key={concern.id} direction="up" delay={i * 0.06}>
                             <Link to={`/concerns/${concern.slug}`} className="group block text-center p-6 md:p-8 bg-white hover-lift border border-[#f0ede8] h-full rounded-sm">
                                 <div
-                                    className="relative w-16 h-16 md:w-20 md:h-20 mx-auto mb-6 rounded-full flex items-center justify-center transition-all duration-500 bg-[#faf8f4] text-dark"
+                                    className="relative w-16 h-16 md:w-20 md:h-20 mx-auto mb-6 rounded-full flex items-center justify-center transition-all duration-500 bg-[#e8e3d9] text-dark"
                                 >
                                     <span className="text-2xl opacity-80">{concern.icon}</span>
                                 </div>
@@ -418,7 +418,7 @@ function TreatmentsSection() {
 // ===== ABOUT PREVIEW - PREMIUM =====
 function AboutPreview() {
     return (
-        <section className="section bg-[#faf8f4] py-24 md:py-32 overflow-hidden border-t border-[#f0ede8]">
+        <section className="section bg-[#e8e3d9] py-24 md:py-32 overflow-hidden border-t border-[#d5cfc7]">
             <div className="container max-w-6xl">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
                     <RevealWrapper direction="left">
@@ -506,7 +506,7 @@ function TestimonialsSection() {
     return (
         <section
             className="section relative overflow-hidden"
-            style={{ background: 'linear-gradient(135deg, #1a1a1a 0%, #272727 100%)' }}
+            style={{ background: 'linear-gradient(135deg, #25151e 0%, #39212f 100%)' }}
         >
             <div
                 className="absolute top-20 right-20 w-64 h-64 rounded-full opacity-5"
@@ -590,15 +590,15 @@ function TestimonialsSection() {
                                 onClick={goToPrev}
                                 className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300"
                                 style={{
-                                    border: '1px solid #F19020',
-                                    color: '#F19020'
+                                    border: '1px solid var(--color-gold)',
+                                    color: 'var(--color-gold)'
                                 }}
                                 aria-label="Previous testimonial"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 30 30" fill="none">
-                                    <rect x="0.5" y="0.5" width="29" height="29" stroke="#F19020"></rect>
+                                    <rect x="0.5" y="0.5" width="29" height="29" stroke="var(--color-gold)"></rect>
                                     <g clipPath="url(#clip0_1110_83)">
-                                        <path fillRule="evenodd" clipRule="evenodd" d="M11.2662 8.20429C11.4098 8.07297 11.6004 7.99976 11.7985 7.99976C11.9967 7.99976 12.1872 8.07297 12.3309 8.20429L18.5585 13.9891C18.6979 14.1166 18.8089 14.2701 18.8848 14.4402C18.9606 14.6103 18.9998 14.7934 18.9998 14.9785C18.9998 15.1636 18.9606 15.3468 18.8848 15.5169C18.8089 15.687 18.6979 15.8405 18.5585 15.968L12.2858 21.7955C11.9949 22.065 11.5236 22.0685 11.2284 21.8025C11.1569 21.7391 11.0997 21.6623 11.0603 21.5767C11.021 21.4912 11.0003 21.3988 10.9997 21.3053C10.999 21.2117 11.0183 21.119 11.0564 21.033C11.0945 20.9469 11.1505 20.8693 11.2211 20.805L16.9614 15.4731C17.0312 15.4093 17.0868 15.3326 17.1247 15.2475C17.1627 15.1624 17.1822 15.0708 17.1822 14.9782C17.1822 14.8856 17.1627 14.794 17.1247 14.7089C17.0868 14.6238 17.0312 14.5471 16.9614 14.4833L11.2669 9.19339C11.1972 9.12969 11.1416 9.05299 11.1037 8.96797C11.0657 8.88295 11.0462 8.79138 11.0462 8.69884C11.0462 8.6063 11.0657 8.51473 11.1037 8.42971C11.1416 8.34469 11.1964 8.26799 11.2662 8.20429Z" fill="#F19020"></path>
+                                        <path fillRule="evenodd" clipRule="evenodd" d="M11.2662 8.20429C11.4098 8.07297 11.6004 7.99976 11.7985 7.99976C11.9967 7.99976 12.1872 8.07297 12.3309 8.20429L18.5585 13.9891C18.6979 14.1166 18.8089 14.2701 18.8848 14.4402C18.9606 14.6103 18.9998 14.7934 18.9998 14.9785C18.9998 15.1636 18.9606 15.3468 18.8848 15.5169C18.8089 15.687 18.6979 15.8405 18.5585 15.968L12.2858 21.7955C11.9949 22.065 11.5236 22.0685 11.2284 21.8025C11.1569 21.7391 11.0997 21.6623 11.0603 21.5767C11.021 21.4912 11.0003 21.3988 10.9997 21.3053C10.999 21.2117 11.0183 21.119 11.0564 21.033C11.0945 20.9469 11.1505 20.8693 11.2211 20.805L16.9614 15.4731C17.0312 15.4093 17.0868 15.3326 17.1247 15.2475C17.1627 15.1624 17.1822 15.0708 17.1822 14.9782C17.1822 14.8856 17.1627 14.794 17.1247 14.7089C17.0868 14.6238 17.0312 14.5471 16.9614 14.4833L11.2669 9.19339C11.1972 9.12969 11.1416 9.05299 11.1037 8.96797C11.0657 8.88295 11.0462 8.79138 11.0462 8.69884C11.0462 8.6063 11.0657 8.51473 11.1037 8.42971C11.1416 8.34469 11.1964 8.26799 11.2662 8.20429Z" fill="var(--color-gold)"></path>
                                     </g>
                                     <defs>
                                         <clipPath id="clip0_1110_83">
@@ -612,15 +612,15 @@ function TestimonialsSection() {
                                 onClick={goToNext}
                                 className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300"
                                 style={{
-                                    border: '1px solid #F19020',
-                                    color: '#F19020'
+                                    border: '1px solid var(--color-gold)',
+                                    color: 'var(--color-gold)'
                                 }}
                                 aria-label="Next testimonial"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 30 30" fill="none">
-                                    <rect x="0.5" y="0.5" width="29" height="29" stroke="#F19020"></rect>
+                                    <rect x="0.5" y="0.5" width="29" height="29" stroke="var(--color-gold)"></rect>
                                     <g clipPath="url(#clip1_1110_84)">
-                                        <path fillRule="evenodd" clipRule="evenodd" d="M18.7338 21.7957C18.5246 21.9254 18.2716 21.9999 18.0101 21.9999C17.7487 21.9999 17.4957 21.9254 17.2864 21.7957L11.0137 15.968C10.8743 15.8405 10.7633 15.687 10.6874 15.5169C10.6116 15.3467 10.5724 15.1635 10.5724 14.9784C10.5724 14.7933 10.6116 14.6101 10.6874 14.44C10.7633 14.2699 10.8743 14.1164 11.0137 13.9889L17.2413 8.20409C17.385 8.07277 17.5755 7.99956 17.7737 7.99956C17.9718 7.99956 18.1624 8.07277 18.306 8.20409C18.3758 8.26779 18.4314 8.34449 18.4693 8.42951C18.5073 8.51453 18.5268 8.6061 18.5268 8.69864C18.5268 8.79118 18.5073 8.88275 18.4693 8.96777C18.4314 9.05279 18.3758 9.12949 18.306 9.19319L12.6004 14.4831C12.5307 14.5468 12.475 14.6235 12.4371 14.7086C12.3991 14.7937 12.3796 14.8853 12.3796 14.9779C12.3796 15.0705 12.3991 15.1621 12.4371 15.2472C12.475 15.3322 12.5307 15.4089 12.6004 15.4727L17.7864 20.805C17.8569 20.8693 17.9129 20.9469 17.951 21.033C17.9891 21.119 18.0084 21.2117 18.0077 21.3053C18.0071 21.3988 17.9864 21.4912 17.9471 21.5767C17.9077 21.6623 17.8505 21.7391 17.779 21.8025C17.4838 22.0685 17.0125 22.065 16.7216 21.7957L18.7338 21.7957Z" fill="#F19020"></path>
+                                        <path fillRule="evenodd" clipRule="evenodd" d="M18.7338 21.7957C18.5246 21.9254 18.2716 21.9999 18.0101 21.9999C17.7487 21.9999 17.4957 21.9254 17.2864 21.7957L11.0137 15.968C10.8743 15.8405 10.7633 15.687 10.6874 15.5169C10.6116 15.3467 10.5724 15.1635 10.5724 14.9784C10.5724 14.7933 10.6116 14.6101 10.6874 14.44C10.7633 14.2699 10.8743 14.1164 11.0137 13.9889L17.2413 8.20409C17.385 8.07277 17.5755 7.99956 17.7737 7.99956C17.9718 7.99956 18.1624 8.07277 18.306 8.20409C18.3758 8.26779 18.4314 8.34449 18.4693 8.42951C18.5073 8.51453 18.5268 8.6061 18.5268 8.69864C18.5268 8.79118 18.5073 8.88275 18.4693 8.96777C18.4314 9.05279 18.3758 9.12949 18.306 9.19319L12.6004 14.4831C12.5307 14.5468 12.475 14.6235 12.4371 14.7086C12.3991 14.7937 12.3796 14.8853 12.3796 14.9779C12.3796 15.0705 12.3991 15.1621 12.4371 15.2472C12.475 15.3322 12.5307 15.4089 12.6004 15.4727L17.7864 20.805C17.8569 20.8693 17.9129 20.9469 17.951 21.033C17.9891 21.119 18.0084 21.2117 18.0077 21.3053C18.0071 21.3988 17.9864 21.4912 17.9471 21.5767C17.9077 21.6623 17.8505 21.7391 17.779 21.8025C17.4838 22.0685 17.0125 22.065 16.7216 21.7957L18.7338 21.7957Z" fill="var(--color-gold)"></path>
                                     </g>
                                     <defs>
                                         <clipPath id="clip1_1110_84">
@@ -700,7 +700,7 @@ function LocationsSection() {
                                         {loc.name}
                                     </h4>
                                     <div className="flex items-center gap-1 mb-2">
-                                        <Star size={14} fill="#f8b84e" color="#f8b84e" />
+                                        <Star size={14} fill="var(--color-gold)" color="var(--color-gold)" />
                                         <span className="text-sm font-semibold" style={{ color: 'var(--color-dark)' }}>{ratings[i]}</span>
                                         <span className="text-xs" style={{ color: 'var(--color-text-light)' }}>({reviewCounts[i]} reviews)</span>
                                     </div>
@@ -750,7 +750,7 @@ function CTASection() {
                     <Heading variant="section-white" className="mb-6" style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)' }}>
                         Start Your Skin Transformation Today
                     </Heading>
-                    <div className="inline-block mb-8 px-5 py-2 rounded-full text-sm font-semibold" style={{ background: 'rgba(248,184,78,0.2)', color: 'var(--color-gold-light)', border: '1px solid rgba(248,184,78,0.3)' }}>
+                    <div className="inline-block mb-8 px-5 py-2 rounded-full text-sm font-semibold" style={{ background: 'rgba(135,91,108,0.2)', color: 'var(--color-gold-light)', border: '1px solid rgba(135,91,108,0.3)' }}>
                         âœ¨ Free Consultation Available
                     </div>
                     <Text size="md" color="white-muted" className="mb-10 max-w-lg mx-auto">
@@ -807,7 +807,7 @@ function RealResultsSection() {
                     {/* Testimonial */}
                     <div className="w-full lg:w-1/2">
                         <RevealWrapper direction="right" delay={0.2} className="h-full">
-                            <div className="bg-[#faf8f4] p-10 md:p-12 rounded-sm h-full flex flex-col justify-center border border-[#f0ede8]">
+                            <div className="bg-[#e8e3d9] p-10 md:p-12 rounded-sm h-full flex flex-col justify-center border border-[#d5cfc7]">
                                 <Quote
                                     size={40}
                                     style={{ color: 'var(--color-gold)' }}
@@ -1120,7 +1120,7 @@ function ExclusiveSection() {
     }
 
     return (
-        <section className="section bg-[#faf8f4] overflow-hidden py-24 md:py-32">
+        <section className="section bg-[#e8e3d9] overflow-hidden py-24 md:py-32">
             <div className="container max-w-6xl">
                 <RevealWrapper>
                     <div className="text-center mb-16 md:mb-20">
@@ -1160,7 +1160,7 @@ function ExclusiveSection() {
                             style={{ scrollSnapAlign: 'start' }}
                         >
                             <div className="h-[240px] md:h-[280px] flex flex-col items-center justify-center p-8 transition-colors">
-                                <div className="w-16 h-16 rounded-full flex items-center justify-center mb-8 bg-[#faf8f4] group-hover:bg-gold transition-colors duration-500">
+                                <div className="w-16 h-16 rounded-full flex items-center justify-center mb-8 bg-[#e8e3d9] group-hover:bg-gold transition-colors duration-500">
                                     <span className="text-2xl text-gold group-hover:text-white transition-colors duration-500">✨</span>
                                 </div>
                                 <h3 className="text-lg font-serif tracking-widest text-center mb-2 text-dark">
