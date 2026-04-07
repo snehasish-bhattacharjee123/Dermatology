@@ -9,7 +9,7 @@ export default function About() {
         <>
             {/* Page Hero - Premium */}
             <section className="relative h-[50vh] min-h-[400px] flex items-center overflow-hidden" style={{ marginTop: 'var(--header-total-height)' }}>
-                <div className="absolute inset-0 bg-[#faf8f4] z-0"></div>
+                <div className="absolute inset-0 bg-[#e8e3d9] z-0"></div>
                 <div className="container relative z-10 text-center">
                     <RevealWrapper>
                         <span className="inline-block px-4 py-1.5 text-[10px] tracking-[4px] uppercase font-bold rounded-full mb-6 text-[#888]">
@@ -106,7 +106,7 @@ export default function About() {
             </section>
 
             {/* Values - Premium */}
-            <section className="section bg-[#faf8f4] py-24 md:py-32">
+            <section className="section bg-[#e8e3d9] py-24 md:py-32">
                 <div className="container max-w-6xl">
                     <RevealWrapper>
                         <div className="text-center mb-16 md:mb-24">
@@ -134,7 +134,7 @@ export default function About() {
                                     className="text-center bg-white p-10 md:p-12 rounded-sm h-full transition-all duration-500 hover-lift border border-[#f0ede8]"
                                 >
                                     <div
-                                        className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-8 bg-[#faf8f4]"
+                                        className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-8 bg-[#e8e3d9]"
                                     >
                                         <val.icon size={26} style={{ color: 'var(--color-gold)' }} />
                                     </div>

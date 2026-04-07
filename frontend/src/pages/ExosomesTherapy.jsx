@@ -58,7 +58,7 @@ export default function ExosomesTherapy() {
             </section>
 
             {/* What are Exosomes */}
-            <section className="section bg-[#faf8f4] text-center border-b border-[#eee]">
+            <section className="section bg-[#e8e3d9] text-center border-b border-[#d5cfc7]">
                 <div className="container max-w-4xl">
                     <RevealWrapper>
                         <Heading variant="section" className="mb-6 tracking-[3px] text-dark uppercase text-2xl md:text-3xl">
@@ -77,7 +77,7 @@ export default function ExosomesTherapy() {
                     <RevealWrapper delay={0.1}>
                         <span className="block text-[10px] font-bold tracking-[4px] uppercase mb-4 text-[#888]">THE</span>
                         <Heading variant="section" className="mb-8 tracking-widest">
-                            <span className="font-light text-dark text-4xl">D'COSMEDIS</span> <span className="italic text-[#f8b84e] text-4xl">ADVANTAGE</span>
+                            <span className="font-light text-dark text-4xl">D'COSMEDIS</span> <span className="italic text-4xl" style={{ color: 'var(--color-gold)' }}>ADVANTAGE</span>
                         </Heading>
                         <Text size="lg" className="mx-auto font-light" style={{ color: '#555', lineHeight: '1.9' }}>
                             We treat true aging, not simply masking lines and wrinkles. With over 30 years of expertise, we will recommend a tailored blend of treatments based on your needs during an initial consultation—including Botox, dermal fillers or liquid facelifts. Our aim is to achieve a natural result to enhance your own natural beauty at any given age and treat any specific issues.
@@ -140,7 +140,7 @@ export default function ExosomesTherapy() {
                                         "Visible results in 4-6 weeks"
                                     ].map((benefit, i) => (
                                         <div key={i} className="flex items-center gap-4">
-                                            <div className="w-[6px] h-[6px] bg-[#f8b84e] shrink-0 transform rotate-45"></div>
+                                            <div className="w-[6px] h-[6px] shrink-0 transform rotate-45" style={{ background: 'var(--color-gold)' }}></div>
                                             <Text className="text-[#555] font-light text-[15px]">{benefit}</Text>
                                         </div>
                                     ))}
@@ -159,7 +159,7 @@ export default function ExosomesTherapy() {
             </section>
 
             {/* Exosomes for Face */}
-            <section className="section bg-[#faf8f4] border-b border-[#eee]">
+            <section className="section bg-[#e8e3d9] border-b border-[#d5cfc7]">
                 <div className="container max-w-4xl">
                     <RevealWrapper>
                         <Heading variant="section" className="tracking-[3px] mb-12 uppercase text-2xl md:text-3xl">
@@ -184,7 +184,7 @@ export default function ExosomesTherapy() {
                                         "Treats acne & enlarged pores"
                                     ].map((benefit, i) => (
                                         <div key={i} className="flex items-center gap-4">
-                                            <div className="w-[6px] h-[6px] bg-[#f8b84e] shrink-0 transform rotate-45"></div>
+                                            <div className="w-[6px] h-[6px] shrink-0 transform rotate-45" style={{ background: 'var(--color-gold)' }}></div>
                                             <Text className="text-[#555] font-light text-[15px]">{benefit}</Text>
                                         </div>
                                     ))}
@@ -218,7 +218,7 @@ export default function ExosomesTherapy() {
                                     "People wanting to accelerate healing after peels or lasers"
                                 ].map((item, i) => (
                                     <div key={i} className="flex items-start gap-4">
-                                        <div className="w-[6px] h-[6px] bg-[#f8b84e] shrink-0 mt-2 transform rotate-45"></div>
+                                        <div className="w-[6px] h-[6px] shrink-0 mt-2 transform rotate-45" style={{ background: 'var(--color-gold)' }}></div>
                                         <Text className="text-[#555] font-light text-[15px] leading-relaxed">{item}</Text>
                                     </div>
                                 ))}
@@ -236,7 +236,7 @@ export default function ExosomesTherapy() {
                                     "Can be combined with lasers & microneedling"
                                 ].map((item, i) => (
                                     <div key={i} className="flex items-start gap-4">
-                                        <div className="w-[6px] h-[6px] bg-[#f8b84e] shrink-0 mt-2 transform rotate-45"></div>
+                                        <div className="w-[6px] h-[6px] shrink-0 mt-2 transform rotate-45" style={{ background: 'var(--color-gold)' }}></div>
                                         <Text className="text-[#555] font-light text-[15px] leading-relaxed">{item}</Text>
                                     </div>
                                 ))}
@@ -247,7 +247,7 @@ export default function ExosomesTherapy() {
             </section>
 
             {/* FAQs */}
-            <section className="section bg-[#faf8f4]">
+            <section className="section bg-[#e8e3d9]">
                 <div className="container max-w-4xl">
                     <RevealWrapper>
                         <div className="text-center mb-16">
@@ -264,10 +264,10 @@ export default function ExosomesTherapy() {
                                         className="w-full flex items-center justify-between text-left py-6 px-4 hover:bg-white/50 transition-colors"
                                         onClick={() => setOpenFaq(openFaq === i ? -1 : i)}
                                     >
-                                        <span className={`text-[16px] xl:text-[18px] transition-colors ${openFaq === i ? 'text-[#f8b84e]' : 'text-[#444]'} font-serif font-medium`}>
+                                        <span className={`text-[16px] xl:text-[18px] transition-colors font-serif font-medium`} style={{ color: openFaq === i ? 'var(--color-gold)' : '#444' }}>
                                             {faq.q}
                                         </span>
-                                        <ChevronDown className={`shrink-0 transform transition-transform duration-300 ${openFaq === i ? 'rotate-180 text-[#f8b84e]' : 'text-[#aaa]'}`} />
+                                        <ChevronDown className={`shrink-0 transform transition-transform duration-300 ${openFaq === i ? 'rotate-180' : 'text-[#aaa]'}`} style={{ color: openFaq === i ? 'var(--color-gold)' : undefined }} />
                                     </button>
                                     <div className={`overflow-hidden transition-all duration-300 ease-in-out px-4 ${openFaq === i ? 'max-h-40 opacity-100 pb-6' : 'max-h-0 opacity-0'}`}>
                                         <Text className="text-[#666] font-light leading-relaxed">

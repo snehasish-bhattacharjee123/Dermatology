@@ -102,7 +102,7 @@ export default function TreatmentDetail() {
             </section>
 
             {/* Overview / Description */}
-            <section className="section bg-[#faf8f4] border-b border-[#eee]">
+            <section className="section bg-[#e8e3d9] border-b border-[#d5cfc7]">
                 <div className="container max-w-4xl">
                     <RevealWrapper>
                         <div className="text-center mb-16">
@@ -126,7 +126,7 @@ export default function TreatmentDetail() {
                     <RevealWrapper delay={0.1}>
                         <span className="block text-[10px] font-bold tracking-[4px] uppercase mb-4 text-[#888]">THE</span>
                         <Heading variant="section" className="mb-8 tracking-widest">
-                            <span className="font-light text-dark text-4xl">D'COSMEDIS</span> <span className="italic text-[#f8b84e] text-4xl">ADVANTAGE</span>
+                            <span className="font-light text-dark text-4xl">D'COSMEDIS</span> <span className="italic text-4xl" style={{ color: 'var(--color-gold)' }}>ADVANTAGE</span>
                         </Heading>
                         <Text size="lg" className="mx-auto font-light" style={{ color: '#555', lineHeight: '1.9' }}>
                             We treat true causes, not simply masking symptoms. With over 30 years of expertise, Dr. Dolly Gupta and our expert team will recommend a tailored blend of treatments based on your specific needs during your consultation. Our aim is to achieve a natural, enhanced result safely and effectively.
@@ -165,7 +165,7 @@ export default function TreatmentDetail() {
             </section>
 
             {/* FAQs */}
-            <section className="section bg-[#faf8f4]">
+            <section className="section bg-[#e8e3d9]">
                 <div className="container max-w-4xl">
                     <RevealWrapper>
                         <div className="text-center mb-16">
@@ -182,10 +182,10 @@ export default function TreatmentDetail() {
                                         className="w-full flex items-center justify-between text-left py-6 px-4 hover:bg-white/50 transition-colors"
                                         onClick={() => setOpenFaq(openFaq === i ? -1 : i)}
                                     >
-                                        <span className={`text-[16px] xl:text-[18px] transition-colors ${openFaq === i ? 'text-[#f8b84e]' : 'text-[#444]'} font-serif font-medium`}>
+                                        <span className={`text-[16px] xl:text-[18px] transition-colors font-serif font-medium`} style={{ color: openFaq === i ? 'var(--color-gold)' : '#444' }}>
                                             {faq.q}
                                         </span>
-                                        <ChevronDown className={`shrink-0 transform transition-transform duration-300 ${openFaq === i ? 'rotate-180 text-[#f8b84e]' : 'text-[#aaa]'}`} />
+                                        <ChevronDown className={`shrink-0 transform transition-transform duration-300 ${openFaq === i ? 'rotate-180' : 'text-[#aaa]'}`} style={{ color: openFaq === i ? 'var(--color-gold)' : undefined }} />
                                     </button>
                                     <div className={`grid transition-all duration-500 ease-in-out ${openFaq === i ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
                                         <div className="overflow-hidden">
@@ -246,7 +246,7 @@ export default function TreatmentDetail() {
                     display: block;
                     width: 6px;
                     height: 6px;
-                    background-color: #f8b84e;
+                    background-color: var(--color-gold);
                     flex-shrink: 0;
                     transform: rotate(45deg);
                     margin-top: 8px;
