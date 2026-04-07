@@ -1,198 +1,276 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { Play, ChevronDown, Calendar, Phone } from 'lucide-react'
+import { ChevronDown, ArrowRight, Clock, DollarSign, ShieldCheck, Star, Phone } from 'lucide-react'
 import { RevealWrapper } from '../hooks/useAnimations'
-import { Heading, Text, Caption } from '../components/ui/Typography'
 import { treatments } from '../data/siteData'
+
+const faqs = [
+    {
+        q: "How do I know if this treatment is right for me?",
+        a: "During your initial consultation, our aesthetic doctors will thoroughly assess your condition, discuss your concerns, and recommend the most effective treatment plan tailored specifically for you."
+    },
+    {
+        q: "Are the treatments painful?",
+        a: "Patient comfort is our priority. Most treatments involve minimal discomfort. For procedures that might be sensitive, we use medical-grade topical numbing creams to ensure a comfortable, pain-free experience."
+    },
+    {
+        q: "Is there any downtime?",
+        a: "Downtime varies by treatment. Many of our advanced procedures have zero to minimal downtime, allowing you to return to normal activities immediately. We will provide specific post-care instructions during your visit."
+    },
+    {
+        q: "How many sessions will I need?",
+        a: "The number of sessions depends on the specific treatment and your individual goals. We typically recommend a personalised course of treatments for optimal, long-lasting results."
+    },
+    {
+        q: "Are your treatments safe?",
+        a: "All treatments offered at D'CosMedis use only USFDA-approved technology administered by board-certified dermatologists. Your safety, comfort, and satisfaction are our absolute top priorities."
+    },
+]
+
+const trustPillars = [
+    { icon: ShieldCheck, label: 'USFDA Approved', sub: 'Only certified technologies' },
+    { icon: Star, label: '30+ Years', sub: 'Of clinical excellence' },
+    { icon: Clock, label: 'Zero Downtime', sub: 'For most procedures' },
+    { icon: Phone, label: 'Free Consultation', sub: 'Book a session today' },
+]
 
 export default function TreatmentDetail() {
     const { slug } = useParams()
     const [openFaq, setOpenFaq] = useState(0)
 
     useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [slug]);
+        window.scrollTo(0, 0)
+    }, [slug])
 
     const treatment = treatments.find((t) => t.slug === slug)
 
     if (!treatment) {
         return (
-            <div className="bg-white pt-40 pb-20 text-center flex flex-col items-center justify-center min-h-[60vh]">
-                <Heading variant="section" className="mb-6 tracking-[3px] text-dark uppercase text-2xl md:text-3xl">Treatment Not Found</Heading>
-                <Text color="muted" className="mt-4 mb-8">
-                    The treatment you're looking for doesn't exist.
-                </Text>
-                <Link to="/treatments" className="px-8 py-3 bg-dark text-white hover:bg-gold transition-colors tracking-[2px] text-xs font-semibold uppercase">
+            <div style={{ background: '#fff', paddingTop: '10rem', paddingBottom: '8rem', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', minHeight: '60vh' }}>
+                <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '2.5rem', color: 'var(--color-dark)', marginBottom: '1.5rem' }}>Treatment Not Found</h2>
+                <p style={{ color: 'var(--color-text-muted)', marginBottom: '2rem' }}>The treatment you're looking for doesn't exist.</p>
+                <Link to="/treatments" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'var(--color-dark)', color: '#fff', padding: '1rem 2rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700 }}>
                     Back to Treatments
                 </Link>
             </div>
         )
     }
 
-    const faqs = [
-        {
-            q: "How do I know if this treatment is right for me?",
-            a: "During your initial consultation, our aesthetic doctors will thoroughly assess your skin/hair condition, discuss your concerns, and recommend the most effective treatment plan tailored specifically for you."
-        },
-        {
-            q: "Are the treatments painful?",
-            a: "Patient comfort is our priority. Most our treatments involve minimal discomfort. For procedures that might be sensitive, we use medical-grade topical numbing creams to ensure a pain-free experience."
-        },
-        {
-            q: "Is there any downtime?",
-            a: "Downtime varies by treatment. Many of our advanced procedures have zero to minimal downtime, allowing you to return to normal activities immediately. We will provide specific post-care instructions during your visit."
-        },
-        {
-            q: "How many sessions will I need?",
-            a: "The number of sessions depends on the specific treatment and your individual goals. We typically recommend a personalized course of treatments for optimal, long-lasting results."
-        }
-    ]
+    const words = treatment.title.split(' ')
+    const firstWord = words[0]
+    const restWords = words.slice(1).join(' ')
 
     return (
-        <div className="bg-white">
-            {/* Hero Section */}
-            <section className="relative h-[80vh] min-h-[600px] flex items-center overflow-hidden" style={{ marginTop: 'var(--header-total-height)' }}>
-                <div className="absolute inset-0 z-0">
-                    <img
-                        src={treatment.image}
-                        alt={treatment.title}
-                        className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/70 to-white/20"></div>
+        <div style={{ background: '#fff' }}>
+            <style>{`
+                /* ── Hero gradient ── */
+                .td-hero-gradient {
+                    position: absolute; inset: 0;
+                    background: linear-gradient(100deg, rgba(30,18,25,0.95) 0%, rgba(57,33,47,0.75) 45%, rgba(0,0,0,0.15) 100%);
+                }
+                /* ── Dynamic HTML content ── */
+                .td-content { font-family: var(--font-body); }
+                .td-content p { margin-bottom: 1.75rem; font-weight: 300; line-height: 1.9; color: #555; font-size: 1.0625rem; }
+                .td-content h3 { font-size: 0.65rem; font-weight: 800; letter-spacing: 3px; color: var(--color-gold); text-transform: uppercase; margin-top: 2.5rem; margin-bottom: 1rem; }
+                .td-content ul { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2.5rem; padding-left: 0; list-style: none; }
+                .td-content ul li { display: flex; align-items: flex-start; gap: 1rem; font-size: 1rem; font-weight: 300; color: #555; line-height: 1.65; }
+                .td-content ul li::before { content: ''; display: block; width: 7px; height: 7px; background-color: var(--color-gold); flex-shrink: 0; transform: rotate(45deg); margin-top: 7px; }
+                .td-content strong, .td-content b { font-weight: 600; color: var(--color-dark); }
+                /* ── FAQ ── */
+                .td-faq-item { border-bottom: 1px solid rgba(135,91,108,0.15); }
+                .td-faq-btn { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 0; cursor: pointer; background: none; border: none; text-align: left; }
+                .td-chevron { width: 2rem; height: 2rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.35s; }
+                /* ── Trust pillars ── */
+                .td-pillar { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; padding: 2rem 1rem; border-right: 1px solid rgba(255,255,255,0.12); }
+                .td-pillar:last-child { border-right: none; }
+                /* ── Sticky CTA bar ── */
+                .td-sticky-bar { position: sticky; bottom: 0; left: 0; right: 0; z-index: 50; background: var(--color-dark); padding: 0.75rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+                @media (max-width: 640px) {
+                    .td-pillars-grid { grid-template-columns: repeat(2, 1fr) !important; }
+                    .td-pillar { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.12); }
+                    .td-pillar:last-child, .td-pillar:nth-child(2n) { border-right: none; }
+                    .td-sticky-bar { flex-direction: column; }
+                }
+            `}</style>
+
+            {/* ─── HERO ─── */}
+            <section style={{ position: 'relative', height: '90vh', minHeight: '640px', display: 'flex', alignItems: 'center', overflow: 'hidden', marginTop: 'var(--header-total-height)' }}>
+                <div style={{ position: 'absolute', inset: 0 }}>
+                    <img src={treatment.image} alt={treatment.title} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
+                    <div className="td-hero-gradient" />
                 </div>
 
-                <div className="container relative z-10 text-left pl-8 md:pl-16">
+                <div className="container" style={{ position: 'relative', zIndex: 2, paddingLeft: '1.5rem', paddingRight: '1.5rem' }}>
                     <RevealWrapper direction="left">
-                        <span
-                            className="inline-block px-4 py-1.5 text-[10px] tracking-[3px] uppercase font-bold rounded-full mb-6 border border-dark"
-                            style={{ color: 'var(--color-dark)' }}
-                        >
-                            {treatment.category}
-                        </span>
+                        {/* Breadcrumb */}
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.5rem' }}>
+                            <Link to="/treatments" style={{ fontSize: '0.65rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, color: 'rgba(255,255,255,0.5)', transition: 'color 0.3s' }}>Treatments</Link>
+                            <span style={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.75rem' }}>/</span>
+                            <span style={{ fontSize: '0.65rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, color: 'var(--color-gold)' }}>{treatment.category}</span>
+                        </div>
 
-                        <Heading variant="hero" className="tracking-[3px] text-[#2c2c2c] mb-6 drop-shadow-sm uppercase" style={{ fontFamily: 'var(--font-heading)' }}>
-                            {(() => {
-                                const words = treatment.title.split(' ');
-                                if (words.length === 1) return <span className="block text-5xl md:text-7xl lg:text-8xl font-light">{words[0]}</span>;
-                                const firstWord = words[0];
-                                const restWords = words.slice(1).join(' ');
-                                return (
-                                    <>
-                                        <span className="block text-4xl md:text-6xl lg:text-7xl font-light">{firstWord}</span>
-                                        <span className="block text-4xl md:text-6xl lg:text-7xl font-bold">{restWords}</span>
-                                    </>
-                                )
-                            })()}
-                        </Heading>
-                        <Text className="max-w-2xl text-xs md:text-sm tracking-[2px] uppercase font-semibold text-[#555] mb-8 leading-relaxed">
+                        {/* Title */}
+                        <h1 style={{ fontFamily: 'var(--font-heading)', textTransform: 'uppercase', letterSpacing: '4px', lineHeight: 1.05, marginBottom: '1.5rem', fontSize: 'clamp(3rem, 8vw, 6.5rem)' }}>
+                            {words.length === 1 ? (
+                                <span style={{ display: 'block', fontWeight: 300, color: '#fff' }}>{firstWord}</span>
+                            ) : (
+                                <>
+                                    <span style={{ display: 'block', fontWeight: 300, color: 'rgba(255,255,255,0.9)' }}>{firstWord}</span>
+                                    <span style={{ display: 'block', fontWeight: 700, color: 'var(--color-gold)' }}>{restWords}</span>
+                                </>
+                            )}
+                        </h1>
+
+                        {/* Description */}
+                        <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: 'clamp(0.9375rem, 2vw, 1.125rem)', fontWeight: 300, maxWidth: '36rem', lineHeight: 1.8, marginBottom: '2.5rem', borderLeft: '2px solid var(--color-gold)', paddingLeft: '1.25rem' }}>
                             {treatment.shortDescription}
-                        </Text>
-                        
-                        <div className="flex flex-col sm:flex-row sm:items-center gap-6 mt-12">
-                            <Link to="/book" className="btn btn-dark uppercase tracking-widest text-xs px-8 py-3 shrink-0 inline-flex items-center justify-center border border-transparent">
-                                Book Consultation
+                        </p>
+
+                        {/* CTA row */}
+                        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '1.5rem' }}>
+                            <Link to="/book" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'var(--color-gold)', color: '#fff', padding: '1rem 2.25rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, transition: 'all 0.3s', boxShadow: '0 8px 30px rgba(135,91,108,0.4)' }}>
+                                Book Consultation <ArrowRight size={14} />
                             </Link>
-                            <div className="flex flex-col text-xs font-semibold tracking-widest uppercase text-dark opacity-90 gap-1 pl-2 border-l-2 border-gold h-full justify-center">
-                                <span>DURATION: {treatment.duration}</span>
-                                <span>STARTING: {treatment.price}</span>
-                            </div>
+
+                            {/* Meta pills */}
+                            {treatment.duration && (
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.65rem 1.25rem', background: 'rgba(255,255,255,0.08)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '9999px' }}>
+                                    <Clock size={13} style={{ color: 'var(--color-gold)' }} />
+                                    <span style={{ fontSize: '0.7rem', letterSpacing: '1px', textTransform: 'uppercase', fontWeight: 600, color: '#fff' }}>{treatment.duration}</span>
+                                </div>
+                            )}
+                            {treatment.price && (
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.65rem 1.25rem', background: 'rgba(255,255,255,0.08)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '9999px' }}>
+                                    <DollarSign size={13} style={{ color: 'var(--color-gold)' }} />
+                                    <span style={{ fontSize: '0.7rem', letterSpacing: '1px', textTransform: 'uppercase', fontWeight: 600, color: '#fff' }}>{treatment.price}</span>
+                                </div>
+                            )}
                         </div>
                     </RevealWrapper>
                 </div>
+
+                {/* Scroll cue */}
+                <div style={{ position: 'absolute', bottom: '2.5rem', left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+                    <div style={{ width: '1px', height: '3rem', background: 'linear-gradient(to bottom, transparent, var(--color-gold))', animation: 'td-scroll-cue 2s ease infinite' }} />
+                </div>
+                <style>{`
+                    @keyframes td-scroll-cue {
+                        0%, 100% { opacity: 0.2; transform: scaleY(0.5); }
+                        50% { opacity: 1; transform: scaleY(1); }
+                    }
+                `}</style>
             </section>
 
-            {/* Overview / Description */}
-            <section className="section bg-[#e8e3d9] border-b border-[#d5cfc7]">
-                <div className="container max-w-4xl">
+            {/* ─── OVERVIEW ─── */}
+            <section style={{ padding: '7rem 0', background: 'var(--color-bg-cream)' }}>
+                <div className="container" style={{ maxWidth: '72rem' }}>
                     <RevealWrapper>
-                        <div className="text-center mb-16">
-                            <span className="text-[10px] font-bold tracking-[4px] text-[#888] uppercase mb-4 block">OVERVIEW</span>
-                            <Heading variant="section" className="tracking-[3px] text-dark uppercase text-2xl md:text-3xl">
-                                ABOUT THIS TREATMENT
-                            </Heading>
+                        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+                            <span style={{ display: 'block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 800, color: 'var(--color-gold)', marginBottom: '1rem' }}>Overview</span>
+                            <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--color-dark)', textTransform: 'uppercase', letterSpacing: '4px' }}>
+                                About This Treatment
+                            </h2>
+                            <div style={{ width: '3.5rem', height: '2px', background: 'var(--color-gold)', margin: '1.5rem auto 0' }} />
                         </div>
-                        
-                        <div 
-                            className="dynamic-treatment-content mx-auto"
-                            dangerouslySetInnerHTML={{ __html: treatment.description }}
-                        />
+
+                        <div className="td-content" dangerouslySetInnerHTML={{ __html: treatment.description }} />
                     </RevealWrapper>
                 </div>
             </section>
 
-            {/* The Advantage */}
-            <section className="section bg-white text-center pb-24 border-b border-[#eee]">
-                <div className="container max-w-5xl">
-                    <RevealWrapper delay={0.1}>
-                        <span className="block text-[10px] font-bold tracking-[4px] uppercase mb-4 text-[#888]">THE</span>
-                        <Heading variant="section" className="mb-8 tracking-widest">
-                            <span className="font-light text-dark text-4xl">D'COSMEDIS</span> <span className="italic text-4xl" style={{ color: 'var(--color-gold)' }}>ADVANTAGE</span>
-                        </Heading>
-                        <Text size="lg" className="mx-auto font-light" style={{ color: '#555', lineHeight: '1.9' }}>
-                            We treat true causes, not simply masking symptoms. With over 30 years of expertise, Dr. Dolly Gupta and our expert team will recommend a tailored blend of treatments based on your specific needs during your consultation. Our aim is to achieve a natural, enhanced result safely and effectively.
-                        </Text>
-                    </RevealWrapper>
-                </div>
-            </section>
+            {/* ─── ADVANTAGE ─── */}
+            <section style={{ padding: '7rem 0', background: 'var(--color-bg-dark)', position: 'relative', overflow: 'hidden' }}>
+                {/* Ambient glow */}
+                <div style={{ position: 'absolute', top: '-10rem', right: '-10rem', width: '35rem', height: '35rem', borderRadius: '50%', background: 'radial-gradient(circle, rgba(135,91,108,0.18) 0%, transparent 65%)', pointerEvents: 'none' }} />
+                <div style={{ position: 'absolute', bottom: '-8rem', left: '-8rem', width: '28rem', height: '28rem', borderRadius: '50%', background: 'radial-gradient(circle, rgba(135,91,108,0.1) 0%, transparent 65%)', pointerEvents: 'none' }} />
 
-            {/* Optional video/image banner to break layout consistently with Exosomes page */}
-            <section className="relative h-[500px] flex items-center justify-center overflow-hidden">
-                <div className="absolute inset-0">
-                    <img 
-                        src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920&q=80" 
-                        alt="Clinic" 
-                        className="w-full h-full object-cover brightness-[0.4]"
-                    />
-                </div>
-                <div className="container relative z-10 text-center text-white pt-10">
+                <div className="container" style={{ maxWidth: '60rem', position: 'relative', zIndex: 1, textAlign: 'center' }}>
                     <RevealWrapper>
-                        <Heading className="text-3xl md:text-5xl italic font-serif font-light mb-8">
-                            Transforming Lives
-                        </Heading>
-                        <div className="mb-8 flex justify-center">
-                            <button className="w-20 h-16 bg-white/20 hover:bg-white/30 backdrop-blur-md transition-all rounded flex items-center justify-center shadow-lg group">
-                                <Play size={28} fill="white" className="text-white group-hover:scale-110 transition-transform" />
-                            </button>
-                        </div>
-                        <Text className="text-white/90 max-w-2xl mx-auto mb-10 text-sm md:text-base font-light px-4">
-                            Experience the highest standard of medical aesthetics care in a luxurious, relaxing environment. Watch how our customized treatments aim for unparalleled excellence.
-                        </Text>
-                        <Link to="/book" className="px-8 py-3 border border-white/40 text-white hover:bg-white hover:text-dark transition-colors tracking-[2px] text-xs font-semibold uppercase inline-block">
-                            Book Your Visit »
+                        <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 800, color: 'var(--color-gold)', background: 'rgba(135,91,108,0.12)', border: '1px solid rgba(135,91,108,0.3)', borderRadius: '9999px', padding: '0.4rem 1.25rem', marginBottom: '2rem' }}>
+                            Why Choose Us
+                        </span>
+                        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2.5rem, 5vw, 4rem)', color: '#fff', marginBottom: '2rem', lineHeight: 1.15 }}>
+                            The D'CosMedis <br />
+                            <span style={{ fontStyle: 'italic', color: 'var(--color-gold)' }}>Advantage</span>
+                        </h2>
+                        <p style={{ fontSize: '1.0625rem', color: 'rgba(255,255,255,0.75)', fontWeight: 300, lineHeight: 1.9, marginBottom: '3rem', maxWidth: '48rem', margin: '0 auto 3rem' }}>
+                            We treat true causes, not simply masking symptoms. With over 30 years of expertise, Dr. Dolly Gupta and our expert team recommend a tailored blend of treatments based on your specific needs. Our aim is to achieve natural, enhanced results safely and effectively.
+                        </p>
+                        <Link to="/book" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'var(--color-gold)', color: '#fff', padding: '1.1rem 2.5rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, transition: 'all 0.3s' }}>
+                            Book a Consultation <ArrowRight size={14} />
                         </Link>
                     </RevealWrapper>
                 </div>
             </section>
 
-            {/* FAQs */}
-            <section className="section bg-[#e8e3d9]">
-                <div className="container max-w-4xl">
+            {/* ─── TRUST PILLARS ─── */}
+            <section style={{ background: 'var(--color-dark)', padding: '3rem 0' }}>
+                <div className="container">
+                    <div className="td-pillars-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)' }}>
+                        {trustPillars.map(({ icon: Icon, label, sub }, i) => (
+                            <div key={i} className="td-pillar">
+                                <Icon size={22} style={{ color: 'var(--color-gold)' }} />
+                                <div style={{ textAlign: 'center' }}>
+                                    <span style={{ display: 'block', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, color: '#fff' }}>{label}</span>
+                                    <span style={{ display: 'block', fontSize: '0.7rem', color: 'rgba(255,255,255,0.5)', marginTop: '0.2rem' }}>{sub}</span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* ─── CLINIC BANNER ─── */}
+            <section style={{ position: 'relative', height: '520px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                <div style={{ position: 'absolute', inset: 0 }}>
+                    <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920&q=80" alt="D'CosMedis Clinic" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(30,18,25,0.88) 0%, rgba(57,33,47,0.65) 100%)' }} />
+                </div>
+                <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center', maxWidth: '48rem' }}>
                     <RevealWrapper>
-                        <div className="text-center mb-16">
-                            <span className="text-[10px] font-bold tracking-[4px] text-[#888] uppercase mb-6 block">ASK THE EXPERTS</span>
-                            <Heading variant="section" className="tracking-widest uppercase text-3xl">
-                                FREQUENTLY ASKED QUESTIONS
-                            </Heading>
+                        <span style={{ display: 'block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-gold)', marginBottom: '1.25rem' }}>
+                            At D'CosMedis
+                        </span>
+                        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2.25rem, 5vw, 4rem)', color: '#fff', fontStyle: 'italic', fontWeight: 300, lineHeight: 1.2, marginBottom: '1.5rem' }}>
+                            Transforming Lives,<br />One Treatment at a Time
+                        </h2>
+                        <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '1rem', lineHeight: 1.8, marginBottom: '2.5rem', fontWeight: 300 }}>
+                            Experience the highest standard of medical aesthetic care in a luxurious, clinical environment. Every treatment is administered with precision, artistry, and deep respect for your unique needs.
+                        </p>
+                        <Link to="/book" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', border: '1px solid rgba(255,255,255,0.4)', color: '#fff', padding: '0.9rem 2rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, transition: 'all 0.3s', backdropFilter: 'blur(4px)', background: 'rgba(255,255,255,0.05)' }}>
+                            Book Your Visit <ArrowRight size={13} />
+                        </Link>
+                    </RevealWrapper>
+                </div>
+            </section>
+
+            {/* ─── FAQs ─── */}
+            <section style={{ padding: '7rem 0', background: 'var(--color-bg-cream)' }}>
+                <div className="container" style={{ maxWidth: '56rem' }}>
+                    <RevealWrapper>
+                        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+                            <span style={{ display: 'block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 800, color: '#888', marginBottom: '1rem' }}>Ask The Experts</span>
+                            <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--color-dark)' }}>
+                                Frequently Asked <span style={{ fontStyle: 'italic', color: 'var(--color-gold)' }}>Questions</span>
+                            </h2>
                         </div>
 
-                        <div className="space-y-2">
+                        <div>
                             {faqs.map((faq, i) => (
-                                <div key={i} className="border-b border-[#e5e5e5]">
-                                    <button 
-                                        className="w-full flex items-center justify-between text-left py-6 px-4 hover:bg-white/50 transition-colors"
-                                        onClick={() => setOpenFaq(openFaq === i ? -1 : i)}
-                                    >
-                                        <span className={`text-[16px] xl:text-[18px] transition-colors font-serif font-medium`} style={{ color: openFaq === i ? 'var(--color-gold)' : '#444' }}>
+                                <div key={i} className="td-faq-item">
+                                    <button className="td-faq-btn" onClick={() => setOpenFaq(openFaq === i ? -1 : i)}>
+                                        <span style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1rem, 2vw, 1.2rem)', color: openFaq === i ? 'var(--color-gold)' : 'var(--color-dark)', transition: 'color 0.3s', paddingRight: '1rem' }}>
                                             {faq.q}
                                         </span>
-                                        <ChevronDown className={`shrink-0 transform transition-transform duration-300 ${openFaq === i ? 'rotate-180' : 'text-[#aaa]'}`} style={{ color: openFaq === i ? 'var(--color-gold)' : undefined }} />
+                                        <div className="td-chevron" style={{ border: `1px solid ${openFaq === i ? 'var(--color-gold)' : '#ddd'}`, background: openFaq === i ? 'var(--color-gold)' : 'transparent', color: openFaq === i ? '#fff' : 'var(--color-dark)', transform: openFaq === i ? 'rotate(180deg)' : 'none' }}>
+                                            <ChevronDown size={15} />
+                                        </div>
                                     </button>
-                                    <div className={`grid transition-all duration-500 ease-in-out ${openFaq === i ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
-                                        <div className="overflow-hidden">
-                                            <div className="px-4 pb-6">
-                                                <Text className="text-[#666] font-light leading-relaxed">
-                                                    {faq.a}
-                                                </Text>
+                                    <div style={{ display: 'grid', gridTemplateRows: openFaq === i ? '1fr' : '0fr', opacity: openFaq === i ? 1 : 0, transition: 'grid-template-rows 0.45s ease, opacity 0.35s ease' }}>
+                                        <div style={{ overflow: 'hidden' }}>
+                                            <div style={{ padding: '0 0 1.75rem' }}>
+                                                <div style={{ width: '3rem', height: '2px', background: 'var(--color-gold)', marginBottom: '1rem' }} />
+                                                <p style={{ color: 'var(--color-text-muted)', fontWeight: 300, lineHeight: 1.85, fontSize: '1rem' }}>{faq.a}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -203,59 +281,23 @@ export default function TreatmentDetail() {
                 </div>
             </section>
 
-
-
-            <style>{`
-                .dynamic-treatment-content {
-                    font-family: var(--font-sans);
-                    font-size: 1.125rem;
-                }
-                .dynamic-treatment-content p {
-                    margin-bottom: 2rem;
-                    font-weight: 300;
-                    line-height: 1.8;
-                    color: #555;
-                }
-                .dynamic-treatment-content h3 {
-                    font-size: 0.75rem;
-                    font-weight: 700;
-                    letter-spacing: 2px;
-                    color: #333;
-                    text-transform: uppercase;
-                    margin-top: 3rem;
-                    margin-bottom: 1.5rem;
-                }
-                .dynamic-treatment-content ul {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 1.25rem;
-                    margin-bottom: 3rem;
-                    padding-left: 0.5rem;
-                }
-                .dynamic-treatment-content ul li {
-                    display: flex;
-                    align-items: flex-start;
-                    gap: 1rem;
-                    font-size: 15px;
-                    font-weight: 300;
-                    color: #555;
-                    line-height: 1.6;
-                }
-                .dynamic-treatment-content ul li::before {
-                    content: '';
-                    display: block;
-                    width: 6px;
-                    height: 6px;
-                    background-color: var(--color-gold);
-                    flex-shrink: 0;
-                    transform: rotate(45deg);
-                    margin-top: 8px;
-                }
-                .dynamic-treatment-content strong, .dynamic-treatment-content b {
-                    font-weight: 600;
-                    color: #333;
-                }
-            `}</style>
+            {/* ─── BOTTOM CTA ─── */}
+            <section style={{ background: 'var(--color-gold)', padding: '5rem 0', textAlign: 'center' }}>
+                <div className="container" style={{ maxWidth: '44rem' }}>
+                    <RevealWrapper>
+                        <span style={{ display: 'block', fontSize: '0.625rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: 'rgba(255,255,255,0.7)', marginBottom: '1rem' }}>Ready to Begin?</span>
+                        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 2.75rem)', color: '#fff', marginBottom: '1.25rem', lineHeight: 1.2 }}>
+                            Start Your Skin Journey Today
+                        </h2>
+                        <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '1rem', lineHeight: 1.75, marginBottom: '2.5rem', fontWeight: 300 }}>
+                            Book a consultation with our expert dermatologists and discover treatments tailored to your unique needs.
+                        </p>
+                        <Link to="/book" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', background: '#fff', color: 'var(--color-gold)', padding: '1rem 2.5rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700 }}>
+                            BOOK YOUR CONSULTATION →
+                        </Link>
+                    </RevealWrapper>
+                </div>
+            </section>
         </div>
     )
 }
