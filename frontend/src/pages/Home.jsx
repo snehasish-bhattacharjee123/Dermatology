@@ -263,8 +263,6 @@ function AnimatedCounter({ target, suffix = '' }) {
     return <span ref={ref}>{display}</span>
 }
 
-import { UserCog, SmilePlus, Building2, Sparkles as SparklesIcon } from 'lucide-react'
-
 const statIconComponents = [
     <UserCog size={32} strokeWidth={1.5} className="text-white mx-auto" />,
     <SmilePlus size={32} strokeWidth={1.5} className="text-white mx-auto" />,
