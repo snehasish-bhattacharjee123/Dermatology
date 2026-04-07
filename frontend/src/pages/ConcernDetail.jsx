@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { Play, ChevronDown, ArrowRight, ArrowUpRight } from 'lucide-react'
+import { ChevronDown, ArrowRight, Calendar, Phone } from 'lucide-react'
 import { RevealWrapper } from '../hooks/useAnimations'
 import { Heading, Text, Caption } from '../components/ui/Typography'
 import { concerns, treatments } from '../data/siteData'
@@ -17,12 +17,12 @@ export default function ConcernDetail() {
 
     if (!concern) {
         return (
-            <div className="bg-white pt-48 pb-32 text-center flex flex-col items-center justify-center min-h-[70vh]">
-                <Heading variant="section" className="mb-6 font-serif text-3xl md:text-5xl" style={{ color: 'var(--color-dark)' }}>Concern Not Found</Heading>
-                <Text color="muted" size="lg" className="mt-4 mb-10 max-w-xl mx-auto">
+            <div style={{ background: '#fff', paddingTop: '12rem', paddingBottom: '8rem', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '70vh' }}>
+                <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '2.5rem', color: 'var(--color-dark)', marginBottom: '1.5rem' }}>Concern Not Found</h2>
+                <p style={{ color: 'var(--color-text-muted)', fontSize: '1.125rem', marginBottom: '2.5rem' }}>
                     The skin/hair concern you're looking for doesn't exist or has been moved.
-                </Text>
-                <Link to="/concerns" className="inline-flex items-center justify-center border border-gold px-8 py-4 text-xs tracking-[2px] uppercase font-semibold text-white bg-gold hover:bg-gold-dark transition-all duration-300">
+                </p>
+                <Link to="/concerns" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: 'var(--color-gold)', color: '#fff', padding: '1rem 2rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600 }}>
                     Back to Concerns
                 </Link>
             </div>
@@ -50,133 +50,153 @@ export default function ConcernDetail() {
         }
     ]
 
+    const firstSentence = concern.description.split('.')[0] + '.'
+    const restOfDescription = concern.description.substring(concern.description.indexOf('.') + 1).trim()
+
     return (
-        <div className="bg-white">
-            {/* Premium Hero Section */}
-            <section className="relative h-[85vh] min-h-[600px] flex items-center overflow-hidden" style={{ marginTop: 'var(--header-total-height)' }}>
-                <div className="absolute inset-0 z-0 bg-dark">
+        <div style={{ background: '#fff' }}>
+            {/* Shared styles for this page */}
+            <style>{`
+                .cd-gold { color: var(--color-gold); }
+                .cd-dark { color: var(--color-dark); }
+                .cd-muted { color: var(--color-text-muted); }
+                .cd-cream { background-color: var(--color-bg-cream); }
+                .cd-dark-bg { background-color: var(--color-bg-dark); }
+                .cd-white-bg { background-color: #fff; }
+                .cd-gold-bg { background-color: var(--color-gold); }
+                .cd-border-gold { border-color: var(--color-gold); }
+                .cd-faq-btn { width: 2rem; height: 2rem; border-radius: 9999px; border: 1px solid #ddd; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s; }
+                .cd-faq-btn.open { border-color: var(--color-gold); background: var(--color-gold); color: #fff; transform: rotate(180deg); }
+                .cd-faq-q { font-size: 1.125rem; font-family: var(--font-heading); transition: color 0.3s; color: var(--color-dark); }
+                .cd-faq-q.open { color: var(--color-gold); }
+                .cd-treatment-card { display: block; background: #fff; border: 1px solid #f0ede8; overflow: hidden; transition: all 0.5s; }
+                .cd-treatment-card:hover { box-shadow: 0 25px 50px rgba(0,0,0,0.12); transform: translateY(-8px); }
+                .cd-treatment-card:hover .cd-card-title { color: var(--color-gold); }
+                .cd-tag { position: absolute; top: 1.5rem; left: 1.5rem; padding: 0.35rem 1rem; font-size: 0.625rem; letter-spacing: 2px; text-transform: uppercase; color: #fff; font-weight: 700; background: var(--color-dark); }
+                .cd-discover { display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; color: var(--color-dark); transition: color 0.3s; }
+                .cd-treatment-card:hover .cd-discover { color: var(--color-gold); }
+                .cd-view-all { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--color-dark); border-bottom: 2px solid var(--color-dark); padding-bottom: 0.5rem; transition: all 0.3s; }
+                .cd-view-all:hover { color: var(--color-gold); border-color: var(--color-gold); }
+                .cd-book-btn { display: inline-flex; align-items: center; justify-content: center; background: var(--color-gold); color: #fff; padding: 1.25rem 2.5rem; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; transition: all 0.3s; }
+                .cd-book-btn:hover { background: var(--color-gold-dark); transform: scale(1.03); }
+                @media (max-width: 640px) {
+                    .cd-book-btn { width: 100%; }
+                }
+            `}</style>
+
+            {/* Hero Section */}
+            <section style={{ position: 'relative', height: '85vh', minHeight: '600px', display: 'flex', alignItems: 'center', overflow: 'hidden', marginTop: 'var(--header-total-height)' }}>
+                <div style={{ position: 'absolute', inset: 0, zIndex: 0, background: '#1a1a1a' }}>
                     <img
                         src={concern.image}
                         alt={concern.name}
-                        className="w-full h-full object-cover opacity-60"
-                        style={{ filter: 'brightness(0.8) contrast(1.1)' }}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.6, filter: 'brightness(0.8) contrast(1.1)' }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#1a1a1a]/90 via-[#1a1a1a]/50 to-transparent"></div>
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(26,26,26,0.92) 0%, rgba(26,26,26,0.55) 60%, transparent 100%)' }} />
                 </div>
 
-                <div className="container relative z-10 text-left">
+                <div className="container" style={{ position: 'relative', zIndex: 10 }}>
                     <RevealWrapper direction="up" className="max-w-3xl">
-                        <div className="inline-flex items-center gap-2 px-4 py-2 border border-gold/30 rounded-full mb-8 backdrop-blur-sm bg-black/20">
-                            <span className="text-gold flex items-center justify-center">{concern.icon}</span>
-                            <span className="text-[10px] tracking-[3px] uppercase font-bold text-white">Targeted Solution</span>
+                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem 1rem', border: '1px solid rgba(135,91,108,0.4)', borderRadius: '9999px', marginBottom: '2rem', backdropFilter: 'blur(8px)', background: 'rgba(0,0,0,0.2)' }}>
+                            <span className="cd-gold" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{concern.icon}</span>
+                            <span style={{ fontSize: '0.625rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: '#fff' }}>Targeted Solution</span>
                         </div>
 
-                        <h1 
-                            className="text-5xl md:text-7xl lg:text-8xl text-white mb-6 uppercase tracking-[4px]" 
-                            style={{ fontFamily: 'var(--font-display)' }}
-                        >
+                        <h1 style={{ fontFamily: 'var(--font-display)', textTransform: 'uppercase', letterSpacing: '4px', color: '#fff', marginBottom: '1.5rem', fontSize: 'clamp(3rem, 8vw, 6rem)', lineHeight: 1.05 }}>
                             {(() => {
-                                const words = concern.name.split(' ');
-                                if (words.length === 1) return <span className="font-light">{words[0]}</span>;
-                                const firstWord = words[0];
-                                const restWords = words.slice(1).join(' ');
+                                const words = concern.name.split(' ')
+                                if (words.length === 1) return <span style={{ fontWeight: 300 }}>{words[0]}</span>
+                                const firstWord = words[0]
+                                const restWords = words.slice(1).join(' ')
                                 return (
                                     <>
-                                        <span className="block font-light text-white/90">{firstWord}</span>
-                                        <span className="block font-medium text-gold">{restWords}</span>
+                                        <span style={{ display: 'block', fontWeight: 300, color: 'rgba(255,255,255,0.9)' }}>{firstWord}</span>
+                                        <span style={{ display: 'block', fontWeight: 600, color: 'var(--color-gold)' }}>{restWords}</span>
                                     </>
                                 )
                             })()}
                         </h1>
-                        <p className="text-lg md:text-xl text-white/80 font-light max-w-2xl leading-relaxed mb-10 border-l-2 border-gold pl-6 py-2">
+
+                        <p style={{ fontSize: '1.125rem', color: 'rgba(255,255,255,0.85)', fontWeight: 300, maxWidth: '40rem', lineHeight: 1.75, marginBottom: '2.5rem', borderLeft: '2px solid var(--color-gold)', paddingLeft: '1.5rem', paddingTop: '0.5rem', paddingBottom: '0.5rem' }}>
                             {concern.shortDescription}
                         </p>
-                        
-                        <div className="flex flex-col sm:flex-row items-center gap-6">
-                            <Link to="/book" className="w-full sm:w-auto text-center inline-flex items-center justify-center border border-gold px-10 py-5 text-xs tracking-[2px] uppercase font-semibold text-white bg-gold hover:bg-gold-dark hover:scale-105 transition-all duration-300">
-                                Book Consultation
-                            </Link>
-                        </div>
+
+                        <Link to="/book" className="cd-book-btn">
+                            Book Consultation
+                        </Link>
                     </RevealWrapper>
                 </div>
             </section>
 
-            {/* Premium Overview / Description */}
-            <section className="py-24 md:py-32 bg-cream">
-                <div className="container max-w-4xl">
+            {/* Overview */}
+            <section className="cd-cream" style={{ padding: '6rem 0' }}>
+                <div className="container" style={{ maxWidth: '56rem' }}>
                     <RevealWrapper>
-                        <div className="text-center mb-16">
-                            <span className="inline-block text-[10px] tracking-[3px] uppercase font-bold text-gold mb-4">
+                        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+                            <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-gold)', marginBottom: '1rem' }}>
                                 Understanding The Condition
                             </span>
-                            <h2 
-                                className="text-3xl md:text-5xl font-serif text-dark"
-                            >
-                                <span className="italic text-gold">About</span> The Concern
+                            <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--color-dark)' }}>
+                                <span style={{ fontStyle: 'italic', color: 'var(--color-gold)' }}>About</span> The Concern
                             </h2>
                         </div>
-                        
-                        <div className="prose prose-lg md:prose-xl mx-auto text-center font-light leading-relaxed text-[#555]">
-                            <p className="text-xl md:text-2xl font-serif text-dark mb-8 leading-relaxed">
-                                "{concern.description.split('.')[0]}."
+
+                        <div style={{ textAlign: 'center' }}>
+                            <p style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.25rem, 2.5vw, 1.5rem)', color: 'var(--color-dark)', marginBottom: '2rem', lineHeight: 1.7, fontStyle: 'italic' }}>
+                                "{firstSentence}"
                             </p>
-                            <p className="text-base md:text-lg">
-                                {concern.description.substring(concern.description.indexOf('.') + 1).trim()}
+                            <p style={{ fontSize: '1.0625rem', color: 'var(--color-text-muted)', lineHeight: 1.85, fontWeight: 300 }}>
+                                {restOfDescription}
                             </p>
                         </div>
                     </RevealWrapper>
                 </div>
             </section>
 
-            {/* Recommended Treatments Card Grid (Premium) */}
+            {/* Recommended Treatments */}
             {relatedTreatments.length > 0 && (
-                <section className="py-24 md:py-32 bg-white">
-                    <div className="container max-w-7xl">
+                <section style={{ padding: '6rem 0', background: '#fff' }}>
+                    <div className="container" style={{ maxWidth: '90rem' }}>
                         <RevealWrapper>
-                            <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-                                <div>
-                                    <span className="inline-block text-[10px] tracking-[3px] uppercase font-bold text-[#888] mb-4">
-                                        Tailored Solutions
-                                    </span>
-                                    <h2 className="text-3xl md:text-5xl font-serif text-dark">
-                                        Recommended <span className="italic text-gold">Treatments</span>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBottom: '4rem' }}>
+                                <span style={{ fontSize: '0.625rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: '#888' }}>
+                                    Tailored Solutions
+                                </span>
+                                <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', justifyContent: 'space-between', gap: '1rem' }}>
+                                    <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--color-dark)' }}>
+                                        Recommended <span style={{ fontStyle: 'italic', color: 'var(--color-gold)' }}>Treatments</span>
                                     </h2>
+                                    <Link to="/treatments" className="cd-view-all">
+                                        View All Treatments <ArrowRight size={16} />
+                                    </Link>
                                 </div>
-                                <Link to="/treatments" className="inline-flex items-center gap-2 text-sm font-semibold tracking-[2px] uppercase text-dark hover:text-gold transition-colors pb-2 border-b-2 border-black hover:border-gold">
-                                    View All Treatments <ArrowRight size={16} />
-                                </Link>
                             </div>
                         </RevealWrapper>
-                        
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '2rem' }}>
                             {relatedTreatments.map((t, i) => (
                                 <RevealWrapper key={t.id} direction="up" delay={i * 0.1}>
-                                    <Link to={`/treatments/${t.slug}`} className="group block h-full bg-white border border-[#f0ede8] rounded-none overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
-                                        <div className="overflow-hidden relative h-[300px]">
+                                    <Link to={`/treatments/${t.slug}`} className="cd-treatment-card">
+                                        <div style={{ overflow: 'hidden', position: 'relative', height: '300px' }}>
                                             <img
                                                 src={t.image}
                                                 alt={t.title}
-                                                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                                                style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 1s ease-out' }}
+                                                onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.08)'}
+                                                onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
                                             />
-                                            <div className="absolute inset-0 bg-black/10 transition-colors duration-500 group-hover:bg-black/0"></div>
-                                            <div
-                                                className="absolute top-6 left-6 px-4 py-2 text-[10px] tracking-[2px] uppercase text-white font-bold bg-dark backdrop-blur-md"
-                                            >
-                                                {t.category}
-                                            </div>
+                                            <span className="cd-tag">{t.category}</span>
                                         </div>
-                                        <div className="p-8 flex flex-col h-[calc(100%-300px)]">
-                                            <h3 className="text-xl md:text-2xl font-serif text-dark mb-4 group-hover:text-gold transition-colors duration-300">
+                                        <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                            <h3 className="cd-card-title" style={{ fontFamily: 'var(--font-heading)', fontSize: '1.375rem', color: 'var(--color-dark)', transition: 'color 0.3s' }}>
                                                 {t.title}
                                             </h3>
-                                            <p className="text-sm leading-relaxed text-[#666] flex-grow font-light">
-                                                {t.shortDescription.slice(0, 120)}...
+                                            <p style={{ fontSize: '0.9375rem', lineHeight: 1.7, color: 'var(--color-text-muted)', fontWeight: 300 }}>
+                                                {t.shortDescription.slice(0, 120)}…
                                             </p>
-                                            <div
-                                                className="flex items-center justify-between mt-8 pt-6 border-t border-[#f0ede8]"
-                                            >
-                                                <span className="flex items-center gap-2 text-xs tracking-[2px] uppercase font-bold text-dark group-hover:text-gold transition-colors">
-                                                    Discover More <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '1.5rem', borderTop: '1px solid #f0ede8', marginTop: '0.5rem' }}>
+                                                <span className="cd-discover">
+                                                    Discover More <ArrowRight size={14} />
                                                 </span>
                                             </div>
                                         </div>
@@ -188,57 +208,61 @@ export default function ConcernDetail() {
                 </section>
             )}
 
-            {/* The Advantage Premium Block */}
-            <section className="py-24 md:py-32 bg-dark text-center relative overflow-hidden">
-                <div className="absolute inset-0 z-0 opacity-10 blur-xl">
-                    <img src={concern.image} className="w-full h-full object-cover mix-blend-luminosity" />
+            {/* D'CosMedis Advantage */}
+            <section style={{ padding: '6rem 0', background: 'var(--color-bg-dark)', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+                <div style={{ position: 'absolute', inset: 0, zIndex: 0, opacity: 0.08, filter: 'blur(60px)' }}>
+                    <img src={concern.image} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
-                <div className="container max-w-5xl relative z-10">
+                <div className="container" style={{ maxWidth: '60rem', position: 'relative', zIndex: 1 }}>
                     <RevealWrapper delay={0.1}>
-                        <span className="inline-block px-4 py-1 text-[10px] font-bold tracking-[4px] uppercase mb-8 text-gold border border-gold/30 rounded-full">
+                        <span style={{ display: 'inline-block', padding: '0.25rem 1rem', fontSize: '0.625rem', fontWeight: 700, letterSpacing: '4px', textTransform: 'uppercase', marginBottom: '2rem', color: 'var(--color-gold)', border: '1px solid rgba(135,91,108,0.35)', borderRadius: '9999px' }}>
                             Why Choose Us
                         </span>
-                        <h2 className="text-3xl md:text-5xl lg:text-6xl mb-10 text-white font-serif tracking-wide leading-tight">
-                            The D'CosMedis <br/><span className="italic text-gold">Advantage</span>
+                        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2.25rem, 5vw, 3.75rem)', color: '#fff', marginBottom: '2rem', lineHeight: 1.2 }}>
+                            The D'CosMedis <br /><span style={{ fontStyle: 'italic', color: 'var(--color-gold)' }}>Advantage</span>
                         </h2>
-                        <p className="text-lg md:text-xl font-light text-white/80 max-w-3xl mx-auto leading-relaxed">
+                        <p style={{ fontSize: '1.125rem', color: 'rgba(255,255,255,0.8)', fontWeight: 300, maxWidth: '48rem', margin: '0 auto 2.5rem', lineHeight: 1.85 }}>
                             We treat true causes, not simply masking symptoms. With over 15 years of expertise, Dr. Dolly Gupta and our expert team will recommend a tailored blend of treatments based on your specific needs. Our aim is to achieve a natural, enhanced result safely and effectively.
                         </p>
+                        <Link to="/book" className="cd-book-btn">
+                            Book a Consultation
+                        </Link>
                     </RevealWrapper>
                 </div>
             </section>
 
-            {/* Premium FAQs */}
-            <section className="py-24 md:py-32 bg-cream">
-                <div className="container max-w-4xl">
+            {/* FAQs */}
+            <section className="cd-cream" style={{ padding: '6rem 0' }}>
+                <div className="container" style={{ maxWidth: '56rem' }}>
                     <RevealWrapper>
-                        <div className="text-center mb-16 md:mb-20">
-                            <span className="inline-block text-[10px] tracking-[3px] uppercase font-bold text-[#888] mb-4">
+                        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+                            <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: '#888', marginBottom: '1rem' }}>
                                 Ask The Experts
                             </span>
-                            <h2 className="text-3xl md:text-5xl font-serif text-dark">
-                                Frequently Asked <span className="italic text-gold">Questions</span>
+                            <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--color-dark)' }}>
+                                Frequently Asked <span style={{ fontStyle: 'italic', color: 'var(--color-gold)' }}>Questions</span>
                             </h2>
                         </div>
 
-                        <div className="space-y-4">
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                             {faqs.map((faq, i) => (
-                                <div key={i} className="bg-white border border-[#f0ede8] transition-all duration-300 hover:shadow-lg">
-                                    <button 
-                                        className="w-full flex items-center justify-between text-left p-6 md:p-8 outline-none"
+                                <div key={i} style={{ background: '#fff', border: '1px solid #f0ede8', overflow: 'hidden', transition: 'box-shadow 0.3s' }}>
+                                    <button
+                                        style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', textAlign: 'left', padding: '1.75rem 2rem', cursor: 'pointer', background: 'none', border: 'none' }}
                                         onClick={() => setOpenFaq(openFaq === i ? -1 : i)}
                                     >
-                                        <span className={`text-lg md:text-xl font-serif transition-colors ${openFaq === i ? 'text-gold' : 'text-dark'}`}>
+                                        <span style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1rem, 2vw, 1.25rem)', color: openFaq === i ? 'var(--color-gold)' : 'var(--color-dark)', transition: 'color 0.3s', paddingRight: '1rem' }}>
                                             {faq.q}
                                         </span>
-                                        <div className={`w-8 h-8 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ${openFaq === i ? 'border-gold bg-gold text-white rotate-180' : 'border-[#ddd] text-dark'}`}>
+                                        <div style={{ width: '2rem', height: '2rem', borderRadius: '9999px', border: `1px solid ${openFaq === i ? 'var(--color-gold)' : '#ddd'}`, background: openFaq === i ? 'var(--color-gold)' : 'transparent', color: openFaq === i ? '#fff' : 'var(--color-dark)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, transition: 'all 0.3s', transform: openFaq === i ? 'rotate(180deg)' : 'none' }}>
                                             <ChevronDown size={16} />
                                         </div>
                                     </button>
-                                    <div className={`grid transition-all duration-500 ease-in-out ${openFaq === i ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
-                                        <div className="overflow-hidden">
-                                            <div className="px-6 md:px-8 pb-8 pt-0">
-                                                <p className="text-[#666] font-light leading-relaxed text-base md:text-lg">
+                                    <div style={{ display: 'grid', gridTemplateRows: openFaq === i ? '1fr' : '0fr', opacity: openFaq === i ? 1 : 0, transition: 'grid-template-rows 0.45s ease, opacity 0.35s ease' }}>
+                                        <div style={{ overflow: 'hidden' }}>
+                                            <div style={{ padding: '0 2rem 2rem' }}>
+                                                <div style={{ width: '3rem', height: '2px', background: 'var(--color-gold)', marginBottom: '1rem' }} />
+                                                <p style={{ color: 'var(--color-text-muted)', fontWeight: 300, lineHeight: 1.85, fontSize: '1rem' }}>
                                                     {faq.a}
                                                 </p>
                                             </div>
@@ -247,6 +271,29 @@ export default function ConcernDetail() {
                                 </div>
                             ))}
                         </div>
+                    </RevealWrapper>
+                </div>
+            </section>
+
+            {/* CTA Banner */}
+            <section style={{ padding: '5rem 0', background: 'var(--color-gold)', textAlign: 'center' }}>
+                <div className="container" style={{ maxWidth: '48rem' }}>
+                    <RevealWrapper>
+                        <span style={{ display: 'block', fontSize: '0.625rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: 'rgba(255,255,255,0.75)', marginBottom: '1rem' }}>
+                            Ready to Begin?
+                        </span>
+                        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 2.75rem)', color: '#fff', marginBottom: '1.25rem' }}>
+                            Ready to Begin Your Skin Journey?
+                        </h2>
+                        <p style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.85)', marginBottom: '2.5rem', lineHeight: 1.75, fontWeight: 300 }}>
+                            Book a consultation with our expert dermatologists and discover treatments tailored to your unique needs.
+                        </p>
+                        <Link
+                            to="/book"
+                            style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', background: '#fff', color: 'var(--color-gold)', padding: '1rem 2.5rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, transition: 'all 0.3s' }}
+                        >
+                            BOOK YOUR CONSULTATION →
+                        </Link>
                     </RevealWrapper>
                 </div>
             </section>

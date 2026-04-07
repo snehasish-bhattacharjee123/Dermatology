@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, Star, MapPin, Quote, Phone, MessageCircle } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, Star, MapPin, Quote, Phone, MessageCircle, UserCog, SmilePlus, Building2, Sparkles as SparklesIcon } from 'lucide-react'
 import { RevealWrapper, ParallaxImage } from '../hooks/useAnimations'
 import { Heading, Text, Caption } from '../components/ui/Typography'
 import { heroSlides, concerns, treatments, testimonials, locations as locationData, stats } from '../data/siteData'
@@ -263,7 +263,14 @@ function AnimatedCounter({ target, suffix = '' }) {
     return <span ref={ref}>{display}</span>
 }
 
-const statIcons = ['👩‍⚕️', '😊', '🏥', '⭐']
+import { UserCog, SmilePlus, Building2, Sparkles as SparklesIcon } from 'lucide-react'
+
+const statIconComponents = [
+    <UserCog size={32} strokeWidth={1.5} className="text-white mx-auto" />,
+    <SmilePlus size={32} strokeWidth={1.5} className="text-white mx-auto" />,
+    <Building2 size={32} strokeWidth={1.5} className="text-white mx-auto" />,
+    <SparklesIcon size={32} strokeWidth={1.5} className="text-white mx-auto" />,
+]
 
 function StatsBar() {
     return (
@@ -276,7 +283,7 @@ function StatsBar() {
                     {stats.map((stat, i) => (
                         <RevealWrapper key={i} direction="up" delay={i * 0.1}>
                             <div className="text-center">
-                                <div className="text-3xl mb-2">{statIcons[i]}</div>
+                                <div className="mb-4 flex justify-center">{statIconComponents[i]}</div>
                                 <div
                                     className="text-white font-medium stat-number"
                                     style={{
