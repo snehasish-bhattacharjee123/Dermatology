@@ -10,6 +10,29 @@ import ReactCardSlider from 'react-card-slider-component';
 export default function Home() {
     return (
         <>
+            {/* Global shared styles for all Home sub-components */}
+            <style>{`
+                .text-gold { color: var(--color-gold); }
+                .text-dark { color: var(--color-dark); }
+                .text-muted { color: var(--color-text-muted); }
+                .bg-gold { background-color: var(--color-gold); }
+                .bg-gold-dark { background-color: var(--color-gold-dark); }
+                .border-gold { border-color: var(--color-gold); }
+                .italic { font-style: italic; }
+                .hover\\:text-gold:hover { color: var(--color-gold); }
+                .hover\\:bg-gold:hover { background-color: var(--color-gold); }
+                .hover\\:bg-gold-dark:hover { background-color: var(--color-gold-dark); }
+                .hover\\:text-white:hover { color: #fff; }
+                .hover\\:bg-dark:hover { background-color: var(--color-dark); }
+                .hover\\:border-dark:hover { border-color: var(--color-dark); }
+                .hover\\:border-gold:hover { border-color: var(--color-gold); }
+                .group-hover\\:text-gold:hover, .group:hover .group-hover\\:text-gold { color: var(--color-gold); }
+                .group:hover .group-hover\\:text-white { color: #fff; }
+                @keyframes floatIn {
+                    from { opacity: 0; transform: translateY(20px) scale(0.9); }
+                    to { opacity: 1; transform: translateY(0) scale(1); }
+                }
+            `}</style>
             <HeroSection />
             <StatsBar />
             <ConcernsSection />
