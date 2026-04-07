@@ -369,7 +369,7 @@ export default function Header() {
                     </nav>
 
                     {/* CTA + Mobile Toggle + Search Button */}
-                    <div className="flex items-center gap-1 md:gap-4">
+                    <div className="flex items-center" style={{ gap: '4px' }}>
                         <button
                             onClick={() => setIsSearchOpen(true)}
                             className="w-10 h-10 flex items-center justify-center transition-all duration-300 hover:bg-black/5 hover:text-gold text-dark rounded-full"
@@ -380,12 +380,12 @@ export default function Header() {
 
                         <Link
                             to="/book"
-                            className="btn btn-primary hidden lg:inline-flex ml-1 lg:ml-0"
+                            className="btn btn-primary header-book-btn"
                         >
                             Book Appointment
                         </Link>
                         <button
-                            className="lg:hidden p-2 hover:bg-cream rounded-lg transition-colors"
+                            className="mobile-menu-btn p-2 hover:bg-cream rounded-lg transition-colors"
                             onClick={() => setIsMobileOpen(!isMobileOpen)}
                             aria-label={isMobileOpen ? 'Close menu' : 'Open menu'}
                             aria-expanded={isMobileOpen}
@@ -674,6 +674,24 @@ export default function Header() {
                 @media (min-width: 1280px) {
                     .xl\:grid-cols-6 {
                         grid-template-columns: repeat(6, minmax(0, 1fr));
+                    }
+                }
+                /* Book Appointment button: hidden on mobile, visible on desktop */
+                .header-book-btn {
+                    display: none;
+                }
+                @media (min-width: 1024px) {
+                    .header-book-btn {
+                        display: inline-flex;
+                    }
+                }
+                /* Mobile menu burger: hidden on desktop */
+                .mobile-menu-btn {
+                    display: flex;
+                }
+                @media (min-width: 1024px) {
+                    .mobile-menu-btn {
+                        display: none;
                     }
                 }
             `}</style>
