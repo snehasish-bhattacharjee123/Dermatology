@@ -1,323 +1,275 @@
 import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Clock } from 'lucide-react'
+import { ArrowRight, Clock, Search, SlidersHorizontal } from 'lucide-react'
 import { RevealWrapper } from '../hooks/useAnimations'
-import { Heading, Text, Caption } from '../components/ui/Typography'
 import { treatments, treatmentCategories } from '../data/siteData'
 
 export default function Treatments() {
     const [activeCategory, setActiveCategory] = useState('all')
+    const [searchQuery, setSearchQuery] = useState('')
 
     const filtered = useMemo(() => {
-        if (activeCategory === 'all') return treatments
-        return treatments.filter((t) => t.categorySlug === activeCategory)
-    }, [activeCategory])
+        let list = activeCategory === 'all' ? treatments : treatments.filter(t => t.categorySlug === activeCategory)
+        if (searchQuery.trim()) {
+            const q = searchQuery.toLowerCase()
+            list = list.filter(t =>
+                t.title.toLowerCase().includes(q) ||
+                t.shortDescription.toLowerCase().includes(q) ||
+                t.category.toLowerCase().includes(q)
+            )
+        }
+        return list
+    }, [activeCategory, searchQuery])
 
-    const isAlternatingLayout = ['aayna-exclusive', 'new-launches'].includes(activeCategory)
+    const activeCategoryLabel = activeCategory === 'all'
+        ? 'All Treatments'
+        : treatmentCategories.find(c => c.slug === activeCategory)?.name + ' Treatments'
 
     return (
-        <>
-            {/* Hero - Consistent */}
-            <section className="relative pt-0 pb-0 overflow-hidden">
-                <div className="grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: '450px' }}>
-                    {/* Left - Gold panel */}
-                    <div
-                        className="flex flex-col justify-center px-8 md:px-12 lg:px-16 py-16 lg:py-20"
-                        style={{ background: 'var(--color-gold)' }}
-                    >
-                        <RevealWrapper>
-                            <nav className="text-sm font-medium mb-6" style={{ color: 'var(--color-dark)' }}>
-                                <Link to="/" className="hover:underline">Home</Link>
-                                {' > '}
-                                <Link to="/treatments" className="hover:underline">Treatments</Link>
-                                {activeCategory !== 'all' && (
-                                    <>
-                                        {' > '}
-                                        <span style={{ color: 'rgba(0,0,0,0.5)' }}>
-                                            {treatmentCategories.find((c) => c.slug === activeCategory)?.name}
-                                        </span>
-                                    </>
-                                )}
-                            </nav>
+        <div style={{ background: '#fff' }}>
+            <style>{`
+                /* ── Hero ── */
+                .tr-hero-overlay { position: absolute; inset: 0; background: linear-gradient(120deg, rgba(30,18,25,0.96) 0%, rgba(57,33,47,0.7) 55%, rgba(0,0,0,0.25) 100%); }
 
-                            <Heading
-                                variant="section"
-                                className="mb-4"
-                                style={{ color: 'var(--color-dark)' }}
-                            >
-                                {activeCategory === 'all'
-                                    ? 'Our Treatments'
-                                    : activeCategory === 'aayna-exclusive'
-                                        ? 'Exclusive Treatments'
-                                        : activeCategory === 'new-launches'
-                                            ? 'New Launches'
-                                            : treatmentCategories.find((c) => c.slug === activeCategory)?.name + ' Treatments'}
-                            </Heading>
+                /* ── Filter pills ── */
+                .tr-cat-btn { padding: 0.55rem 1.25rem; font-size: 0.6rem; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 700; cursor: pointer; border-radius: 9999px; border: 1px solid #e0dbd5; background: transparent; color: #888; transition: all 0.3s; white-space: nowrap; }
+                .tr-cat-btn:hover { border-color: var(--color-gold); color: var(--color-dark); }
+                .tr-cat-btn.active { background: var(--color-gold); color: #fff; border-color: var(--color-gold); box-shadow: 0 8px 24px rgba(135,91,108,0.3); }
 
-                            <Text size="md" style={{ color: 'rgba(0,0,0,0.7)', maxWidth: '500px' }}>
-                                {activeCategory === 'aayna-exclusive'
-                                    ? 'We bring some of the best and latest treatments from across the world exclusively for our clients in India.'
-                                    : activeCategory === 'new-launches'
-                                        ? 'Experience cutting-edge treatments and breakthrough technologies now available at D\'CosMedis.'
-                                        : 'Discover our comprehensive range of skin, hair, facial, and anti-aging treatments powered by cutting-edge technology.'}
-                            </Text>
-                        </RevealWrapper>
-                    </div>
+                /* ── Treatment cards ── */
+                .tr-card { display: block; background: #fff; border: 1px solid #f0ede8; overflow: hidden; transition: all 0.45s ease; position: relative; }
+                .tr-card:hover { box-shadow: 0 24px 60px rgba(0,0,0,0.12); transform: translateY(-8px); border-color: transparent; }
+                .tr-card-img { width: 100%; height: 280px; object-fit: cover; transition: transform 1.2s ease; display: block; }
+                .tr-card:hover .tr-card-img { transform: scale(1.07); }
+                .tr-card-overlay { position: absolute; inset: 0; height: 280px; background: rgba(57,33,47,0.88); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease; }
+                .tr-card:hover .tr-card-overlay { opacity: 1; }
+                .tr-card:hover .tr-card-title { color: var(--color-gold); }
+                .tr-cat-tag { position: absolute; top: 1.25rem; left: 1.25rem; background: var(--color-dark); color: #fff; font-size: 0.55rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; padding: 0.3rem 0.8rem; }
+                
+                /* ── Empty state ── */
+                .tr-empty { text-align: center; padding: 6rem 1rem; color: var(--color-text-muted); }
 
-                    {/* Right - Hero image */}
-                    <div className="h-64 lg:h-auto overflow-hidden">
-                        <img
-                            src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1200&q=80"
-                            alt="D'CosMedis Treatments"
-                            className="w-full h-full object-cover"
-                        />
-                    </div>
+                /* ── Search box ── */
+                .tr-search { display: flex; align-items: center; gap: 0.75rem; background: #fff; border: 1px solid #e0dbd5; padding: 0.75rem 1.25rem; width: 100%; max-width: 22rem; transition: border-color 0.3s; }
+                .tr-search:focus-within { border-color: var(--color-gold); }
+                .tr-search input { border: none; outline: none; font-size: 0.875rem; color: var(--color-dark); background: transparent; width: 100%; }
+                .tr-search input::placeholder { color: #aaa; }
+
+                /* ── CTA ── */
+                .tr-cta-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: #fff; color: var(--color-gold); padding: 1rem 2.5rem; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; transition: all 0.3s; }
+                .tr-cta-btn:hover { background: var(--color-dark); color: #fff; }
+
+                /* ── Scrollbar hide ── */
+                .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+                .scrollbar-hide::-webkit-scrollbar { display: none; }
+            `}</style>
+
+            {/* ─── HERO ─── */}
+            <section style={{ position: 'relative', minHeight: '65vh', display: 'flex', alignItems: 'center', overflow: 'hidden', marginTop: 'var(--header-total-height)' }}>
+                <div style={{ position: 'absolute', inset: 0 }}>
+                    <img
+                        src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1920&q=80"
+                        alt="D'CosMedis Treatments"
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 30%' }}
+                    />
+                    <div className="tr-hero-overlay" />
                 </div>
+
+                <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+                    <RevealWrapper direction="left">
+                        {/* Breadcrumb */}
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.5rem' }}>
+                            <Link to="/" style={{ fontSize: '0.65rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, color: 'rgba(255,255,255,0.45)', transition: 'color 0.3s' }}>Home</Link>
+                            <span style={{ color: 'rgba(255,255,255,0.25)' }}>/</span>
+                            <span style={{ fontSize: '0.65rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, color: 'var(--color-gold)' }}>Treatments</span>
+                        </div>
+
+                        <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-gold)', background: 'rgba(135,91,108,0.12)', border: '1px solid rgba(135,91,108,0.3)', borderRadius: '9999px', padding: '0.4rem 1.25rem', marginBottom: '1.5rem' }}>
+                            Advanced Aesthetics
+                        </span>
+
+                        <h1 style={{ fontFamily: 'var(--font-heading)', color: '#fff', letterSpacing: '5px', textTransform: 'uppercase', lineHeight: 1.05, marginBottom: '1.5rem', fontSize: 'clamp(2.75rem, 7vw, 5.5rem)' }}>
+                            <span style={{ display: 'block', fontWeight: 300, color: 'rgba(255,255,255,0.9)' }}>Skin's</span>
+                            <span style={{ display: 'block', fontWeight: 700, color: 'var(--color-gold)' }}>Store Line</span>
+                        </h1>
+
+                        <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 'clamp(1rem, 2vw, 1.2rem)', fontWeight: 300, maxWidth: '40rem', lineHeight: 1.8, marginBottom: '2.5rem', borderLeft: '2px solid var(--color-gold)', paddingLeft: '1.25rem' }}>
+                            Discover our comprehensive range of advanced skin, hair, and body treatments — each meticulously designed, powered by cutting-edge technology and delivered by certified experts.
+                        </p>
+
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
+                            <Link to="/book" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'var(--color-gold)', color: '#fff', padding: '1rem 2.25rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, boxShadow: '0 8px 30px rgba(135,91,108,0.4)', transition: 'all 0.3s' }}>
+                                Book Consultation <ArrowRight size={14} />
+                            </Link>
+                            <Link to="/concerns" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(255,255,255,0.08)', color: '#fff', padding: '1rem 2.25rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, backdropFilter: 'blur(6px)', border: '1px solid rgba(255,255,255,0.2)', transition: 'all 0.3s' }}>
+                                Browse by Concern
+                            </Link>
+                        </div>
+                    </RevealWrapper>
+                </div>
+
+                {/* Scroll cue */}
+                <div style={{ position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)', width: '1px', height: '3rem', background: 'linear-gradient(to bottom, transparent, var(--color-gold))' }} />
             </section>
 
-            {/* Category Filter - Improved */}
-            <section
-                className="py-5 border-b sticky top-[var(--header-height-scrolled)] z-30"
-                style={{
-                    borderColor: 'var(--color-border)',
-                    background: 'rgba(255,255,255,0.98)',
-                    backdropFilter: 'blur(12px)'
-                }}
-            >
+            {/* ─── STATS BAR ─── */}
+            <section style={{ background: 'var(--color-dark)', padding: '0' }}>
                 <div className="container">
-                    <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-hide">
-                        {treatmentCategories.map((cat) => (
-                            <button
-                                key={cat.slug}
-                                onClick={() => setActiveCategory(cat.slug)}
-                                className="px-5 py-2.5 text-[11px] tracking-[1.5px] uppercase font-semibold whitespace-nowrap rounded-full transition-all duration-300"
-                                style={{
-                                    background: activeCategory === cat.slug ? 'var(--color-gold)' : 'transparent',
-                                    color: activeCategory === cat.slug ? 'var(--color-dark)' : 'var(--color-text-muted)',
-                                    border: `1.5px solid ${activeCategory === cat.slug ? 'var(--color-gold)' : 'var(--color-border)'}`,
-                                }}
-                            >
-                                {cat.name}
-                            </button>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))' }}>
+                        {[
+                            { val: '50+', label: 'Treatments' },
+                            { val: '30+', label: 'Years Expert' },
+                            { val: '15', label: 'Locations' },
+                            { val: '50K+', label: 'Patients' },
+                        ].map((s, i) => (
+                            <div key={i} style={{ textAlign: 'center', padding: '1.5rem', borderRight: i < 3 ? '1px solid rgba(255,255,255,0.08)' : 'none' }}>
+                                <span style={{ display: 'block', fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.5rem, 3vw, 2.25rem)', color: 'var(--color-gold)', fontWeight: 300, lineHeight: 1 }}>{s.val}</span>
+                                <span style={{ display: 'block', fontSize: '0.55rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, color: 'rgba(255,255,255,0.4)', marginTop: '0.35rem' }}>{s.label}</span>
+                            </div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* Alternating Rows */}
-            {(isAlternatingLayout || activeCategory === 'all') && (
-                <section className="py-0">
-                    {filtered
-                        .filter((t) =>
-                            activeCategory === 'all'
-                                ? ['aayna-exclusive', 'new-launches'].includes(t.categorySlug)
-                                : true
-                        )
-                        .map((treatment, i) => {
-                            const isReversed = i % 2 !== 0
-                            const sectionBg = i % 2 === 0 ? '#ffffff' : '#e8e3d9'
-                            return (
-                                <div
-                                    key={treatment.id}
-                                    className="border-b"
-                                    style={{ borderColor: 'var(--color-border-light)', background: sectionBg }}
+            {/* ─── FILTER + SEARCH BAR ─── */}
+            <section style={{ background: '#fff', padding: '1.5rem 0', borderBottom: '1px solid #f0ede8', position: 'sticky', top: 0, zIndex: 20, backdropFilter: 'blur(12px)' }}>
+                <div className="container">
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
+                        {/* Category pills */}
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', overflowX: 'auto', paddingBottom: '0.25rem', flexShrink: 0 }} className="scrollbar-hide">
+                            {treatmentCategories.map((cat) => (
+                                <button
+                                    key={cat.slug}
+                                    className={`tr-cat-btn${activeCategory === cat.slug ? ' active' : ''}`}
+                                    onClick={() => setActiveCategory(cat.slug)}
                                 >
-                                    <div
-                                        className="grid grid-cols-1 lg:grid-cols-12 gap-0"
-                                        style={{ minHeight: '480px' }}
-                                    >
-                                        {/* Image - 6 columns */}
-                                        <div className={`lg:col-span-6 overflow-hidden ${isReversed ? 'lg:order-2' : 'lg:order-1'}`}>
-                                            <RevealWrapper className="h-full">
-                                                <img
-                                                    src={treatment.image}
-                                                    alt={treatment.title}
-                                                    className="w-full h-full object-cover hover:scale-103 transition-transform duration-700"
-                                                    style={{ minHeight: '400px', borderRadius: '6px', boxShadow: '0 10px 30px rgba(0,0,0,0.08)' }}
-                                                />
-                                            </RevealWrapper>
-                                        </div>
-
-                                        {/* Content - 6 columns */}
-                                        <div className={`lg:col-span-6 flex items-center px-8 md:px-12 lg:px-16 py-14 ${isReversed ? 'lg:order-1' : 'lg:order-2'}`}>
-                                            <RevealWrapper direction={isReversed ? 'left' : 'right'}>
-                                                <div
-                                                    className="inline-block px-3 py-1 text-[10px] tracking-wider uppercase text-white rounded-full font-semibold mb-3"
-                                                    style={{ background: 'var(--color-gold)' }}
-                                                >
-                                                    {treatment.category}
-                                                </div>
-
-                                                <Heading
-                                                    variant="card"
-                                                    className="mb-6"
-                                                    style={{ fontSize: '26px', fontWeight: '600', letterSpacing: '0.5px' }}
-                                                >
-                                                    {treatment.title}
-                                                </Heading>
-
-                                                <div className="space-y-3 mb-8">
-                                                    <p
-                                                        style={{
-                                                            fontSize: '16px',
-                                                            lineHeight: 1.7,
-                                                            color: '#666',
-                                                        }}
-                                                    >
-                                                        {treatment.shortDescription}
-                                                    </p>
-                                                </div>
-
-                                                {/* Benefits list with bullet points */}
-                                                <ul className="space-y-2 mb-8">
-                                                    {treatment.benefits && treatment.benefits.slice(0, 3).map((benefit, idx) => (
-                                                        <li key={idx} className="flex items-start gap-2 text-sm" style={{ color: 'var(--color-text-muted)' }}>
-                                                            <span className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0" style={{ background: 'var(--color-gold)' }}></span>
-                                                            {benefit}
-                                                        </li>
-                                                    ))}
-                                                </ul>
-
-                                                <Link
-                                                    to={`/treatments/${treatment.slug}`}
-                                                    className="btn btn-primary inline-flex"
-                                                >
-                                                    Learn More
-                                                    <ArrowRight size={16} className="ml-2" />
-                                                </Link>
-                                            </RevealWrapper>
-                                        </div>
-                                    </div>
-                                </div>
-                            )
-                        })}
-                </section>
-            )}
-
-            {/* Standard Grid */}
-            {(!isAlternatingLayout) && (
-                <section className="section" style={{ padding: '100px 0' }}>
-                    <div className="container" style={{ maxWidth: '1200px' }}>
-                        {activeCategory === 'all' && (
-                            <RevealWrapper className="mb-12">
-                                <div className="section-header">
-                                    <Caption variant="overline">More Treatments</Caption>
-                                    <Heading variant="section">All Treatments</Heading>
-                                    <div className="gold-line" />
-                                </div>
-                            </RevealWrapper>
-                        )}
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-                            {filtered
-                                .filter((t) =>
-                                    activeCategory === 'all'
-                                        ? !['aayna-exclusive', 'new-launches'].includes(t.categorySlug)
-                                        : true
-                                )
-                                .map((treatment, i) => (
-                                    <RevealWrapper key={treatment.id} direction="up" delay={i * 0.06}>
-                                        <Link to={`/treatments/${treatment.slug}`} className="card group block h-full hover-lift">
-                                            <div className="overflow-hidden relative">
-                                                <img
-                                                    src={treatment.image}
-                                                    alt={treatment.title}
-                                                    className="card-img hover:scale-103 transition-transform duration-700"
-                                                    style={{ borderRadius: '6px', boxShadow: '0 10px 30px rgba(0,0,0,0.08)' }}
-                                                />
-                                                <div
-                                                    className="absolute top-5 left-5 px-4 py-2 text-[11px] tracking-widest uppercase text-white rounded-full font-bold shadow-sm"
-                                                    style={{ background: 'var(--color-gold)' }}
-                                                >
-                                                    {treatment.category}
-                                                </div>
-                                                <div
-                                                    className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                                                    style={{ background: 'rgba(135, 91, 108, 0.9)' }}
-                                                >
-                                                    <span className="text-white text-xs tracking-[2px] uppercase flex items-center gap-2 font-semibold">
-                                                        Learn More <ArrowRight size={14} />
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div className="card-body flex flex-col flex-1 p-5">
-                                                <h3 className="group-hover:text-gold transition-colors duration-300" style={{ fontSize: '20px', fontWeight: '600' }}>
-                                                    {treatment.title}
-                                                </h3>
-                                                <Text color="muted" size="sm" className="mt-3 flex-1" style={{ lineHeight: 1.7 }}>
-                                                    {treatment.shortDescription.slice(0, 90)}...
-                                                </Text>
-                                                <div
-                                                    className="flex items-center justify-between mt-5 pt-4 border-t"
-                                                    style={{ borderColor: 'var(--color-border)' }}
-                                                >
-                                                    <span className="text-sm font-bold" style={{ color: 'var(--color-gold-dark)' }}>
-                                                        {treatment.price}
-                                                    </span>
-                                                    <span className="text-xs" style={{ color: 'var(--color-text-light)' }}>
-                                                        <Clock size={12} className="inline mr-1" /> {treatment.duration}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </Link>
-                                    </RevealWrapper>
-                                ))}
+                                    {cat.name}
+                                </button>
+                            ))}
                         </div>
 
-                        {filtered.filter((t) =>
-                            activeCategory === 'all'
-                                ? !['aayna-exclusive', 'new-launches'].includes(t.categorySlug)
-                                : true
-                        ).length === 0 && (
-                                <div className="text-center py-20">
-                                    <Text size="lg" color="muted">
-                                        No treatments found in this category.
-                                    </Text>
-                                </div>
+                        {/* Search */}
+                        <div className="tr-search">
+                            <Search size={15} style={{ color: '#aaa', flexShrink: 0 }} />
+                            <input
+                                type="text"
+                                placeholder="Search treatments..."
+                                value={searchQuery}
+                                onChange={e => setSearchQuery(e.target.value)}
+                            />
+                            {searchQuery && (
+                                <button onClick={() => setSearchQuery('')} style={{ color: '#aaa', fontSize: '1rem', background: 'none', border: 'none', cursor: 'pointer', lineHeight: 1 }}>✕</button>
                             )}
+                        </div>
                     </div>
-                </section>
-            )}
-
-            {/* Footer CTA Section */}
-            <section style={{
-                background: '#e8e3d9',
-                padding: '80px 20px',
-                textAlign: 'center'
-            }}>
-                <div className="container" style={{ maxWidth: '1200px' }}>
-                    <RevealWrapper>
-                        <Heading variant="section" className="mb-6" style={{ color: 'var(--color-dark)' }}>
-                            Ready to Begin Your Skin Journey
-                        </Heading>
-                        <Text size="md" color="muted" className="mb-8" style={{ maxWidth: '600px', margin: '0 auto', lineHeight: 1.7 }}>
-                            Discover personalized treatments designed to address your unique skin concerns and help you achieve the radiant, healthy skin you deserve.
-                        </Text>
-                        <Link
-                            to="/book"
-                            className="inline-block border border-gold px-8 py-4 text-base font-semibold tracking-wider uppercase text-gold transition-all duration-300 hover:bg-gold hover:text-white"
-                        >
-                            Book Your Consultation
-                        </Link>
-                    </RevealWrapper>
                 </div>
             </section>
 
-            <style>{`
-                .text-gold {
-                    color: var(--color-gold);
-                }
-                .group-hover\\:text-gold:hover {
-                    color: var(--color-gold);
-                }
-                .card {
-                    transition: transform 0.3s ease, box-shadow 0.3s ease;
-                }
-                .card:hover {
-                    transform: translateY(-6px);
-                    box-shadow: 0 12px 30px rgba(0,0,0,0.1);
-                }
-            `}</style>
-        </>
+            {/* ─── RESULTS HEADER ─── */}
+            <section style={{ background: 'var(--color-bg-cream)', padding: '2.5rem 0 0' }}>
+                <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
+                    <div>
+                        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.5rem, 3vw, 2.25rem)', color: 'var(--color-dark)' }}>
+                            {activeCategoryLabel}
+                        </h2>
+                        <span style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)', letterSpacing: '1px' }}>
+                            {filtered.length} treatment{filtered.length !== 1 ? 's' : ''} available
+                            {searchQuery ? ` for "${searchQuery}"` : ''}
+                        </span>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--color-text-muted)', fontSize: '0.75rem' }}>
+                        <SlidersHorizontal size={14} />
+                        <span>Filtered by: <strong style={{ color: 'var(--color-dark)' }}>{activeCategoryLabel}</strong></span>
+                    </div>
+                </div>
+            </section>
+
+            {/* ─── TREATMENT GRID ─── */}
+            <section style={{ background: 'var(--color-bg-cream)', padding: '3rem 0 6rem' }}>
+                <div className="container" style={{ maxWidth: '90rem' }}>
+                    {filtered.length === 0 ? (
+                        <div className="tr-empty">
+                            <p style={{ fontSize: '1.125rem', marginBottom: '1rem' }}>No treatments found.</p>
+                            <button onClick={() => { setActiveCategory('all'); setSearchQuery('') }} style={{ background: 'var(--color-gold)', color: '#fff', border: 'none', padding: '0.75rem 2rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, cursor: 'pointer' }}>
+                                Clear Filters
+                            </button>
+                        </div>
+                    ) : (
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1.5rem' }}>
+                            {filtered.map((treatment, i) => (
+                                <RevealWrapper key={treatment.id} direction="up" delay={(i % 6) * 0.07}>
+                                    <Link to={`/treatments/${treatment.slug}`} className="tr-card">
+                                        {/* Image */}
+                                        <div style={{ position: 'relative', overflow: 'hidden' }}>
+                                            <img src={treatment.image} alt={treatment.title} className="tr-card-img" />
+                                            <div className="tr-card-overlay">
+                                                <span style={{ color: '#fff', fontSize: '0.7rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                                    Discover More <ArrowRight size={13} />
+                                                </span>
+                                            </div>
+                                            <span className="tr-cat-tag">{treatment.category}</span>
+                                        </div>
+
+                                        {/* Body */}
+                                        <div style={{ padding: '1.75rem 1.75rem 1.5rem' }}>
+                                            <h3 className="tr-card-title" style={{ fontFamily: 'var(--font-heading)', fontSize: '1.3rem', color: 'var(--color-dark)', marginBottom: '0.75rem', transition: 'color 0.3s', lineHeight: 1.3 }}>
+                                                {treatment.title}
+                                            </h3>
+                                            <p style={{ fontSize: '0.9375rem', color: 'var(--color-text-muted)', lineHeight: 1.7, fontWeight: 300, marginBottom: '1.5rem' }}>
+                                                {treatment.shortDescription.slice(0, 100)}…
+                                            </p>
+
+                                            {/* Footer meta */}
+                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '1.25rem', borderTop: '1px solid #f0ede8' }}>
+                                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.375rem', fontSize: '0.75rem', color: 'var(--color-text-muted)' }}>
+                                                    <Clock size={12} style={{ color: 'var(--color-gold)' }} />
+                                                    <span>{treatment.duration}</span>
+                                                </div>
+                                                <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--color-gold)' }}>
+                                                    {treatment.price}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                </RevealWrapper>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            </section>
+
+            {/* ─── CTA BANNER ─── */}
+            <section style={{ position: 'relative', padding: '7rem 0', overflow: 'hidden' }}>
+                <div style={{ position: 'absolute', inset: 0 }}>
+                    <img
+                        src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=1920&q=80"
+                        alt="Begin Your Journey"
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.22)' }}
+                    />
+                </div>
+                <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center', maxWidth: '52rem' }}>
+                    <RevealWrapper>
+                        <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-gold)', marginBottom: '1.25rem' }}>
+                            Begin Your Transformation
+                        </span>
+                        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4.5vw, 3.25rem)', color: '#fff', marginBottom: '1.5rem', lineHeight: 1.2 }}>
+                            Ready to Begin Your <br />
+                            <span style={{ fontStyle: 'italic', color: 'var(--color-gold)' }}>Skin Journey?</span>
+                        </h2>
+                        <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '1.0625rem', lineHeight: 1.8, marginBottom: '2.5rem', fontWeight: 300 }}>
+                            Discover personalised treatments designed by our expert dermatologists to address your unique skin concerns and help you achieve radiant, healthy skin.
+                        </p>
+                        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                            <Link to="/book" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'var(--color-gold)', color: '#fff', padding: '1rem 2.5rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, transition: 'all 0.3s' }}>
+                                BOOK CONSULTATION <ArrowRight size={14} />
+                            </Link>
+                            <Link to="/concerns" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', border: '1px solid rgba(255,255,255,0.3)', color: '#fff', padding: '1rem 2.5rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, backdropFilter: 'blur(4px)', background: 'rgba(255,255,255,0.05)', transition: 'all 0.3s' }}>
+                                Browse Concerns
+                            </Link>
+                        </div>
+                    </RevealWrapper>
+                </div>
+            </section>
+        </div>
     )
 }
