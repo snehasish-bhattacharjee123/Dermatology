@@ -5,28 +5,28 @@ import { RevealWrapper, ParallaxImage } from '../hooks/useAnimations'
 import { Heading, Text, Caption } from '../components/ui/Typography'
 import { heroSlides, concerns, treatments, testimonials, locations as locationData, stats } from '../data/siteData'
 
-import ReactCardSlider from 'react-card-slider-component';
 
 export default function Home() {
     return (
         <>
             {/* Global shared styles for all Home sub-components */}
             <style>{`
-                .text-gold { color: var(--color-gold); }
+                 .text-wine { color: var(--color-wine); }
                 .text-dark { color: var(--color-dark); }
                 .text-muted { color: var(--color-text-muted); }
-                .bg-gold { background-color: var(--color-gold); }
-                .bg-gold-dark { background-color: var(--color-gold-dark); }
-                .border-gold { border-color: var(--color-gold); }
+                .bg-wine { background-color: var(--color-wine); }
+                .bg-wine-dark { background-color: var(--color-wine-dark); }
+                .border-wine { border-color: var(--color-wine); }
                 .italic { font-style: italic; }
-                .hover\\:text-gold:hover { color: var(--color-gold); }
-                .hover\\:bg-gold:hover { background-color: var(--color-gold); }
-                .hover\\:bg-gold-dark:hover { background-color: var(--color-gold-dark); }
+                .hover\\:text-wine:hover { color: var(--color-wine); }
+                .hover\\:bg-wine:hover { background-color: var(--color-wine); }
+                .hover\\:bg-wine-dark:hover { background-color: var(--color-wine-dark); }
                 .hover\\:text-white:hover { color: #fff; }
                 .hover\\:bg-dark:hover { background-color: var(--color-dark); }
                 .hover\\:border-dark:hover { border-color: var(--color-dark); }
-                .hover\\:border-gold:hover { border-color: var(--color-gold); }
-                .group-hover\\:text-gold:hover, .group:hover .group-hover\\:text-gold { color: var(--color-gold); }
+                .hover\\:border-wine:hover { border-color: var(--color-wine); }
+                .group-hover\\:text-wine:hover, .group:hover .group-hover\\:text-wine { color: var(--color-wine); }
+                .group-hover\\:text-accent:hover, .group:hover .group-hover\\:text-accent { color: var(--color-accent); }
                 .group:hover .group-hover\\:text-white { color: #fff; }
                 @keyframes floatIn {
                     from { opacity: 0; transform: translateY(20px) scale(0.9); }
@@ -37,7 +37,7 @@ export default function Home() {
             <StatsBar />
             <ConcernsSection />
             <TreatmentsSection />
-            {/* <TreatmentsAtAGlance /> */}
+            <TreatmentsAtAGlance />
             <ExclusiveSection />
             <AboutPreview />
             <RealResultsSection />
@@ -65,7 +65,7 @@ export function CarouselSpacing() {
     ]
 
     return (
-        <section className="section bg-white flex justify-center py-12 overflow-hidden w-full max-w-[100vw]">
+        <section className="section bg-cream flex justify-center py-12 overflow-hidden w-full max-w-[100vw]">
             <div className="w-full max-w-6xl px-12 sm:px-16 mx-auto flex justify-center">
                 <ReactCardSlider slides={slides}/>
             </div>
@@ -133,11 +133,11 @@ function HeroSection() {
                     src={slide.image}
                     alt={slide.title}
                     className="w-full h-full object-cover object-center"
-                    style={{ filter: 'brightness(0.5)' }}
-                />
-                <div
-                    className="absolute inset-0"
-                    style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.55) 100%)' }}
+                    fetchPriority={current === 0 ? "high" : "auto"}
+                    loading={current === 0 ? "eager" : "lazy"}
+                    decoding="async"
+                    sizes="100vw"
+                    srcSet={`${slide.image.replace(/w=\d+/, 'w=800')} 800w, ${slide.image.replace(/w=\d+/, 'w=1280')} 1280w, ${slide.image.replace(/w=\d+/, 'w=1600')} 1600w, ${slide.image} 1920w`}
                 />
             </div>
 
@@ -147,10 +147,10 @@ function HeroSection() {
             >
                 <div className="container relative z-10 w-full px-4 md:px-8">
                     <div ref={textRef} className="max-w-3xl mt-[-40px] md:mt-0">
-                        <Caption variant="overline-white" className="mb-3 md:mb-5 block text-white text-xs md:text-sm" style={{ color: '#ffffff' }}>
+                        <Caption className="mb-3 md:mb-5 block text-white text-xs md:text-sm" style={{ color: '#ffffff' }}>
                             {slide.subtitle}
                         </Caption>
-                        <Heading variant="hero-white" className="mb-4 md:mb-6 text-[2rem] leading-[1.15] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white font-medium" style={{ color: '#ffffff' }}>
+                        <Heading className="mb-4 md:mb-6 text-[2rem] leading-[1.15] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white font-medium" style={{ color: '#ffffff' }}>
                             {slide.title.split('\n').map((line, i) => (
                                 <span key={i} className="block">{line}</span>
                             ))}
@@ -185,7 +185,7 @@ function HeroSection() {
                                 className="h-1.5 rounded-full transition-all duration-500"
                                 style={{
                                     width: i === current ? '36px' : '20px',
-                                    background: i === current ? 'var(--color-gold)' : 'rgba(255,255,255,0.4)'
+                                    background: i === current ? 'var(--color-wine)' : 'rgba(255,255,255,0.4)'
                                 }}
                                 aria-label={`Go to slide ${i + 1}`}
                             />
@@ -194,14 +194,14 @@ function HeroSection() {
                     <div className="flex items-center gap-2 md:gap-3 hide-on-mobile">
                         <button
                             onClick={() => goToSlide(current === 0 ? heroSlides.length - 1 : current - 1)}
-                            className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/50 flex items-center justify-center text-white hover:border-gold hover:text-gold transition-all duration-300 bg-black/10 backdrop-blur-sm"
+                            className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/50 flex items-center justify-center text-white hover:border-wine hover:text-wine transition-all duration-300 bg-black/10 backdrop-blur-sm"
                             aria-label="Previous slide"
                         >
                             <ChevronLeft size={20} />
                         </button>
                         <button
                             onClick={() => goToSlide((current + 1) % heroSlides.length)}
-                            className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/50 flex items-center justify-center text-white hover:border-gold hover:text-gold transition-all duration-300 bg-black/10 backdrop-blur-sm"
+                            className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/50 flex items-center justify-center text-white hover:border-wine hover:text-wine transition-all duration-300 bg-black/10 backdrop-blur-sm"
                             aria-label="Next slide"
                         >
                             <ChevronRight size={20} />
@@ -211,14 +211,14 @@ function HeroSection() {
             </div>
 
             <style>{`
-                .text-gold {
-                    color: var(--color-gold);
+                .text-wine {
+                    color: var(--color-wine);
                 }
-                .hover\\:border-gold:hover {
-                    border-color: var(--color-gold);
+                .hover\\:border-wine:hover {
+                    border-color: var(--color-wine);
                 }
-                .hover\\:text-gold:hover {
-                    color: var(--color-gold);
+                .hover\\:text-wine:hover {
+                    color: var(--color-wine);
                 }
                 @media (max-width: 640px) {
                     .hide-on-mobile {
@@ -274,7 +274,7 @@ function StatsBar() {
     return (
         <div
             className="relative z-10"
-            style={{ background: 'var(--color-gold)' }}
+            style={{ background: 'var(--color-wine)' }}
         >
             <div className="container py-10 md:py-14">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
@@ -311,80 +311,84 @@ function StatsBar() {
 // ===== CONCERNS SECTION - PREMIUM =====
 function ConcernsSection() {
     return (
-        <section className="section bg-[#e8e3d9] py-20 md:py-32">
+        <section className="section bg-cream py-20 md:py-32">
             <div className="container max-w-6xl">
                 <RevealWrapper>
                     <div className="text-center mb-16 md:mb-20">
-                        <span className="inline-block text-[10px] tracking-[3px] uppercase font-bold mb-4 text-[#888]">
+                        <span className="inline-block text-xs md:text-sm tracking-[4px] uppercase font-bold mb-4 opacity-90" style={{ color: 'var(--color-wine)' }}>
                             What Bothers You?
                         </span>
                         <h2 
-                            className="text-3xl md:text-5xl font-serif mb-6" 
+                            className="text-4xl md:text-6xl font-serif mb-6 leading-tight" 
                             style={{ color: 'var(--color-dark)' }}
                         >
-                            Concerns
+                            Your <span className="italic text-wine">Concerns</span>
                         </h2>
-                        <Text size="md" className="max-w-2xl mx-auto" color="muted">
+                        <Text size="md" className="max-w-2xl mx-auto" style={{ color: 'var(--color-text)' }}>
                             We offer expert solutions for a wide range of skin, hair, and aesthetic concerns tailored to your unique needs.
                         </Text>
                     </div>
                 </RevealWrapper>
 
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 items-stretch">
                     {concerns.slice(0, 8).map((concern, i) => (
-                        <RevealWrapper key={concern.id} direction="up" delay={i * 0.06}>
-                            <Link to={`/concerns/${concern.slug}`} className="group block text-center p-6 md:p-8 bg-white hover-lift border border-[#f0ede8] h-full rounded-sm">
-                                <div
-                                    className="relative w-16 h-16 md:w-20 md:h-20 mx-auto mb-6 rounded-full flex items-center justify-center transition-all duration-500 bg-[#e8e3d9] text-dark"
-                                >
-                                    <span className="text-2xl opacity-80">{concern.icon}</span>
+                        <RevealWrapper key={concern.id} direction="up" delay={i * 0.06} className="h-full">
+                            <Link
+                                to={`/concerns/${concern.slug}`}
+                                className="group flex flex-col text-center p-8 md:p-10 bg-white hover-lift border border-[#f0ede8] h-full rounded-2xl shadow-sm transition-all duration-500 hover:shadow-xl hover:border-wine/20"
+                            >
+                                <div className="relative w-16 h-16 md:w-20 md:h-20 mx-auto mb-6 rounded-full flex items-center justify-center transition-all duration-500 bg-[#f8f6f3] text-wine group-hover:bg-wine group-hover:text-white shadow-inner flex-shrink-0">
+                                    <span className="text-2xl opacity-90">{concern.icon}</span>
                                 </div>
                                 <h4
-                                    className="text-lg md:text-xl font-serif transition-colors duration-300 mb-3"
-                                    style={{ color: 'var(--color-dark)' }}
+                                    className="text-base md:text-lg font-serif transition-colors duration-300 mb-3 group-hover:text-wine"
+                                    style={{ color: 'var(--color-dark)', fontWeight: 600 }}
                                 >
                                     {concern.name}
                                 </h4>
-                                <p
-                                    className="text-sm leading-relaxed mb-6 hidden md:block text-[#666]"
-                                >
-                                    {concern.shortDescription.slice(0, 60)}...
+                                <p className="text-sm leading-relaxed hidden md:block font-light flex-1" style={{ color: 'var(--color-text-muted)' }}>
+                                    {concern.shortDescription.slice(0, 65)}...
                                 </p>
-                                <span className="inline-flex items-center text-[10px] tracking-[2px] uppercase font-bold text-dark group-hover:text-gold transition-colors">
-                                    Learn More <ArrowRight size={14} className="ml-1" />
+                                <span className="inline-flex items-center justify-center text-[10px] tracking-[2px] uppercase font-bold text-wine opacity-90 group-hover:opacity-100 transition-all duration-300 mt-6 pt-4 border-t border-[#f0ede8] w-full">
+                                    Learn More <ArrowRight size={13} className="ml-1.5 transition-transform duration-300 group-hover:translate-x-1" />
                                 </span>
                             </Link>
                         </RevealWrapper>
                     ))}
                 </div>
 
-                <RevealWrapper className="text-center mt-16 md:mt-20">
-                    <Link to="/concerns" className="inline-flex items-center justify-center border border-gold px-8 py-4 text-xs tracking-[2px] uppercase font-semibold text-gold hover:bg-gold hover:text-white transition-all duration-300">
-                        View All Concerns
-                    </Link>
-                </RevealWrapper>
+                <div className="text-center mt-16 md:mt-24">
+                    <RevealWrapper>
+                        <Link
+                            to="/concerns"
+                            className="inline-flex items-center justify-center gap-2 border border-wine px-12 py-5 text-xs tracking-[3px] uppercase font-bold text-wine hover:bg-wine hover:text-white transition-all duration-300 hover:shadow-lg hover:shadow-wine/20"
+                        >
+                            View All Concerns <ArrowRight size={14} />
+                        </Link>
+                    </RevealWrapper>
+                </div>
             </div>
         </section>
     )
 }
 
 // ===== TREATMENTS SECTION - PREMIUM CARDS =====
-function TreatmentsSection() {
+ function TreatmentsSection() {
     return (
-        <section className="section bg-white py-20 md:py-32 border-t border-[#f0ede8]">
+        <section className="section bg-cream py-20 md:py-32 border-t border-[#f0ede8]">
             <div className="container max-w-6xl">
                 <RevealWrapper>
                     <div className="text-center mb-16 md:mb-20">
-                        <span className="inline-block text-[10px] tracking-[3px] uppercase font-bold mb-4 text-[#888]">
+                        <span className="inline-block text-xs md:text-sm tracking-[4px] uppercase font-bold mb-4 opacity-90" style={{ color: 'var(--color-wine)' }}>
                             Our Expertise
                         </span>
-                        <h2 
-                            className="text-3xl md:text-5xl font-serif mb-6" 
+                         <h2 
+                            className="text-4xl md:text-6xl font-serif mb-6 leading-tight" 
                             style={{ color: 'var(--color-dark)' }}
                         >
-                            Treatments
+                            Premium <span className="italic text-wine">Treatments</span>
                         </h2>
-                        <Text size="md" className="max-w-2xl mx-auto" color="muted">
+                        <Text size="md" className="max-w-2xl mx-auto" style={{ color: 'var(--color-text-muted)' }}>
                             Discover our comprehensive range of advanced dermatology and aesthetic treatments.
                         </Text>
                     </div>
@@ -393,36 +397,40 @@ function TreatmentsSection() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
                     {treatments.slice(0, 6).map((treatment, i) => (
                         <RevealWrapper key={treatment.id} direction="up" delay={i * 0.08}>
-                            <Link to={`/treatments/${treatment.slug}`} className="treatment-card card group block hover-lift h-full border border-[#f0ede8] bg-white rounded-sm">
-                                <div className="overflow-hidden relative h-64 rounded-t-sm">
+                            <Link to={`/treatments/${treatment.slug}`} className="treatment-card card group block hover-lift h-full border border-[#f0ede8] bg-white rounded-2xl shadow-sm transition-all duration-500 overflow-hidden hover:shadow-2xl hover:border-wine/30">
+                                <div className="overflow-hidden relative h-60">
                                     <img
                                         src={treatment.image}
                                         alt={treatment.title}
-                                        className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.05]"
+                                        className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.08]"
+                                        loading="lazy"
+                                        decoding="async"
+                                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                        srcSet={`${treatment.image.replace(/w=\d+/, 'w=400')} 400w, ${treatment.image.replace(/w=\d+/, 'w=600')} 600w, ${treatment.image} 800w`}
                                     />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                     <div
-                                        className="absolute top-5 left-5 px-4 py-2 text-[10px] tracking-[2px] uppercase text-white rounded-full font-bold shadow-sm"
-                                        style={{ background: 'var(--color-gold)' }}
+                                        className="absolute top-4 left-4 px-3.5 py-1.5 text-[9px] tracking-[2px] uppercase text-white rounded-full font-bold shadow-md backdrop-blur-md"
+                                        style={{ background: 'var(--color-wine)' }}
                                     >
                                         {treatment.category}
                                     </div>
                                 </div>
-                                <div className="card-body p-6 md:p-8 flex flex-col h-[calc(100%-16rem)] flex-1">
-                                    <h3 className="transition-colors duration-300 mb-3 font-serif" style={{ fontSize: 'var(--text-xl)', fontWeight: 600, color: 'var(--color-dark)' }}>
+                                <div className="card-body p-7 flex flex-col h-[calc(100%-15rem)] flex-1">
+                                    <h3 className="transition-colors duration-300 mb-2.5 font-serif group-hover:text-wine" style={{ fontSize: '1.35rem', fontWeight: 600, color: 'var(--color-dark)', lineHeight: 1.3 }}>
                                         {treatment.title}
                                     </h3>
-                                    <p className="mt-1 text-sm leading-relaxed flex-1 text-[#666]">
-                                        {treatment.shortDescription.slice(0, 100)}...
+                                    <p className="mt-1 text-sm leading-[1.8] flex-1 text-[#6b4f5a] font-light">
+                                        {treatment.shortDescription.slice(0, 110)}...
                                     </p>
                                     <div
-                                        className="flex flex-col sm:flex-row sm:items-center justify-between mt-6 pt-5 border-t gap-3"
-                                        style={{ borderColor: 'var(--color-border)' }}
+                                        className="flex items-center justify-between mt-6 pt-5 border-t border-[#f0ede8]"
                                     >
-                                        <span className="flex items-center gap-1.5 font-bold tracking-[2px] uppercase text-dark group-hover:text-gold transition-colors text-[10px]">
-                                            View Treatment <ArrowRight size={14} className="mt-0.5" />
+                                        <span className="flex items-center gap-1.5 font-bold tracking-[2px] uppercase text-wine transition-colors text-[10px]">
+                                            View Treatment <ArrowRight size={14} className="mt-0.5 transition-transform duration-300 group-hover:translate-x-1" />
                                         </span>
                                         <span
-                                            className="text-xs text-[#888] font-medium"
+                                            className="text-[10px] tracking-[1px] uppercase font-bold text-[#8a7f76] bg-[#f8f6f3] px-2.5 py-1 rounded-sm"
                                         >
                                             {treatment.duration}
                                         </span>
@@ -434,7 +442,7 @@ function TreatmentsSection() {
                 </div>
 
                 <RevealWrapper className="text-center mt-16 md:mt-24">
-                    <Link to="/treatments" className="inline-flex items-center justify-center border border-gold px-8 py-4 text-xs tracking-[2px] uppercase font-semibold text-white bg-gold hover:bg-gold-dark transition-all duration-300">
+                    <Link to="/treatments" className="inline-flex items-center justify-center border border-wine px-8 py-4 text-xs tracking-[2px] uppercase font-semibold text-white bg-wine hover:bg-wine-dark transition-all duration-300">
                         View All Treatments
                     </Link>
                 </RevealWrapper>
@@ -446,23 +454,25 @@ function TreatmentsSection() {
 // ===== ABOUT PREVIEW - PREMIUM =====
 function AboutPreview() {
     return (
-        <section className="section bg-[#e8e3d9] py-24 md:py-32 overflow-hidden border-t border-[#d5cfc7]">
+        <section className="section bg-cream py-16 md:py-24 overflow-hidden border-t border-border">
             <div className="container max-w-6xl">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
                     <RevealWrapper direction="left">
                         <div className="relative group">
                             <ParallaxImage
-                                src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&q=80"
+                                src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=720&q=75"
                                 alt="Dr. Dolly Gupta"
                                 className="rounded-sm shadow-xl"
                                 style={{ height: '600px' }}
                                 speed={-0.1}
+                                sizes="(max-width: 1024px) 100vw, 50vw"
+                                srcSet="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=480&q=75 480w, https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=720&q=75 720w, https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=900&q=75 900w"
                             />
                             <div
                                 className="absolute -bottom-6 -right-6 lg:-bottom-8 lg:-right-8 p-8 lg:p-10 rounded-sm shadow-xl"
-                                style={{ background: 'var(--color-gold)' }}
+                                style={{ background: 'var(--color-wine)' }}
                             >
-                                <div className="text-center text-white">
+                                <div className="text-center" style={{ color: '#ffffff' }}>
                                     <h3 className="text-5xl lg:text-7xl font-light leading-none mb-3" style={{ fontFamily: 'var(--font-heading)' }}>15+</h3>
                                     <span className="block text-[10px] tracking-[2px] uppercase font-bold opacity-90">
                                         Years of<br />Excellence
@@ -481,30 +491,30 @@ function AboutPreview() {
                                 className="text-3xl md:text-5xl lg:text-5xl mb-8 font-serif leading-tight" 
                                 style={{ color: 'var(--color-dark)' }}
                             >
-                                Where Science <br/><span className="italic text-gold">Meets Beauty</span>
+                                Where Science <br/><span className="italic text-wine">Meets Beauty</span>
                             </h2>
                             <div className="space-y-6 mb-10">
                                 <div className="flex items-start gap-4">
-                                    <div className="w-1.5 h-1.5 rounded-full mt-2.5 shrink-0" style={{ background: 'var(--color-gold)' }}></div>
+                                    <div className="w-1.5 h-1.5 rounded-full mt-2.5 shrink-0" style={{ background: 'var(--color-wine)' }}></div>
                                     <p className="text-[#666] leading-relaxed">
                                         Founded by Dr. Dolly Gupta, D'CosMedis Clinic has been at the forefront of dermatology and aesthetic medicine in India for over 15 years.
                                     </p>
                                 </div>
-                                <div className="flex items-start gap-4">
-                                    <div className="w-1.5 h-1.5 rounded-full mt-2.5 shrink-0" style={{ background: 'var(--color-gold)' }}></div>
+                                 <div className="flex items-start gap-4">
+                                    <div className="w-1.5 h-1.5 rounded-full mt-2.5 shrink-0" style={{ background: 'var(--color-wine)' }}></div>
                                     <p className="text-[#666] leading-relaxed">
                                         Our state-of-the-art clinics combine cutting-edge technology with personalized care to deliver transformative results.
                                     </p>
                                 </div>
                                 <div className="flex items-start gap-4">
-                                    <div className="w-1.5 h-1.5 rounded-full mt-2.5 shrink-0" style={{ background: 'var(--color-gold)' }}></div>
+                                    <div className="w-1.5 h-1.5 rounded-full mt-2.5 shrink-0" style={{ background: 'var(--color-wine)' }}></div>
                                     <p className="text-[#666] leading-relaxed">
                                         We believe that everyone deserves to feel confident in their skin with customized treatment plans.
                                     </p>
                                 </div>
                             </div>
                             <div className="flex flex-col sm:flex-row items-center gap-4">
-                                <Link to="/about" className="w-full sm:w-auto text-center inline-flex items-center justify-center border border-gold px-8 py-4 text-xs tracking-[2px] uppercase font-semibold text-white bg-gold hover:bg-gold-dark transition-all duration-300">
+                                <Link to="/about" className="w-full sm:w-auto text-center inline-flex items-center justify-center border border-wine px-8 py-4 text-xs tracking-[2px] uppercase font-semibold text-white bg-wine hover:bg-wine-dark transition-all duration-300">
                                     Our Story
                                 </Link>
                                 <Link to="/book" className="w-full sm:w-auto text-center inline-flex items-center justify-center border border-[#ccc] px-8 py-4 text-xs tracking-[2px] uppercase font-semibold text-dark hover:border-dark transition-all duration-300">
@@ -534,19 +544,19 @@ function TestimonialsSection() {
     return (
         <section
             className="section relative overflow-hidden"
-            style={{ background: 'linear-gradient(135deg, #25151e 0%, #39212f 100%)' }}
+            style={{ background: 'var(--color-bg-dark)' }}
         >
             <div
                 className="absolute top-20 right-20 w-64 h-64 rounded-full opacity-5"
-                style={{ background: 'var(--color-gold)', filter: 'blur(80px)' }}
+                style={{ background: 'var(--color-wine)', filter: 'blur(80px)' }}
             />
 
             <div className="container relative z-10">
                 <RevealWrapper>
                     <div className="section-header">
-                        <Caption variant="overline-white">Patient Love</Caption>
-                        <Heading variant="section-white">What Our Patients Say</Heading>
-                        <div className="gold-line" />
+                         <Caption style={{ color: 'rgba(255,255,255,0.7)' }}>Patient Love</Caption>
+                        <Heading style={{ color: '#ffffff' }}>What Our Patients Say</Heading>
+                        <div className="accent-line" />
                     </div>
                 </RevealWrapper>
 
@@ -563,17 +573,17 @@ function TestimonialsSection() {
                                 <div className="flex-1 flex flex-col justify-center order-2 md:order-1">
                                     <div className="mb-4">
                                         <h2
-                                            className="text-2xl md:text-3xl font-bold mb-2"
+                                            className="text-2xl md:text-3xl font-bold mb-2 tracking-wide"
                                             style={{
                                                 fontFamily: 'var(--font-display)',
-                                                color: 'var(--color-gold)'
+                                                color: '#ffffff'
                                             }}
                                         >
                                             {testimonials[active].name}
                                         </h2>
                                         <p
-                                            className="text-base md:text-lg"
-                                            style={{ color: '#109df79' }}
+                                            className="text-base md:text-lg opacity-80"
+                                            style={{ color: '#ffffff' }}
                                         >
                                             {testimonials[active].role}
                                         </p>
@@ -581,17 +591,17 @@ function TestimonialsSection() {
 
                                     <div
                                         className="w-[30%] h-px mb-6"
-                                        style={{ background: 'var(--color-gold)' }}
+                                        style={{ background: 'var(--color-wine)' }}
                                     />
 
                                     <p
                                         className="text-base md:text-lg leading-relaxed"
                                         style={{
                                             fontFamily: 'var(--font-display)',
-                                            color: '#109df79'
+                                            color: 'rgba(255, 255, 255, 0.9)'
                                         }}
                                     >
-                                        {testimonials[active].content}
+                                        "{testimonials[active].content}"
                                     </p>
                                 </div>
 
@@ -618,15 +628,15 @@ function TestimonialsSection() {
                                 onClick={goToPrev}
                                 className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300"
                                 style={{
-                                    border: '1px solid var(--color-gold)',
-                                    color: 'var(--color-gold)'
+                                    border: '1px solid var(--color-wine)',
+                                    color: 'var(--color-wine)'
                                 }}
                                 aria-label="Previous testimonial"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 30 30" fill="none">
-                                    <rect x="0.5" y="0.5" width="29" height="29" stroke="var(--color-gold)"></rect>
+                                     <rect x="0.5" y="0.5" width="29" height="29" stroke="var(--color-wine)"></rect>
                                     <g clipPath="url(#clip0_1110_83)">
-                                        <path fillRule="evenodd" clipRule="evenodd" d="M11.2662 8.20429C11.4098 8.07297 11.6004 7.99976 11.7985 7.99976C11.9967 7.99976 12.1872 8.07297 12.3309 8.20429L18.5585 13.9891C18.6979 14.1166 18.8089 14.2701 18.8848 14.4402C18.9606 14.6103 18.9998 14.7934 18.9998 14.9785C18.9998 15.1636 18.9606 15.3468 18.8848 15.5169C18.8089 15.687 18.6979 15.8405 18.5585 15.968L12.2858 21.7955C11.9949 22.065 11.5236 22.0685 11.2284 21.8025C11.1569 21.7391 11.0997 21.6623 11.0603 21.5767C11.021 21.4912 11.0003 21.3988 10.9997 21.3053C10.999 21.2117 11.0183 21.119 11.0564 21.033C11.0945 20.9469 11.1505 20.8693 11.2211 20.805L16.9614 15.4731C17.0312 15.4093 17.0868 15.3326 17.1247 15.2475C17.1627 15.1624 17.1822 15.0708 17.1822 14.9782C17.1822 14.8856 17.1627 14.794 17.1247 14.7089C17.0868 14.6238 17.0312 14.5471 16.9614 14.4833L11.2669 9.19339C11.1972 9.12969 11.1416 9.05299 11.1037 8.96797C11.0657 8.88295 11.0462 8.79138 11.0462 8.69884C11.0462 8.6063 11.0657 8.51473 11.1037 8.42971C11.1416 8.34469 11.1964 8.26799 11.2662 8.20429Z" fill="var(--color-gold)"></path>
+                                        <path fillRule="evenodd" clipRule="evenodd" d="M11.2662 8.20429C11.4098 8.07297 11.6004 7.99976 11.7985 7.99976C11.9967 7.99976 12.1872 8.07297 12.3309 8.20429L18.5585 13.9891C18.6979 14.1166 18.8089 14.2701 18.8848 14.4402C18.9606 14.6103 18.9998 14.7934 18.9998 14.9785C18.9998 15.1636 18.9606 15.3468 18.8848 15.5169C18.8089 15.687 18.6979 15.8405 18.5585 15.968L12.2858 21.7955C11.9949 22.065 11.5236 22.0685 11.2284 21.8025C11.1569 21.7391 11.0997 21.6623 11.0603 21.5767C11.021 21.4912 11.0003 21.3988 10.9997 21.3053C10.999 21.2117 11.0183 21.119 11.0564 21.033C11.0945 20.9469 11.1505 20.8693 11.2211 20.805L16.9614 15.4731C17.0312 15.4093 17.0868 15.3326 17.1247 15.2475C17.1627 15.1624 17.1822 15.0708 17.1822 14.9782C17.1822 14.8856 17.1627 14.794 17.1247 14.7089C17.0868 14.6238 17.0312 14.5471 16.9614 14.4833L11.2669 9.19339C11.1972 9.12969 11.1416 9.05299 11.1037 8.96797C11.0657 8.88295 11.0462 8.79138 11.0462 8.69884C11.0462 8.6063 11.0657 8.51473 11.1037 8.42971C11.1416 8.34469 11.1964 8.26799 11.2662 8.20429Z" fill="var(--color-wine)"></path>
                                     </g>
                                     <defs>
                                         <clipPath id="clip0_1110_83">
@@ -640,15 +650,15 @@ function TestimonialsSection() {
                                 onClick={goToNext}
                                 className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300"
                                 style={{
-                                    border: '1px solid var(--color-gold)',
-                                    color: 'var(--color-gold)'
+                                    border: '1px solid var(--color-wine)',
+                                    color: 'var(--color-wine)'
                                 }}
                                 aria-label="Next testimonial"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 30 30" fill="none">
-                                    <rect x="0.5" y="0.5" width="29" height="29" stroke="var(--color-gold)"></rect>
+                                     <rect x="0.5" y="0.5" width="29" height="29" stroke="var(--color-wine)"></rect>
                                     <g clipPath="url(#clip1_1110_84)">
-                                        <path fillRule="evenodd" clipRule="evenodd" d="M18.7338 21.7957C18.5246 21.9254 18.2716 21.9999 18.0101 21.9999C17.7487 21.9999 17.4957 21.9254 17.2864 21.7957L11.0137 15.968C10.8743 15.8405 10.7633 15.687 10.6874 15.5169C10.6116 15.3467 10.5724 15.1635 10.5724 14.9784C10.5724 14.7933 10.6116 14.6101 10.6874 14.44C10.7633 14.2699 10.8743 14.1164 11.0137 13.9889L17.2413 8.20409C17.385 8.07277 17.5755 7.99956 17.7737 7.99956C17.9718 7.99956 18.1624 8.07277 18.306 8.20409C18.3758 8.26779 18.4314 8.34449 18.4693 8.42951C18.5073 8.51453 18.5268 8.6061 18.5268 8.69864C18.5268 8.79118 18.5073 8.88275 18.4693 8.96777C18.4314 9.05279 18.3758 9.12949 18.306 9.19319L12.6004 14.4831C12.5307 14.5468 12.475 14.6235 12.4371 14.7086C12.3991 14.7937 12.3796 14.8853 12.3796 14.9779C12.3796 15.0705 12.3991 15.1621 12.4371 15.2472C12.475 15.3322 12.5307 15.4089 12.6004 15.4727L17.7864 20.805C17.8569 20.8693 17.9129 20.9469 17.951 21.033C17.9891 21.119 18.0084 21.2117 18.0077 21.3053C18.0071 21.3988 17.9864 21.4912 17.9471 21.5767C17.9077 21.6623 17.8505 21.7391 17.779 21.8025C17.4838 22.0685 17.0125 22.065 16.7216 21.7957L18.7338 21.7957Z" fill="var(--color-gold)"></path>
+                                        <path fillRule="evenodd" clipRule="evenodd" d="M18.7338 21.7957C18.5246 21.9254 18.2716 21.9999 18.0101 21.9999C17.7487 21.9999 17.4957 21.9254 17.2864 21.7957L11.0137 15.968C10.8743 15.8405 10.7633 15.687 10.6874 15.5169C10.6116 15.3467 10.5724 15.1635 10.5724 14.9784C10.5724 14.7933 10.6116 14.6101 10.6874 14.44C10.7633 14.2699 10.8743 14.1164 11.0137 13.9889L17.2413 8.20409C17.385 8.07277 17.5755 7.99956 17.7737 7.99956C17.9718 7.99956 18.1624 8.07277 18.306 8.20409C18.3758 8.26779 18.4314 8.34449 18.4693 8.42951C18.5073 8.51453 18.5268 8.6061 18.5268 8.69864C18.5268 8.79118 18.5073 8.88275 18.4693 8.96777C18.4314 9.05279 18.3758 9.12949 18.306 9.19319L12.6004 14.4831C12.5307 14.5468 12.475 14.6235 12.4371 14.7086C12.3991 14.7937 12.3796 14.8853 12.3796 14.9779C12.3796 15.0705 12.3991 15.1621 12.4371 15.2472C12.475 15.3322 12.5307 15.4089 12.6004 15.4727L17.7864 20.805C17.8569 20.8693 17.9129 20.9469 17.951 21.033C17.9891 21.119 18.0084 21.2117 18.0077 21.3053C18.0071 21.3988 17.9864 21.4912 17.9471 21.5767C17.9077 21.6623 17.8505 21.7391 17.779 21.8025C17.4838 22.0685 17.0125 22.065 16.7216 21.7957L18.7338 21.7957Z" fill="var(--color-wine)"></path>
                                     </g>
                                     <defs>
                                         <clipPath id="clip1_1110_84">
@@ -669,7 +679,7 @@ function TestimonialsSection() {
                                     style={{
                                         width: i === active ? '32px' : '10px',
                                         height: '10px',
-                                        background: i === active ? 'var(--color-gold)' : 'rgba(255,255,255,0.2)',
+                                        background: i === active ? 'var(--color-wine)' : 'rgba(255,255,255,0.2)',
                                     }}
                                     aria-label={`View testimonial ${i + 1}`}
                                 />
@@ -699,9 +709,9 @@ function LocationsSection() {
             <div className="container">
                 <RevealWrapper>
                     <div className="section-header">
-                        <Caption variant="overline">Visit Us</Caption>
-                        <Heading variant="section">Skin Treatment Clinic In Delhi & Ludhiana</Heading>
-                        <div className="gold-line" />
+                        <Caption>Visit Us</Caption>
+                        <Heading>Skin Treatment Clinic In Delhi & Ludhiana</Heading>
+                        <div className="accent-line" />
                     </div>
                 </RevealWrapper>
 
@@ -728,7 +738,7 @@ function LocationsSection() {
                                         {loc.name}
                                     </h4>
                                     <div className="flex items-center gap-1 mb-2">
-                                        <Star size={14} fill="var(--color-gold)" color="var(--color-gold)" />
+                                        <Star size={14} fill="var(--color-wine)" color="var(--color-wine)" />
                                         <span className="text-sm font-semibold" style={{ color: 'var(--color-dark)' }}>{ratings[i]}</span>
                                         <span className="text-xs" style={{ color: 'var(--color-text-light)' }}>({reviewCounts[i]} reviews)</span>
                                     </div>
@@ -736,13 +746,13 @@ function LocationsSection() {
                                         className="text-sm mb-3 flex items-start gap-2"
                                         style={{ color: 'var(--color-text-muted)' }}
                                     >
-                                        <MapPin size={14} className="mt-0.5 shrink-0" style={{ color: 'var(--color-gold)' }} />
+                                        <MapPin size={14} className="mt-0.5 shrink-0" style={{ color: 'var(--color-wine)' }} />
                                         {loc.address}
                                     </p>
                                     <a
                                         href={`tel:${loc.phone}`}
                                         className="text-sm font-semibold transition-colors mb-4"
-                                        style={{ color: 'var(--color-gold)' }}
+                                        style={{ color: 'var(--color-wine)' }}
                                     >
                                         {loc.phone}
                                     </a>
@@ -768,20 +778,19 @@ function CTASection() {
                     src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1920&q=80"
                     alt="CTA Background"
                     className="w-full h-full object-cover"
-                    style={{ filter: 'brightness(0.30)' }}
                 />
             </div>
 
             <div className="container relative z-10 text-center px-6">
                 <RevealWrapper>
-                    <Caption variant="overline-white" className="mb-4">Start Today</Caption>
-                    <Heading variant="section-white" className="mb-6" style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)' }}>
+                    <Caption className="mb-4" style={{ color: '#ffffff' }}>Start Today</Caption>
+                    <Heading className="mb-6" style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)', color: '#ffffff' }}>
                         Start Your Skin Transformation Today
                     </Heading>
-                    <div className="inline-block mb-8 px-5 py-2 rounded-full text-sm font-semibold" style={{ background: 'rgba(135,91,108,0.2)', color: 'var(--color-gold-light)', border: '1px solid rgba(135,91,108,0.3)' }}>
-                        âœ¨ Free Consultation Available
+                    <div className="inline-block mb-8 px-5 py-2 rounded-full text-sm font-semibold" style={{ background: 'rgba(135,91,108,0.2)', color: 'var(--color-wine-light)', border: '1px solid rgba(135,91,108,0.3)' }}>
+                        ✨ Free Consultation Available
                     </div>
-                    <Text size="md" color="white-muted" className="mb-10 max-w-lg mx-auto">
+                    <Text size="md" className="mb-10 max-w-lg mx-auto" style={{ color: 'rgba(255,255,255,0.8)' }}>
                         Schedule a free consultation with our expert dermatologists and discover the perfect treatment plan for you.
                     </Text>
                     <div className="flex items-center justify-center gap-4 flex-wrap">
@@ -803,9 +812,9 @@ function CTASection() {
 }
 
 // ===== REAL RESULTS SECTION - PREMIUM =====
-function RealResultsSection() {
+ function RealResultsSection() {
     return (
-        <section className="section bg-white py-24 md:py-32">
+        <section className="section bg-cream py-24 md:py-32">
             <div className="container max-w-6xl">
                 <RevealWrapper>
                     <div className="text-center mb-16 md:mb-24">
@@ -816,7 +825,7 @@ function RealResultsSection() {
                             className="text-3xl md:text-5xl font-serif" 
                             style={{ color: 'var(--color-dark)' }}
                         >
-                            <span className="italic text-gold">Transformations</span>
+                             <span className="italic text-wine">Transformations</span>
                         </h2>
                     </div>
                 </RevealWrapper>
@@ -835,17 +844,17 @@ function RealResultsSection() {
                     {/* Testimonial */}
                     <div className="w-full lg:w-1/2">
                         <RevealWrapper direction="right" delay={0.2} className="h-full">
-                            <div className="bg-[#e8e3d9] p-10 md:p-12 rounded-sm h-full flex flex-col justify-center border border-[#d5cfc7]">
+                            <div className="bg-[#ede8ed] p-10 md:p-12 rounded-sm h-full flex flex-col justify-center border border-[#c0adc0]">
                                 <Quote
                                     size={40}
-                                    style={{ color: 'var(--color-gold)' }}
+                                    style={{ color: 'var(--color-wine)' }}
                                     className="mb-8 opacity-40 mx-auto"
                                 />
-                                <p className="text-lg md:text-xl text-center leading-relaxed italic mb-10 text-[#555] font-serif">
+                                <p className="text-lg md:text-xl text-center leading-relaxed italic mb-10 font-serif" style={{ color: 'var(--color-dark)' }}>
                                     "It was my first time at D'CosMedis and just based on the how precise and considerate the details of my consultation was and how the therapist has such good experience can be known by how she looked at my skin and gave me her feedback I didn't even need to explain much details and my treatment was done to perfection. I was literally glowing afterwards."
                                 </p>
                                 <div className="text-center">
-                                    <p className="font-bold text-dark text-sm tracking-[2px] uppercase">
+                                    <p className="font-bold text-sm tracking-[2px] uppercase" style={{ color: 'var(--color-wine)' }}>
                                         Manal Mohammed
                                     </p>
                                 </div>
@@ -925,6 +934,10 @@ function BeforeAfterSlider({ beforeImage, afterImage }) {
                 alt="After treatment"
                 className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none transition-transform duration-[2s] hover:scale-[1.05]"
                 draggable={false}
+                loading="lazy"
+                decoding="async"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 625px"
+                srcSet={`${afterImage}?resize=400,400 400w, ${afterImage}?resize=625,625 625w`}
             />
             {/* Before Image (Cropped) */}
             <div className="absolute inset-0 pointer-events-none z-10 transition-transform duration-[2s] hover:scale-[1.05]">
@@ -934,6 +947,10 @@ function BeforeAfterSlider({ beforeImage, afterImage }) {
                     className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
                     style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
                     draggable={false}
+                    loading="lazy"
+                    decoding="async"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 625px"
+                    srcSet={`${beforeImage}?resize=400,400 400w, ${beforeImage}?resize=625,625 625w`}
                 />
             </div>
 
@@ -943,8 +960,8 @@ function BeforeAfterSlider({ beforeImage, afterImage }) {
                 style={{ left: `${sliderPosition}%`, transform: 'translateX(-50%)' }}
             >
                 <div className="w-0.5 md:w-[2px] h-full bg-white shadow-[0_0_10px_rgba(0,0,0,0.3)]"></div>
-                <div className="absolute w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg flex items-center justify-center border-[3px] border-gold">
-                    <svg className="w-4 h-4 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="absolute w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg flex items-center justify-center border-[3px] border-wine">
+                    <svg className="w-4 h-4 text-wine" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M8 9l4-4 4 4m0 6l-4 4-4-4" transform="rotate(90 12 12)" />
                     </svg>
                 </div>
@@ -1052,18 +1069,22 @@ function TreatmentsAtAGlance() {
                                     alt={item.title} 
                                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.05]"
                                     style={{ filter: 'brightness(0.6)' }}
+                                    loading="lazy"
+                                    decoding="async"
+                                    sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, 380px"
+                                    srcSet={`${item.image.replace(/w=\d+/, 'w=400')} 400w, ${item.image} 800w`}
                                 />
                                 
                                 {/* Overlay */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent transition-opacity duration-500"></div>
                                 
                                 {/* Content */}
-                                <div className="absolute inset-0 flex flex-col items-center justify-end p-8 text-white z-10">
-                                    <h3 className="text-2xl md:text-3xl font-serif tracking-widest uppercase text-center mb-1 text-white">
+                                <div className="absolute inset-0 flex flex-col items-center justify-end pb-10 px-8 text-white z-10">
+                                    <h3 className="text-2xl md:text-3xl font-serif tracking-widest uppercase text-center mb-2 text-white">
                                         {item.title}
                                     </h3>
                                     {item.subtitle && (
-                                        <h4 className="text-xs tracking-[4px] uppercase font-bold mt-2 text-center text-gold">
+                                        <h4 className="text-xs tracking-[4px] uppercase font-bold mt-1 text-center" style={{ color: 'var(--color-accent)' }}>
                                             {item.subtitle}
                                         </h4>
                                     )}
@@ -1148,7 +1169,7 @@ function ExclusiveSection() {
     }
 
     return (
-        <section className="section bg-[#e8e3d9] overflow-hidden py-24 md:py-32">
+        <section className="section bg-cream overflow-hidden py-16 md:py-24">
             <div className="container max-w-6xl">
                 <RevealWrapper>
                     <div className="text-center mb-16 md:mb-20">
@@ -1161,7 +1182,7 @@ function ExclusiveSection() {
                         >
                             D'CosMedis Exclusive
                         </h2>
-                        <Text size="md" className="max-w-2xl mx-auto" color="muted">
+                        <Text size="md" className="max-w-2xl mx-auto" style={{ color: 'var(--color-text-muted)' }}>
                             We bring some of the best and latest treatments from across the globe exclusively to India.
                         </Text>
                     </div>
@@ -1188,8 +1209,8 @@ function ExclusiveSection() {
                             style={{ scrollSnapAlign: 'start' }}
                         >
                             <div className="h-[240px] md:h-[280px] flex flex-col items-center justify-center p-8 transition-colors">
-                                <div className="w-16 h-16 rounded-full flex items-center justify-center mb-8 bg-[#e8e3d9] group-hover:bg-gold transition-colors duration-500">
-                                    <span className="text-2xl text-gold group-hover:text-white transition-colors duration-500">✨</span>
+                                <div className="w-16 h-16 rounded-full flex items-center justify-center mb-8 bg-[#f8f6f3] group-hover:bg-wine transition-colors duration-500">
+                                    <span className="text-2xl text-wine group-hover:text-white transition-colors duration-500">✨</span>
                                 </div>
                                 <h3 className="text-lg font-serif tracking-widest text-center mb-2 text-dark">
                                     {category.name}
@@ -1208,25 +1229,25 @@ function ExclusiveSection() {
                 <button
                     onClick={() => scroll('left')}
                     className={`absolute left-2 md:left-8 top-[calc(50%-16px)] -translate-y-1/2 w-12 h-12 md:w-16 md:h-16 rounded-full bg-white shadow-lg flex items-center justify-center border border-[#f0ede8]
-                               transition-all duration-300 z-10 hover:border-gold hover:bg-gold group
+                               transition-all duration-300 z-10 hover:border-wine hover:bg-wine group
                                ${canScrollLeft ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
                     aria-label="Previous slide"
                 >
-                    <ChevronLeft size={24} className="text-gold group-hover:text-white transition-colors" />
+                    <ChevronLeft size={24} className="text-wine group-hover:text-white transition-colors" />
                 </button>
                 <button
                     onClick={() => scroll('right')}
                     className={`absolute right-2 md:right-8 top-[calc(50%-16px)] -translate-y-1/2 w-12 h-12 md:w-16 md:h-16 rounded-full bg-white shadow-lg flex items-center justify-center border border-[#f0ede8]
-                               transition-all duration-300 z-10 hover:border-gold hover:bg-gold group
+                               transition-all duration-300 z-10 hover:border-wine hover:bg-wine group
                                ${canScrollRight ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
                     aria-label="Next slide"
                 >
-                    <ChevronRight size={24} className="text-gold group-hover:text-white transition-colors" />
+                    <ChevronRight size={24} className="text-wine group-hover:text-white transition-colors" />
                 </button>
             </div>
 
             <div className="container mt-8 text-center">
-                <Link to="/treatments" className="inline-flex items-center justify-center border border-dark px-8 py-4 text-xs tracking-[2px] uppercase font-semibold text-dark hover:bg-dark hover:text-white transition-all duration-300">
+                <Link to="/treatments" className="inline-flex items-center justify-center border border-wine px-8 py-4 text-xs tracking-[2px] uppercase font-semibold text-wine hover:bg-wine hover:text-white transition-all duration-300">
                     VIEW ALL EXCLUSIVE
                 </Link>
             </div>

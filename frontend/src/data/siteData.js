@@ -9,7 +9,7 @@ export const heroSlides = [
         description: 'Dr. Dolly Gupta is credited with establishing the medical aesthetics industry more than 3 decades ago.',
         cta: 'Book your Appointment',
         ctaLink: '/book',
-        image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1920&q=80',
+        image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1280&q=75',
     },
     {
         id: 2,
@@ -18,7 +18,7 @@ export const heroSlides = [
         description: 'USFDA-approved laser hair reduction under medical supervision. Safe for all skin tones.',
         cta: 'Explore Treatments',
         ctaLink: '/treatments',
-        image: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=1920&q=80',
+        image: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=1280&q=75',
     },
     {
         id: 3,
@@ -27,7 +27,7 @@ export const heroSlides = [
         description: 'Sharper contours without the downtime. FDA-approved lifting and body sculpting treatments.',
         cta: 'Learn More',
         ctaLink: '/treatments',
-        image: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=1920&q=80',
+        image: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=1280&q=75',
     },
     {
         id: 4,
@@ -36,7 +36,7 @@ export const heroSlides = [
         description: 'Clinically proven technology, delivered with care. Only USFDA-approved lasers and devices.',
         cta: 'Book Consultation',
         ctaLink: '/book',
-        image: 'https://images.unsplash.com/photo-1612817288484-6f916006741a?w=1920&q=80',
+        image: 'https://images.unsplash.com/photo-1612817288484-6f916006741a?w=1280&q=75',
     },
     {
         id: 5,
@@ -45,7 +45,7 @@ export const heroSlides = [
         description: 'Where medical expertise meets cutting-edge skin science & wellness. Tried. Tested. Trusted.',
         cta: 'Explore Treatments',
         ctaLink: '/treatments',
-        image: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=1920&q=80',
+        image: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=1280&q=75',
     },
 ]
 
@@ -57,7 +57,7 @@ export const concerns = [
         icon: '🔴',
         shortDescription: 'Advanced treatments for acne breakouts, scarring, and post-acne pigmentation.',
         description: 'Acne is a common skin condition caused by clogged pores—due to oil, dead skin, or bacteria. It can appear as pimples, blackheads, or deeper, inflamed bumps. Left untreated, acne may lead to pigmentation and scarring. At D\'CosMedis, we\'ve successfully treated acne and acne scarring for over 30 years. We help identify your triggers and treat them at the source using a personalised combination of medical-grade peels, advanced lasers, and targeted skincare.',
-        image: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1560564560-a55c22b2e9a5?w=800&q=80',
         treatments: ['intense-acne-peel', 'sublative-rejuvenation', 'morpheus8', 'chemical-peels'],
     },
     {
@@ -67,7 +67,7 @@ export const concerns = [
         icon: '🟤',
         shortDescription: 'Reduce dark spots, melasma, and uneven skin tone with advanced laser and peel treatments.',
         description: 'Pigmentation is uneven skin tone caused by excess melanin production. It appears as dark spots, age spots, or tanning, and can be triggered by sun exposure, hormonal shifts, or post-inflammatory changes. At D\'CosMedis, we combine deep chemical peels with advanced QSWITCH laser technology and targeted homecare to deliver visible, lasting results.',
-        image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=800&q=80',
         treatments: ['qswitch-laser', 'advanced-skin-brightening', 'chemical-peels'],
     },
     {
@@ -77,7 +77,7 @@ export const concerns = [
         icon: '✨',
         shortDescription: 'Turn back time with Botox, dermal fillers, thread lifts & regenerative therapies.',
         description: 'The ageing process begins in your mid-20s. Early signs include fine lines, volume loss, and reduced elasticity. Sun exposure, stress, and lifestyle choices can accelerate these changes. At D\'CosMedis, we offer over 30 years of expertise with a personalised blend of Botox®, Dermal Fillers, Exosome Therapy, GFC (Advanced PRP), Thread Lifts, and Collagen-Boosting Therapies for natural-looking rejuvenation.',
-        image: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1588776814546-ec7e0bf1f1b7?w=800&q=80',
         treatments: ['botox', 'dermal-fillers', 'thread-lifts', 'exosome-therapy', 'gfc-therapy'],
     },
     {
@@ -87,7 +87,7 @@ export const concerns = [
         icon: '💇',
         shortDescription: 'Regrow and restore with Dermaneedling, Exosomes, GFC & hair transplant solutions.',
         description: 'Hair thinning, breakage, and loss can result from stress, hormonal changes, genetics, or nutritional deficiencies. Early intervention is key. D\'CosMedis offers advanced, clinically proven solutions including Dermaneedling, Exosomes Therapy, GFC (Advanced PRP) Therapy, and Hair Transplant. Most clients notice visible improvement after a few sessions, with full results over several months.',
-        image: 'https://images.unsplash.com/photo-1522337094846-8a818192de1f?w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80',
         treatments: ['dermaneedling', 'exosome-therapy', 'gfc-therapy', 'hair-transplant'],
     },
     {
@@ -97,7 +97,7 @@ export const concerns = [
         icon: '🌟',
         shortDescription: 'Restore radiance with signature medifacials, hitech facials, and medical-grade treatments.',
         description: 'Environmental factors, stress, and aging can rob your skin of its natural radiance. Our glow-boosting treatments include Signature Medifacials, Hitech Facials (Neocollagen, Ultrasonic HIFU, LaserBrite, Carbon Glow), and Medical Grade Facials designed to deliver instant luminosity and deep hydration.',
-        image: 'https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80',
         treatments: ['signature-medifacials', 'neocollagen-facial', 'carbon-glow', 'oxyblast'],
     },
     {
@@ -158,7 +158,7 @@ export const treatments = [
     </ul>`,
         duration: '30–45 minutes',
         price: '₹2,500 onwards',
-        image: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80',
         gallery: [],
     },
     {
@@ -181,7 +181,7 @@ export const treatments = [
     <p>Minimal downtime. Noticeable improvement after 2-3 sessions with optimal results after a full course of treatment.</p>`,
         duration: '45–60 minutes',
         price: 'On Consultation',
-        image: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80',
         gallery: [],
     },
     {
@@ -210,7 +210,7 @@ export const treatments = [
     </ul>`,
         duration: '45–60 minutes',
         price: 'On Consultation',
-        image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1556227702-d1e4e7b5c232?w=800&q=80',
         gallery: [],
     },
 
@@ -238,7 +238,7 @@ export const treatments = [
     <p>We were pioneers in bringing Botox to India. Our approach ensures natural-looking results — your goal is to look refreshed and rejuvenated, never "frozen."</p>`,
         duration: '15–30 minutes',
         price: 'On Consultation',
-        image: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1588776814546-ec7e0bf1f1b7?w=800&q=80',
         gallery: [],
     },
     {
@@ -261,7 +261,7 @@ export const treatments = [
     </ul>`,
         duration: '30–45 minutes',
         price: 'On Consultation',
-        image: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80',
         gallery: [],
     },
     {
@@ -289,7 +289,7 @@ export const treatments = [
     </ul>`,
         duration: '45–90 minutes',
         price: 'On Consultation',
-        image: 'https://images.unsplash.com/photo-1612817288484-6f916006741a?w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1607779097040-26e80aa78e66?w=800&q=80',
         gallery: [],
     },
 
@@ -347,7 +347,7 @@ export const treatments = [
     </ul>`,
         duration: '45 minutes',
         price: 'On Consultation',
-        image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=800&q=80',
         gallery: [],
     },
     {

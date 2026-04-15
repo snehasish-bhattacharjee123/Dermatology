@@ -69,16 +69,16 @@ function VideoGallery() {
         <section style={{ padding: '7rem 0', background: '#fff' }}>
             <style>{`
                 .vg-thumb { position: relative; cursor: pointer; overflow: hidden; border: 2px solid transparent; transition: border-color 0.3s, transform 0.3s; }
-                .vg-thumb.active { border-color: var(--color-gold); }
+                .vg-thumb.active { border-color: var(--color-wine); }
                 .vg-thumb:hover { transform: translateX(4px); }
                 .vg-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
                 .vg-thumb:hover img { transform: scale(1.05); }
                 .vg-thumb-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.45); display: flex; align-items: center; justify-content: center; transition: background 0.3s; }
                 .vg-thumb:hover .vg-thumb-overlay { background: rgba(0,0,0,0.25); }
                 .vg-play-sm { width: 2.25rem; height: 2.25rem; border-radius: 50%; background: rgba(255,255,255,0.85); display: flex; align-items: center; justify-content: center; transition: transform 0.3s, background 0.3s; }
-                .vg-thumb:hover .vg-play-sm { background: var(--color-gold); transform: scale(1.15); }
+                .vg-thumb:hover .vg-play-sm { background: var(--color-wine); transform: scale(1.15); }
                 .vg-featured-play { width: 5rem; height: 5rem; border-radius: 50%; background: rgba(255,255,255,0.15); border: 2px solid rgba(255,255,255,0.6); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; backdrop-filter: blur(6px); }
-                .vg-featured-play:hover { background: var(--color-gold); border-color: var(--color-gold); transform: scale(1.1); box-shadow: 0 0 40px rgba(135,91,108,0.6); }
+                .vg-featured-play:hover { background: var(--color-wine); border-color: var(--color-wine); transform: scale(1.1); box-shadow: 0 0 40px rgba(114,47,55,0.6); }
                 .vg-lightbox { position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.92); display: flex; align-items: center; justify-content: center; backdrop-filter: blur(8px); animation: vg-fade-in 0.3s ease; }
                 @keyframes vg-fade-in { from { opacity: 0; } to { opacity: 1; } }
                 .vg-lightbox-inner { position: relative; width: 90vw; max-width: 64rem; }
@@ -91,13 +91,13 @@ function VideoGallery() {
             <div className="container" style={{ maxWidth: '80rem' }}>
                 <RevealWrapper>
                     <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                        <span style={{ display: 'block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 800, color: 'var(--color-gold)', marginBottom: '1rem' }}>
+                        <span style={{ display: 'block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 800, color: 'var(--color-wine)', marginBottom: '1rem' }}>
                             Watch &amp; Learn
                         </span>
                         <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--color-dark)', textTransform: 'uppercase', letterSpacing: '3px' }}>
                             Treatment Videos
                         </h2>
-                        <div style={{ width: '3.5rem', height: '2px', background: 'var(--color-gold)', margin: '1.25rem auto 0' }} />
+                        <div style={{ width: '3.5rem', height: '2px', background: 'var(--color-wine)', margin: '1.25rem auto 0' }} />
                         <p style={{ color: 'var(--color-text-muted)', maxWidth: '36rem', margin: '1.25rem auto 0', lineHeight: 1.75, fontSize: '1rem' }}>
                             Watch our expert dermatologists in action. Learn what to expect before, during, and after your treatment.
                         </p>
@@ -123,7 +123,7 @@ function VideoGallery() {
 
                                 {/* Caption overlay */}
                                 <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '2rem', background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%)' }}>
-                                    <span style={{ display: 'block', fontSize: '0.6rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-gold)', marginBottom: '0.4rem' }}>
+                                    <span style={{ display: 'block', fontSize: '0.6rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-wine)', marginBottom: '0.4rem' }}>
                                         {featured.subtitle}
                                     </span>
                                     <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.25rem, 2.5vw, 1.75rem)', color: '#fff', fontWeight: 500 }}>
@@ -154,7 +154,7 @@ function VideoGallery() {
                                         </div>
                                         {/* Active indicator */}
                                         {active === i && (
-                                            <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '3px', background: 'var(--color-gold)' }} />
+                                            <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '3px', background: 'var(--color-wine)' }} />
                                         )}
                                         <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '0.5rem 0.75rem', background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%)' }}>
                                             <p style={{ fontSize: '0.7rem', color: '#fff', fontWeight: 500, lineHeight: 1.3 }}>{v.title}</p>
@@ -177,7 +177,7 @@ function VideoGallery() {
                                     width: active === i ? '2rem' : '0.5rem',
                                     height: '0.5rem',
                                     borderRadius: '9999px',
-                                    background: active === i ? 'var(--color-gold)' : '#ddd',
+                                    background: active === i ? 'var(--color-wine)' : '#ddd',
                                     border: 'none',
                                     cursor: 'pointer',
                                     transition: 'all 0.4s ease',
@@ -247,20 +247,17 @@ export default function TreatmentDetail() {
         <div style={{ background: '#fff' }}>
             <style>{`
                 /* ── Hero gradient ── */
-                .td-hero-gradient {
-                    position: absolute; inset: 0;
-                    background: linear-gradient(100deg, rgba(30,18,25,0.95) 0%, rgba(57,33,47,0.75) 45%, rgba(0,0,0,0.15) 100%);
-                }
+                .td-hero-gradient { display: none; }
                 /* ── Dynamic HTML content ── */
                 .td-content { font-family: var(--font-body); }
                 .td-content p { margin-bottom: 1.75rem; font-weight: 300; line-height: 1.9; color: #555; font-size: 1.0625rem; }
-                .td-content h3 { font-size: 0.65rem; font-weight: 800; letter-spacing: 3px; color: var(--color-gold); text-transform: uppercase; margin-top: 2.5rem; margin-bottom: 1rem; }
+                .td-content h3 { font-size: 0.65rem; font-weight: 800; letter-spacing: 3px; color: var(--color-wine); text-transform: uppercase; margin-top: 2.5rem; margin-bottom: 1rem; }
                 .td-content ul { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2.5rem; padding-left: 0; list-style: none; }
                 .td-content ul li { display: flex; align-items: flex-start; gap: 1rem; font-size: 1rem; font-weight: 300; color: #555; line-height: 1.65; }
-                .td-content ul li::before { content: ''; display: block; width: 7px; height: 7px; background-color: var(--color-gold); flex-shrink: 0; transform: rotate(45deg); margin-top: 7px; }
+                .td-content ul li::before { content: ''; display: block; width: 7px; height: 7px; background-color: var(--color-wine); flex-shrink: 0; transform: rotate(45deg); margin-top: 7px; }
                 .td-content strong, .td-content b { font-weight: 600; color: var(--color-dark); }
                 /* ── FAQ ── */
-                .td-faq-item { border-bottom: 1px solid rgba(135,91,108,0.15); }
+                .td-faq-item { border-bottom: 1px solid rgba(114,47,55,0.15); }
                 .td-faq-btn { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 0; cursor: pointer; background: none; border: none; text-align: left; }
                 .td-chevron { width: 2rem; height: 2rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.35s; }
                 /* ── Trust pillars ── */
@@ -289,7 +286,7 @@ export default function TreatmentDetail() {
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.5rem' }}>
                             <Link to="/treatments" style={{ fontSize: '0.65rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, color: 'rgba(255,255,255,0.5)', transition: 'color 0.3s' }}>Treatments</Link>
                             <span style={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.75rem' }}>/</span>
-                            <span style={{ fontSize: '0.65rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, color: 'var(--color-gold)' }}>{treatment.category}</span>
+                            <span style={{ fontSize: '0.65rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, color: 'var(--color-wine)' }}>{treatment.category}</span>
                         </div>
 
                         {/* Title */}
@@ -299,32 +296,32 @@ export default function TreatmentDetail() {
                             ) : (
                                 <>
                                     <span style={{ display: 'block', fontWeight: 300, color: 'rgba(255,255,255,0.9)' }}>{firstWord}</span>
-                                    <span style={{ display: 'block', fontWeight: 700, color: 'var(--color-gold)' }}>{restWords}</span>
+                                    <span style={{ display: 'block', fontWeight: 700, color: 'var(--color-wine)' }}>{restWords}</span>
                                 </>
                             )}
                         </h1>
 
                         {/* Description */}
-                        <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: 'clamp(0.9375rem, 2vw, 1.125rem)', fontWeight: 300, maxWidth: '36rem', lineHeight: 1.8, marginBottom: '2.5rem', borderLeft: '2px solid var(--color-gold)', paddingLeft: '1.25rem' }}>
+                        <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: 'clamp(0.9375rem, 2vw, 1.125rem)', fontWeight: 300, maxWidth: '36rem', lineHeight: 1.8, marginBottom: '2.5rem', borderLeft: '2px solid var(--color-wine)', paddingLeft: '1.25rem' }}>
                             {treatment.shortDescription}
                         </p>
 
                         {/* CTA row */}
                         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '1.5rem' }}>
-                            <Link to="/book" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'var(--color-gold)', color: '#fff', padding: '1rem 2.25rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, transition: 'all 0.3s', boxShadow: '0 8px 30px rgba(135,91,108,0.4)' }}>
+                            <Link to="/book" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'var(--color-wine)', color: '#fff', padding: '1rem 2.25rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, transition: 'all 0.3s', boxShadow: '0 8px 30px rgba(114,47,55,0.4)' }}>
                                 Book Consultation <ArrowRight size={14} />
                             </Link>
 
                             {/* Meta pills */}
                             {treatment.duration && (
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.65rem 1.25rem', background: 'rgba(255,255,255,0.08)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '9999px' }}>
-                                    <Clock size={13} style={{ color: 'var(--color-gold)' }} />
+                                    <Clock size={13} style={{ color: 'var(--color-wine)' }} />
                                     <span style={{ fontSize: '0.7rem', letterSpacing: '1px', textTransform: 'uppercase', fontWeight: 600, color: '#fff' }}>{treatment.duration}</span>
                                 </div>
                             )}
                             {treatment.price && (
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.65rem 1.25rem', background: 'rgba(255,255,255,0.08)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '9999px' }}>
-                                    <DollarSign size={13} style={{ color: 'var(--color-gold)' }} />
+                                    <DollarSign size={13} style={{ color: 'var(--color-wine)' }} />
                                     <span style={{ fontSize: '0.7rem', letterSpacing: '1px', textTransform: 'uppercase', fontWeight: 600, color: '#fff' }}>{treatment.price}</span>
                                 </div>
                             )}
@@ -334,7 +331,7 @@ export default function TreatmentDetail() {
 
                 {/* Scroll cue */}
                 <div style={{ position: 'absolute', bottom: '2.5rem', left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
-                    <div style={{ width: '1px', height: '3rem', background: 'linear-gradient(to bottom, transparent, var(--color-gold))', animation: 'td-scroll-cue 2s ease infinite' }} />
+                    <div style={{ width: '1px', height: '3rem', background: 'linear-gradient(to bottom, transparent, var(--color-wine))', animation: 'td-scroll-cue 2s ease infinite' }} />
                 </div>
                 <style>{`
                     @keyframes td-scroll-cue {
@@ -349,11 +346,11 @@ export default function TreatmentDetail() {
                 <div className="container" style={{ maxWidth: '72rem' }}>
                     <RevealWrapper>
                         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                            <span style={{ display: 'block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 800, color: 'var(--color-gold)', marginBottom: '1rem' }}>Overview</span>
+                            <span style={{ display: 'block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 800, color: 'var(--color-wine)', marginBottom: '1rem' }}>Overview</span>
                             <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--color-dark)', textTransform: 'uppercase', letterSpacing: '4px' }}>
                                 About This Treatment
                             </h2>
-                            <div style={{ width: '3.5rem', height: '2px', background: 'var(--color-gold)', margin: '1.5rem auto 0' }} />
+                            <div style={{ width: '3.5rem', height: '2px', background: 'var(--color-wine)', margin: '1.5rem auto 0' }} />
                         </div>
 
                         <div className="td-content" dangerouslySetInnerHTML={{ __html: treatment.description }} />
@@ -364,22 +361,22 @@ export default function TreatmentDetail() {
             {/* ─── ADVANTAGE ─── */}
             <section style={{ padding: '7rem 0', background: 'var(--color-bg-dark)', position: 'relative', overflow: 'hidden' }}>
                 {/* Ambient glow */}
-                <div style={{ position: 'absolute', top: '-10rem', right: '-10rem', width: '35rem', height: '35rem', borderRadius: '50%', background: 'radial-gradient(circle, rgba(135,91,108,0.18) 0%, transparent 65%)', pointerEvents: 'none' }} />
-                <div style={{ position: 'absolute', bottom: '-8rem', left: '-8rem', width: '28rem', height: '28rem', borderRadius: '50%', background: 'radial-gradient(circle, rgba(135,91,108,0.1) 0%, transparent 65%)', pointerEvents: 'none' }} />
+                <div style={{ position: 'absolute', top: '-10rem', right: '-10rem', width: '35rem', height: '35rem', borderRadius: '50%', background: 'radial-gradient(circle, rgba(114,47,55,0.18) 0%, transparent 65%)', pointerEvents: 'none' }} />
+                <div style={{ position: 'absolute', bottom: '-8rem', left: '-8rem', width: '28rem', height: '28rem', borderRadius: '50%', background: 'radial-gradient(circle, rgba(114,47,55,0.1) 0%, transparent 65%)', pointerEvents: 'none' }} />
 
                 <div className="container" style={{ maxWidth: '60rem', position: 'relative', zIndex: 1, textAlign: 'center' }}>
                     <RevealWrapper>
-                        <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 800, color: 'var(--color-gold)', background: 'rgba(135,91,108,0.12)', border: '1px solid rgba(135,91,108,0.3)', borderRadius: '9999px', padding: '0.4rem 1.25rem', marginBottom: '2rem' }}>
+                        <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 800, color: 'var(--color-wine)', background: 'rgba(114,47,55,0.12)', border: '1px solid rgba(114,47,55,0.3)', borderRadius: '9999px', padding: '0.4rem 1.25rem', marginBottom: '2rem' }}>
                             Why Choose Us
                         </span>
                         <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2.5rem, 5vw, 4rem)', color: '#fff', marginBottom: '2rem', lineHeight: 1.15 }}>
                             The D'CosMedis <br />
-                            <span style={{ fontStyle: 'italic', color: 'var(--color-gold)' }}>Advantage</span>
+                            <span style={{ fontStyle: 'italic', color: 'var(--color-wine)' }}>Advantage</span>
                         </h2>
                         <p style={{ fontSize: '1.0625rem', color: 'rgba(255,255,255,0.75)', fontWeight: 300, lineHeight: 1.9, marginBottom: '3rem', maxWidth: '48rem', margin: '0 auto 3rem' }}>
                             We treat true causes, not simply masking symptoms. With over 30 years of expertise, Dr. Dolly Gupta and our expert team recommend a tailored blend of treatments based on your specific needs. Our aim is to achieve natural, enhanced results safely and effectively.
                         </p>
-                        <Link to="/book" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'var(--color-gold)', color: '#fff', padding: '1.1rem 2.5rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, transition: 'all 0.3s' }}>
+                        <Link to="/book" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'var(--color-wine)', color: '#fff', padding: '1.1rem 2.5rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, transition: 'all 0.3s' }}>
                             Book a Consultation <ArrowRight size={14} />
                         </Link>
                     </RevealWrapper>
@@ -392,7 +389,7 @@ export default function TreatmentDetail() {
                     <div className="td-pillars-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)' }}>
                         {trustPillars.map(({ icon: Icon, label, sub }, i) => (
                             <div key={i} className="td-pillar">
-                                <Icon size={22} style={{ color: 'var(--color-gold)' }} />
+                                <Icon size={22} style={{ color: 'var(--color-wine)' }} />
                                 <div style={{ textAlign: 'center' }}>
                                     <span style={{ display: 'block', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, color: '#fff' }}>{label}</span>
                                     <span style={{ display: 'block', fontSize: '0.7rem', color: 'rgba(255,255,255,0.5)', marginTop: '0.2rem' }}>{sub}</span>
@@ -410,11 +407,10 @@ export default function TreatmentDetail() {
             <section style={{ position: 'relative', height: '520px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                 <div style={{ position: 'absolute', inset: 0 }}>
                     <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920&q=80" alt="D'CosMedis Clinic" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(30,18,25,0.88) 0%, rgba(57,33,47,0.65) 100%)' }} />
                 </div>
                 <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center', maxWidth: '48rem' }}>
                     <RevealWrapper>
-                        <span style={{ display: 'block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-gold)', marginBottom: '1.25rem' }}>
+                        <span style={{ display: 'block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-wine)', marginBottom: '1.25rem' }}>
                             At D'CosMedis
                         </span>
                         <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2.25rem, 5vw, 4rem)', color: '#fff', fontStyle: 'italic', fontWeight: 300, lineHeight: 1.2, marginBottom: '1.5rem' }}>
@@ -435,9 +431,9 @@ export default function TreatmentDetail() {
                 <div className="container" style={{ maxWidth: '56rem' }}>
                     <RevealWrapper>
                         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                            <span style={{ display: 'block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 800, color: '#888', marginBottom: '1rem' }}>Ask The Experts</span>
+                            <span style={{ display: 'block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 800, color: 'var(--color-wine)', marginBottom: '1rem' }}>Ask The Experts</span>
                             <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--color-dark)' }}>
-                                Frequently Asked <span style={{ fontStyle: 'italic', color: 'var(--color-gold)' }}>Questions</span>
+                                Frequently Asked <span style={{ fontStyle: 'italic', color: 'var(--color-wine)' }}>Questions</span>
                             </h2>
                         </div>
 
@@ -445,17 +441,17 @@ export default function TreatmentDetail() {
                             {faqs.map((faq, i) => (
                                 <div key={i} className="td-faq-item">
                                     <button className="td-faq-btn" onClick={() => setOpenFaq(openFaq === i ? -1 : i)}>
-                                        <span style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1rem, 2vw, 1.2rem)', color: openFaq === i ? 'var(--color-gold)' : 'var(--color-dark)', transition: 'color 0.3s', paddingRight: '1rem' }}>
+                                        <span style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1rem, 2vw, 1.2rem)', color: openFaq === i ? 'var(--color-wine)' : 'var(--color-dark)', transition: 'color 0.3s', paddingRight: '1rem' }}>
                                             {faq.q}
                                         </span>
-                                        <div className="td-chevron" style={{ border: `1px solid ${openFaq === i ? 'var(--color-gold)' : '#ddd'}`, background: openFaq === i ? 'var(--color-gold)' : 'transparent', color: openFaq === i ? '#fff' : 'var(--color-dark)', transform: openFaq === i ? 'rotate(180deg)' : 'none' }}>
+                                        <div className="td-chevron" style={{ border: `1px solid ${openFaq === i ? 'var(--color-wine)' : '#ddd'}`, background: openFaq === i ? 'var(--color-wine)' : 'transparent', color: openFaq === i ? '#fff' : 'var(--color-dark)', transform: openFaq === i ? 'rotate(180deg)' : 'none' }}>
                                             <ChevronDown size={15} />
                                         </div>
                                     </button>
                                     <div style={{ display: 'grid', gridTemplateRows: openFaq === i ? '1fr' : '0fr', opacity: openFaq === i ? 1 : 0, transition: 'grid-template-rows 0.45s ease, opacity 0.35s ease' }}>
                                         <div style={{ overflow: 'hidden' }}>
                                             <div style={{ padding: '0 0 1.75rem' }}>
-                                                <div style={{ width: '3rem', height: '2px', background: 'var(--color-gold)', marginBottom: '1rem' }} />
+                                                <div style={{ width: '3rem', height: '2px', background: 'var(--color-wine)', marginBottom: '1rem' }} />
                                                 <p style={{ color: 'var(--color-text-muted)', fontWeight: 300, lineHeight: 1.85, fontSize: '1rem' }}>{faq.a}</p>
                                             </div>
                                         </div>
@@ -468,17 +464,17 @@ export default function TreatmentDetail() {
             </section>
 
             {/* ─── BOTTOM CTA ─── */}
-            <section style={{ background: 'var(--color-gold)', padding: '5rem 0', textAlign: 'center' }}>
+            <section style={{ background: 'var(--color-wine)', padding: '5rem 0', textAlign: 'center' }}>
                 <div className="container" style={{ maxWidth: '44rem' }}>
                     <RevealWrapper>
                         <span style={{ display: 'block', fontSize: '0.625rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: 'rgba(255,255,255,0.7)', marginBottom: '1rem' }}>Ready to Begin?</span>
                         <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 2.75rem)', color: '#fff', marginBottom: '1.25rem', lineHeight: 1.2 }}>
                             Start Your Skin Journey Today
                         </h2>
-                        <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '1rem', lineHeight: 1.75, marginBottom: '2.5rem', fontWeight: 300 }}>
+                        <p style={{ color: 'var(--color-bg-cream)', fontSize: '1rem', lineHeight: 1.75, marginBottom: '2.5rem', fontWeight: 400 }}>
                             Book a consultation with our expert dermatologists and discover treatments tailored to your unique needs.
                         </p>
-                        <Link to="/book" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', background: '#fff', color: 'var(--color-gold)', padding: '1rem 2.5rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700 }}>
+                        <Link to="/book" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', background: '#fff', color: 'var(--color-wine)', padding: '1rem 2.5rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700 }}>
                             BOOK YOUR CONSULTATION →
                         </Link>
                     </RevealWrapper>

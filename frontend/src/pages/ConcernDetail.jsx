@@ -22,7 +22,7 @@ export default function ConcernDetail() {
                 <p style={{ color: 'var(--color-text-muted)', fontSize: '1.125rem', marginBottom: '2.5rem' }}>
                     The skin/hair concern you're looking for doesn't exist or has been moved.
                 </p>
-                <Link to="/concerns" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: 'var(--color-gold)', color: '#fff', padding: '1rem 2rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600 }}>
+                <Link to="/concerns" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: 'var(--color-wine)', color: '#fff', padding: '1rem 2rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600 }}>
                     Back to Concerns
                 </Link>
             </div>
@@ -57,28 +57,28 @@ export default function ConcernDetail() {
         <div style={{ background: '#fff' }}>
             {/* Shared styles for this page */}
             <style>{`
-                .cd-gold { color: var(--color-gold); }
+                .cd-wine { color: var(--color-wine); }
                 .cd-dark { color: var(--color-dark); }
                 .cd-muted { color: var(--color-text-muted); }
                 .cd-cream { background-color: var(--color-bg-cream); }
                 .cd-dark-bg { background-color: var(--color-bg-dark); }
                 .cd-white-bg { background-color: #fff; }
-                .cd-gold-bg { background-color: var(--color-gold); }
-                .cd-border-gold { border-color: var(--color-gold); }
+                .cd-wine-bg { background-color: var(--color-wine); }
+                .cd-border-wine { border-color: var(--color-wine); }
                 .cd-faq-btn { width: 2rem; height: 2rem; border-radius: 9999px; border: 1px solid #ddd; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s; }
-                .cd-faq-btn.open { border-color: var(--color-gold); background: var(--color-gold); color: #fff; transform: rotate(180deg); }
+                .cd-faq-btn.open { border-color: var(--color-wine); background: var(--color-wine); color: #fff; transform: rotate(180deg); }
                 .cd-faq-q { font-size: 1.125rem; font-family: var(--font-heading); transition: color 0.3s; color: var(--color-dark); }
-                .cd-faq-q.open { color: var(--color-gold); }
+                .cd-faq-q.open { color: var(--color-wine); }
                 .cd-treatment-card { display: block; background: #fff; border: 1px solid #f0ede8; overflow: hidden; transition: all 0.5s; }
                 .cd-treatment-card:hover { box-shadow: 0 25px 50px rgba(0,0,0,0.12); transform: translateY(-8px); }
-                .cd-treatment-card:hover .cd-card-title { color: var(--color-gold); }
+                .cd-treatment-card:hover .cd-card-title { color: var(--color-wine); }
                 .cd-tag { position: absolute; top: 1.5rem; left: 1.5rem; padding: 0.35rem 1rem; font-size: 0.625rem; letter-spacing: 2px; text-transform: uppercase; color: #fff; font-weight: 700; background: var(--color-dark); }
                 .cd-discover { display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; color: var(--color-dark); transition: color 0.3s; }
-                .cd-treatment-card:hover .cd-discover { color: var(--color-gold); }
+                .cd-treatment-card:hover .cd-discover { color: var(--color-wine); }
                 .cd-view-all { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--color-dark); border-bottom: 2px solid var(--color-dark); padding-bottom: 0.5rem; transition: all 0.3s; }
-                .cd-view-all:hover { color: var(--color-gold); border-color: var(--color-gold); }
-                .cd-book-btn { display: inline-flex; align-items: center; justify-content: center; background: var(--color-gold); color: #fff; padding: 1.25rem 2.5rem; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; transition: all 0.3s; }
-                .cd-book-btn:hover { background: var(--color-gold-dark); transform: scale(1.03); }
+                .cd-view-all:hover { color: var(--color-wine); border-color: var(--color-wine); }
+                .cd-book-btn { display: inline-flex; align-items: center; justify-content: center; background: var(--color-wine); color: #fff; padding: 1.25rem 2.5rem; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; transition: all 0.3s; }
+                .cd-book-btn:hover { background: var(--color-wine); opacity: 0.9; transform: scale(1.03); }
                 @media (max-width: 640px) {
                     .cd-book-btn { width: 100%; }
                 }
@@ -86,19 +86,18 @@ export default function ConcernDetail() {
 
             {/* Hero Section */}
             <section style={{ position: 'relative', height: '85vh', minHeight: '600px', display: 'flex', alignItems: 'center', overflow: 'hidden', marginTop: 'var(--header-total-height)' }}>
-                <div style={{ position: 'absolute', inset: 0, zIndex: 0, background: '#1a1a1a' }}>
+                <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
                     <img
                         src={concern.image}
                         alt={concern.name}
-                        style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.6, filter: 'brightness(0.8) contrast(1.1)' }}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     />
-                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(26,26,26,0.92) 0%, rgba(26,26,26,0.55) 60%, transparent 100%)' }} />
                 </div>
 
                 <div className="container" style={{ position: 'relative', zIndex: 10 }}>
                     <RevealWrapper direction="up" className="max-w-3xl">
-                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem 1rem', border: '1px solid rgba(135,91,108,0.4)', borderRadius: '9999px', marginBottom: '2rem', backdropFilter: 'blur(8px)', background: 'rgba(0,0,0,0.2)' }}>
-                            <span className="cd-gold" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{concern.icon}</span>
+                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem 1rem', border: '1px solid rgba(114,47,55,0.4)', borderRadius: '9999px', marginBottom: '2rem', backdropFilter: 'blur(8px)', background: 'rgba(0,0,0,0.2)' }}>
+                            <span className="cd-wine" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{concern.icon}</span>
                             <span style={{ fontSize: '0.625rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: '#fff' }}>Targeted Solution</span>
                         </div>
 
@@ -111,13 +110,13 @@ export default function ConcernDetail() {
                                 return (
                                     <>
                                         <span style={{ display: 'block', fontWeight: 300, color: 'rgba(255,255,255,0.9)' }}>{firstWord}</span>
-                                        <span style={{ display: 'block', fontWeight: 600, color: 'var(--color-gold)' }}>{restWords}</span>
+                                        <span style={{ display: 'block', fontWeight: 600, color: 'var(--color-wine)' }}>{restWords}</span>
                                     </>
                                 )
                             })()}
                         </h1>
 
-                        <p style={{ fontSize: '1.125rem', color: 'rgba(255,255,255,0.85)', fontWeight: 300, maxWidth: '40rem', lineHeight: 1.75, marginBottom: '2.5rem', borderLeft: '2px solid var(--color-gold)', paddingLeft: '1.5rem', paddingTop: '0.5rem', paddingBottom: '0.5rem' }}>
+                        <p style={{ fontSize: '1.125rem', color: 'rgba(255,255,255,0.85)', fontWeight: 300, maxWidth: '40rem', lineHeight: 1.75, marginBottom: '2.5rem', borderLeft: '2px solid var(--color-wine)', paddingLeft: '1.5rem', paddingTop: '0.5rem', paddingBottom: '0.5rem' }}>
                             {concern.shortDescription}
                         </p>
 
@@ -133,11 +132,11 @@ export default function ConcernDetail() {
                 <div className="container" style={{ maxWidth: '56rem' }}>
                     <RevealWrapper>
                         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                            <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-gold)', marginBottom: '1rem' }}>
+                            <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-wine)', marginBottom: '1rem' }}>
                                 Understanding The Condition
                             </span>
                             <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--color-dark)' }}>
-                                <span style={{ fontStyle: 'italic', color: 'var(--color-gold)' }}>About</span> The Concern
+                                <span style={{ fontStyle: 'italic', color: 'var(--color-wine)' }}>About</span> The Concern
                             </h2>
                         </div>
 
@@ -164,7 +163,7 @@ export default function ConcernDetail() {
                                 </span>
                                 <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', justifyContent: 'space-between', gap: '1rem' }}>
                                     <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--color-dark)' }}>
-                                        Recommended <span style={{ fontStyle: 'italic', color: 'var(--color-gold)' }}>Treatments</span>
+                                        Recommended <span style={{ fontStyle: 'italic', color: 'var(--color-wine)' }}>Treatments</span>
                                     </h2>
                                     <Link to="/treatments" className="cd-view-all">
                                         View All Treatments <ArrowRight size={16} />
@@ -215,11 +214,11 @@ export default function ConcernDetail() {
                 </div>
                 <div className="container" style={{ maxWidth: '60rem', position: 'relative', zIndex: 1 }}>
                     <RevealWrapper delay={0.1}>
-                        <span style={{ display: 'inline-block', padding: '0.25rem 1rem', fontSize: '0.625rem', fontWeight: 700, letterSpacing: '4px', textTransform: 'uppercase', marginBottom: '2rem', color: 'var(--color-gold)', border: '1px solid rgba(135,91,108,0.35)', borderRadius: '9999px' }}>
+                        <span style={{ display: 'inline-block', padding: '0.25rem 1rem', fontSize: '0.625rem', fontWeight: 700, letterSpacing: '4px', textTransform: 'uppercase', marginBottom: '2rem', color: 'var(--color-wine)', border: '1px solid rgba(114,47,55,0.35)', borderRadius: '9999px' }}>
                             Why Choose Us
                         </span>
                         <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2.25rem, 5vw, 3.75rem)', color: '#fff', marginBottom: '2rem', lineHeight: 1.2 }}>
-                            The D'CosMedis <br /><span style={{ fontStyle: 'italic', color: 'var(--color-gold)' }}>Advantage</span>
+                            The D'CosMedis <br /><span style={{ fontStyle: 'italic', color: 'var(--color-wine)' }}>Advantage</span>
                         </h2>
                         <p style={{ fontSize: '1.125rem', color: 'rgba(255,255,255,0.8)', fontWeight: 300, maxWidth: '48rem', margin: '0 auto 2.5rem', lineHeight: 1.85 }}>
                             We treat true causes, not simply masking symptoms. With over 15 years of expertise, Dr. Dolly Gupta and our expert team will recommend a tailored blend of treatments based on your specific needs. Our aim is to achieve a natural, enhanced result safely and effectively.
@@ -240,7 +239,7 @@ export default function ConcernDetail() {
                                 Ask The Experts
                             </span>
                             <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--color-dark)' }}>
-                                Frequently Asked <span style={{ fontStyle: 'italic', color: 'var(--color-gold)' }}>Questions</span>
+                                Frequently Asked <span style={{ fontStyle: 'italic', color: 'var(--color-wine)' }}>Questions</span>
                             </h2>
                         </div>
 
@@ -251,17 +250,17 @@ export default function ConcernDetail() {
                                         style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', textAlign: 'left', padding: '1.75rem 2rem', cursor: 'pointer', background: 'none', border: 'none' }}
                                         onClick={() => setOpenFaq(openFaq === i ? -1 : i)}
                                     >
-                                        <span style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1rem, 2vw, 1.25rem)', color: openFaq === i ? 'var(--color-gold)' : 'var(--color-dark)', transition: 'color 0.3s', paddingRight: '1rem' }}>
+                                        <span style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1rem, 2vw, 1.25rem)', color: openFaq === i ? 'var(--color-wine)' : 'var(--color-dark)', transition: 'color 0.3s', paddingRight: '1rem' }}>
                                             {faq.q}
                                         </span>
-                                        <div style={{ width: '2rem', height: '2rem', borderRadius: '9999px', border: `1px solid ${openFaq === i ? 'var(--color-gold)' : '#ddd'}`, background: openFaq === i ? 'var(--color-gold)' : 'transparent', color: openFaq === i ? '#fff' : 'var(--color-dark)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, transition: 'all 0.3s', transform: openFaq === i ? 'rotate(180deg)' : 'none' }}>
+                                        <div style={{ width: '2rem', height: '2rem', borderRadius: '9999px', border: `1px solid ${openFaq === i ? 'var(--color-wine)' : '#ddd'}`, background: openFaq === i ? 'var(--color-wine)' : 'transparent', color: openFaq === i ? '#fff' : 'var(--color-dark)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, transition: 'all 0.3s', transform: openFaq === i ? 'rotate(180deg)' : 'none' }}>
                                             <ChevronDown size={16} />
                                         </div>
                                     </button>
                                     <div style={{ display: 'grid', gridTemplateRows: openFaq === i ? '1fr' : '0fr', opacity: openFaq === i ? 1 : 0, transition: 'grid-template-rows 0.45s ease, opacity 0.35s ease' }}>
                                         <div style={{ overflow: 'hidden' }}>
                                             <div style={{ padding: '0 2rem 2rem' }}>
-                                                <div style={{ width: '3rem', height: '2px', background: 'var(--color-gold)', marginBottom: '1rem' }} />
+                                                <div style={{ width: '3rem', height: '2px', background: 'var(--color-wine)', marginBottom: '1rem' }} />
                                                 <p style={{ color: 'var(--color-text-muted)', fontWeight: 300, lineHeight: 1.85, fontSize: '1rem' }}>
                                                     {faq.a}
                                                 </p>
@@ -276,7 +275,7 @@ export default function ConcernDetail() {
             </section>
 
             {/* CTA Banner */}
-            <section style={{ padding: '5rem 0', background: 'var(--color-gold)', textAlign: 'center' }}>
+            <section style={{ padding: '5rem 0', background: 'var(--color-wine)', textAlign: 'center' }}>
                 <div className="container" style={{ maxWidth: '48rem' }}>
                     <RevealWrapper>
                         <span style={{ display: 'block', fontSize: '0.625rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: 'rgba(255,255,255,0.75)', marginBottom: '1rem' }}>
@@ -285,12 +284,12 @@ export default function ConcernDetail() {
                         <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 2.75rem)', color: '#fff', marginBottom: '1.25rem' }}>
                             Ready to Begin Your Skin Journey?
                         </h2>
-                        <p style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.85)', marginBottom: '2.5rem', lineHeight: 1.75, fontWeight: 300 }}>
+                        <p style={{ fontSize: '1rem', color: 'var(--color-bg-cream)', marginBottom: '2.5rem', lineHeight: 1.75, fontWeight: 400 }}>
                             Book a consultation with our expert dermatologists and discover treatments tailored to your unique needs.
                         </p>
                         <Link
                             to="/book"
-                            style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', background: '#fff', color: 'var(--color-gold)', padding: '1rem 2.5rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, transition: 'all 0.3s' }}
+                            style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', background: '#fff', color: 'var(--color-wine)', padding: '1rem 2.5rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, transition: 'all 0.3s' }}
                         >
                             BOOK YOUR CONSULTATION →
                         </Link>

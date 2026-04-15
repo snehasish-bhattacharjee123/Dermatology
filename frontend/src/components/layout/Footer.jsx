@@ -53,26 +53,28 @@ export default function Footer() {
             {/* CTA Strip */}
             <div
                 className="py-16 lg:py-20"
-                style={{ background: 'var(--color-gold)' }}
+                style={{ background: 'var(--color-wine)' }}
             >
                 <div className="container mx-auto text-center px-6">
                     <RevealWrapper>
                         <Heading
                             variant="section-white"
-                            className="mb-4 text-white"
+                            className="mb-4"
+                            style={{ color: '#ffffff' }}
                         >
                             Ready to Begin Your Skin Journey?
                         </Heading>
                         <Text
                             size="md"
-                            color="white"
-                            className="text-white/90 mb-8 max-w-xl mx-auto"
+                            className="mb-8 max-w-xl mx-auto font-normal opacity-100"
+                            style={{ color: 'var(--color-accent)' }}
                         >
                             Book a consultation with our expert dermatologists and discover treatments tailored to your unique needs.
                         </Text>
                         <Link
                             to="/book"
-                            className="btn btn-dark inline-flex hover:scale-105 transition-transform"
+                            className="btn inline-flex hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl font-bold tracking-[2px] text-xs uppercase items-center gap-2"
+                            style={{ backgroundColor: 'var(--color-accent)', color: 'var(--color-wine)', padding: '1rem 2.5rem', borderRadius: '4px' }}
                         >
                             Book Your Consultation <ArrowUpRight size={16} />
                         </Link>
@@ -89,28 +91,28 @@ export default function Footer() {
                         {/* Logo */}
                         <Link to="/" className="inline-block mb-8 flex flex-col" aria-label="D'CosMedis Clinic - Home">
                             <span
-                                className="text-2xl tracking-[6px] uppercase font-medium text-white"
-                                style={{ fontFamily: 'var(--font-display)' }}
+                                className="text-2xl tracking-[6px] uppercase font-medium"
+                                style={{ fontFamily: 'var(--font-display)', color: 'var(--color-accent)' }}
                             >
                                 D'COSMEDIS
                             </span>
-                            <Caption variant="caption" className="text-white/50 tracking-wider">
-                                Advanced Aesthetics
+                            <Caption variant="caption" style={{ color: 'rgba(205, 191, 204, 0.55)', letterSpacing: '3px', fontSize: '0.5rem', textTransform: 'uppercase', fontWeight: 600 }}>
+                                SKIN &bull; HAIR &bull; WELLNESS
                             </Caption>
                         </Link>
 
                         {/* Social Icons */}
                         <div className="flex items-center gap-4 mb-8">
-                            <a href="https://www.facebook.com/aaynaclinic/" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:border-gold hover:text-gold hover:bg-gold/10 hover:-translate-y-1 transition-all duration-300">
+                            <a href="https://www.facebook.com/aaynaclinic/" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:border-wine hover:text-wine hover:bg-wine/10 hover:-translate-y-1 transition-all duration-300">
                                 <Facebook size={18} strokeWidth={1.5} />
                             </a>
-                            <a href="https://www.instagram.com/aaynaclinic_official/" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:border-gold hover:text-gold hover:bg-gold/10 hover:-translate-y-1 transition-all duration-300">
+                            <a href="https://www.instagram.com/aaynaclinic_official/" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:border-wine hover:text-wine hover:bg-wine/10 hover:-translate-y-1 transition-all duration-300">
                                 <Instagram size={18} strokeWidth={1.5} />
                             </a>
-                            <a href="https://www.youtube.com/channel/UCF4-AP5qfQ_VKyNZjhKfb4Q" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:border-gold hover:text-gold hover:bg-gold/10 hover:-translate-y-1 transition-all duration-300">
+                            <a href="https://www.youtube.com/channel/UCF4-AP5qfQ_VKyNZjhKfb4Q" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:border-wine hover:text-wine hover:bg-wine/10 hover:-translate-y-1 transition-all duration-300">
                                 <Youtube size={18} strokeWidth={1.5} />
                             </a>
-                            <a href="https://twitter.com/aaynaclinic" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:border-gold hover:text-gold hover:bg-gold/10 hover:-translate-y-1 transition-all duration-300">
+                            <a href="https://twitter.com/aaynaclinic" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:border-wine hover:text-wine hover:bg-wine/10 hover:-translate-y-1 transition-all duration-300">
                                 <Twitter size={18} strokeWidth={1.5} />
                             </a>
                         </div>
@@ -130,7 +132,7 @@ export default function Footer() {
                         <ul className="space-y-4">
                             {footerLinks.concerns.map(link => (
                                 <li key={link.name}>
-                                    <Link to={link.path} className="text-white/60 hover:text-gold text-sm transition-all duration-300 hover:pl-1 inline-block" style={{ fontFamily: 'var(--font-body)' }}>
+                                    <Link to={link.path} className="text-white/60 hover:text-wine text-sm transition-all duration-300 hover:pl-1 inline-block" style={{ fontFamily: 'var(--font-body)' }}>
                                         {link.name}
                                     </Link>
                                 </li>
@@ -146,7 +148,7 @@ export default function Footer() {
                         <ul className="space-y-4">
                             {footerLinks.treatments.map(link => (
                                 <li key={link.name}>
-                                    <Link to={link.path} className="text-white/60 hover:text-gold text-sm transition-all duration-300 hover:pl-1 inline-block" style={{ fontFamily: 'var(--font-body)' }}>
+                                    <Link to={link.path} className="text-white/60 hover:text-wine text-sm transition-all duration-300 hover:pl-1 inline-block" style={{ fontFamily: 'var(--font-body)' }}>
                                         {link.name}
                                     </Link>
                                 </li>
@@ -162,7 +164,7 @@ export default function Footer() {
                         <ul className="space-y-4">
                             {footerLinks.navigation.map(link => (
                                 <li key={link.name}>
-                                    <Link to={link.path} className="text-white/60 hover:text-gold text-sm transition-all duration-300 hover:pl-1 inline-block" style={{ fontFamily: 'var(--font-body)' }}>
+                                    <Link to={link.path} className="text-white/60 hover:text-wine text-sm transition-all duration-300 hover:pl-1 inline-block" style={{ fontFamily: 'var(--font-body)' }}>
                                         {link.name}
                                     </Link>
                                 </li>
@@ -178,8 +180,8 @@ export default function Footer() {
                         <ul className="space-y-6">
                             {footerLinks.contact.map(loc => (
                                 <li key={loc.name}>
-                                    <a href={`tel:${loc.phone.replace(/\s+/g, '')}`} className="group flex flex-col items-start text-white/50 hover:text-gold transition-colors duration-300" style={{ fontFamily: 'var(--font-body)' }}>
-                                        <span className="text-sm font-medium text-white group-hover:text-gold transition-colors duration-300 mb-1">{loc.name}:</span>
+                                    <a href={`tel:${loc.phone.replace(/\s+/g, '')}`} className="group flex flex-col items-start text-white/50 hover:text-wine transition-colors duration-300" style={{ fontFamily: 'var(--font-body)' }}>
+                                        <span className="text-sm font-medium text-white group-hover:text-wine transition-colors duration-300 mb-1">{loc.name}:</span>
                                         <span className="text-sm">{loc.phone}</span>
                                     </a>
                                 </li>
@@ -202,23 +204,23 @@ export default function Footer() {
             </div>
 
             <style>{`
-                .text-gold {
-                    color: var(--color-gold);
+                .text-wine {
+                    color: var(--color-wine);
                 }
-                .border-gold {
-                    border-color: var(--color-gold);
+                .border-wine {
+                    border-color: var(--color-wine);
                 }
-                .hover\\:border-gold:hover {
-                    border-color: var(--color-gold);
+                .hover\\:border-wine:hover {
+                    border-color: var(--color-wine);
                 }
-                .hover\\:text-gold:hover {
-                    color: var(--color-gold);
+                .hover\\:text-wine:hover {
+                    color: var(--color-wine);
                 }
-                .group-hover\\:text-gold {
-                    color: var(--color-gold);
+                .group-hover\\:text-wine {
+                    color: var(--color-wine);
                 }
-                .hover\\:bg-gold\\/10:hover {
-                    background-color: rgba(135, 91, 108, 0.1);
+                .hover\\:bg-wine\\/10:hover {
+                    background-color: rgba(86, 58, 86, 0.1);
                 }
                 .hover\\:pl-1:hover {
                     padding-left: 0.25rem;

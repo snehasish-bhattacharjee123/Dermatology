@@ -29,12 +29,12 @@ export default function Treatments() {
         <div style={{ background: '#fff' }}>
             <style>{`
                 /* ── Hero ── */
-                .tr-hero-overlay { position: absolute; inset: 0; background: linear-gradient(120deg, rgba(30,18,25,0.96) 0%, rgba(57,33,47,0.7) 55%, rgba(0,0,0,0.25) 100%); }
+                .tr-hero-overlay { display: none; }
 
                 /* ── Filter pills ── */
                 .tr-cat-btn { padding: 0.55rem 1.25rem; font-size: 0.6rem; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 700; cursor: pointer; border-radius: 9999px; border: 1px solid #e0dbd5; background: transparent; color: #888; transition: all 0.3s; white-space: nowrap; }
-                .tr-cat-btn:hover { border-color: var(--color-gold); color: var(--color-dark); }
-                .tr-cat-btn.active { background: var(--color-gold); color: #fff; border-color: var(--color-gold); box-shadow: 0 8px 24px rgba(135,91,108,0.3); }
+                .tr-cat-btn:hover { border-color: var(--color-wine); color: var(--color-dark); }
+                .tr-cat-btn.active { background: var(--color-wine); color: #fff; border-color: var(--color-wine); box-shadow: 0 8px 24px rgba(114,47,55,0.3); }
 
                 /* ── Treatment cards ── */
                 .tr-card { display: block; background: #fff; border: 1px solid #f0ede8; overflow: hidden; transition: all 0.45s ease; position: relative; }
@@ -43,7 +43,7 @@ export default function Treatments() {
                 .tr-card:hover .tr-card-img { transform: scale(1.07); }
                 .tr-card-overlay { position: absolute; inset: 0; height: 280px; background: rgba(57,33,47,0.88); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease; }
                 .tr-card:hover .tr-card-overlay { opacity: 1; }
-                .tr-card:hover .tr-card-title { color: var(--color-gold); }
+                .tr-card:hover .tr-card-title { color: var(--color-wine); }
                 .tr-cat-tag { position: absolute; top: 1.25rem; left: 1.25rem; background: var(--color-dark); color: #fff; font-size: 0.55rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; padding: 0.3rem 0.8rem; }
                 
                 /* ── Empty state ── */
@@ -51,12 +51,12 @@ export default function Treatments() {
 
                 /* ── Search box ── */
                 .tr-search { display: flex; align-items: center; gap: 0.75rem; background: #fff; border: 1px solid #e0dbd5; padding: 0.75rem 1.25rem; width: 100%; max-width: 22rem; transition: border-color 0.3s; }
-                .tr-search:focus-within { border-color: var(--color-gold); }
+                .tr-search:focus-within { border-color: var(--color-wine); }
                 .tr-search input { border: none; outline: none; font-size: 0.875rem; color: var(--color-dark); background: transparent; width: 100%; }
                 .tr-search input::placeholder { color: #aaa; }
 
                 /* ── CTA ── */
-                .tr-cta-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: #fff; color: var(--color-gold); padding: 1rem 2.5rem; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; transition: all 0.3s; }
+                .tr-cta-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: #fff; color: var(--color-wine); padding: 1rem 2.5rem; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; transition: all 0.3s; }
                 .tr-cta-btn:hover { background: var(--color-dark); color: #fff; }
 
                 /* ── Scrollbar hide ── */
@@ -81,24 +81,24 @@ export default function Treatments() {
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.5rem' }}>
                             <Link to="/" style={{ fontSize: '0.65rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, color: 'rgba(255,255,255,0.45)', transition: 'color 0.3s' }}>Home</Link>
                             <span style={{ color: 'rgba(255,255,255,0.25)' }}>/</span>
-                            <span style={{ fontSize: '0.65rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, color: 'var(--color-gold)' }}>Treatments</span>
+                            <span style={{ fontSize: '0.65rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, color: 'var(--color-wine)' }}>Treatments</span>
                         </div>
 
-                        <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-gold)', background: 'rgba(135,91,108,0.12)', border: '1px solid rgba(135,91,108,0.3)', borderRadius: '9999px', padding: '0.4rem 1.25rem', marginBottom: '1.5rem' }}>
+                        <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-wine)', background: 'rgba(114,47,55,0.12)', border: '1px solid rgba(114,47,55,0.3)', borderRadius: '9999px', padding: '0.4rem 1.25rem', marginBottom: '1.5rem' }}>
                             Advanced Aesthetics
                         </span>
 
                         <h1 style={{ fontFamily: 'var(--font-heading)', color: '#fff', letterSpacing: '5px', textTransform: 'uppercase', lineHeight: 1.05, marginBottom: '1.5rem', fontSize: 'clamp(2.75rem, 7vw, 5.5rem)' }}>
                             <span style={{ display: 'block', fontWeight: 300, color: 'rgba(255,255,255,0.9)' }}>Skin's</span>
-                            <span style={{ display: 'block', fontWeight: 700, color: 'var(--color-gold)' }}>Store Line</span>
+                            <span style={{ display: 'block', fontWeight: 700, color: 'var(--color-wine)' }}>Store Line</span>
                         </h1>
 
-                        <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 'clamp(1rem, 2vw, 1.2rem)', fontWeight: 300, maxWidth: '40rem', lineHeight: 1.8, marginBottom: '2.5rem', borderLeft: '2px solid var(--color-gold)', paddingLeft: '1.25rem' }}>
+                        <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 'clamp(1rem, 2vw, 1.2rem)', fontWeight: 300, maxWidth: '40rem', lineHeight: 1.8, marginBottom: '2.5rem', borderLeft: '2px solid var(--color-wine)', paddingLeft: '1.25rem' }}>
                             Discover our comprehensive range of advanced skin, hair, and body treatments — each meticulously designed, powered by cutting-edge technology and delivered by certified experts.
                         </p>
 
                         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
-                            <Link to="/book" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'var(--color-gold)', color: '#fff', padding: '1rem 2.25rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, boxShadow: '0 8px 30px rgba(135,91,108,0.4)', transition: 'all 0.3s' }}>
+                            <Link to="/book" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'var(--color-wine)', color: '#fff', padding: '1rem 2.25rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, boxShadow: '0 8px 30px rgba(114,47,55,0.4)', transition: 'all 0.3s' }}>
                                 Book Consultation <ArrowRight size={14} />
                             </Link>
                             <Link to="/concerns" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(255,255,255,0.08)', color: '#fff', padding: '1rem 2.25rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, backdropFilter: 'blur(6px)', border: '1px solid rgba(255,255,255,0.2)', transition: 'all 0.3s' }}>
@@ -109,7 +109,7 @@ export default function Treatments() {
                 </div>
 
                 {/* Scroll cue */}
-                <div style={{ position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)', width: '1px', height: '3rem', background: 'linear-gradient(to bottom, transparent, var(--color-gold))' }} />
+                <div style={{ position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)', width: '1px', height: '3rem', background: 'linear-gradient(to bottom, transparent, var(--color-wine))' }} />
             </section>
 
             {/* ─── STATS BAR ─── */}
@@ -123,7 +123,7 @@ export default function Treatments() {
                             { val: '50K+', label: 'Patients' },
                         ].map((s, i) => (
                             <div key={i} style={{ textAlign: 'center', padding: '1.5rem', borderRight: i < 3 ? '1px solid rgba(255,255,255,0.08)' : 'none' }}>
-                                <span style={{ display: 'block', fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.5rem, 3vw, 2.25rem)', color: 'var(--color-gold)', fontWeight: 300, lineHeight: 1 }}>{s.val}</span>
+                                <span style={{ display: 'block', fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.5rem, 3vw, 2.25rem)', color: 'var(--color-wine)', fontWeight: 300, lineHeight: 1 }}>{s.val}</span>
                                 <span style={{ display: 'block', fontSize: '0.55rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, color: 'rgba(255,255,255,0.4)', marginTop: '0.35rem' }}>{s.label}</span>
                             </div>
                         ))}
@@ -190,7 +190,7 @@ export default function Treatments() {
                     {filtered.length === 0 ? (
                         <div className="tr-empty">
                             <p style={{ fontSize: '1.125rem', marginBottom: '1rem' }}>No treatments found.</p>
-                            <button onClick={() => { setActiveCategory('all'); setSearchQuery('') }} style={{ background: 'var(--color-gold)', color: '#fff', border: 'none', padding: '0.75rem 2rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, cursor: 'pointer' }}>
+                            <button onClick={() => { setActiveCategory('all'); setSearchQuery('') }} style={{ background: 'var(--color-wine)', color: '#fff', border: 'none', padding: '0.75rem 2rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, cursor: 'pointer' }}>
                                 Clear Filters
                             </button>
                         </div>
@@ -222,10 +222,10 @@ export default function Treatments() {
                                             {/* Footer meta */}
                                             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '1.25rem', borderTop: '1px solid #f0ede8' }}>
                                                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.375rem', fontSize: '0.75rem', color: 'var(--color-text-muted)' }}>
-                                                    <Clock size={12} style={{ color: 'var(--color-gold)' }} />
+                                                    <Clock size={12} style={{ color: 'var(--color-wine)' }} />
                                                     <span>{treatment.duration}</span>
                                                 </div>
-                                                <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--color-gold)' }}>
+                                                <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--color-wine)' }}>
                                                     {treatment.price}
                                                 </span>
                                             </div>
@@ -244,23 +244,23 @@ export default function Treatments() {
                     <img
                         src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=1920&q=80"
                         alt="Begin Your Journey"
-                        style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.22)' }}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     />
                 </div>
                 <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center', maxWidth: '52rem' }}>
                     <RevealWrapper>
-                        <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-gold)', marginBottom: '1.25rem' }}>
+                        <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-wine)', marginBottom: '1.25rem' }}>
                             Begin Your Transformation
                         </span>
                         <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4.5vw, 3.25rem)', color: '#fff', marginBottom: '1.5rem', lineHeight: 1.2 }}>
                             Ready to Begin Your <br />
-                            <span style={{ fontStyle: 'italic', color: 'var(--color-gold)' }}>Skin Journey?</span>
+                            <span style={{ fontStyle: 'italic', color: 'var(--color-wine)' }}>Skin Journey?</span>
                         </h2>
                         <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '1.0625rem', lineHeight: 1.8, marginBottom: '2.5rem', fontWeight: 300 }}>
                             Discover personalised treatments designed by our expert dermatologists to address your unique skin concerns and help you achieve radiant, healthy skin.
                         </p>
                         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-                            <Link to="/book" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'var(--color-gold)', color: '#fff', padding: '1rem 2.5rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, transition: 'all 0.3s' }}>
+                            <Link to="/book" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'var(--color-wine)', color: '#fff', padding: '1rem 2.5rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, transition: 'all 0.3s' }}>
                                 BOOK CONSULTATION <ArrowRight size={14} />
                             </Link>
                             <Link to="/concerns" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', border: '1px solid rgba(255,255,255,0.3)', color: '#fff', padding: '1rem 2.5rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, backdropFilter: 'blur(4px)', background: 'rgba(255,255,255,0.05)', transition: 'all 0.3s' }}>

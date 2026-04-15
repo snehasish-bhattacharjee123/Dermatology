@@ -81,13 +81,17 @@ export function RevealWrapper({ children, className = '', direction = 'up', dela
     )
 }
 
-export function ParallaxImage({ src, alt, className = '', speed = -0.1 }) {
+export function ParallaxImage({ src, alt, className = '', speed = -0.1, srcSet, sizes, loading = 'lazy', decoding = 'async', style }) {
     return (
-        <div className={`overflow-hidden ${className}`}>
+        <div className={`overflow-hidden ${className}`} style={style}>
             <img
                 src={src}
                 alt={alt}
                 className="w-full h-full object-cover"
+                srcSet={srcSet}
+                sizes={sizes}
+                loading={loading}
+                decoding={decoding}
             />
         </div>
     )

@@ -14,7 +14,7 @@ const variantStyles = {
     // Section headings
     section: 'font-display text-[36px] md:text-[42px] font-medium leading-tight tracking-tight text-dark',
     'section-white': 'font-display text-[36px] md:text-[42px] font-medium leading-tight tracking-tight text-white',
-    'section-gold': 'font-display text-[36px] md:text-[42px] font-medium leading-tight tracking-tight text-gold',
+    'section-wine': 'font-display text-[36px] md:text-[42px] font-medium leading-tight tracking-tight text-wine',
 
     // Card titles
     card: 'font-display text-[26px] md:text-[28px] font-medium leading-snug tracking-[0.5px] text-dark',

@@ -87,23 +87,23 @@ export default function Contact() {
         <div style={{ background: '#fff' }}>
             <style>{`
                 /* ── Hero ── */
-                .ct-hero-gradient { position: absolute; inset: 0; background: linear-gradient(130deg, rgba(30,18,25,0.95) 0%, rgba(57,33,47,0.72) 55%, rgba(0,0,0,0.2) 100%); }
+                .ct-hero-gradient { display: none; }
 
                 /* ── Info cards ── */
                 .ct-info-card { display: flex; align-items: flex-start; gap: 1.25rem; padding: 1.5rem; border: 1px solid #f0ede8; background: #fff; transition: all 0.35s ease; }
-                .ct-info-card:hover { border-color: var(--color-gold); box-shadow: 0 12px 40px rgba(135,91,108,0.12); transform: translateY(-3px); }
-                .ct-info-icon { width: 3rem; height: 3rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: rgba(135,91,108,0.1); transition: background 0.3s; }
-                .ct-info-card:hover .ct-info-icon { background: var(--color-gold); }
+                .ct-info-card:hover { border-color: var(--color-wine); box-shadow: 0 12px 40px rgba(86, 58, 86, 0.12); transform: translateY(-3px); }
+                .ct-info-icon { width: 3rem; height: 3rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: rgba(86, 58, 86, 0.1); transition: background 0.3s; }
+                .ct-info-card:hover .ct-info-icon { background: var(--color-wine); }
                 .ct-info-card:hover .ct-info-icon svg { color: #fff !important; }
 
                 /* ── Form ── */
                 .ct-label { display: block; font-size: 0.6rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 0.6rem; }
                 .ct-input { width: 100%; padding: 0.875rem 1rem; font-family: var(--font-body); font-size: 0.9375rem; color: var(--color-dark); background: #fff; border: 1px solid #e0dbd5; outline: none; transition: border-color 0.3s, box-shadow 0.3s; }
-                .ct-input:focus { border-color: var(--color-gold); box-shadow: 0 0 0 3px rgba(135,91,108,0.1); }
+                .ct-input:focus { border-color: var(--color-wine); box-shadow: 0 0 0 3px rgba(86, 58, 86, 0.1); }
                 .ct-input::placeholder { color: #bbb; }
                 .ct-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; cursor: pointer; }
                 .ct-submit { width: 100%; padding: 1.1rem; background: var(--color-dark); color: #fff; font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.75rem; transition: all 0.3s; }
-                .ct-submit:hover { background: var(--color-gold); }
+                .ct-submit:hover { background: var(--color-wine); }
                 .ct-submit:disabled { opacity: 0.6; cursor: not-allowed; }
 
                 /* ── Social cards ── */
@@ -125,19 +125,19 @@ export default function Contact() {
                 </div>
 
                 <div className="container" style={{ position: 'relative', zIndex: 2, textAlign: 'center' }}>
-                    <RevealWrapper>
-                        <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-gold)', background: 'rgba(135,91,108,0.12)', border: '1px solid rgba(135,91,108,0.3)', borderRadius: '9999px', padding: '0.4rem 1.25rem', marginBottom: '1.5rem' }}>
+                    <RevealWrapper direction="up">
+                        <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-wine)', background: 'rgba(86, 58, 86, 0.12)', border: '1px solid rgba(86, 58, 86, 0.3)', borderRadius: '9999px', padding: '0.4rem 1.25rem', marginBottom: '1.5rem' }}>
                             Get In Touch
                         </span>
                         <h1 style={{ fontFamily: 'var(--font-heading)', color: '#fff', letterSpacing: '6px', textTransform: 'uppercase', fontSize: 'clamp(2.75rem, 8vw, 6rem)', lineHeight: 1.05, marginBottom: '1.5rem' }}>
                             <span style={{ fontWeight: 300 }}>CONTACT </span>
-                            <span style={{ fontWeight: 700, color: 'var(--color-gold)' }}>US</span>
+                            <span style={{ fontWeight: 700, color: 'var(--color-wine)' }}>US</span>
                         </h1>
                         <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 'clamp(1rem, 2vw, 1.2rem)', fontWeight: 300, maxWidth: '38rem', margin: '0 auto 2.5rem', lineHeight: 1.75 }}>
                             We're here to help. Reach out for appointments, treatment inquiries, or any aesthetic assistance you need.
                         </p>
                         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-                            <a href="tel:+911126347890" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'var(--color-gold)', color: '#fff', padding: '0.9rem 2rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, boxShadow: '0 8px 28px rgba(135,91,108,0.4)' }}>
+                            <a href="tel:+911126347890" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'var(--color-wine)', color: '#fff', padding: '0.9rem 2rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, boxShadow: '0 8px 28px rgba(86, 58, 86, 0.4)' }}>
                                 <Phone size={14} /> Call Now
                             </a>
                             <a href="https://wa.me/911126347890" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(255,255,255,0.08)', color: '#fff', padding: '0.9rem 2rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, backdropFilter: 'blur(6px)', border: '1px solid rgba(255,255,255,0.2)' }}>
@@ -147,7 +147,7 @@ export default function Contact() {
                     </RevealWrapper>
                 </div>
 
-                <div style={{ position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)', width: '1px', height: '2.5rem', background: 'linear-gradient(to bottom, transparent, var(--color-gold))' }} />
+                <div style={{ position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)', width: '1px', height: '2.5rem', background: 'linear-gradient(to bottom, transparent, var(--color-wine))' }} />
             </section>
 
             {/* ─── INFO CARDS ─── */}
@@ -158,7 +158,7 @@ export default function Contact() {
                             <RevealWrapper key={i} direction="up" delay={i * 0.1}>
                                 <div className="ct-info-card">
                                     <div className="ct-info-icon">
-                                        <item.icon size={18} style={{ color: 'var(--color-gold)', transition: 'color 0.3s' }} />
+                                        <item.icon size={18} style={{ color: 'var(--color-wine)', transition: 'color 0.3s' }} />
                                     </div>
                                     <div>
                                         <span style={{ display: 'block', fontSize: '0.55rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, color: '#aaa', marginBottom: '0.35rem' }}>{item.label}</span>
@@ -192,7 +192,7 @@ export default function Contact() {
                                     Reach Out
                                 </span>
                                 <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 2.75rem)', color: 'var(--color-dark)', marginBottom: '0.75rem', lineHeight: 1.2 }}>
-                                    Send an <span style={{ fontStyle: 'italic', color: 'var(--color-gold)' }}>Inquiry</span>
+                                    Send an <span style={{ fontStyle: 'italic', color: 'var(--color-wine)' }}>Inquiry</span>
                                 </h2>
                                 <p style={{ color: 'var(--color-text-muted)', lineHeight: 1.75, marginBottom: '2.5rem', fontSize: '0.9375rem' }}>
                                     Fill out the form and our team will respond within 24 hours. All enquiries are handled with complete discretion.
@@ -200,14 +200,14 @@ export default function Contact() {
 
                                 {submitted ? (
                                     <div style={{ textAlign: 'center', padding: '4rem 2rem', background: 'var(--color-bg-cream)', border: '1px solid #f0ede8' }}>
-                                        <div style={{ width: '4.5rem', height: '4.5rem', borderRadius: '50%', background: 'rgba(135,91,108,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem' }}>
-                                            <CheckCircle size={32} style={{ color: 'var(--color-gold)' }} />
+                                        <div style={{ width: '4.5rem', height: '4.5rem', borderRadius: '50%', background: 'rgba(86, 58, 86, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem' }}>
+                                            <CheckCircle size={32} style={{ color: 'var(--color-wine)' }} />
                                         </div>
                                         <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.75rem', color: 'var(--color-dark)', marginBottom: '0.75rem' }}>Message Received!</h3>
                                         <p style={{ color: 'var(--color-text-muted)', marginBottom: '2rem', lineHeight: 1.75 }}>
                                             Thank you for reaching out. One of our concierges will get back to you within 24 hours.
                                         </p>
-                                        <button onClick={() => setSubmitted(false)} style={{ background: 'none', border: '1px solid var(--color-gold)', color: 'var(--color-gold)', padding: '0.75rem 2rem', fontSize: '0.7rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, cursor: 'pointer', transition: 'all 0.3s' }}>
+                                        <button onClick={() => setSubmitted(false)} style={{ background: 'none', border: '1px solid var(--color-wine)', color: 'var(--color-wine)', padding: '0.75rem 2rem', fontSize: '0.7rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, cursor: 'pointer', transition: 'all 0.3s' }}>
                                             Send Another
                                         </button>
                                     </div>
@@ -268,7 +268,7 @@ export default function Contact() {
                                         referrerPolicy="no-referrer-when-downgrade"
                                     />
                                     <div className="ct-map-label">
-                                        <MapPin size={12} style={{ color: 'var(--color-gold)' }} />
+                                        <MapPin size={12} style={{ color: 'var(--color-wine)' }} />
                                         SDA Market, Hauz Khas, New Delhi
                                     </div>
                                 </div>
@@ -282,8 +282,8 @@ export default function Contact() {
                                         { label: 'Expert Doctors', val: '10+' },
                                     ].map((f, i) => (
                                         <div key={i} style={{ background: 'var(--color-bg-cream)', padding: '1.5rem', textAlign: 'center', border: '1px solid #f0ede8' }}>
-                                            <span style={{ display: 'block', fontFamily: 'var(--font-heading)', fontSize: '2rem', color: 'var(--color-gold)', fontWeight: 300, lineHeight: 1 }}>{f.val}</span>
-                                            <span style={{ display: 'block', fontSize: '0.6rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, color: '#aaa', marginTop: '0.4rem' }}>{f.label}</span>
+                                            <span style={{ display: 'block', fontFamily: 'var(--font-heading)', fontSize: '2rem', color: 'var(--color-dark)', fontWeight: 600, lineHeight: 1 }}>{f.val}</span>
+                                            <span style={{ display: 'block', fontSize: '0.6rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-wine)', opacity: 0.8, marginTop: '0.5rem' }}>{f.label}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -299,7 +299,7 @@ export default function Contact() {
                     <RevealWrapper>
                         <span style={{ display: 'block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: '#888', marginBottom: '1rem' }}>Stay Connected</span>
                         <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#fff', marginBottom: '0.75rem' }}>
-                            Connect With <span style={{ fontStyle: 'italic', color: 'var(--color-gold)' }}>Us</span>
+                            Connect With <span style={{ fontStyle: 'italic', color: 'var(--color-wine)' }}>Us</span>
                         </h2>
                         <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '1rem', marginBottom: '3.5rem' }}>
                             Follow us for skincare tips, before-and-after stories, and exclusive offers.
@@ -328,17 +328,17 @@ export default function Contact() {
             </section>
 
             {/* ─── CTA ─── */}
-            <section style={{ background: 'var(--color-gold)', padding: '5rem 0', textAlign: 'center' }}>
+            <section style={{ background: 'var(--color-wine)', padding: '5rem 0', textAlign: 'center' }}>
                 <div className="container" style={{ maxWidth: '44rem' }}>
                     <RevealWrapper>
                         <span style={{ display: 'block', fontSize: '0.625rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: 'rgba(255,255,255,0.7)', marginBottom: '1rem' }}>Ready to Begin?</span>
                         <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 2.75rem)', color: '#fff', marginBottom: '1.25rem', lineHeight: 1.2 }}>
                             Ready to Begin Your Skin Journey?
                         </h2>
-                        <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '1rem', lineHeight: 1.75, marginBottom: '2.5rem', fontWeight: 300 }}>
+                        <p style={{ color: 'var(--color-bg-cream)', fontSize: '1rem', lineHeight: 1.75, marginBottom: '2.5rem', fontWeight: 400 }}>
                             Book a consultation with our expert dermatologists and discover treatments tailored to your unique needs.
                         </p>
-                        <Link to="/book" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: '#fff', color: 'var(--color-gold)', padding: '1rem 2.5rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, transition: 'all 0.3s' }}>
+                        <Link to="/book" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: '#fff', color: 'var(--color-wine)', padding: '1rem 2.5rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, transition: 'all 0.3s' }}>
                             BOOK YOUR CONSULTATION →
                         </Link>
                     </RevealWrapper>

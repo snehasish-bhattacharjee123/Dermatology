@@ -62,13 +62,13 @@ export default function Gallery() {
                 /* ── Hero ── */
                 .gl-hero-bg { position: absolute; inset: 0; }
                 .gl-hero-bg img { width: 100%; height: 100%; object-fit: cover; }
-                .gl-hero-gradient { position: absolute; inset: 0; background: linear-gradient(160deg, rgba(57,33,47,0.93) 0%, rgba(57,33,47,0.6) 55%, rgba(0,0,0,0.3) 100%); }
+                .gl-hero-gradient { display: none; }
 
                 /* ── Filter tabs ── */
                 .gl-filter-btn { padding: 0.6rem 1.75rem; font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; cursor: pointer; border: 1px solid #e0dbd5; background: transparent; color: #888; transition: all 0.3s; position: relative; overflow: hidden; }
-                .gl-filter-btn::after { content: ''; position: absolute; inset: 0; background: var(--color-gold); transform: scaleX(0); transform-origin: left; transition: transform 0.35s ease; z-index: -1; }
+                .gl-filter-btn::after { content: ''; position: absolute; inset: 0; background: var(--color-wine); transform: scaleX(0); transform-origin: left; transition: transform 0.35s ease; z-index: -1; }
                 .gl-filter-btn:hover { color: var(--color-dark); border-color: transparent; }
-                .gl-filter-btn.active { background: var(--color-gold); color: #fff; border-color: var(--color-gold); box-shadow: 0 8px 24px rgba(135,91,108,0.3); }
+                .gl-filter-btn.active { background: var(--color-wine); color: #fff; border-color: var(--color-wine); box-shadow: 0 8px 24px rgba(86,58,86,0.3); }
 
                 /* ── Masonry cards ── */
                 .gl-card { position: relative; overflow: hidden; cursor: pointer; }
@@ -80,7 +80,7 @@ export default function Gallery() {
                 .gl-card:hover .gl-card-caption { transform: translateY(0); }
                 .gl-card-zoom { position: absolute; top: 1rem; right: 1rem; width: 2.5rem; height: 2.5rem; border-radius: 50%; background: rgba(255,255,255,0.12); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; opacity: 0; transform: scale(0.7); transition: all 0.35s ease 0.1s; border: 1px solid rgba(255,255,255,0.25); }
                 .gl-card:hover .gl-card-zoom { opacity: 1; transform: scale(1); }
-                .gl-tag { display: inline-block; font-size: 0.55rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; color: var(--color-gold); margin-bottom: 0.4rem; }
+                .gl-tag { display: inline-block; font-size: 0.55rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; color: var(--color-wine); margin-bottom: 0.4rem; }
 
                 /* ── Lightbox ── */
                 .gl-lightbox { position: fixed; inset: 0; z-index: 9999; background: rgba(10,5,7,0.97); display: flex; align-items: center; justify-content: center; animation: gl-fade 0.3s ease; }
@@ -88,7 +88,7 @@ export default function Gallery() {
                 .gl-lightbox-img { max-width: 85vw; max-height: 82vh; object-fit: contain; display: block; animation: gl-zoom 0.35s ease; border: 1px solid rgba(255,255,255,0.06); }
                 @keyframes gl-zoom { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
                 .gl-lb-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #fff; width: 3rem; height: 3rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; }
-                .gl-lb-btn:hover { background: var(--color-gold); border-color: var(--color-gold); }
+                .gl-lb-btn:hover { background: var(--color-wine); border-color: var(--color-wine); }
                 .gl-lb-close { position: absolute; top: 1.5rem; right: 1.5rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #fff; width: 2.75rem; height: 2.75rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; }
                 .gl-lb-close:hover { background: rgba(255,255,255,0.18); }
                 .gl-lb-counter { position: absolute; top: 1.75rem; left: 50%; transform: translateX(-50%); font-size: 0.65rem; letter-spacing: 3px; color: rgba(255,255,255,0.4); text-transform: uppercase; font-weight: 600; }
@@ -107,18 +107,25 @@ export default function Gallery() {
             {/* ─── HERO ─── */}
             <section style={{ position: 'relative', height: '60vh', minHeight: '450px', display: 'flex', alignItems: 'center', overflow: 'hidden', marginTop: 'var(--header-total-height)' }}>
                 <div className="gl-hero-bg">
-                    <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920&q=80" alt="D'CosMedis Gallery" />
+                    <img
+                        src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1280&q=75"
+                        alt="D'CosMedis Gallery"
+                        fetchPriority="high"
+                        decoding="async"
+                        sizes="100vw"
+                        srcSet="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=640&q=75 640w, https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1280&q=75 1280w, https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920&q=75 1920w"
+                    />
                     <div className="gl-hero-gradient" />
                 </div>
 
                 <div className="container" style={{ position: 'relative', zIndex: 2, textAlign: 'center' }}>
-                    <RevealWrapper>
-                        <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-gold)', background: 'rgba(135,91,108,0.12)', border: '1px solid rgba(135,91,108,0.3)', borderRadius: '9999px', padding: '0.4rem 1.25rem', marginBottom: '1.5rem' }}>
+                    <RevealWrapper direction="up">
+                        <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-accent)', background: 'rgba(84,56,86,0.18)', border: '1px solid rgba(205,191,204,0.4)', borderRadius: '9999px', padding: '0.4rem 1.25rem', marginBottom: '1.5rem' }}>
                             Visual Stories
                         </span>
                         <h1 style={{ fontFamily: 'var(--font-heading)', color: '#fff', letterSpacing: '6px', textTransform: 'uppercase', fontSize: 'clamp(2.5rem, 7vw, 5.5rem)', lineHeight: 1.05, marginBottom: '1.5rem' }}>
                             <span style={{ fontWeight: 300 }}>OUR </span>
-                            <span style={{ fontWeight: 700, color: 'var(--color-gold)' }}>GALLERY</span>
+                            <span style={{ fontWeight: 700, color: 'var(--color-accent)' }}>GALLERY</span>
                         </h1>
                         <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 'clamp(0.9375rem, 2vw, 1.125rem)', fontWeight: 300, maxWidth: '38rem', margin: '0 auto', lineHeight: 1.75 }}>
                             Explore our cutting-edge clinic spaces, advanced treatment sessions, and transformative results through our visual portfolio.
@@ -128,7 +135,7 @@ export default function Gallery() {
 
                 {/* Scroll indicator */}
                 <div style={{ position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.4rem' }}>
-                    <div style={{ width: '1px', height: '2.5rem', background: 'linear-gradient(to bottom, transparent, var(--color-gold))' }} />
+                    <div style={{ width: '1px', height: '2.5rem', background: 'linear-gradient(to bottom, transparent, var(--color-wine))' }} />
                 </div>
             </section>
 
@@ -143,7 +150,7 @@ export default function Gallery() {
                             { val: '50K+', label: 'Happy Patients' },
                         ].map((s, i) => (
                             <div key={i} className="gl-stat">
-                                <span style={{ display: 'block', fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.5rem, 3vw, 2.25rem)', color: 'var(--color-gold)', fontWeight: 300, lineHeight: 1 }}>{s.val}</span>
+                                <span style={{ display: 'block', fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.5rem, 3vw, 2.25rem)', color: 'var(--color-wine)', fontWeight: 300, lineHeight: 1 }}>{s.val}</span>
                                 <span style={{ display: 'block', fontSize: '0.6rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, color: 'rgba(255,255,255,0.45)', marginTop: '0.4rem' }}>{s.label}</span>
                             </div>
                         ))}
@@ -152,7 +159,7 @@ export default function Gallery() {
             </section>
 
             {/* ─── FILTER TABS ─── */}
-            <section style={{ background: '#fff', padding: '2.5rem 0', borderBottom: '1px solid #f0ede8', position: 'sticky', top: 0, zIndex: 10, backdropFilter: 'blur(12px)' }}>
+            <section style={{ background: 'var(--color-bg-cream)', padding: '2.5rem 0', borderBottom: '1px solid #f0ede8', position: 'sticky', top: 0, zIndex: 10, backdropFilter: 'blur(12px)' }}>
                 <div className="container">
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
                         {categories.map((cat) => (
@@ -169,7 +176,7 @@ export default function Gallery() {
             </section>
 
             {/* ─── MASONRY GRID ─── */}
-            <section style={{ background: '#fafaf9', padding: '4rem 0 6rem' }}>
+            <section style={{ background: 'var(--color-bg-cream)', padding: '4rem 0 6rem' }}>
                 <div className="container">
                     <div className="gl-masonry">
                         {filtered.map((img, i) => {
@@ -182,7 +189,14 @@ export default function Gallery() {
                                         style={{ height: h }}
                                         onClick={() => openLightbox(i)}
                                     >
-                                        <img src={img.src} alt={img.caption} loading="lazy" />
+                                        <img
+                                            src={img.src.replace(/w=\d+/, 'w=500')}
+                                            alt={img.caption}
+                                            loading="lazy"
+                                            decoding="async"
+                                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                            srcSet={`${img.src.replace(/w=\d+/, 'w=400')} 400w, ${img.src.replace(/w=\d+/, 'w=600')} 600w, ${img.src} 800w`}
+                                        />
                                         <div className="gl-card-overlay">
                                             <div className="gl-card-caption">
                                                 <span className="gl-tag">{img.category}</span>
@@ -235,7 +249,7 @@ export default function Gallery() {
 
                     {/* Caption */}
                     <div style={{ position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)', textAlign: 'center' }}>
-                        <span style={{ display: 'block', fontSize: '0.55rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-gold)', marginBottom: '0.3rem' }}>
+                        <span style={{ display: 'block', fontSize: '0.55rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-wine)', marginBottom: '0.3rem' }}>
                             {filtered[lightboxIdx].category}
                         </span>
                         <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '0.9375rem', fontFamily: 'var(--font-heading)' }}>
@@ -259,7 +273,7 @@ export default function Gallery() {
                             <button
                                 key={i}
                                 onClick={e => { e.stopPropagation(); setLightboxIdx(i) }}
-                                style={{ width: i === lightboxIdx ? '1.5rem' : '0.375rem', height: '0.375rem', borderRadius: '9999px', background: i === lightboxIdx ? 'var(--color-gold)' : 'rgba(255,255,255,0.25)', border: 'none', cursor: 'pointer', padding: 0, transition: 'all 0.3s' }}
+                                style={{ width: i === lightboxIdx ? '1.5rem' : '0.375rem', height: '0.375rem', borderRadius: '9999px', background: i === lightboxIdx ? 'var(--color-wine)' : 'rgba(255,255,255,0.25)', border: 'none', cursor: 'pointer', padding: 0, transition: 'all 0.3s' }}
                             />
                         ))}
                     </div>
@@ -267,18 +281,18 @@ export default function Gallery() {
             )}
 
             {/* ─── CTA ─── */}
-            <section style={{ background: 'var(--color-gold)', padding: '5rem 0', textAlign: 'center' }}>
+            <section style={{ background: 'var(--color-wine)', padding: '5rem 0', textAlign: 'center' }}>
                 <div className="container" style={{ maxWidth: '44rem' }}>
                     <RevealWrapper>
                         <span style={{ display: 'block', fontSize: '0.625rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: 'rgba(255,255,255,0.7)', marginBottom: '1rem' }}>Ready to Begin?</span>
                         <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 2.75rem)', color: '#fff', marginBottom: '1.25rem', lineHeight: 1.2 }}>
                             Experience the Transformation Yourself
                         </h2>
-                        <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '1rem', lineHeight: 1.75, marginBottom: '2.5rem', fontWeight: 300 }}>
+                        <p style={{ color: 'var(--color-bg-cream)', fontSize: '1rem', lineHeight: 1.75, marginBottom: '2.5rem', fontWeight: 400 }}>
                             Book a consultation with our expert dermatologists and start your personalised skin journey today.
                         </p>
                         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-                            <Link to="/book" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: '#fff', color: 'var(--color-gold)', padding: '1rem 2.5rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700 }}>
+                            <Link to="/book" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: '#fff', color: 'var(--color-wine)', padding: '1rem 2.5rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700 }}>
                                 BOOK CONSULTATION <ArrowRight size={14} />
                             </Link>
                             <Link to="/treatments" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'transparent', color: '#fff', padding: '1rem 2.5rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, border: '1px solid rgba(255,255,255,0.5)' }}>

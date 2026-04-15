@@ -51,8 +51,8 @@ export default function BookAppointment() {
             <div style={{ background: '#fff', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: 'var(--header-total-height)' }}>
                 <RevealWrapper>
                     <div style={{ textAlign: 'center', maxWidth: '32rem', padding: '3rem 2rem', background: 'var(--color-bg-cream)', border: '1px solid #f0ede8', borderRadius: '4px' }}>
-                        <div style={{ width: '5rem', height: '5rem', borderRadius: '50%', background: 'rgba(135,91,108,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 2rem' }}>
-                            <CheckCircle size={40} style={{ color: 'var(--color-gold)' }} />
+                        <div style={{ width: '5rem', height: '5rem', borderRadius: '50%', background: 'rgba(114,47,55,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 2rem' }}>
+                            <CheckCircle size={40} style={{ color: 'var(--color-wine)' }} />
                         </div>
                         <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '2.5rem', color: 'var(--color-dark)', marginBottom: '1rem' }}>Request Received</h2>
                         <p style={{ color: 'var(--color-text-muted)', fontSize: '1rem', lineHeight: 1.7, marginBottom: '2.5rem' }}>
@@ -72,7 +72,7 @@ export default function BookAppointment() {
                             </div>
                         </div>
 
-                        <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'var(--color-gold)', color: '#fff', padding: '1rem 3rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700 }}>
+                        <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'var(--color-wine)', color: '#fff', padding: '1rem 3rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700 }}>
                             Return Home
                         </Link>
                     </div>
@@ -100,7 +100,7 @@ export default function BookAppointment() {
                 .bk-step-nav { display: flex; alignItems: center; gap: 0.5rem; border-bottom: 1px solid #f0ede8; padding: 2rem 4rem; position: sticky; top: var(--header-height-scrolled); background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); z-index: 20; justify-content: space-between; }
                 @media (max-width: 991px) { .bk-step-nav { padding: 1rem 1.5rem; top: var(--header-total-height); } }
                 .bk-step-line { flex: 1; height: 2px; background: #eee; position: relative; border-radius: 2px; }
-                .bk-step-line-fill { position: absolute; left: 0; top: 0; bottom: 0; background: var(--color-gold); transition: width 0.4s ease; }
+                .bk-step-line-fill { position: absolute; left: 0; top: 0; bottom: 0; background: var(--color-wine); transition: width 0.4s ease; }
 
                 /* ── Forms / Selections ── */
                 .bk-body { padding: 4rem; max-width: 48rem; margin: 0 auto; width: 100%; flex-grow: 1; }
@@ -108,15 +108,15 @@ export default function BookAppointment() {
 
                 /* Generic Choice Card */
                 .bk-choice { display: block; width: 100%; text-align: left; background: #fff; border: 1px solid #e0dbd5; padding: 1.5rem; border-radius: 4px; cursor: pointer; transition: all 0.3s; position: relative; overflow: hidden; }
-                .bk-choice:hover { border-color: var(--color-gold); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-                .bk-choice.active { border-color: var(--color-gold); background: rgba(135,91,108,0.03); box-shadow: 0 0 0 1px var(--color-gold); }
-                .bk-choice-check { position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); color: var(--color-gold); opacity: 0; transition: opacity 0.3s; }
+                .bk-choice:hover { border-color: var(--color-wine); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+                .bk-choice.active { border-color: var(--color-wine); background: rgba(114,47,55,0.03); box-shadow: 0 0 0 1px var(--color-wine); }
+                .bk-choice-check { position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); color: var(--color-wine); opacity: 0; transition: opacity 0.3s; }
                 .bk-choice.active .bk-choice-check { opacity: 1; }
 
                 /* Forms */
                 .bk-label { display: block; font-size: 0.65rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 0.6rem; }
                 .bk-input { width: 100%; padding: 1rem 1.25rem; font-family: var(--font-body); font-size: 0.95rem; color: var(--color-dark); background: #f9f8f6; border: 1px solid #e0dbd5; outline: none; transition: all 0.3s; }
-                .bk-input:focus { border-color: var(--color-gold); background: #fff; box-shadow: 0 0 0 3px rgba(135,91,108,0.1); }
+                .bk-input:focus { border-color: var(--color-wine); background: #fff; box-shadow: 0 0 0 3px rgba(114,47,55,0.1); }
                 
                 /* Footer nav */
                 .bk-footer { display: flex; justify-content: space-between; align-items: center; padding: 2rem 4rem; border-top: 1px solid #f0ede8; background: #fff; }
@@ -126,7 +126,7 @@ export default function BookAppointment() {
             {/* ─── LEFT SIDEBAR (Desktop Only) ─── */}
             <div className="bk-left">
                 <img src="https://images.unsplash.com/photo-1542848284-8afa78a08ccb?w=1200&q=80" alt="Clinic Ambience" className="bk-left-img" />
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(57,33,47,0.8), rgba(30,18,25,0.95))', zIndex: 1 }} />
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(114,47,55,0.8), rgba(30,18,25,0.95))', zIndex: 1 }} />
                 
                 <div className="bk-left-content">
                     <div>
@@ -135,12 +135,12 @@ export default function BookAppointment() {
                             <span style={{ fontSize: '1.5rem', fontFamily: 'var(--font-heading)', color: '#fff', letterSpacing: '4px' }}>D'COSMEDIS</span>
                         </Link>
                         
-                        <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-gold)', marginBottom: '1.25rem' }}>
+                        <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-wine)', marginBottom: '1.25rem' }}>
                             Concierge Services
                         </span>
                         <h1 style={{ fontFamily: 'var(--font-heading)', color: '#fff', fontSize: '3.5rem', lineHeight: 1.1, marginBottom: '2rem' }}>
                             <span style={{ display: 'block', fontWeight: 300 }}>Request</span>
-                            <span style={{ display: 'block', fontWeight: 700, color: 'var(--color-gold)' }}>Consultation</span>
+                            <span style={{ display: 'block', fontWeight: 700, color: 'var(--color-wine)' }}>Consultation</span>
                         </h1>
                         <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '1.05rem', lineHeight: 1.7, maxWidth: '24rem', fontWeight: 300 }}>
                             Experience clinical excellence and tailored aesthetic treatments in a setting designed for absolute comfort and privacy.
@@ -150,12 +150,12 @@ export default function BookAppointment() {
                     {/* Trust indicator */}
                     <div style={{ padding: '2rem', background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '4px' }}>
                         <div style={{ display: 'flex', gap: '0.25rem', marginBottom: '1rem' }}>
-                            {[...Array(5)].map((_, j) => <Star key={j} size={14} style={{ color: 'var(--color-gold)', fill: 'var(--color-gold)' }} />)}
+                            {[...Array(5)].map((_, j) => <Star key={j} size={14} style={{ color: 'var(--color-wine)', fill: 'var(--color-wine)' }} />)}
                         </div>
                         <p style={{ color: '#fff', fontSize: '0.95rem', fontStyle: 'italic', lineHeight: 1.6, marginBottom: '1rem' }}>
                             "From the moment you walk in, the level of care is exceptional. A truly premium clinical experience."
                         </p>
-                        <span style={{ fontSize: '0.7rem', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--color-gold)' }}>— Verified Patient</span>
+                        <span style={{ fontSize: '0.7rem', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--color-wine)' }}>— Verified Patient</span>
                     </div>
                 </div>
             </div>
@@ -172,9 +172,9 @@ export default function BookAppointment() {
                                     width: '1.75rem', height: '1.75rem', borderRadius: '50%', 
                                     display: 'flex', alignItems: 'center', justifyContent: 'center', 
                                     fontSize: '0.7rem', fontWeight: 700, transition: 'all 0.3s',
-                                    background: i < currentStep ? 'var(--color-gold)' : i === currentStep ? 'transparent' : '#f0ede8',
-                                    color: i < currentStep ? '#fff' : i === currentStep ? 'var(--color-gold)' : '#aaa',
-                                    border: i === currentStep ? '2px solid var(--color-gold)' : 'none'
+                                    background: i < currentStep ? 'var(--color-wine)' : i === currentStep ? 'transparent' : '#f0ede8',
+                                    color: i < currentStep ? '#fff' : i === currentStep ? 'var(--color-wine)' : '#aaa',
+                                    border: i === currentStep ? '2px solid var(--color-wine)' : 'none'
                                 }}>
                                     {i < currentStep ? <Check size={12} strokeWidth={3} /> : (i + 1)}
                                 </div>
@@ -189,7 +189,7 @@ export default function BookAppointment() {
                             </div>
                             {i < steps.length - 1 && (
                                 <div style={{ flex: 1, margin: '0 1rem', height: '2px', background: '#f0ede8', position: 'relative' }}>
-                                    <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, background: 'var(--color-gold)', width: i < currentStep ? '100%' : '0%', transition: 'width 0.4s ease' }} />
+                                    <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, background: 'var(--color-wine)', width: i < currentStep ? '100%' : '0%', transition: 'width 0.4s ease' }} />
                                 </div>
                             )}
                         </div>
@@ -210,7 +210,7 @@ export default function BookAppointment() {
                                     {locations.map(loc => (
                                         <button key={loc.id} className={`bk-choice ${formData.location === loc.name ? 'active' : ''}`} onClick={() => setFormData({...formData, location: loc.name})}>
                                             <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                                                <div style={{ width: '3rem', height: '3rem', borderRadius: '50%', background: 'rgba(135,91,108,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-gold)' }}>
+                                                <div style={{ width: '3rem', height: '3rem', borderRadius: '50%', background: 'rgba(114,47,55,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-wine)' }}>
                                                     <MapPin size={20} />
                                                 </div>
                                                 <div>
@@ -240,7 +240,7 @@ export default function BookAppointment() {
                                                     <h3 style={{ fontSize: '1.1rem', fontFamily: 'var(--font-heading)', color: 'var(--color-dark)', marginBottom: '0.2rem' }}>{t.title}</h3>
                                                     <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', color: 'var(--color-text-muted)', fontSize: '0.8rem' }}>
                                                         <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}><Clock size={12}/> {t.duration}</span>
-                                                        <span style={{ color: 'var(--color-gold)', fontWeight: 600 }}>{t.price}</span>
+                                                        <span style={{ color: 'var(--color-wine)', fontWeight: 600 }}>{t.price}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -277,9 +277,9 @@ export default function BookAppointment() {
                                                 onClick={() => setFormData({...formData, time: slot})}
                                                 style={{
                                                     padding: '0.85rem 0.5rem', fontSize: '0.8rem', fontWeight: 600, border: '1px solid', borderRadius: '4px', cursor: 'pointer', transition: 'all 0.3s',
-                                                    background: formData.time === slot ? 'var(--color-gold)' : '#fff',
+                                                    background: formData.time === slot ? 'var(--color-wine)' : '#fff',
                                                     color: formData.time === slot ? '#fff' : 'var(--color-dark)',
-                                                    borderColor: formData.time === slot ? 'var(--color-gold)' : '#e0dbd5'
+                                                    borderColor: formData.time === slot ? 'var(--color-wine)' : '#e0dbd5'
                                                 }}
                                             >
                                                 {slot}

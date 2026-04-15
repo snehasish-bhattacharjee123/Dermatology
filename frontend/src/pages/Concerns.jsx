@@ -16,17 +16,17 @@ export default function Concerns() {
         <div style={{ background: '#fff' }}>
             <style>{`
                 /* ── Hero ── */
-                .cn-hero-overlay { position: absolute; inset: 0; background: linear-gradient(100deg, rgba(30,18,25,0.95) 0%, rgba(57,33,47,0.85) 45%, rgba(0,0,0,0.4) 100%); }
+                .cn-hero-overlay { display: none; }
 
                 /* ── Search ── */
                 .cn-search { display: flex; align-items: center; gap: 0.75rem; background: #fff; border: 1px solid #e0dbd5; padding: 0.85rem 1.5rem; width: 100%; max-width: 28rem; transition: all 0.3s; margin-top: 2rem; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
-                .cn-search:focus-within { border-color: var(--color-gold); box-shadow: 0 10px 40px rgba(0,0,0,0.3); transform: translateY(-2px); }
+                .cn-search:focus-within { border-color: var(--color-wine); box-shadow: 0 10px 40px rgba(0,0,0,0.3); transform: translateY(-2px); }
                 .cn-search input { border: none; outline: none; font-size: 0.9375rem; color: var(--color-dark); background: transparent; width: 100%; font-family: var(--font-body); }
                 .cn-search input::placeholder { color: #888; }
 
                 /* ── Card ── */
                 .cn-card { display: flex; flex-direction: column; background: #fff; border: 1px solid #f0ede8; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); overflow: hidden; position: relative; height: 100%; }
-                .cn-card:hover { transform: translateY(-8px); box-shadow: 0 30px 60px rgba(0,0,0,0.08); border-color: transparent; }
+                .cn-card:hover { transform: translateY(-8px); box-shadow: 0 30px 60px rgba(0,0,0,0.08); border-color: var(--color-wine); }
                 .cn-card-img-wrap { position: relative; width: 100%; height: 320px; overflow: hidden; }
                 .cn-card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1); }
                 .cn-card:hover .cn-card-img { transform: scale(1.08); }
@@ -35,8 +35,8 @@ export default function Concerns() {
                 .cn-card-body { padding: 2.5rem 2rem; display: flex; flex-direction: column; flex-grow: 1; background: #fff; position: relative; }
                 
                 /* Icon badge */
-                .cn-icon-badge { position: absolute; top: -2rem; right: 2rem; width: 4rem; height: 4rem; background: var(--color-dark); color: var(--color-gold); display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 4px solid #fff; font-size: 1.5rem; transition: all 0.4s; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-                .cn-card:hover .cn-icon-badge { background: var(--color-gold); color: #fff; transform: rotateY(180deg); }
+                .cn-icon-badge { position: absolute; top: -2rem; right: 2rem; width: 4rem; height: 4rem; background: var(--color-dark); color: var(--color-wine); display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 4px solid #fff; font-size: 1.5rem; transition: all 0.4s; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+                .cn-card:hover .cn-icon-badge { background: var(--color-wine); color: #fff; transform: rotateY(180deg); }
 
                 /* ── Emptystate ── */
                 .cn-empty { text-align: center; padding: 8rem 1rem; color: var(--color-text-muted); }
@@ -58,16 +58,16 @@ export default function Concerns() {
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.5rem' }}>
                             <Link to="/" style={{ fontSize: '0.65rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, color: 'rgba(255,255,255,0.45)', transition: 'color 0.3s' }}>Home</Link>
                             <span style={{ color: 'rgba(255,255,255,0.25)' }}>/</span>
-                            <span style={{ fontSize: '0.65rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, color: 'var(--color-gold)' }}>Concerns</span>
+                            <span style={{ fontSize: '0.65rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, color: 'var(--color-wine)' }}>Concerns</span>
                         </div>
 
-                        <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-gold)', background: 'rgba(135,91,108,0.12)', border: '1px solid rgba(135,91,108,0.3)', borderRadius: '9999px', padding: '0.4rem 1.25rem', marginBottom: '1.25rem' }}>
+                        <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-wine)', background: 'rgba(114,47,55,0.12)', border: '1px solid rgba(114,47,55,0.3)', borderRadius: '9999px', padding: '0.4rem 1.25rem', marginBottom: '1.25rem' }}>
                             Clinical Dermatology
                         </span>
 
                         <h1 style={{ fontFamily: 'var(--font-heading)', color: '#fff', letterSpacing: '4px', textTransform: 'uppercase', lineHeight: 1.1, marginBottom: '1.5rem', fontSize: 'clamp(3rem, 7vw, 5.5rem)' }}>
                             <span style={{ display: 'block', fontWeight: 300 }}>What Bothers</span>
-                            <span style={{ display: 'block', fontWeight: 700, color: 'var(--color-gold)', fontStyle: 'italic' }}>You?</span>
+                            <span style={{ display: 'block', fontWeight: 700, color: 'var(--color-wine)', fontStyle: 'italic' }}>You?</span>
                         </h1>
 
                         <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.125rem', fontWeight: 300, maxWidth: '36rem', lineHeight: 1.8 }}>
@@ -75,7 +75,7 @@ export default function Concerns() {
                         </p>
 
                         <div className="cn-search">
-                            <Search size={18} style={{ color: 'var(--color-gold)', flexShrink: 0 }} />
+                            <Search size={18} style={{ color: 'var(--color-wine)', flexShrink: 0 }} />
                             <input
                                 type="text"
                                 placeholder="E.g. Acne, Pigmentation, Hair Loss..."
@@ -99,7 +99,7 @@ export default function Concerns() {
                         { icon: ArrowRight, t: 'Customized Protocols' }
                     ].map((Item, i) => (
                         <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: '#fff' }}>
-                            <Item.icon size={20} style={{ color: 'var(--color-gold)' }} />
+                            <Item.icon size={20} style={{ color: 'var(--color-wine)' }} />
                             <span style={{ fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700 }}>{Item.t}</span>
                         </div>
                     ))}
@@ -124,7 +124,7 @@ export default function Concerns() {
                     {filtered.length === 0 ? (
                         <div className="cn-empty">
                             <p style={{ fontSize: '1.25rem', marginBottom: '1.5rem' }}>No concerns match your search query.</p>
-                            <button onClick={() => setSearchQuery('')} style={{ background: 'var(--color-gold)', color: '#fff', border: 'none', padding: '0.85rem 2.5rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, cursor: 'pointer' }}>
+                            <button onClick={() => setSearchQuery('')} style={{ background: 'var(--color-wine)', color: '#fff', border: 'none', padding: '0.85rem 2.5rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, cursor: 'pointer' }}>
                                 Clear Search
                             </button>
                         </div>
@@ -155,7 +155,7 @@ export default function Concerns() {
                                                 {concern.shortDescription}
                                             </p>
                                             
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--color-gold)', fontSize: '0.7rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, paddingTop: '1.5rem', borderTop: '1px solid #f0ede8' }}>
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--color-wine)', fontSize: '0.7rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, paddingTop: '1.5rem', borderTop: '1px solid #f0ede8' }}>
                                                 Explore Treatments <ArrowRight size={14} />
                                             </div>
                                         </div>
@@ -173,21 +173,21 @@ export default function Concerns() {
                     <img
                         src="https://images.unsplash.com/photo-1552693673-1bf958298935?w=1920&q=80"
                         alt="Consultation"
-                        style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.2)' }}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     />
                 </div>
                 <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center', maxWidth: '50rem' }}>
                     <RevealWrapper>
-                        <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-gold)', marginBottom: '1.25rem' }}>
+                        <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-wine)', marginBottom: '1.25rem' }}>
                             Unsure Where To Start?
                         </span>
                         <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 3.25rem)', color: '#fff', marginBottom: '1.5rem', lineHeight: 1.2 }}>
-                            Get a Clinical <span style={{ fontStyle: 'italic', color: 'var(--color-gold)' }}>Assessment</span>
+                            Get a Clinical <span style={{ fontStyle: 'italic', color: 'var(--color-wine)' }}>Assessment</span>
                         </h2>
                         <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '1.0625rem', lineHeight: 1.8, marginBottom: '3rem', fontWeight: 300 }}>
                             Let our dermatologists analyze your skin or hair condition and recommend a tailored, evidence-based treatment protocol.
                         </p>
-                        <Link to="/book" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'var(--color-gold)', color: '#fff', padding: '1.1rem 2.75rem', fontSize: '0.8rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, transition: 'all 0.3s' }}>
+                        <Link to="/book" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'var(--color-wine)', color: '#fff', padding: '1.1rem 2.75rem', fontSize: '0.8rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, transition: 'all 0.3s' }}>
                             BOOK CONSULTATION <ArrowRight size={15} />
                         </Link>
                     </RevealWrapper>

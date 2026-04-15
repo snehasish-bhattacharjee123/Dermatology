@@ -6,31 +6,52 @@
 
 :root {
   /* ========================================
-     COLORS - D'CosMedis Brand Palette
+     COLORS - D'CosMedis Brand Palette (Updated April 2026)
+     New palette: Wine #543856, Lite Beige #cdbfcc, Dark #0d1319
      ======================================== */
-  /* New Brand Palette */
-  --color-gold: #875b6c;           /* Primary: Dusty Rose */
-  --color-gold-dark: #6d4957;      /* Primary Dark: hover states */
-  --color-gold-light: #a57c8c;     /* Primary Light: subtle accents */
-  --color-gold-glow: rgba(135, 91, 108, 0.15); /* Primary glow */
-  --color-dark: #39212f;           /* Third: Dark Plum */
-  --color-dark-soft: #52303f;      /* Third Soft: slightly lighter plum */
-  --color-text: #2c1a24;
-  --color-text-muted: #6b4f5a;
-  --color-text-light: #9a7d88;
+
+  /* ── PRIMARY: Deep Wine/Plum ── */
+  --color-wine: #543856;                     /* Primary brand color */
+  --color-wine-dark: #3d2840;                /* Hover/pressed state */
+  --color-wine-light: #6a566b;               /* Lighter variant for borders */
+  --color-wine-glow: rgba(84, 56, 86, 0.18); /* Glow / shadow accent */
+
+  /* ── ACCENT: Lite Beige / Lavender ── */
+  --color-accent: #cdbfcc;                   /* Highlight color — lite beige/lavender */
+  --color-accent-dark: #a08ba0;              /* Darker accent for text on beige */
+  --color-accent-light: #c0adc0;             /* Softer accent for subtle areas */
+
+  /* ── DARK BASE: Near-black for headings & deep sections ── */
+  --color-dark: #0d1319;                     /* Primary headings & high-contrast text */
+  --color-dark-soft: #543856;                /* Wine as a softer dark variant */
+
+  /* ── TEXT SYSTEM ── */
+  --color-text: #0d1319;                     /* Primary body text — dark for readability */
+  --color-text-muted: #6a566b;               /* Muted text — wine mid-tone */
+  --color-text-light: #827084;               /* Placeholder / disabled text */
+
+  /* ── BACKGROUND SYSTEM ── */
   --color-bg-white: #FFFFFF;
-  --color-bg-cream: #e8e3d9;       /* Secondary Light: soft khaki tint */
-  --color-bg-secondary: #c9bfa6;   /* Secondary: Khaki/Beige */
-  --color-bg-light: #f5f2ee;
-  --color-bg-dark: #25151e;        /* Darker plum for deep sections */
-  --color-border: #d5cfc7;
-  --color-border-light: #e8e3db;
+  --color-bg-cream: #faf8f5;                 /* Warm off-white for body/page bg */
+  --color-bg-secondary: #cdbfcc;             /* Lite beige sections */
+  --color-bg-light: #ede8ed;                 /* Light lavender — card/alternating bg */
+  --color-bg-dark: #0d1319;                  /* Near-black for footer/dark sections */
+
+  /* ── BORDERS ── */
+  --color-border: #c0adc0;                   /* Soft wine-toned border */
+  --color-border-light: #ede8ed;             /* Very light for cards */
+  
+  /* ── SYSTEM ── */
   --color-error: #E53935;
   --color-success: #43A047;
 
   /* Legacy Typography - Kept for backward compatibility */
   --font-heading: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Tailwind Color Mapping */
+  --text-wine: var(--color-wine);
+  --text-accent: var(--color-accent);
 
   /* ========================================
      SPACING SYSTEM (8px base unit)
@@ -73,8 +94,6 @@
   --duration-normal: 0.4s;
   --duration-slow: 0.8s;
 
-  /* Tailwind Color Mapping */
-  --text-gold: var(--color-gold);
 }
 
 /* ===== GLOBAL RESET & BASE ===== */
@@ -96,7 +115,7 @@ html {
 body {
   font-family: var(--font-body);
   color: var(--color-text);
-  background: var(--color-bg-white);
+  background: var(--color-bg-cream);
   line-height: 1.6;
   overflow-x: hidden;
   font-size: var(--text-base);
@@ -111,7 +130,7 @@ h4,
 h5,
 h6 {
   font-family: var(--font-heading);
-  color: var(--color-dark);
+  color: var(--color-dark); /* #0d1319 — maximum contrast */
   font-weight: 500;
   line-height: 1.15;
   letter-spacing: -0.02em;
@@ -312,28 +331,28 @@ img {
 }
 
 .btn-primary {
-  background: var(--color-gold);
-  color: #fff;
-  border-color: var(--color-gold);
+  background: var(--color-wine);
+  color: #ffffff;
+  border-color: var(--color-wine);
 }
 
 .btn-primary:hover {
-  background: var(--color-gold-dark);
-  border-color: var(--color-gold-dark);
+  background: var(--color-wine-dark);
+  border-color: var(--color-wine-dark);
   transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(135, 91, 108, 0.4);
+  box-shadow: 0 8px 28px rgba(84, 56, 86, 0.4);
 }
 
 .btn-outline {
   background: transparent;
-  color: var(--color-dark);
-  border-color: var(--color-dark);
+  color: var(--color-wine);
+  border-color: var(--color-wine);
 }
 
 .btn-outline:hover {
-  background: var(--color-gold);
-  color: #fff;
-  border-color: var(--color-gold);
+  background: var(--color-wine);
+  color: #ffffff;
+  border-color: var(--color-wine);
   transform: translateY(-2px);
 }
 
@@ -387,8 +406,13 @@ img {
   background: var(--color-bg-cream);
 }
 
+/* Lite beige accent section — uses the highlight lavender */
+.section-accent {
+  background: var(--color-accent);
+}
+
 .section-dark {
-  background: var(--color-bg-dark);
+  background: var(--color-bg-dark); /* #0d1319 near-black */
   color: #fff;
 }
 
@@ -398,11 +422,28 @@ img {
 .section-dark h4,
 .section-dark h5,
 .section-dark h6 {
-  color: #fff;
+  color: #ffffff;
 }
 
 .section-dark p {
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(205, 191, 204, 0.85); /* lite beige at 85% for text on dark */
+}
+
+/* Wine section — primary call-to-action areas */
+.section-wine {
+  background: var(--color-wine);
+  color: #ffffff;
+}
+
+.section-wine h1,
+.section-wine h2,
+.section-wine h3,
+.section-wine h4 {
+  color: #ffffff;
+}
+
+.section-wine p {
+  color: rgba(205, 191, 204, 0.9); /* lite beige text on wine bg */
 }
 
 /* Section Header Component */
@@ -421,10 +462,10 @@ img {
   margin-bottom: var(--space-4);
 }
 
-.section-header .gold-line {
+.section-header .accent-line {
   width: 60px;
   height: 2px;
-  background: var(--color-gold);
+  background: var(--color-wine); /* Wine accent line for maximum brand impact */
   margin: var(--space-4) auto;
 }
 
@@ -441,7 +482,7 @@ img {
   font-weight: 600;
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  color: var(--color-gold);
+  color: var(--color-wine);
   margin-bottom: var(--space-4);
   display: block;
 }
@@ -552,8 +593,8 @@ img {
 
 .form-input:focus {
   outline: none;
-  border-color: var(--color-gold);
-  box-shadow: 0 0 0 3px var(--color-gold-glow);
+  border-color: var(--color-wine);
+  box-shadow: 0 0 0 3px var(--color-wine-glow);
 }
 
 .form-input::placeholder {
@@ -565,13 +606,13 @@ img {
   resize: vertical;
 }
 
-/* ===== GOLD DECORATIVE ELEMENTS ===== */
-.gold-accent {
-  color: var(--color-gold);
+/* ===== ACCENT DECORATIVE ELEMENTS ===== */
+.accent-accent {
+  color: var(--color-accent);
 }
 
-.gold-border-left {
-  border-left: 3px solid var(--color-gold);
+.accent-border-left {
+  border-left: 3px solid var(--color-accent);
   padding-left: var(--space-6);
 }
 
@@ -585,12 +626,12 @@ img {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-gold);
+  background: var(--color-wine);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-gold-dark);
+  background: var(--color-wine-dark);
 }
 
 .scrollbar-hide::-webkit-scrollbar {
@@ -738,14 +779,14 @@ img {
   100% { background-position: 200% 0; }
 }
 
-@keyframes pulse-gold {
+@keyframes pulse-accent {
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(135, 91, 108, 0.4);
+    box-shadow: 0 0 0 0 rgba(203, 191, 202, 0.4);
   }
 
   50% {
-    box-shadow: 0 0 0 10px rgba(135, 91, 108, 0);
+    box-shadow: 0 0 0 10px rgba(203, 191, 202, 0);
   }
 }
 
@@ -761,7 +802,7 @@ img {
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
 }
-.animate-pulse-gold { animation: pulse-gold 2s infinite; }
+.animate-pulse-accent { animation: pulse-accent 2s infinite; }
 .animate-float { animation: float 3s ease-in-out infinite; }
 
 .delay-100 { animation-delay: 100ms; }
@@ -1009,3 +1050,29 @@ img {
   background: var(--color-gold-glow);
   color: var(--color-dark);
 }
+
+/* ===== HEADER CRITICAL CSS ===== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn { animation: fadeIn 0.3s ease forwards; }
+.text-wine { color: var(--color-wine); }
+.text-dark { color: var(--color-dark); }
+.text-muted { color: var(--color-text-muted); }
+.text-text-light { color: var(--color-text-light); }
+.border-border { border-color: var(--color-border); }
+.border-border\:30 { border-color: rgba(192, 173, 192, 0.4); }
+.bg-cream { background-color: var(--color-bg-cream); }
+.hover\:bg-cream:hover { background-color: var(--color-bg-cream); }
+.hover\:text-wine:hover { color: var(--color-wine); }
+.hover\:text-wine-dark:hover { color: var(--color-wine-dark); }
+.hover\:pl-6:hover { padding-left: 1.5rem; }
+.hover\:pl-8:hover { padding-left: 2rem; }
+.line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (min-width: 1280px) { .xl\:grid-cols-6 { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+.header-book-btn { display: none; }
+@media (min-width: 1024px) { .header-book-btn { display: inline-flex; } }
+.mobile-menu-btn { display: flex; }
+@media (min-width: 1024px) { .mobile-menu-btn { display: none; } }

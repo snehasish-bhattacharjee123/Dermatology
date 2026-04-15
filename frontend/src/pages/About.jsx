@@ -39,7 +39,7 @@ export default function About() {
     return (
         <div style={{ background: '#fff' }}>
             <style>{`
-                .about-gold { color: var(--color-gold); }
+                .about-wine { color: var(--color-wine); }
                 .about-dark { color: var(--color-dark); }
                 .about-muted { color: var(--color-text-muted); }
                 
@@ -48,9 +48,9 @@ export default function About() {
 
                 /* Value cards */
                 .about-value-card { background: #fff; padding: 2.5rem; border: 1px solid #f0ede8; text-align: center; transition: all 0.4s ease; }
-                .about-value-card:hover { box-shadow: 0 20px 60px rgba(0,0,0,0.1); transform: translateY(-6px); border-color: var(--color-gold); }
+                .about-value-card:hover { box-shadow: 0 20px 60px rgba(0,0,0,0.1); transform: translateY(-6px); border-color: var(--color-wine); }
                 .about-value-icon { width: 4rem; height: 4rem; border-radius: 50%; background: var(--color-bg-cream); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; transition: background 0.3s; }
-                .about-value-card:hover .about-value-icon { background: var(--color-gold); }
+                .about-value-card:hover .about-value-icon { background: var(--color-wine); }
                 .about-value-card:hover .about-value-icon svg { color: #fff !important; }
 
                 /* Team cards */
@@ -61,7 +61,7 @@ export default function About() {
                 .about-team-card:hover .about-team-overlay { opacity: 1; }
                 
                 /* Achievement items */
-                .about-achievement { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 0; border-bottom: 1px solid rgba(135,91,108,0.12); }
+                .about-achievement { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 0; border-bottom: 1px solid rgba(86, 58, 86, 0.12); }
                 .about-achievement:last-child { border-bottom: none; }
 
                 /* Stat item hover */
@@ -69,7 +69,7 @@ export default function About() {
 
                 /* CTA Section */
                 .about-cta-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--color-dark); color: #fff; padding: 1rem 2.5rem; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; transition: all 0.3s; }
-                .about-cta-btn:hover { background: var(--color-gold); }
+                .about-cta-btn:hover { background: var(--color-wine); }
                 .about-cta-btn-outline { display: inline-flex; align-items: center; gap: 0.5rem; background: transparent; color: #fff; padding: 1rem 2.5rem; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; border: 1px solid rgba(255,255,255,0.5); transition: all 0.3s; }
                 .about-cta-btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
             `}</style>
@@ -91,17 +91,16 @@ export default function About() {
                         alt="D'CosMedis Clinic"
                         className="about-hero-img"
                     />
-                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(57,33,47,0.92) 0%, rgba(57,33,47,0.6) 60%, rgba(0,0,0,0.3) 100%)' }} />
                 </div>
 
                 <div className="container" style={{ position: 'relative', zIndex: 2, textAlign: 'center' }}>
                     <RevealWrapper>
-                        <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-gold)', background: 'rgba(135,91,108,0.15)', border: '1px solid rgba(135,91,108,0.35)', borderRadius: '9999px', padding: '0.4rem 1.25rem', marginBottom: '1.5rem' }}>
+                        <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-wine)', background: 'rgba(86,58,86,0.15)', border: '1px solid rgba(86,58,86,0.35)', borderRadius: '9999px', padding: '0.4rem 1.25rem', marginBottom: '1.5rem' }}>
                             Discover Our Legacy
                         </span>
                         <h1 style={{ fontFamily: 'var(--font-heading)', color: '#fff', letterSpacing: '6px', textTransform: 'uppercase', fontSize: 'clamp(2.5rem, 8vw, 6rem)', lineHeight: 1.05, marginBottom: '1.5rem' }}>
                             <span style={{ fontWeight: 300 }}>ABOUT </span>
-                            <span style={{ fontWeight: 700, color: 'var(--color-gold)' }}>D'COSMEDIS</span>
+                            <span style={{ fontWeight: 700, color: 'var(--color-wine)' }}>D'COSMEDIS</span>
                         </h1>
                         <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: 'clamp(1rem, 2vw, 1.25rem)', fontWeight: 300, maxWidth: '42rem', margin: '0 auto', lineHeight: 1.75 }}>
                             Where science meets beauty — pioneering advanced dermatology and aesthetic medicine in India for over 30 years.
@@ -111,13 +110,13 @@ export default function About() {
 
                 {/* Scroll indicator */}
                 <div style={{ position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
-                    <div style={{ width: '1px', height: '3rem', background: 'linear-gradient(to bottom, transparent, var(--color-gold))' }} />
+                    <div style={{ width: '1px', height: '3rem', background: 'linear-gradient(to bottom, transparent, var(--color-wine))' }} />
                     <span style={{ fontSize: '0.5rem', letterSpacing: '3px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)' }}>Scroll</span>
                 </div>
             </section>
 
             {/* ─── STORY SECTION ─── */}
-            <section style={{ padding: '7rem 0', background: '#fff' }}>
+            <section style={{ padding: '7rem 0', background: 'var(--color-bg-cream)' }}>
                 <div className="container" style={{ maxWidth: '80rem' }}>
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '5rem', alignItems: 'center' }}>
 
@@ -135,9 +134,9 @@ export default function About() {
                                     position: 'absolute',
                                     bottom: '-2rem',
                                     right: '-2rem',
-                                    background: 'var(--color-gold)',
+                                    background: 'var(--color-wine)',
                                     padding: '2rem 2.5rem',
-                                    boxShadow: '0 20px 60px rgba(135,91,108,0.4)',
+                                    boxShadow: '0 20px 60px rgba(86,58,86,0.4)',
                                 }}>
                                     <p style={{ fontFamily: 'var(--font-heading)', color: '#fff', fontSize: '4rem', fontWeight: 300, lineHeight: 1 }}>30+</p>
                                     <span style={{ display: 'block', color: 'rgba(255,255,255,0.9)', fontSize: '0.625rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, marginTop: '0.5rem' }}>
@@ -145,7 +144,7 @@ export default function About() {
                                     </span>
                                 </div>
                                 {/* Decorative frame */}
-                                <div style={{ position: 'absolute', top: '-1.5rem', left: '-1.5rem', width: '8rem', height: '8rem', border: '2px solid var(--color-gold)', opacity: 0.3, zIndex: -1 }} />
+                                <div style={{ position: 'absolute', top: '-1.5rem', left: '-1.5rem', width: '8rem', height: '8rem', border: '2px solid var(--color-wine)', opacity: 0.3, zIndex: -1 }} />
                             </div>
                         </RevealWrapper>
 
@@ -158,11 +157,11 @@ export default function About() {
 
                                 <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2.25rem, 4vw, 3.5rem)', color: 'var(--color-dark)', lineHeight: 1.2, marginBottom: '2rem' }}>
                                     A Legacy of <br />
-                                    <span style={{ fontStyle: 'italic', color: 'var(--color-gold)' }}>Care &amp; Innovation</span>
+                                    <span style={{ fontStyle: 'italic', color: 'var(--color-wine)' }}>Care &amp; Innovation</span>
                                 </h2>
 
                                 {/* Quote block */}
-                                <blockquote style={{ borderLeft: '3px solid var(--color-gold)', paddingLeft: '1.5rem', marginBottom: '2rem' }}>
+                                <blockquote style={{ borderLeft: '3px solid var(--color-wine)', paddingLeft: '1.5rem', marginBottom: '2rem' }}>
                                     <p style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', fontStyle: 'italic', color: 'var(--color-dark)', lineHeight: 1.7, fontWeight: 400 }}>
                                         "At D'CosMedis, we believe that everyone deserves to feel confident in their skin. Our mission is to provide world-class dermatological care using cutting-edge technology."
                                     </p>
@@ -187,14 +186,14 @@ export default function About() {
                                 <div style={{ marginBottom: '2.5rem' }}>
                                     {achievements.map((a, i) => (
                                         <div key={i} className="about-achievement">
-                                            <CheckCircle size={16} style={{ color: 'var(--color-gold)', flexShrink: 0 }} />
+                                            <CheckCircle size={16} style={{ color: 'var(--color-wine)', flexShrink: 0 }} />
                                             <span style={{ fontSize: '0.9375rem', color: 'var(--color-dark)', fontWeight: 500 }}>{a}</span>
                                         </div>
                                     ))}
                                 </div>
 
                                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
-                                    <Link to="/book" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'var(--color-gold)', color: '#fff', padding: '1rem 2rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, transition: 'background 0.3s' }}>
+                                    <Link to="/book" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'var(--color-wine)', color: '#fff', padding: '1rem 2rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, transition: 'background 0.3s' }}>
                                         Book Consultation
                                     </Link>
                                     <Link to="/treatments" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'transparent', color: 'var(--color-dark)', padding: '1rem 2rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, border: '1px solid var(--color-border)', transition: 'all 0.3s' }}>
@@ -226,7 +225,7 @@ export default function About() {
                             <RevealWrapper key={i} direction="up" delay={i * 0.1}>
                                 <div className="about-value-card">
                                     <div className="about-value-icon">
-                                        <val.icon size={24} style={{ color: 'var(--color-gold)', transition: 'color 0.3s' }} />
+                                        <val.icon size={24} style={{ color: 'var(--color-wine)', transition: 'color 0.3s' }} />
                                     </div>
                                     <h4 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', color: 'var(--color-dark)', marginBottom: '0.75rem' }}>
                                         {val.title}
@@ -242,7 +241,7 @@ export default function About() {
             </section>
 
             {/* ─── TEAM ─── */}
-            <section style={{ padding: '7rem 0', background: '#fff' }}>
+            <section style={{ padding: '7rem 0', background: 'var(--color-bg-cream)' }}>
                 <div className="container" style={{ maxWidth: '80rem' }}>
                     <RevealWrapper>
                         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
@@ -250,7 +249,7 @@ export default function About() {
                                 Meet the Experts
                             </span>
                             <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--color-dark)', marginBottom: '0.75rem' }}>
-                                Our <span style={{ fontStyle: 'italic', color: 'var(--color-gold)' }}>Team</span>
+                                Our <span style={{ fontStyle: 'italic', color: 'var(--color-wine)' }}>Team</span>
                             </h2>
                             <p style={{ color: 'var(--color-text-muted)', maxWidth: '36rem', margin: '0 auto', lineHeight: 1.75 }}>
                                 Led by Dr. Dolly Gupta, our team of specialists brings decades of expertise to every consultation and treatment.
@@ -276,10 +275,10 @@ export default function About() {
                                         <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.5rem', color: 'var(--color-dark)', marginBottom: '0.4rem' }}>
                                             {member.name}
                                         </h3>
-                                        <span style={{ display: 'block', fontSize: '0.625rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-gold)', marginBottom: '0.5rem' }}>
+                                        <span style={{ display: 'block', fontSize: '0.625rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-wine)', marginBottom: '0.5rem' }}>
                                             {member.role}
                                         </span>
-                                        <div style={{ width: '2.5rem', height: '2px', background: 'var(--color-gold)' }} />
+                                        <div style={{ width: '2.5rem', height: '2px', background: 'var(--color-wine)' }} />
                                     </div>
                                 </div>
                             </RevealWrapper>
@@ -295,7 +294,7 @@ export default function About() {
             </section>
 
             {/* ─── STATS STRIP ─── */}
-            <section style={{ background: 'var(--color-gold)', padding: '5rem 0' }}>
+            <section style={{ background: 'var(--color-wine)', padding: '5rem 0' }}>
                 <div className="container" style={{ maxWidth: '80rem' }}>
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '2rem' }}>
                         {stats.map((stat, i) => (
@@ -317,20 +316,20 @@ export default function About() {
             {/* ─── CTA BANNER ─── */}
             <section style={{ position: 'relative', padding: '8rem 0', overflow: 'hidden' }}>
                 <div style={{ position: 'absolute', inset: 0 }}>
-                    <img
+                     <img
                         src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1920&q=80"
                         alt=""
-                        style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.25)' }}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     />
                 </div>
                 <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center', maxWidth: '52rem' }}>
                     <RevealWrapper>
-                        <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-gold)', marginBottom: '1.25rem' }}>
+                        <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-wine)', marginBottom: '1.25rem' }}>
                             Begin Your Journey
                         </span>
                         <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 3.25rem)', color: '#fff', marginBottom: '1.5rem', lineHeight: 1.25 }}>
                             Ready to Experience the <br />
-                            <span style={{ fontStyle: 'italic', color: 'var(--color-gold)' }}>D'CosMedis Difference?</span>
+                            <span style={{ fontStyle: 'italic', color: 'var(--color-wine)' }}>D'CosMedis Difference?</span>
                         </h2>
                         <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '1.0625rem', lineHeight: 1.8, marginBottom: '2.5rem', fontWeight: 300 }}>
                             Book a complimentary consultation with our expert dermatologists and discover a treatment plan crafted exclusively for you.

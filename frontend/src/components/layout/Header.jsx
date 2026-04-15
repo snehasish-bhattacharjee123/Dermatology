@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { Menu, X, Phone, ChevronDown, ArrowRight, Flame, Palette, Sparkles, Scissors, Eye, Sun, Search } from 'lucide-react'
+import { Menu, X, Phone, ChevronDown, ArrowRight, Flame, Palette, Sparkles, Scissors, Eye, Sun, Search, MapPin } from 'lucide-react'
 import { Caption } from '../ui/Typography'
 
 const navLinks = [
@@ -163,7 +163,7 @@ export default function Header() {
             <div
                 className="fixed top-0 left-0 w-full z-[1001] transition-all duration-500"
                 style={{
-                    background: 'var(--color-gold)',
+                    background: 'var(--color-wine)',
                     height: isScrolled ? '0px' : 'var(--header-top-bar-height)',
                     overflow: 'hidden',
                     opacity: isScrolled ? 0 : 1,
@@ -184,9 +184,12 @@ export default function Header() {
                         </Caption>
                     </div>
                     <div className="flex items-center gap-4">
-                        <Caption variant="badge" className="hidden sm:inline-flex bg-white/20 text-white border-0">
-                            Delhi &bull; Gurugram &bull; Ludhiana
-                        </Caption>
+                        <div className="hidden sm:flex items-center bg-white/20 px-4 py-1.5 rounded-full backdrop-blur-md border border-white/20 shadow-sm transition-all duration-300 hover:bg-white/30 cursor-default">
+                            <MapPin size={12} className="text-white mr-1.5 flex-shrink-0" />
+                            <span className="font-body text-[11px] font-bold tracking-[2px] uppercase text-white mt-[1px]">
+                                Delhi <span className="text-white/50 mx-1.5">&bull;</span> Gurugram <span className="text-white/50 mx-1.5">&bull;</span> Ludhiana
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -210,12 +213,12 @@ export default function Header() {
                         <div className="flex flex-col">
                             <span
                                 className="text-2xl tracking-[6px] uppercase font-medium"
-                                style={{ fontFamily: 'var(--font-display)', color: 'var(--color-dark)' }}
+                                style={{ fontFamily: 'var(--font-display)', color: 'var(--color-wine)' }}
                             >
                                 D'COSMEDIS
                             </span>
-                            <Caption variant="caption" className="text-text-light tracking-wider">
-                                Advanced Aesthetics
+                            <Caption variant="caption" style={{ color: 'var(--color-text-light)', letterSpacing: '3px', fontSize: '0.55rem', textTransform: 'uppercase', fontWeight: 600 }}>
+                                SKIN &bull; HAIR &bull; WELLNESS
                             </Caption>
                         </div>
                     </Link>
@@ -232,8 +235,8 @@ export default function Header() {
                                 <Link
                                     to={link.path || '#'}
                                     className={`flex items-center gap-1.5 px-4 py-2 font-medium tracking-wider uppercase transition-all duration-300 text-sm rounded-md hover:bg-cream ${location.pathname === link.path
-                                        ? 'text-gold'
-                                        : 'text-dark hover:text-gold'
+                                        ? 'text-wine'
+                                        : 'text-dark hover:text-wine'
                                         }`}
                                     style={{ fontFamily: 'var(--font-body)' }}
                                     aria-current={location.pathname === link.path ? 'page' : undefined}
@@ -268,10 +271,10 @@ export default function Header() {
                                                 <Link
                                                     key={item.name}
                                                     to={item.path}
-                                                    className={`block px-5 py-3 text-sm transition-all duration-200 hover:pl-6 hover:text-gold ${index !== link.dropdown.length - 1
+                                                    className={`block px-5 py-3 text-sm transition-all duration-200 hover:pl-6 hover:text-wine ${index !== link.dropdown.length - 1
                                                         ? 'border-b border-border/30'
                                                         : ''
-                                                        } ${location.pathname === item.path ? 'text-gold font-medium' : 'text-muted'}`}
+                                                        } ${location.pathname === item.path ? 'text-wine font-medium' : 'text-muted'}`}
                                                     style={{ fontFamily: 'var(--font-body)' }}
                                                     role="menuitem"
                                                 >
@@ -285,7 +288,7 @@ export default function Header() {
                                                     <div className="flex flex-wrap -mx-4">
                                                         {link.megaMenu.map((category) => (
                                                             <div key={category.category} className="w-1/3 px-4 mb-6">
-                                                                <h3 className="font-medium text-gold border-b border-border/30 pb-2 mb-3 text-sm tracking-wider uppercase" style={{ fontFamily: 'var(--font-display)' }}>
+                                                                <h3 className="font-medium text-wine border-b border-border/30 pb-2 mb-3 text-sm tracking-wider uppercase" style={{ fontFamily: 'var(--font-display)' }}>
                                                                     {category.category}
                                                                 </h3>
                                                                 <ul className="space-y-2 relative">
@@ -293,7 +296,7 @@ export default function Header() {
                                                                         <li key={item.name}>
                                                                             <Link
                                                                                 to={item.path}
-                                                                                className={`text-[15px] transition-colors hover:text-gold block ${location.pathname === item.path ? 'text-gold font-medium' : 'text-muted'}`}
+                                                                                className={`text-[15px] transition-colors hover:text-wine block ${location.pathname === item.path ? 'text-wine font-medium' : 'text-muted'}`}
                                                                                 style={{ fontFamily: 'var(--font-body)' }}
                                                                             >
                                                                                 {item.name}
@@ -306,7 +309,7 @@ export default function Header() {
                                                     </div>
                                                     <div className="mt-2 pt-4 border-t border-border/30 flex justify-between items-center bg-cream/30 -mx-6 -mb-4 px-10 pb-4 pt-4 rounded-b-xl">
                                                         <p className="text-sm font-medium text-dark tracking-wide">Not sure which treatment is right for you?</p>
-                                                        <a href="https://api.whatsapp.com/send/?phone=917738891858&text=Hello%20there!" target="_blank" rel="noreferrer" className="btn btn-primary text-xs py-2 px-5 flex items-center gap-2 rounded-full border border-gold hover:bg-gold hover:text-white transition-colors" style={{ fontFamily: 'var(--font-body)' }}>
+                                                        <a href="https://api.whatsapp.com/send/?phone=917738891858&text=Hello%20there!" target="_blank" rel="noreferrer" className="btn btn-primary text-xs py-2 px-5 flex items-center gap-2 rounded-full border border-wine hover:bg-wine hover:text-white transition-colors" style={{ fontFamily: 'var(--font-body)' }}>
                                                             <span>Chat with us</span>
                                                         </a>
                                                     </div>
@@ -325,7 +328,7 @@ export default function Header() {
                                                         </div>
                                                         <Link
                                                             to="/concerns"
-                                                            className="flex items-center gap-2 text-sm font-medium text-gold hover:text-gold-dark transition-colors"
+                                                            className="flex items-center gap-2 text-sm font-medium text-wine hover:text-wine-dark transition-colors"
                                                         >
                                                             View All Concerns <ArrowRight size={16} />
                                                         </Link>
@@ -372,7 +375,7 @@ export default function Header() {
                     <div className="flex items-center" style={{ gap: '4px' }}>
                         <button
                             onClick={() => setIsSearchOpen(true)}
-                            className="w-10 h-10 flex items-center justify-center transition-all duration-300 hover:bg-black/5 hover:text-gold text-dark rounded-full"
+                            className="w-10 h-10 flex items-center justify-center transition-all duration-300 hover:bg-black/5 hover:text-wine text-dark rounded-full"
                             aria-label="Open Search"
                         >
                             <Search size={20} />
@@ -524,7 +527,7 @@ export default function Header() {
                                             <li key={item.name}>
                                                 <Link
                                                     to={item.path}
-                                                    className="block py-3 text-[15px] text-dark hover:text-gold transition-colors"
+                                                    className="block py-3 text-[15px] text-dark hover:text-wine transition-colors"
                                                     style={{ fontFamily: 'var(--font-body)' }}
                                                     onClick={() => setIsMobileOpen(false)}
                                                 >
@@ -538,7 +541,7 @@ export default function Header() {
                                     <div className="flex flex-col pb-8">
                                         {link.megaMenu.map((category) => (
                                             <div key={category.category} className="mb-6 last:mb-0">
-                                                <h4 className="text-[16px] text-gold font-medium leading-tight py-2 uppercase tracking-wide border-b border-border/30 mb-2">
+                                                <h4 className="text-[16px] text-wine font-medium leading-tight py-2 uppercase tracking-wide border-b border-border/30 mb-2">
                                                     {category.category}
                                                 </h4>
                                                 <ul className="flex flex-col space-y-1">
@@ -546,7 +549,7 @@ export default function Header() {
                                                         <li key={item.name}>
                                                             <Link
                                                                 to={item.path}
-                                                                className="block py-1.5 text-[15px] text-dark hover:text-gold transition-colors"
+                                                                className="block py-1.5 text-[15px] text-dark hover:text-wine transition-colors"
                                                                 style={{ fontFamily: 'var(--font-body)' }}
                                                                 onClick={() => setIsMobileOpen(false)}
                                                             >
@@ -561,7 +564,7 @@ export default function Header() {
                                 )}
                                 {link.megaMenuWithImages && (
                                     <div className="flex flex-col pb-8">
-                                        <h4 className="text-[16px] text-gold font-medium leading-tight py-2 uppercase tracking-wide border-b border-border/30 mb-4">
+                                        <h4 className="text-[16px] text-wine font-medium leading-tight py-2 uppercase tracking-wide border-b border-border/30 mb-4">
                                             What Bothers You?
                                         </h4>
                                         <div className="flex flex-col gap-3">
@@ -581,7 +584,7 @@ export default function Header() {
                                                     </div>
                                                     <div className="flex-1 min-w-0">
                                                         <h5
-                                                            className="text-[15px] font-medium text-dark group-hover:text-gold transition-colors"
+                                                            className="text-[15px] font-medium text-dark group-hover:text-wine transition-colors"
                                                             style={{ fontFamily: 'var(--font-display)' }}
                                                         >
                                                             {item.title}
@@ -593,13 +596,13 @@ export default function Header() {
                                                             {item.description}
                                                         </p>
                                                     </div>
-                                                    <ArrowRight size={16} className="shrink-0 text-gold opacity-0 group-hover:opacity-100 transition-opacity" />
+                                                    <ArrowRight size={16} className="shrink-0 text-wine opacity-0 group-hover:opacity-100 transition-opacity" />
                                                 </Link>
                                             ))}
                                         </div>
                                         <Link
                                             to="/concerns"
-                                            className="mt-4 flex items-center justify-center gap-2 py-3 text-sm font-semibold text-gold border border-gold/30 rounded-xl hover:bg-gold/5 transition-colors"
+                                            className="mt-4 flex items-center justify-center gap-2 py-3 text-sm font-semibold text-wine border border-wine/30 rounded-xl hover:bg-wine/5 transition-colors"
                                             onClick={() => setIsMobileOpen(false)}
                                         >
                                             View All Concerns <ArrowRight size={14} />
@@ -612,89 +615,6 @@ export default function Header() {
                 </div>
             </div>
 
-            <style>{`
-                @keyframes fadeIn {
-                    from { 
-                        opacity: 0; 
-                        transform: translateY(15px); 
-                    }
-                    to { 
-                        opacity: 1; 
-                        transform: translateY(0); 
-                    }
-                }
-                .animate-fadeIn {
-                    animation: fadeIn 0.3s ease forwards;
-                }
-                .text-gold {
-                    color: var(--color-gold);
-                }
-                .text-dark {
-                    color: var(--color-dark);
-                }
-                .text-muted {
-                    color: var(--color-text-muted);
-                }
-                .text-text-light {
-                    color: var(--color-text-light);
-                }
-                .border-border {
-                    border-color: var(--color-border);
-                }
-                .border-border\/30 {
-                    border-color: rgba(232, 230, 226, 0.5);
-                }
-                .bg-cream {
-                    background-color: var(--color-bg-cream);
-                }
-                .hover\:bg-cream:hover {
-                    background-color: var(--color-bg-cream);
-                }
-                .hover\:text-gold:hover {
-                    color: var(--color-gold);
-                }
-                .hover\:text-gold-dark:hover {
-                    color: var(--color-gold-dark);
-                }
-                .hover\:pl-6:hover {
-                    padding-left: 1.5rem;
-                }
-                .hover\:pl-8:hover {
-                    padding-left: 2rem;
-                }
-                .line-clamp-2 {
-                    display: -webkit-box;
-                    -webkit-line-clamp: 2;
-                    -webkit-box-orient: vertical;
-                    overflow: hidden;
-                }
-                .grid-cols-3 {
-                    grid-template-columns: repeat(3, minmax(0, 1fr));
-                }
-                @media (min-width: 1280px) {
-                    .xl\:grid-cols-6 {
-                        grid-template-columns: repeat(6, minmax(0, 1fr));
-                    }
-                }
-                /* Book Appointment button: hidden on mobile, visible on desktop */
-                .header-book-btn {
-                    display: none;
-                }
-                @media (min-width: 1024px) {
-                    .header-book-btn {
-                        display: inline-flex;
-                    }
-                }
-                /* Mobile menu burger: hidden on desktop */
-                .mobile-menu-btn {
-                    display: flex;
-                }
-                @media (min-width: 1024px) {
-                    .mobile-menu-btn {
-                        display: none;
-                    }
-                }
-            `}</style>
-        </>
+            </>
     )
 }

@@ -10,10 +10,10 @@ const variantStyles = {
     // Labels (form labels, card labels)
     label: 'font-body text-[12px] font-semibold tracking-[1.5px] uppercase text-text-muted',
     'label-white': 'font-body text-[12px] font-semibold tracking-[1.5px] uppercase text-white',
-    'label-gold': 'font-body text-[12px] font-semibold tracking-[1.5px] uppercase text-gold',
+    'label-wine': 'font-body text-[12px] font-semibold tracking-[1.5px] uppercase text-wine',
 
     // Overlines (section overlines)
-    overline: 'font-body text-[12px] font-semibold tracking-[1.5px] uppercase text-gold',
+    overline: 'font-body text-[12px] font-semibold tracking-[1.5px] uppercase text-wine',
     'overline-white': 'font-body text-[12px] font-semibold tracking-[1.5px] uppercase text-white',
     'overline-muted': 'font-body text-[12px] font-semibold tracking-[1.5px] uppercase text-text-muted',
 
@@ -22,8 +22,8 @@ const variantStyles = {
     'caption-white': 'font-body text-[14px] font-medium tracking-wide text-white/75',
 
     // Badges/Tags
-    badge: 'font-body text-[12px] font-semibold tracking-[1.5px] uppercase text-white bg-gold px-3 py-1 rounded-full',
-    'badge-outline': 'font-body text-[12px] font-semibold tracking-[1.5px] uppercase text-dark border border-dark px-3 py-1 rounded-full',
+    badge: 'font-body text-[12px] font-semibold tracking-[1.5px] uppercase text-white bg-wine px-3 py-1 rounded-full',
+    'badge-outline': 'font-body text-[12px] font-semibold tracking-[1.5px] uppercase text-wine border border-wine px-3 py-1 rounded-full',
 };
 
 export function Caption({
