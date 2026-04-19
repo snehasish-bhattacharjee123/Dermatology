@@ -70,7 +70,11 @@ export function RevealWrapper({ children, className = '', direction = 'up', dela
             { threshold: 0.1, rootMargin: '0px 0px -30px 0px' }
         )
 
-        observer.observe(el)
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(() => observer.observe(el), { timeout: 1000 })
+        } else {
+            setTimeout(() => observer.observe(el), 100)
+        }
         return () => observer.disconnect()
     }, [delay, getTransform])
 

@@ -14,25 +14,33 @@
   <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
   <link rel="dns-prefetch" href="https://images.unsplash.com" />
 
-  <!-- Preload first hero image to improve LCP -->
+  <!-- Preload first hero image dynamically based on viewport to perfect LCP -->
   <link
     rel="preload"
     as="image"
-    href="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1280&q=75"
+    imagesrcset="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400&q=75 400w, https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=75 800w"
+    media="(max-width: 640px)"
+    fetchpriority="high"
+  />
+  <link
+    rel="preload"
+    as="image"
+    imagesrcset="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1280&q=75 1280w, https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1600&q=75 1600w"
+    media="(min-width: 641px)"
     fetchpriority="high"
   />
 
-  <!-- Google Fonts: async (non-blocking) to avoid render-blocking LCP penalty -->
+  <!-- Google Fonts: async with font-display=swap to prevent CLS -->
   <link
     rel="preload"
     as="style"
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap&font-display=swap"
     onload="this.rel='stylesheet'"
   />
   <noscript>
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap&font-display=swap"
     />
   </noscript>
   <title>D'CosMedis Clinic – Best Skin Clinic in Delhi</title>

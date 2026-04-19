@@ -11,6 +11,23 @@ export default defineConfig({
     },
     dedupe: ['react', 'react-dom'],
   },
+  build: {
+    minify: 'esbuild',
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+          'vendor-gsap': ['gsap'],
+          'vendor-lucide': ['lucide-react'],
+          'vendor-ui': ['class-variance-authority', 'clsx', 'tailwind-merge'],
+        },
+      },
+    },
+  },
+  define: {
+    'process.env.NODE_ENV': '"production"',
+  },
   server: {
     port: 5173,
     proxy: {
