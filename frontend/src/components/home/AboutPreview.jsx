@@ -4,7 +4,7 @@ import { RevealWrapper, ParallaxImage } from '../../hooks/useAnimations'
 // ===== ABOUT PREVIEW - PREMIUM =====
 export default function AboutPreview() {
     return (
-        <section className="section bg-cream py-16 md:py-24 overflow-hidden border-t border-border">
+        <section className="section py-16 md:py-24 overflow-hidden border-t border-[#d4c8b0]" style={{ background: '#EDE8D0' }}>
             <div className="container max-w-6xl">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
                     <RevealWrapper direction="left">
@@ -13,7 +13,7 @@ export default function AboutPreview() {
                                 src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=720&q=75"
                                 alt="Dr. Dolly Gupta"
                                 className="rounded-sm shadow-xl"
-                                style={{ height: '600px' }}
+                                style={{ height: '400px' }}
                                 speed={-0.1}
                                 sizes="(max-width: 1024px) 100vw, 50vw"
                                 srcSet="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=480&q=75 480w, https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=720&q=75 720w, https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=900&q=75 900w"

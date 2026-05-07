@@ -49,7 +49,7 @@ export default function ExclusiveSection() {
     }
 
     return (
-        <section className="section bg-cream overflow-hidden py-16 md:py-24">
+        <section className="section overflow-hidden py-16 md:py-24" style={{ background: '#EDE8D0' }}>
             <div className="container max-w-6xl">
                 <RevealWrapper>
                     <div className="text-center mb-16 md:mb-20">
@@ -85,18 +85,18 @@ export default function ExclusiveSection() {
                         <Link
                             key={category.name}
                             to={category.path}
-                            className="flex-shrink-0 w-[260px] md:w-[320px] group border border-[#f0ede8] bg-white rounded-sm hover-lift"
-                            style={{ scrollSnapAlign: 'start' }}
+                            className="flex-shrink-0 w-[220px] md:w-[320px] group border border-[#d4c8b0] rounded-sm hover-lift"
+                            style={{ scrollSnapAlign: 'start', background: '#F5F0DC' }}
                         >
-                            <div className="h-[240px] md:h-[280px] flex flex-col items-center justify-center p-8 transition-colors">
-                                <div className="w-16 h-16 rounded-full flex items-center justify-center mb-8 bg-[#f8f6f3] group-hover:bg-wine transition-colors duration-500">
-                                    <span className="text-2xl text-wine group-hover:text-white transition-colors duration-500">✨</span>
+                            <div className="h-[200px] md:h-[280px] flex flex-col items-center justify-center p-6 md:p-8 transition-colors">
+                                <div className="w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center mb-5 md:mb-8" style={{ background: '#EDE8D0' }}>
+                                    <span className="text-xl md:text-2xl" style={{ color: '#954795' }}>✨</span>
                                 </div>
-                                <h3 className="text-lg font-serif tracking-widest text-center mb-2 text-dark">
+                                <h3 className="text-base md:text-lg font-serif tracking-widest text-center mb-2 text-dark">
                                     {category.name}
                                 </h3>
                                 {category.subname && (
-                                    <h4 className="text-[10px] uppercase font-bold tracking-[2px] text-center text-[#888]">
+                                    <h4 className="text-[9px] md:text-[10px] uppercase font-bold tracking-[2px] text-center text-[#888]">
                                         {category.subname}
                                     </h4>
                                 )}

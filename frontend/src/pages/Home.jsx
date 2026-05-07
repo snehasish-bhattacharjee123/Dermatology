@@ -15,7 +15,9 @@ const LazyAboutPreview = lazy(() => import('../components/home/AboutPreview'))
 const LazyRealResultsSection = lazy(() => import('../components/home/RealResultsSection'))
 const LazyTestimonialsSection = lazy(() => import('../components/home/TestimonialsSection'))
 const LazyExclusiveSection = lazy(() => import('../components/home/ExclusiveSection'))
-const LazyFloatingCTA = lazy(() => import('../components/home/FloatingCTA'))
+const LazyContactSection = lazy(() => import('../components/home/ContactSection').then(m => ({ default: m.HomeContactSection })))
+const LazyConnectWithUs = lazy(() => import('../components/home/ContactSection').then(m => ({ default: m.ConnectWithUsSection })))
+const LazyAwardsSection = lazy(() => import('../components/home/ContactSection').then(m => ({ default: m.AwardsSection })))
 
 // Minimal section placeholder for lazy sections
 function SectionFallback() {
@@ -52,33 +54,53 @@ export default function Home() {
                     .hide-on-mobile {
                         display: none !important;
                     }
+                    /* Hero: half screen on mobile */
+                    .hero-mobile-half {
+                        min-height: 50vh !important;
+                        height: 50vh !important;
+                    }
+                    .hero-content-mobile {
+                        min-height: 50vh !important;
+                    }
+                    /* Stats: 4 columns on mobile */
+                    .stats-grid {
+                        grid-template-columns: repeat(4, 1fr) !important;
+                        gap: 4px !important;
+                    }
+                    .stats-icon { display: none !important; }
+                    .stats-number { font-size: 1.1rem !important; }
+                    .stats-label { font-size: 0.55rem !important; letter-spacing: 0.03em !important; }
+                    .stats-item-pad { padding: 10px 2px !important; }
                 }
             `}</style>
             <HeroSection />
             <StatsBar />
-            <Suspense fallback={<SectionFallback />}>
+            {/* <Suspense fallback={<SectionFallback />}>
                 <LazyConcernsSection />
+            </Suspense> */}
+            <Suspense fallback={<SectionFallback />}>
+                <LazyExclusiveSection />
             </Suspense>
             <Suspense fallback={<SectionFallback />}>
                 <LazyTreatmentsSection />
             </Suspense>
-            {/* <TreatmentsAtAGlance /> */}
             <Suspense fallback={<SectionFallback />}>
-                <LazyExclusiveSection />
+                <LazyTestimonialsSection />
+            </Suspense>
+            <Suspense fallback={<SectionFallback />}>
+                <LazyContactSection />
+            </Suspense>
+            <Suspense fallback={<SectionFallback />}>
+                <LazyConnectWithUs />
+            </Suspense>
+            <Suspense fallback={<SectionFallback />}>
+                <LazyAwardsSection />
             </Suspense>
             <Suspense fallback={<SectionFallback />}>
                 <LazyAboutPreview />
             </Suspense>
             <Suspense fallback={<SectionFallback />}>
                 <LazyRealResultsSection />
-            </Suspense>
-            <Suspense fallback={<SectionFallback />}>
-                <LazyTestimonialsSection />
-            </Suspense>
-            {/* <LocationsSection /> */}
-            {/* <CTASection /> */}
-            <Suspense fallback={null}>
-                <LazyFloatingCTA />
             </Suspense>
         </>
     )
@@ -131,7 +153,7 @@ function HeroSection() {
 
     return (
         <section
-            className="relative overflow-hidden bg-dark"
+            className="relative overflow-hidden bg-dark hero-mobile-half"
             style={{
                 minHeight: '100dvh',
                 height: 'auto',
@@ -158,7 +180,7 @@ function HeroSection() {
 
             {/* Content */}
             <div
-                className="relative flex items-center min-h-[100dvh] pt-[var(--header-total-height)] pb-20 md:pb-24"
+                className="relative flex items-center hero-content-mobile min-h-[100dvh] pt-[var(--header-total-height)] pb-16 md:pb-24"
             >
                 <div className="container relative z-10 w-full px-4 md:px-8">
                     <div ref={textRef} className="max-w-3xl mt-[-40px] md:mt-0">
@@ -176,13 +198,6 @@ function HeroSection() {
                         <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto">
                             <Link to={slide.ctaLink} className="btn btn-primary w-full sm:w-auto text-center justify-center py-3.5 md:py-4 flex items-center">
                                 {slide.cta} <ArrowRight size={18} className="ml-2" />
-                            </Link>
-                            <Link
-                                to="/book"
-                                className="btn btn-outline w-full sm:w-auto text-center justify-center py-3.5 md:py-4 transition-colors duration-300"
-                                style={{ borderColor: 'rgba(255,255,255,1)', color: '#fff' }}
-                            >
-                                Book Consultation
                             </Link>
                         </div>
                     </div>
@@ -280,19 +295,19 @@ function StatsBar() {
     return (
         <div
             className="relative z-10"
-            style={{ background: 'var(--color-wine)' }}
+            style={{ background: '#954795' }}
         >
-            <div className="container py-10 md:py-14">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
+            <div className="container py-6 md:py-14">
+                <div className="stats-grid grid grid-cols-4 md:grid-cols-4 gap-2 md:gap-4">
                     {stats.map((stat, i) => (
                         <RevealWrapper key={i} direction="up" delay={i * 0.1}>
-                            <div className="text-center">
-                                <div className="mb-4 flex justify-center"><StatIcon index={i} /></div>
+                            <div className="stats-item-pad text-center py-3 md:py-0">
+                                <div className="stats-icon mb-3 md:mb-4 flex justify-center"><StatIcon index={i} /></div>
                                 <div
-                                    className="text-white font-medium stat-number"
+                                    className="text-white font-medium stats-number"
                                     style={{
                                         fontFamily: 'var(--font-display)',
-                                        fontSize: 'clamp(2rem, 4vw, 3.5rem)',
+                                        fontSize: 'clamp(1.1rem, 4vw, 3.5rem)',
                                         lineHeight: 1.1,
                                     }}
                                 >
@@ -301,8 +316,8 @@ function StatsBar() {
                                         suffix={stat.value.includes('+') ? '+' : stat.value.includes('%') ? '%' : ''}
                                     />
                                 </div>
-                                <p className="mt-3 text-white text-sm md:text-base font-medium opacity-90 tracking-wide uppercase"
-                                    style={{ fontFamily: 'var(--font-body)', letterSpacing: '0.08em' }}>
+                                <p className="stats-label mt-1 md:mt-3 text-white text-[0.55rem] md:text-base font-medium opacity-90 uppercase"
+                                    style={{ fontFamily: 'var(--font-body)', letterSpacing: '0.04em' }}>
                                     {stat.label}
                                 </p>
                             </div>

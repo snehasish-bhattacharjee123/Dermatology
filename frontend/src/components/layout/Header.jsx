@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { Menu, X, Phone, ChevronDown, ArrowRight, Flame, Palette, Sparkles, Scissors, Eye, Sun, Search, MapPin } from 'lucide-react'
+import { Menu, X, Phone, ChevronDown, ArrowRight, Flame, Palette, Sparkles, Scissors, Eye, Sun, Search, MapPin, Instagram, Facebook, Youtube } from 'lucide-react'
 import { Caption } from '../ui/Typography'
 
 const navLinks = [
@@ -184,6 +184,18 @@ export default function Header() {
                         </Caption>
                     </div>
                     <div className="flex items-center gap-4">
+                        {/* Social Icons */}
+                        <div className="hidden lg:flex items-center gap-3 mr-2">
+                            <a href="https://www.instagram.com/aaynaclinic_official/" target="_blank" rel="noreferrer" className="text-white/80 hover:text-white transition-colors">
+                                <Instagram size={14} />
+                            </a>
+                            <a href="https://www.facebook.com/aaynaclinic/" target="_blank" rel="noreferrer" className="text-white/80 hover:text-white transition-colors">
+                                <Facebook size={14} />
+                            </a>
+                            <a href="https://www.youtube.com/channel/UCF4-AP5qfQ_VKyNZjhKfb4Q" target="_blank" rel="noreferrer" className="text-white/80 hover:text-white transition-colors">
+                                <Youtube size={14} />
+                            </a>
+                        </div>
                         <div className="hidden sm:flex items-center bg-white/20 px-4 py-1.5 rounded-full backdrop-blur-md border border-white/20 shadow-sm transition-all duration-300 hover:bg-white/30 cursor-default">
                             <MapPin size={12} className="text-white mr-1.5 flex-shrink-0" />
                             <span className="font-body text-[11px] font-bold tracking-[2px] uppercase text-white mt-[1px]">

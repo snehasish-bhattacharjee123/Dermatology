@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
+import FloatingSocials from './components/layout/FloatingSocials'
 
 // Route-level code splitting — each page is a separate JS chunk
 // loaded only when that route is first visited
@@ -63,6 +64,7 @@ function App() {
         </Suspense>
       </main>
       <Footer />
+      <FloatingSocials />
     </div>
   )
 }

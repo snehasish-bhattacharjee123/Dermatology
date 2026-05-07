@@ -22,7 +22,7 @@ export default function TestimonialsSection() {
         >
             <div
                 className="absolute top-20 right-20 w-64 h-64 rounded-full opacity-5"
-                style={{ background: 'var(--color-wine)', filter: 'blur(80px)' }}
+                style={{ background: '#954795', filter: 'blur(80px)' }}
             />
 
             <div className="container relative z-10">
@@ -40,60 +40,59 @@ export default function TestimonialsSection() {
                         {/* Main Card */}
                         <RevealWrapper>
                             <div
-                                className="flex flex-col md:flex-row gap-8 md:gap-12 items-stretch"
-                                style={{ minHeight: '400px' }}
+                                className="flex flex-col md:flex-row gap-6 md:gap-12 items-stretch"
+                                style={{ minHeight: '300px' }}
                             >
+                                {/* Image Side - appears first on mobile */}
+                                <div className="flex-1 flex items-center justify-center order-1">
+                                    <img
+                                        src={testimonials[active].image}
+                                        alt={testimonials[active].name}
+                                        className="w-full rounded-lg"
+                                        loading="lazy"
+                                        decoding="async"
+                                        style={{
+                                            maxWidth: '100%',
+                                            height: '260px',
+                                            objectFit: 'cover',
+                                            objectPosition: 'center top'
+                                        }}
+                                    />
+                                </div>
                                 {/* Content Side */}
-                                <div className="flex-1 flex flex-col justify-center order-2 md:order-1">
+                                <div className="flex-1 flex flex-col justify-center order-2">
                                     <div className="mb-4">
                                         <h2
-                                            className="text-2xl md:text-3xl font-bold mb-2 tracking-wide"
+                                            className="text-xl md:text-3xl font-bold mb-2 tracking-wide"
                                             style={{
                                                 fontFamily: 'var(--font-display)',
-                                                color: '#ffffff'
+                                                color: '#EDE8D0'
                                             }}
                                         >
                                             {testimonials[active].name}
                                         </h2>
                                         <p
-                                            className="text-base md:text-lg opacity-80"
-                                            style={{ color: '#ffffff' }}
+                                            className="text-sm md:text-lg opacity-80"
+                                            style={{ color: '#EDE8D0' }}
                                         >
                                             {testimonials[active].role}
                                         </p>
                                     </div>
 
                                     <div
-                                        className="w-[30%] h-px mb-6"
-                                        style={{ background: 'var(--color-wine)' }}
+                                        className="w-[30%] h-px mb-4 md:mb-6"
+                                        style={{ background: '#954795' }}
                                     />
 
                                     <p
-                                        className="text-base md:text-lg leading-relaxed"
+                                        className="text-sm md:text-lg leading-relaxed"
                                         style={{
                                             fontFamily: 'var(--font-display)',
-                                            color: 'rgba(255, 255, 255, 0.9)'
+                                            color: 'rgba(237, 232, 208, 0.9)'
                                         }}
                                     >
                                         "{testimonials[active].content}"
                                     </p>
-                                </div>
-
-                                {/* Image Side */}
-                                <div className="flex-1 flex items-center justify-center order-1 md:order-2">
-                                    <img
-                                        src={testimonials[active].image}
-                                        alt={testimonials[active].name}
-                                        className="w-full max-w-[350px] h-[350px] object-cover object-center rounded-lg"
-                                        loading="lazy"
-                                        decoding="async"
-                                        style={{
-                                            maxWidth: '400px',
-                                            height: '400px',
-                                            objectFit: 'cover',
-                                            objectPosition: 'center center'
-                                        }}
-                                    />
                                 </div>
                             </div>
                         </RevealWrapper>

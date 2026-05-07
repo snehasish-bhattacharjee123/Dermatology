@@ -6,57 +6,57 @@
 
 :root {
   /* ========================================
-     COLORS - D'CosMedis Brand Palette (Updated April 2026)
-     New palette: Wine #543856, Lite Beige #cdbfcc, Dark #0d1319
+     COLORS - D'CosMedis Brand Palette
+     New palette: Purple #954795, Beige #EDE8D0, Dark #0d1319
      ======================================== */
 
-  /* ── PRIMARY: Deep Wine/Plum ── */
-  --color-wine: #543856;
+  /* ── PRIMARY: Purple ── */
+  --color-wine: #954795;
   /* Primary brand color */
-  --color-wine-dark: #3d2840;
+  --color-wine-dark: #6f346f;
   /* Hover/pressed state */
-  --color-wine-light: #6a566b;
+  --color-wine-light: #ad6aad;
   /* Lighter variant for borders */
-  --color-wine-glow: rgba(84, 56, 86, 0.18);
+  --color-wine-glow: rgba(149, 71, 149, 0.18);
   /* Glow / shadow accent */
 
-  /* ── ACCENT: Lite Beige / Lavender ── */
-  --color-accent: #cdbfcc;
-  /* Highlight color — lite beige/lavender */
-  --color-accent-dark: #a08ba0;
+  /* ── ACCENT: Beige ── */
+  --color-accent: #EDE8D0;
+  /* Highlight color — beige */
+  --color-accent-dark: #d6cfb3;
   /* Darker accent for text on beige */
-  --color-accent-light: #c0adc0;
+  --color-accent-light: #f5f0e1;
   /* Softer accent for subtle areas */
 
   /* ── DARK BASE: Near-black for headings & deep sections ── */
   --color-dark: #0d1319;
   /* Primary headings & high-contrast text */
-  --color-dark-soft: #543856;
+  --color-dark-soft: #954795;
   /* Wine as a softer dark variant */
 
   /* ── TEXT SYSTEM ── */
   --color-text: #0d1319;
   /* Primary body text — dark for readability */
-  --color-text-muted: #6a566b;
+  --color-text-muted: #ad6aad;
   /* Muted text — wine mid-tone */
-  --color-text-light: #827084;
+  --color-text-light: #b09bb0;
   /* Placeholder / disabled text */
 
   /* ── BACKGROUND SYSTEM ── */
-  --color-bg-white: #FFFFFF;
-  --color-bg-cream: #faf8f5;
+  --color-bg-white: #EDE8D0;
+  --color-bg-cream: #f5f0e1;
   /* Warm off-white for body/page bg */
-  --color-bg-secondary: #cdbfcc;
+  --color-bg-secondary: #EDE8D0;
   /* Lite beige sections */
-  --color-bg-light: #ede8ed;
+  --color-bg-light: #f9f5ea;
   /* Light lavender — card/alternating bg */
   --color-bg-dark: #0d1319;
   /* Near-black for footer/dark sections */
 
   /* ── BORDERS ── */
-  --color-border: #c0adc0;
+  --color-border: #d6cfb3;
   /* Soft wine-toned border */
-  --color-border-light: #ede8ed;
+  --color-border-light: #e8dfc3;
   /* Very light for cards */
 
   /* ── SYSTEM ── */

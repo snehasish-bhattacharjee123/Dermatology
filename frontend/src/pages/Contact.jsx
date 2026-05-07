@@ -10,7 +10,7 @@ const contactInfo = [
         value: '+91 11 2634 7890',
         sub: 'Mon – Sat, 10am – 7pm',
         href: 'tel:+911126347890',
-        color: 'rgba(135,91,108,0.12)',
+        color: 'rgba(149, 71, 149,0.12)',
     },
     {
         icon: Mail,
@@ -18,7 +18,7 @@ const contactInfo = [
         value: 'info@dcosmedisclinic.com',
         sub: 'We respond within 24 hours',
         href: 'mailto:info@dcosmedisclinic.com',
-        color: 'rgba(135,91,108,0.12)',
+        color: 'rgba(149, 71, 149,0.12)',
     },
     {
         icon: MapPin,
@@ -26,14 +26,14 @@ const contactInfo = [
         value: 'SDA Market, Hauz Khas',
         sub: 'New Delhi – 110016',
         href: 'https://maps.google.com',
-        color: 'rgba(135,91,108,0.12)',
+        color: 'rgba(149, 71, 149,0.12)',
     },
     {
         icon: Clock,
         label: 'Working Hours',
         value: 'Mon – Sat: 10am – 7pm',
         sub: 'Sunday by appointment',
-        color: 'rgba(135,91,108,0.12)',
+        color: 'rgba(149, 71, 149,0.12)',
     },
 ]
 
@@ -84,23 +84,23 @@ export default function Contact() {
     }
 
     return (
-        <div style={{ background: '#fff' }}>
+        <div style={{ background: '#EDE8D0' }}>
             <style>{`
                 /* ── Hero ── */
                 .ct-hero-gradient { display: none; }
 
                 /* ── Info cards ── */
-                .ct-info-card { display: flex; align-items: flex-start; gap: 1.25rem; padding: 1.5rem; border: 1px solid #f0ede8; background: #fff; transition: all 0.35s ease; }
-                .ct-info-card:hover { border-color: var(--color-wine); box-shadow: 0 12px 40px rgba(86, 58, 86, 0.12); transform: translateY(-3px); }
-                .ct-info-icon { width: 3rem; height: 3rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: rgba(86, 58, 86, 0.1); transition: background 0.3s; }
+                .ct-info-card { display: flex; align-items: flex-start; gap: 1.25rem; padding: 1.5rem; border: 1px solid #d6cfb3; background: #f5f0e1; transition: all 0.35s ease; }
+                .ct-info-card:hover { border-color: var(--color-wine); box-shadow: 0 12px 40px rgba(149, 71, 149, 0.12); transform: translateY(-3px); }
+                .ct-info-icon { width: 3rem; height: 3rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: rgba(149, 71, 149, 0.1); transition: background 0.3s; }
                 .ct-info-card:hover .ct-info-icon { background: var(--color-wine); }
                 .ct-info-card:hover .ct-info-icon svg { color: #fff !important; }
 
                 /* ── Form ── */
                 .ct-label { display: block; font-size: 0.6rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 0.6rem; }
-                .ct-input { width: 100%; padding: 0.875rem 1rem; font-family: var(--font-body); font-size: 0.9375rem; color: var(--color-dark); background: #fff; border: 1px solid #e0dbd5; outline: none; transition: border-color 0.3s, box-shadow 0.3s; }
-                .ct-input:focus { border-color: var(--color-wine); box-shadow: 0 0 0 3px rgba(86, 58, 86, 0.1); }
-                .ct-input::placeholder { color: #bbb; }
+                .ct-input { width: 100%; padding: 0.875rem 1rem; font-family: var(--font-body); font-size: 0.9375rem; color: var(--color-dark); background: #f5f0e1; border: 1px solid #d6cfb3; outline: none; transition: border-color 0.3s, box-shadow 0.3s; }
+                .ct-input:focus { border-color: var(--color-wine); box-shadow: 0 0 0 3px rgba(149, 71, 149, 0.1); }
+                .ct-input::placeholder { color: #b09bb0; }
                 .ct-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; cursor: pointer; }
                 .ct-submit { width: 100%; padding: 1.1rem; background: var(--color-dark); color: #fff; font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.75rem; transition: all 0.3s; }
                 .ct-submit:hover { background: var(--color-wine); }
