@@ -217,34 +217,37 @@ export function HomeContactSection() {
 // ===== CONNECT WITH US SECTION =====
 export function ConnectWithUsSection() {
     return (
-        <section style={{ background: '#b5a99a', padding: '3rem 0' }}>
+        <section style={{ background: '#954795', padding: '4.5rem 0', color: '#EDE8D0' }}>
             <div className="container" style={{ maxWidth: '50rem' }}>
                 <RevealWrapper>
-                    <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-                        <span style={{ display: 'block', fontSize: '0.55rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: '#fff', marginBottom: '0' }}>
-                            CONNECT WITH US
+                    <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+                        <span style={{ display: 'block', fontSize: '0.6rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: 'rgba(237, 232, 208, 0.8)', marginBottom: '1rem' }}>
+                            Stay Connected
                         </span>
+                        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 5vw, 2.75rem)', color: '#EDE8D0', marginBottom: '1rem', lineHeight: 1.15 }}>
+                            CONNECT WITH US
+                        </h2>
+                        <p style={{ fontSize: '0.95rem', color: 'rgba(237, 232, 208, 0.9)', maxWidth: '400px', margin: '0 auto', lineHeight: 1.6 }}>
+                            Follow us for skincare tips, before-and-after stories, and exclusive offers.
+                        </p>
                     </div>
 
-                    {/* Social Icons */}
-                    <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', marginBottom: '2rem' }}>
+                    {/* Social Cards */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                         {socials.map((s, i) => (
                             <a key={i} href={s.href} target="_blank" rel="noopener noreferrer"
-                                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '48px', height: '48px', borderRadius: '50%', border: '2px solid rgba(255,255,255,0.6)', background: 'rgba(255,255,255,0.1)', color: '#fff', transition: 'all 0.3s' }}
+                                className="group flex flex-col items-center justify-center p-8 rounded-xl transition-all duration-300"
+                                style={{ background: 'rgba(237, 232, 208, 0.05)', border: '1px solid rgba(237, 232, 208, 0.2)' }}
                                 aria-label={s.name}
                             >
-                                <s.icon size={20} />
-                            </a>
-                        ))}
-                    </div>
-
-                    {/* CTA Buttons */}
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.75rem' }}>
-                        {socials.map((s, i) => (
-                            <a key={i} href={s.href} target="_blank" rel="noopener noreferrer"
-                                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.35rem', padding: '0.75rem 0.5rem', border: '1px solid rgba(255,255,255,0.6)', color: '#fff', fontSize: '0.6rem', letterSpacing: '1.5px', textTransform: 'uppercase', fontWeight: 600, transition: 'all 0.3s', textDecoration: 'none', background: 'transparent' }}
-                            >
-                                {s.cta} <ArrowRight size={10} />
+                                <div className="w-14 h-14 rounded-full flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:bg-[#EDE8D0] group-hover:text-[#954795]" style={{ background: 'rgba(237, 232, 208, 0.1)', color: '#EDE8D0' }}>
+                                    <s.icon size={24} strokeWidth={1.5} />
+                                </div>
+                                <span style={{ fontSize: '0.85rem', fontWeight: 600, letterSpacing: '1px', marginBottom: '0.25rem' }}>{s.name}</span>
+                                <span style={{ fontSize: '0.7rem', color: 'rgba(237, 232, 208, 0.6)', marginBottom: '1.25rem' }}>{s.handle}</span>
+                                <span style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontSize: '0.65rem', letterSpacing: '1.5px', textTransform: 'uppercase', fontWeight: 700, color: '#EDE8D0' }} className="group-hover:translate-x-1 transition-transform">
+                                    {s.cta} <ArrowRight size={12} />
+                                </span>
                             </a>
                         ))}
                     </div>

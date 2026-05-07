@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback, lazy, Suspense } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
+import { ArrowRight, ChevronLeft, ChevronRight, Award, Smile, MapPin, Sparkles } from 'lucide-react'
 import { RevealWrapper, ParallaxImage } from '../hooks/useAnimations'
 import { Heading, Text, Caption } from '../components/ui/Typography'
 import { heroSlides, stats } from '../data/homeData'
@@ -67,7 +67,7 @@ export default function Home() {
                         grid-template-columns: repeat(4, 1fr) !important;
                         gap: 4px !important;
                     }
-                    .stats-icon { display: none !important; }
+                    .stats-icon svg { width: 20px; height: 20px; }
                     .stats-number { font-size: 1.1rem !important; }
                     .stats-label { font-size: 0.55rem !important; letter-spacing: 0.03em !important; }
                     .stats-item-pad { padding: 10px 2px !important; }
@@ -276,22 +276,9 @@ function AnimatedCounter({ target, suffix = '' }) {
     return <span ref={ref}>{display}</span>
 }
 
-// Lazy-load stat icons only when StatsBar is visible
-function StatIcon({ index }) {
-    const [Icon, setIcon] = useState(null)
-
-    useEffect(() => {
-        const iconNames = ['UserCog', 'SmilePlus', 'Building2', 'Sparkles']
-        import('lucide-react').then(mod => {
-            setIcon(() => mod[iconNames[index]])
-        })
-    }, [index])
-
-    if (!Icon) return <div className="w-8 h-8" />
-    return <Icon size={32} strokeWidth={1.5} className="text-white mx-auto" />
-}
-
 function StatsBar() {
+    const statIcons = [Award, Smile, MapPin, Sparkles]
+
     return (
         <div
             className="relative z-10"
@@ -299,10 +286,14 @@ function StatsBar() {
         >
             <div className="container py-6 md:py-14">
                 <div className="stats-grid grid grid-cols-4 md:grid-cols-4 gap-2 md:gap-4">
-                    {stats.map((stat, i) => (
-                        <RevealWrapper key={i} direction="up" delay={i * 0.1}>
-                            <div className="stats-item-pad text-center py-3 md:py-0">
-                                <div className="stats-icon mb-3 md:mb-4 flex justify-center"><StatIcon index={i} /></div>
+                    {stats.map((stat, i) => {
+                        const Icon = statIcons[i]
+                        return (
+                            <RevealWrapper key={i} direction="up" delay={i * 0.1}>
+                                <div className="stats-item-pad text-center py-3 md:py-0">
+                                    <div className="stats-icon mb-3 md:mb-4 flex justify-center">
+                                        <Icon size={32} strokeWidth={1.5} className="text-white mx-auto" />
+                                    </div>
                                 <div
                                     className="text-white font-medium stats-number"
                                     style={{
@@ -322,7 +313,8 @@ function StatsBar() {
                                 </p>
                             </div>
                         </RevealWrapper>
-                    ))}
+                        )
+                    })}
                 </div>
             </div>
         </div>
