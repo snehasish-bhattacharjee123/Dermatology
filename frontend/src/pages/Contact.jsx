@@ -328,7 +328,7 @@ export default function Contact() {
             </section>
 
             {/* ─── CTA ─── */}
-            <section style={{ background: 'var(--color-wine)', padding: '5rem 0', textAlign: 'center' }}>
+            {/* <section style={{ background: 'var(--color-wine)', padding: '5rem 0', textAlign: 'center' }}>
                 <div className="container" style={{ maxWidth: '44rem' }}>
                     <RevealWrapper>
                         <span style={{ display: 'block', fontSize: '0.625rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: 'rgba(255,255,255,0.7)', marginBottom: '1rem' }}>Ready to Begin?</span>
@@ -343,7 +343,7 @@ export default function Contact() {
                         </Link>
                     </RevealWrapper>
                 </div>
-            </section>
+            </section> */}
         </div>
     )
 }
