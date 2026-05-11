@@ -140,7 +140,7 @@ export default function Gallery() {
             </section>
 
             {/* ─── STATS BAR ─── */}
-            <section style={{ background: 'var(--color-dark)', padding: '0' }}>
+            {/* <section style={{ background: 'var(--color-dark)', padding: '0' }}>
                 <div className="container">
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))' }}>
                         {[
@@ -156,7 +156,7 @@ export default function Gallery() {
                         ))}
                     </div>
                 </div>
-            </section>
+            </section> */}
 
             {/* ─── FILTER TABS ─── */}
             <section style={{ background: 'var(--color-bg-cream)', padding: '2.5rem 0', borderBottom: '1px solid #f0ede8', position: 'sticky', top: 0, zIndex: 10, backdropFilter: 'blur(12px)' }}>

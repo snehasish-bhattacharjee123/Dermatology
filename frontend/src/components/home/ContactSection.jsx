@@ -236,18 +236,21 @@ export function ConnectWithUsSection() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                         {socials.map((s, i) => (
                             <a key={i} href={s.href} target="_blank" rel="noopener noreferrer"
-                                className="group flex flex-col items-center justify-center p-8 rounded-xl transition-all duration-300"
+                                className="group flex flex-row md:flex-col items-center md:justify-center p-5 md:p-8 rounded-xl transition-all duration-500 overflow-hidden relative"
                                 style={{ background: 'rgba(237, 232, 208, 0.05)', border: '1px solid rgba(237, 232, 208, 0.2)' }}
                                 aria-label={s.name}
                             >
-                                <div className="w-14 h-14 rounded-full flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:bg-[#EDE8D0] group-hover:text-[#954795]" style={{ background: 'rgba(237, 232, 208, 0.1)', color: '#EDE8D0' }}>
-                                    <s.icon size={24} strokeWidth={1.5} />
+                                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" style={{ background: s.bg }}></div>
+                                <div className="relative z-10 w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center mr-4 md:mr-0 md:mb-5 transition-transform duration-500 group-hover:scale-110 group-hover:bg-white group-hover:text-[#954795]" style={{ background: 'rgba(237, 232, 208, 0.1)', color: '#EDE8D0' }}>
+                                    <s.icon size={22} strokeWidth={1.5} />
                                 </div>
-                                <span style={{ fontSize: '0.85rem', fontWeight: 600, letterSpacing: '1px', marginBottom: '0.25rem' }}>{s.name}</span>
-                                <span style={{ fontSize: '0.7rem', color: 'rgba(237, 232, 208, 0.6)', marginBottom: '1.25rem' }}>{s.handle}</span>
-                                <span style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontSize: '0.65rem', letterSpacing: '1.5px', textTransform: 'uppercase', fontWeight: 700, color: '#EDE8D0' }} className="group-hover:translate-x-1 transition-transform">
-                                    {s.cta} <ArrowRight size={12} />
-                                </span>
+                                <div className="relative z-10 flex flex-col items-start md:items-center flex-1">
+                                    <span className="text-white group-hover:text-white transition-colors" style={{ fontSize: '1rem', fontWeight: 600, letterSpacing: '1px', marginBottom: '0.15rem' }}>{s.name}</span>
+                                    <span className="text-white/60 group-hover:text-white/90 transition-colors" style={{ fontSize: '0.75rem' }}>{s.handle}</span>
+                                </div>
+                                <div className="relative z-10 md:mt-4 flex items-center justify-center gap-2 group-hover:translate-x-1 transition-transform group-hover:text-white text-[#EDE8D0]" style={{ fontSize: '0.7rem', letterSpacing: '1.5px', textTransform: 'uppercase', fontWeight: 700 }}>
+                                    <span className="hidden md:inline">{s.cta}</span> <ArrowRight size={14} />
+                                </div>
                             </a>
                         ))}
                     </div>

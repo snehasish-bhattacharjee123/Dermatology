@@ -64,7 +64,7 @@ export default function TreatmentsSection() {
             <div className="relative">
                 <div
                     ref={carouselRef}
-                    className="flex gap-6 md:gap-8 overflow-x-auto scrollbar-hide px-4 md:px-8 lg:px-[max(var(--container-padding),calc((100vw-var(--container-max))/2+var(--container-padding)))] pb-8 pt-4"
+                    className="flex gap-6 md:gap-8 scrollbar-hide px-4 md:px-8 lg:px-[max(var(--container-padding),calc((100vw-var(--container-max))/2+var(--container-padding)))] pb-8 pt-4"
                     style={{
                         scrollSnapType: 'x mandatory',
                         WebkitOverflowScrolling: 'touch',
@@ -73,7 +73,7 @@ export default function TreatmentsSection() {
                     }}
                 >
                     {treatments.slice(0, 6).map((treatment, i) => (
-                        <RevealWrapper key={treatment.id} direction="up" delay={i * 0.08} className="flex-shrink-0 w-[260px] md:w-[350px] h-full flex flex-col">
+                        <RevealWrapper key={treatment.id} direction="up" delay={i * 0.08} className="flex-shrink-0 w-[260px] md:w-[350px] h-full flex flex-col" style={{ scrollSnapAlign: 'start' }}>
                             <Link to={`/treatments/${treatment.slug}`} className="treatment-card card group flex flex-col flex-1 hover-lift h-full border border-[#d4c8b0] rounded-2xl shadow-sm transition-all duration-500 overflow-hidden hover:shadow-2xl hover:border-wine/30" style={{ background: '#F5F0DC' }}>
                                 <div className="overflow-hidden relative h-[180px] md:h-[220px]">
                                     <img
@@ -86,12 +86,12 @@ export default function TreatmentsSection() {
                                         srcSet={`${treatment.image.replace(/w=\d+/, 'w=400')} 400w, ${treatment.image.replace(/w=\d+/, 'w=600')} 600w, ${treatment.image} 800w`}
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                    <div
+                                    {/* <div
                                         className="absolute top-4 left-4 px-3.5 py-1.5 text-[9px] tracking-[2px] uppercase text-white rounded-full font-bold shadow-md backdrop-blur-md"
                                         style={{ background: 'var(--color-wine)' }}
                                     >
                                         {treatment.category}
-                                    </div>
+                                    </div> */}
                                 </div>
                                 <div className="card-body p-6 flex flex-col flex-1">
                                     <h3 className="transition-colors duration-300 mb-2.5 font-serif group-hover:text-wine" style={{ fontSize: '1.25rem', fontWeight: 600, color: 'var(--color-dark)', lineHeight: 1.3 }}>
@@ -104,7 +104,7 @@ export default function TreatmentsSection() {
                                         className="flex items-center justify-between mt-auto pt-4 border-t border-[#f0ede8]"
                                     >
                                         <span className="flex items-center gap-1.5 font-bold tracking-[2px] uppercase text-wine transition-colors text-[10px]">
-                                            View <ArrowRight size={14} className="mt-0.5 transition-transform duration-300 group-hover:translate-x-1" />
+                                            {/* View <ArrowRight size={14} className="mt-0.5 transition-transform duration-300 group-hover:translate-x-1" /> */}
                                         </span>
                                         <span
                                             className="text-[9px] tracking-[1px] uppercase font-bold text-[#8a7f76] bg-[#f8f6f3] px-2 py-1 rounded-sm"
@@ -140,11 +140,6 @@ export default function TreatmentsSection() {
             </div>
 
             <div className="container mt-8 md:mt-12 text-center">
-                <RevealWrapper>
-                    <Link to="/treatments" className="inline-flex items-center justify-center border border-wine px-8 py-4 text-xs tracking-[2px] uppercase font-semibold text-white bg-wine hover:bg-wine-dark transition-all duration-300">
-                        View All Treatments
-                    </Link>
-                </RevealWrapper>
             </div>
 
             <style>{`

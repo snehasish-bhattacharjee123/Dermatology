@@ -43,27 +43,11 @@ export default function TestimonialsSection() {
                                 className="flex flex-col md:flex-row gap-6 md:gap-12 items-stretch"
                                 style={{ minHeight: '300px' }}
                             >
-                                {/* Image Side - appears first on mobile */}
-                                <div className="flex-1 flex items-center justify-center order-1">
-                                    <img
-                                        src={testimonials[active].image}
-                                        alt={testimonials[active].name}
-                                        className="w-full rounded-lg"
-                                        loading="lazy"
-                                        decoding="async"
-                                        style={{
-                                            maxWidth: '100%',
-                                            height: '260px',
-                                            objectFit: 'cover',
-                                            objectPosition: 'center top'
-                                        }}
-                                    />
-                                </div>
-                                {/* Content Side */}
-                                <div className="flex-1 flex flex-col justify-center order-2">
+                                {/* Content Side (Text left 70%) */}
+                                <div className="w-full md:w-[70%] flex flex-col justify-center order-2 md:order-1 pt-4 md:pt-0">
                                     <div className="mb-4">
                                         <h2
-                                            className="text-xl md:text-3xl font-bold mb-2 tracking-wide"
+                                            className="text-2xl md:text-3xl font-bold mb-2 tracking-wide"
                                             style={{
                                                 fontFamily: 'var(--font-display)',
                                                 color: '#EDE8D0'
@@ -71,28 +55,43 @@ export default function TestimonialsSection() {
                                         >
                                             {testimonials[active].name}
                                         </h2>
-                                        <p
-                                            className="text-sm md:text-lg opacity-80"
-                                            style={{ color: '#EDE8D0' }}
+                                        <h2
+                                            className="text-lg md:text-xl opacity-80"
+                                            style={{ color: '#EDE8D0', fontFamily: 'var(--font-display)' }}
                                         >
                                             {testimonials[active].role}
-                                        </p>
+                                        </h2>
                                     </div>
 
                                     <div
-                                        className="w-[30%] h-px mb-4 md:mb-6"
-                                        style={{ background: '#954795' }}
+                                        className="w-[30%] h-px mb-6"
+                                        style={{ background: 'var(--color-wine)' }}
                                     />
 
                                     <p
-                                        className="text-sm md:text-lg leading-relaxed"
+                                        className="text-base md:text-lg leading-relaxed italic"
                                         style={{
                                             fontFamily: 'var(--font-display)',
-                                            color: 'rgba(237, 232, 208, 0.9)'
+                                            color: '#EDE8D0'
                                         }}
                                     >
                                         "{testimonials[active].content}"
                                     </p>
+                                </div>
+
+                                {/* Image Side (Right 30%) */}
+                                <div className="w-full md:w-[30%] flex items-center justify-end order-1 md:order-2">
+                                    <img
+                                        src={testimonials[active].image}
+                                        alt={testimonials[active].name}
+                                        className="w-full h-auto object-cover rounded-sm shadow-xl"
+                                        loading="lazy"
+                                        decoding="async"
+                                        style={{
+                                            aspectRatio: '1/1',
+                                            maxWidth: '400px'
+                                        }}
+                                    />
                                 </div>
                             </div>
                         </RevealWrapper>

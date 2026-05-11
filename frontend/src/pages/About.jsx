@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
-import { Award, Heart, Users, Sparkles, ArrowRight, CheckCircle, Star, Clock } from 'lucide-react'
-import { RevealWrapper, ParallaxImage } from '../hooks/useAnimations'
+import { Award, Heart, Users, Sparkles, ArrowRight } from 'lucide-react'
+import { RevealWrapper } from '../hooks/useAnimations'
 import { teamMembers, stats } from '../data/siteData'
 
 const values = [
@@ -26,46 +26,199 @@ const values = [
     },
 ]
 
-const achievements = [
-    'Pioneer of Botox in India (2000)',
-    'Skincare mentor for Miss India — 20+ years',
-    '"Best Skincare Expert" by Vogue & ELLE',
-    'USFDA-approved technologies only',
-    'ISO certified clinics across India',
-    'Over 30 years of clinical excellence',
-]
-
 export default function About() {
     return (
-        <div style={{ background: '#fff' }}>
+        <div className="about-page" style={{ background: '#fff', overflow: 'hidden' }}>
             <style>{`
                 .about-wine { color: var(--color-wine); }
                 .about-dark { color: var(--color-dark); }
                 .about-muted { color: var(--color-text-muted); }
                 
-                /* Hero parallax image */
-                .about-hero-img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+                /* Hero */
+                .about-hero {
+                    position: relative;
+                    height: 50vh;
+                    min-height: 400px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-top: var(--header-total-height, 0);
+                }
+                @media (min-width: 768px) {
+                    .about-hero {
+                        height: 60vh;
+                        min-height: 500px;
+                    }
+                }
+                .about-hero-bg {
+                    position: absolute; inset: 0; z-index: 0;
+                }
+                .about-hero-bg img {
+                    width: 100%; height: 100%; object-fit: cover; object-position: center;
+                }
+                .about-hero-overlay {
+                    position: absolute; inset: 0; background: rgba(0,0,0,0.3);
+                }
+                .about-hero-content {
+                    position: relative; z-index: 1; text-align: center; color: #fff;
+                    width: 100%; padding: 0 1rem;
+                }
+                .about-hero-title {
+                    font-family: var(--font-heading);
+                    font-size: clamp(2.5rem, 6vw, 5rem);
+                    letter-spacing: 4px;
+                    text-transform: uppercase;
+                    margin-bottom: 1rem;
+                    font-weight: 300;
+                    text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+                }
+                .about-hero-breadcrumb {
+                    font-size: 0.75rem;
+                    letter-spacing: 3px;
+                    text-transform: uppercase;
+                    font-weight: 600;
+                }
 
-                /* Value cards */
-                .about-value-card { background: #fff; padding: 2.5rem; border: 1px solid #f0ede8; text-align: center; transition: all 0.4s ease; }
+                /* Grid Sections */
+                .about-section {
+                    padding: 5rem 0;
+                }
+                @media (min-width: 768px) {
+                    .about-section {
+                        padding: 8rem 0;
+                    }
+                }
+                .about-grid {
+                    display: grid;
+                    grid-template-columns: 1fr;
+                    gap: 3rem;
+                    align-items: center;
+                }
+                .about-grid-start {
+                    align-items: flex-start;
+                }
+                @media (min-width: 768px) {
+                    .about-grid {
+                        grid-template-columns: 1fr 1fr;
+                        gap: 4rem;
+                    }
+                }
+                @media (min-width: 1024px) {
+                    .about-grid {
+                        gap: 6rem;
+                    }
+                }
+                
+                /* Typography for sections */
+                .about-heading-lg {
+                    font-family: var(--font-heading);
+                    font-size: clamp(2rem, 4vw, 3.5rem);
+                    line-height: 1.2;
+                    color: var(--color-dark);
+                    text-transform: uppercase;
+                    font-weight: 300;
+                }
+                .about-heading-md {
+                    font-family: var(--font-heading);
+                    font-size: clamp(1.75rem, 3vw, 2.5rem);
+                    line-height: 1.2;
+                    color: var(--color-dark);
+                    text-transform: uppercase;
+                    margin-bottom: 1.5rem;
+                    font-weight: 300;
+                }
+                .about-subtitle {
+                    font-size: 0.75rem;
+                    letter-spacing: 3px;
+                    text-transform: uppercase;
+                    color: var(--color-wine);
+                    font-weight: 700;
+                    margin-bottom: 1rem;
+                    display: inline-block;
+                }
+                .about-text {
+                    color: var(--color-text-muted, #555);
+                    line-height: 1.8;
+                    font-size: 1rem;
+                    margin-bottom: 1.5rem;
+                }
+                
+                /* Image Wrappers */
+                .about-img-wrapper {
+                    position: relative;
+                    width: 100%;
+                    height: auto;
+                    aspect-ratio: 4/5;
+                    overflow: hidden;
+                    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+                }
+                .about-img-wrapper img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    transition: transform 1.5s ease;
+                }
+                .about-img-wrapper:hover img {
+                    transform: scale(1.05);
+                }
+
+                /* Mobile vs Desktop Ordering */
+                @media (max-width: 767px) {
+                    .order-1-mob { order: 1; }
+                    .order-2-mob { order: 2; }
+                }
+                @media (min-width: 768px) {
+                    .order-1-desk { order: 1; }
+                    .order-2-desk { order: 2; }
+                }
+
+                /* Stats Section */
+                .about-stats-section {
+                    padding: 5rem 0;
+                    background: #fff;
+                    border-top: 1px solid rgba(86,58,86,0.1);
+                    border-bottom: 1px solid rgba(86,58,86,0.1);
+                }
+                .about-stats-grid {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 3rem 1.5rem;
+                    text-align: center;
+                }
+                @media (min-width: 768px) {
+                    .about-stats-grid {
+                        grid-template-columns: repeat(4, 1fr);
+                    }
+                }
+                .about-stat-value {
+                    font-family: var(--font-heading);
+                    font-size: clamp(3rem, 6vw, 4.5rem);
+                    color: var(--color-dark);
+                    margin-bottom: 0.5rem;
+                    font-weight: 300;
+                    line-height: 1;
+                }
+                .about-stat-label {
+                    font-size: 0.75rem;
+                    text-transform: uppercase;
+                    letter-spacing: 2px;
+                    color: #888;
+                    font-weight: 600;
+                }
+
+                /* Values Section */
+                .about-value-card { background: #fff; padding: 2.5rem; border: 1px solid #f0ede8; text-align: center; transition: all 0.4s ease; height: 100%; }
                 .about-value-card:hover { box-shadow: 0 20px 60px rgba(0,0,0,0.1); transform: translateY(-6px); border-color: var(--color-wine); }
                 .about-value-icon { width: 4rem; height: 4rem; border-radius: 50%; background: var(--color-bg-cream); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; transition: background 0.3s; }
                 .about-value-card:hover .about-value-icon { background: var(--color-wine); }
                 .about-value-card:hover .about-value-icon svg { color: #fff !important; }
 
-                /* Team cards */
+                /* Team Section */
                 .about-team-card { position: relative; overflow: hidden; }
                 .about-team-img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform 1.5s ease, filter 0.5s ease; filter: grayscale(15%); }
                 .about-team-card:hover .about-team-img { transform: scale(1.06); filter: grayscale(0%); }
                 .about-team-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, transparent 100%); opacity: 0; transition: opacity 0.5s ease; display: flex; align-items: flex-end; padding: 2rem; }
                 .about-team-card:hover .about-team-overlay { opacity: 1; }
-                
-                /* Achievement items */
-                .about-achievement { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 0; border-bottom: 1px solid rgba(86, 58, 86, 0.12); }
-                .about-achievement:last-child { border-bottom: none; }
-
-                /* Stat item hover */
-                .about-stat:hover { opacity: 0.85; }
 
                 /* CTA Section */
                 .about-cta-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--color-dark); color: #fff; padding: 1rem 2.5rem; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; transition: all 0.3s; }
@@ -75,145 +228,160 @@ export default function About() {
             `}</style>
 
             {/* ─── HERO ─── */}
-            <section style={{
-                position: 'relative',
-                height: '70vh',
-                minHeight: '500px',
-                display: 'flex',
-                alignItems: 'center',
-                overflow: 'hidden',
-                marginTop: 'var(--header-total-height)',
-            }}>
-                {/* Background image */}
-                <div style={{ position: 'absolute', inset: 0 }}>
+            <section className="about-hero">
+                <div className="about-hero-bg">
                     <img
                         src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1920&q=80"
                         alt="D'CosMedis Clinic"
-                        className="about-hero-img"
                     />
+                    <div className="about-hero-overlay" />
                 </div>
-
-                <div className="container" style={{ position: 'relative', zIndex: 2, textAlign: 'center' }}>
+                <div className="about-hero-content container">
                     <RevealWrapper>
-                        <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-wine)', background: 'rgba(86,58,86,0.15)', border: '1px solid rgba(86,58,86,0.35)', borderRadius: '9999px', padding: '0.4rem 1.25rem', marginBottom: '1.5rem' }}>
-                            Discover Our Legacy
-                        </span>
-                        <h1 style={{ fontFamily: 'var(--font-heading)', color: '#fff', letterSpacing: '6px', textTransform: 'uppercase', fontSize: 'clamp(2.5rem, 8vw, 6rem)', lineHeight: 1.05, marginBottom: '1.5rem' }}>
-                            <span style={{ fontWeight: 300 }}>ABOUT </span>
-                            <span style={{ fontWeight: 700, color: 'var(--color-wine)' }}>D'COSMEDIS</span>
-                        </h1>
-                        <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: 'clamp(1rem, 2vw, 1.25rem)', fontWeight: 300, maxWidth: '42rem', margin: '0 auto', lineHeight: 1.75 }}>
-                            Where science meets beauty — pioneering advanced dermatology and aesthetic medicine in India for over 30 years.
-                        </p>
+                        <h1 className="about-hero-title">About Us</h1>
+                        <div className="about-hero-breadcrumb">
+                            <Link to="/" style={{ color: '#fff', textDecoration: 'none' }}>Home</Link>
+                            <span style={{ margin: '0 0.5rem', opacity: 0.7 }}>•</span>
+                            <span>About Us</span>
+                        </div>
                     </RevealWrapper>
                 </div>
 
                 {/* Scroll indicator */}
-                <div style={{ position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
-                    <div style={{ width: '1px', height: '3rem', background: 'linear-gradient(to bottom, transparent, var(--color-wine))' }} />
-                    <span style={{ fontSize: '0.5rem', letterSpacing: '3px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)' }}>Scroll</span>
+                <div style={{ position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', zIndex: 2 }}>
+                    <div style={{ width: '1px', height: '3rem', background: 'linear-gradient(to bottom, transparent, #fff)' }} />
+                    <span style={{ fontSize: '0.5rem', letterSpacing: '3px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.8)' }}>Scroll</span>
                 </div>
             </section>
 
-            {/* ─── STORY SECTION ─── */}
-            <section style={{ padding: '7rem 0', background: 'var(--color-bg-cream)' }}>
+            {/* ─── INTRO GRID ─── */}
+            <section className="about-section" style={{ background: '#fff' }}>
                 <div className="container" style={{ maxWidth: '80rem' }}>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '5rem', alignItems: 'center' }}>
-
-                        {/* Image column */}
+                    <div className="about-grid about-grid-start">
                         <RevealWrapper direction="left">
-                            <div style={{ position: 'relative' }}>
-                                <ParallaxImage
-                                    src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&q=80"
-                                    alt="Dr. Dolly Gupta — Founder"
-                                    style={{ height: '620px', borderRadius: 0 }}
-                                    speed={-0.08}
-                                />
-                                {/* Floating badge */}
-                                <div style={{
-                                    position: 'absolute',
-                                    bottom: '-2rem',
-                                    right: '-2rem',
-                                    background: 'var(--color-wine)',
-                                    padding: '2rem 2.5rem',
-                                    boxShadow: '0 20px 60px rgba(86,58,86,0.4)',
-                                }}>
-                                    <p style={{ fontFamily: 'var(--font-heading)', color: '#fff', fontSize: '4rem', fontWeight: 300, lineHeight: 1 }}>30+</p>
-                                    <span style={{ display: 'block', color: 'rgba(255,255,255,0.9)', fontSize: '0.625rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, marginTop: '0.5rem' }}>
-                                        Years of<br />Excellence
-                                    </span>
-                                </div>
-                                {/* Decorative frame */}
-                                <div style={{ position: 'absolute', top: '-1.5rem', left: '-1.5rem', width: '8rem', height: '8rem', border: '2px solid var(--color-wine)', opacity: 0.3, zIndex: -1 }} />
-                            </div>
+                            <h2 className="about-heading-lg">
+                                Where Medical Expertise Meets Cutting - Edge Skin Science & Wellness
+                            </h2>
                         </RevealWrapper>
-
-                        {/* Text column */}
                         <RevealWrapper direction="right">
-                            <div style={{ paddingLeft: '1rem' }}>
-                                <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: '#888', marginBottom: '1rem' }}>
-                                    Our Story
-                                </span>
-
-                                <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2.25rem, 4vw, 3.5rem)', color: 'var(--color-dark)', lineHeight: 1.2, marginBottom: '2rem' }}>
-                                    A Legacy of <br />
-                                    <span style={{ fontStyle: 'italic', color: 'var(--color-wine)' }}>Care &amp; Innovation</span>
-                                </h2>
-
-                                {/* Quote block */}
-                                <blockquote style={{ borderLeft: '3px solid var(--color-wine)', paddingLeft: '1.5rem', marginBottom: '2rem' }}>
-                                    <p style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', fontStyle: 'italic', color: 'var(--color-dark)', lineHeight: 1.7, fontWeight: 400 }}>
-                                        "At D'CosMedis, we believe that everyone deserves to feel confident in their skin. Our mission is to provide world-class dermatological care using cutting-edge technology."
-                                    </p>
-                                    <cite style={{ display: 'block', marginTop: '0.75rem', fontSize: '0.625rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, color: '#888', fontStyle: 'normal' }}>
-                                        — Dr. Dolly Gupta, Founder
-                                    </cite>
-                                </blockquote>
-
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2.5rem' }}>
-                                    <p style={{ color: 'var(--color-text-muted)', lineHeight: 1.85, fontSize: '1rem' }}>
-                                        Founded over 30 years ago by Dr. Dolly Gupta, one of India's most respected dermatologists,
-                                        D'CosMedis has grown to become a leading name in advanced aesthetics. With clinics across India,
-                                        we have transformed the skin and confidence of over 50,000 patients.
-                                    </p>
-                                    <p style={{ color: 'var(--color-text-muted)', lineHeight: 1.85, fontSize: '1rem' }}>
-                                        Our approach combines medical expertise with artistic precision. Every treatment plan is customized
-                                        to the individual, ensuring natural-looking results that enhance your unique beauty.
-                                    </p>
-                                </div>
-
-                                {/* Achievement list */}
-                                <div style={{ marginBottom: '2.5rem' }}>
-                                    {achievements.map((a, i) => (
-                                        <div key={i} className="about-achievement">
-                                            <CheckCircle size={16} style={{ color: 'var(--color-wine)', flexShrink: 0 }} />
-                                            <span style={{ fontSize: '0.9375rem', color: 'var(--color-dark)', fontWeight: 500 }}>{a}</span>
-                                        </div>
-                                    ))}
-                                </div>
-
-                                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
-                                    <Link to="/book" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'var(--color-wine)', color: '#fff', padding: '1rem 2rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, transition: 'background 0.3s' }}>
-                                        Book Consultation
-                                    </Link>
-                                    <Link to="/treatments" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'transparent', color: 'var(--color-dark)', padding: '1rem 2rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, border: '1px solid var(--color-border)', transition: 'all 0.3s' }}>
-                                        Our Treatments <ArrowRight size={14} />
-                                    </Link>
-                                </div>
+                            <div>
+                                <span className="about-subtitle">About D'CosMedis</span>
+                                <p className="about-text">
+                                    At D'CosMedis, we believe that everyone deserves to feel confident in their skin. Our mission is to provide world-class dermatological care using cutting-edge technology.
+                                </p>
+                                <p className="about-text">
+                                    Founded over 30 years ago by Dr. Dolly Gupta, one of India's most respected dermatologists, D'CosMedis has grown to become a leading name in advanced aesthetics. With clinics across India, we have transformed the skin and confidence of over 50,000 patients.
+                                </p>
+                                <p className="about-text">
+                                    Our approach combines medical expertise with artistic precision. Every treatment plan is customized to the individual, ensuring natural-looking results that enhance your unique beauty.
+                                </p>
                             </div>
                         </RevealWrapper>
                     </div>
                 </div>
             </section>
 
+            {/* ─── DR DOLLY GUPTA GRID ─── */}
+            <section className="about-section" style={{ background: 'var(--color-bg-cream)' }}>
+                <div className="container" style={{ maxWidth: '80rem' }}>
+                    <div className="about-grid">
+                        <RevealWrapper direction="left" className="order-2-mob order-1-desk">
+                            <div className="about-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&q=80" alt="Dr. Dolly Gupta" />
+                            </div>
+                        </RevealWrapper>
+                        <RevealWrapper direction="right" className="order-1-mob order-2-desk">
+                            <div>
+                                <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '2.5rem', color: 'var(--color-wine)', marginBottom: '0.5rem', fontWeight: 400 }}>Dr. Dolly Gupta</h3>
+                                <h2 className="about-heading-md" style={{ fontSize: 'clamp(1.25rem, 2vw, 1.75rem)' }}>
+                                    Pioneer of Cosmetology • Award-Winning Cosmetic Physician • Author & Educator
+                                </h2>
+                                <p className="about-text">
+                                    Dr. Dolly Gupta is a visionary in the field of aesthetic medicine, introducing some of the most advanced, USFDA-approved technologies to India. Her pioneering work has set new benchmarks in patient care and clinical excellence.
+                                </p>
+                                <p className="about-text">
+                                    With an illustrious career spanning over three decades, she has been instrumental in shaping the landscape of cosmetic dermatology in the region. Her expertise is sought after by celebrities, beauty queens, and individuals seeking flawless skin.
+                                </p>
+                            </div>
+                        </RevealWrapper>
+                    </div>
+                </div>
+            </section>
+
+            {/* ─── BEAUTY QUEENS GRID ─── */}
+            <section className="about-section" style={{ background: '#fff' }}>
+                <div className="container" style={{ maxWidth: '80rem' }}>
+                    <div className="about-grid">
+                        <RevealWrapper direction="left" className="order-1-mob order-1-desk">
+                            <div>
+                                <h2 className="about-heading-md">
+                                    Skincare Expert to the Beauty Queens
+                                </h2>
+                                <p className="about-text">
+                                    For years, D'CosMedis has been the trusted skincare partner for some of the most prominent beauty pageants and celebrities. Our bespoke treatments ensure they are always camera-ready, radiating confidence and natural beauty.
+                                </p>
+                                <p className="about-text">
+                                    We understand the unique demands of high-profile lifestyles and offer discreet, highly effective solutions that deliver visible results without extensive downtime. Experience the same level of care and expertise that keeps the stars shining bright.
+                                </p>
+                            </div>
+                        </RevealWrapper>
+                        <RevealWrapper direction="right" className="order-2-mob order-2-desk">
+                            <div className="about-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80" alt="Expert Consultation" />
+                            </div>
+                        </RevealWrapper>
+                    </div>
+                </div>
+            </section>
+
+            {/* ─── TRUSTED GRID ─── */}
+            <section className="about-section" style={{ background: 'var(--color-bg-cream)' }}>
+                <div className="container" style={{ maxWidth: '80rem' }}>
+                    <div className="about-grid">
+                        <RevealWrapper direction="left" className="order-2-mob order-1-desk">
+                            <div className="about-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80" alt="Clinic Treatment" />
+                            </div>
+                        </RevealWrapper>
+                        <RevealWrapper direction="right" className="order-1-mob order-2-desk">
+                            <div>
+                                <h2 className="about-heading-md">
+                                    Tried, Tested, Trusted
+                                </h2>
+                                <p className="about-text">
+                                    Our commitment to excellence is reflected in the trust of over 50,000 satisfied patients. We don't just treat skin; we build lasting relationships based on transparency, care, and outstanding results.
+                                </p>
+                                <p className="about-text">
+                                    Every treatment at D'CosMedis undergoes rigorous testing and adheres to the highest safety standards. Our protocols are continually refined to incorporate the latest advancements in dermatological science, ensuring you receive the best care possible.
+                                </p>
+                            </div>
+                        </RevealWrapper>
+                    </div>
+                </div>
+            </section>
+
+            {/* ─── STATS ─── */}
+            <section className="about-stats-section">
+                <div className="container" style={{ maxWidth: '80rem' }}>
+                    <div className="about-stats-grid">
+                        {stats.map((stat, i) => (
+                            <RevealWrapper key={i} direction="up" delay={i * 0.1}>
+                                <div>
+                                    <div className="about-stat-value">{stat.value}</div>
+                                    <div className="about-stat-label">{stat.label}</div>
+                                </div>
+                            </RevealWrapper>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
             {/* ─── VALUES ─── */}
-            <section style={{ padding: '7rem 0', background: 'var(--color-bg-cream)' }}>
+            <section className="about-section" style={{ background: 'var(--color-bg-cream)' }}>
                 <div className="container" style={{ maxWidth: '80rem' }}>
                     <RevealWrapper>
                         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                            <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: '#888', marginBottom: '1rem' }}>
-                                Our Values
-                            </span>
+                            <span className="about-subtitle">Our Values</span>
                             <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--color-dark)' }}>
                                 What Sets Us Apart
                             </h2>
@@ -241,13 +409,11 @@ export default function About() {
             </section>
 
             {/* ─── TEAM ─── */}
-            <section style={{ padding: '7rem 0', background: 'var(--color-bg-cream)' }}>
+            {/* <section className="about-section" style={{ background: '#fff' }}>
                 <div className="container" style={{ maxWidth: '80rem' }}>
                     <RevealWrapper>
                         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                            <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: '#888', marginBottom: '1rem' }}>
-                                Meet the Experts
-                            </span>
+                            <span className="about-subtitle">Meet the Experts</span>
                             <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--color-dark)', marginBottom: '0.75rem' }}>
                                 Our <span style={{ fontStyle: 'italic', color: 'var(--color-wine)' }}>Team</span>
                             </h2>
@@ -261,7 +427,7 @@ export default function About() {
                         {teamMembers.map((member, i) => (
                             <RevealWrapper key={i} direction="up" delay={i * 0.15}>
                                 <div>
-                                    {/* Photo */}
+                                    
                                     <div className="about-team-card" style={{ height: '480px', marginBottom: '1.5rem', cursor: 'default' }}>
                                         <img src={member.image} alt={member.name} className="about-team-img" />
                                         <div className="about-team-overlay">
@@ -270,7 +436,7 @@ export default function About() {
                                             </p>
                                         </div>
                                     </div>
-                                    {/* Info */}
+                                    
                                     <div>
                                         <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.5rem', color: 'var(--color-dark)', marginBottom: '0.4rem' }}>
                                             {member.name}
@@ -284,57 +450,29 @@ export default function About() {
                             </RevealWrapper>
                         ))}
                     </div>
-
-                    <RevealWrapper>
-                        <p style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--color-text-muted)', fontSize: '0.875rem' }}>
-                            Hover over a portrait to read their full biography.
-                        </p>
-                    </RevealWrapper>
                 </div>
-            </section>
-
-            {/* ─── STATS STRIP ─── */}
-            <section style={{ background: 'var(--color-wine)', padding: '5rem 0' }}>
-                <div className="container" style={{ maxWidth: '80rem' }}>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '2rem' }}>
-                        {stats.map((stat, i) => (
-                            <RevealWrapper key={i} direction="up" delay={i * 0.1}>
-                                <div className="about-stat" style={{ textAlign: 'center', transition: 'opacity 0.3s' }}>
-                                    <span style={{ display: 'block', fontFamily: 'var(--font-heading)', fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 300, color: '#fff', lineHeight: 1.1, marginBottom: '0.75rem' }}>
-                                        {stat.value}
-                                    </span>
-                                    <span style={{ display: 'block', fontSize: '0.625rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: 'rgba(255,255,255,0.85)' }}>
-                                        {stat.label}
-                                    </span>
-                                </div>
-                            </RevealWrapper>
-                        ))}
-                    </div>
-                </div>
-            </section>
+            </section> */}
 
             {/* ─── CTA BANNER ─── */}
             <section style={{ position: 'relative', padding: '8rem 0', overflow: 'hidden' }}>
                 <div style={{ position: 'absolute', inset: 0 }}>
-                     <img
+                    <img
                         src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1920&q=80"
                         alt=""
                         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     />
+                    <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.5)' }} />
                 </div>
                 <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center', maxWidth: '52rem' }}>
                     <RevealWrapper>
-                        <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-wine)', marginBottom: '1.25rem' }}>
+                        <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: '#fff', marginBottom: '1.25rem', padding: '0.5rem 1rem', border: '1px solid rgba(255,255,255,0.5)' }}>
                             Begin Your Journey
                         </span>
                         <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 3.25rem)', color: '#fff', marginBottom: '1.5rem', lineHeight: 1.25 }}>
-                            Ready to Experience the <br />
-                            <span style={{ fontStyle: 'italic', color: 'var(--color-wine)' }}>D'CosMedis Difference?</span>
+                            Interested in consulting with D'CosMedis Clinic? <br />
+                            <span style={{ fontStyle: 'italic', color: '#ffebf0' }}>We have great deals for you.</span>
                         </h2>
-                        <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '1.0625rem', lineHeight: 1.8, marginBottom: '2.5rem', fontWeight: 300 }}>
-                            Book a complimentary consultation with our expert dermatologists and discover a treatment plan crafted exclusively for you.
-                        </p>
-                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center', marginTop: '2.5rem' }}>
                             <Link to="/book" className="about-cta-btn">
                                 Book Free Consultation <ArrowRight size={16} />
                             </Link>

@@ -11,14 +11,14 @@ export default function ExclusiveSection() {
     const [canScrollRight, setCanScrollRight] = useState(true)
 
     const treatmentCategories = [
-        { name: 'D\'COSMEDIS WATERLESS', subname: 'MEDICAL PEDICURE', path: '/treatments/aayna-waterless-pedicure' },
-        { name: 'CLEARLIFT® &', subname: 'CLEARSKIN™', path: '/treatments/clearlift-clearskin' },
-        { name: 'EMSCULPT®', subname: '', path: '/treatments/emsculpt' },
-        { name: 'FRAXEL', subname: '', path: '/treatments/fraxel' },
-        { name: 'HYDRAFACIAL', subname: '', path: '/treatments/hydrafacial' },
-        { name: 'SENSIBLE FILLERS,', subname: 'THE D\'COSMEDIS WAY', path: '/treatments/sensible-fillers' },
-        { name: 'THERMAGE', subname: '', path: '/treatments/thermage' },
-        { name: 'LASER HAIR', subname: 'REMOVAL', path: '/treatments/laser-hair-removal' },
+        { name: 'D\'COSMEDIS WATERLESS', subname: 'MEDICAL PEDICURE', path: '/treatments/aayna-waterless-pedicure', image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&q=80' },
+        { name: 'CLEARLIFT® &', subname: 'CLEARSKIN™', path: '/treatments/clearlift-clearskin', image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400&q=80' },
+        { name: 'EMSCULPT®', subname: '', path: '/treatments/emsculpt', image: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=400&q=80' },
+        { name: 'FRAXEL', subname: '', path: '/treatments/fraxel', image: 'https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=400&q=80' },
+        { name: 'HYDRAFACIAL', subname: '', path: '/treatments/hydrafacial', image: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=400&q=80' },
+        { name: 'SENSIBLE FILLERS,', subname: 'THE D\'COSMEDIS WAY', path: '/treatments/sensible-fillers', image: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=400&q=80' },
+        { name: 'THERMAGE', subname: '', path: '/treatments/thermage', image: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=400&q=80' },
+        { name: 'LASER HAIR', subname: 'REMOVAL', path: '/treatments/laser-hair-removal', image: 'https://images.unsplash.com/photo-1612817288484-6f916006741a?w=400&q=80' },
     ]
 
     const checkScrollButtons = () => {
@@ -85,18 +85,18 @@ export default function ExclusiveSection() {
                         <Link
                             key={category.name}
                             to={category.path}
-                            className="flex-shrink-0 w-[220px] md:w-[320px] group border border-[#d4c8b0] rounded-sm hover-lift"
-                            style={{ scrollSnapAlign: 'start', background: '#F5F0DC' }}
+                            className="relative flex-shrink-0 w-[260px] md:w-[320px] h-[340px] md:h-[420px] overflow-hidden shadow-sm"
+                            style={{ scrollSnapAlign: 'start' }}
                         >
-                            <div className="h-[200px] md:h-[280px] flex flex-col items-center justify-center p-6 md:p-8 transition-colors">
-                                <div className="w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center mb-5 md:mb-8" style={{ background: '#EDE8D0' }}>
-                                    <span className="text-xl md:text-2xl" style={{ color: '#954795' }}>✨</span>
-                                </div>
-                                <h3 className="text-base md:text-lg font-serif tracking-widest text-center mb-2 text-dark">
+                            <img src={category.image} alt={category.name} className="absolute inset-0 w-full h-full object-cover" />
+                            <div className="absolute inset-0 bg-black/40"></div>
+                            
+                            <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-center items-center text-center z-10">
+                                <h3 className="text-xl md:text-2xl font-serif tracking-widest text-white uppercase mb-2">
                                     {category.name}
                                 </h3>
                                 {category.subname && (
-                                    <h4 className="text-[9px] md:text-[10px] uppercase font-bold tracking-[2px] text-center text-[#888]">
+                                    <h4 className="text-[10px] md:text-[12px] uppercase font-bold tracking-[3px] text-white/90">
                                         {category.subname}
                                     </h4>
                                 )}
@@ -127,9 +127,6 @@ export default function ExclusiveSection() {
             </div>
 
             <div className="container mt-8 text-center">
-                <Link to="/treatments" className="inline-flex items-center justify-center border border-wine px-8 py-4 text-xs tracking-[2px] uppercase font-semibold text-wine hover:bg-wine hover:text-white transition-all duration-300">
-                    VIEW ALL EXCLUSIVE
-                </Link>
             </div>
 
             <style>{`

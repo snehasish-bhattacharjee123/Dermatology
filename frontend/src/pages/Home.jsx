@@ -93,15 +93,15 @@ export default function Home() {
             <Suspense fallback={<SectionFallback />}>
                 <LazyConnectWithUs />
             </Suspense>
-            <Suspense fallback={<SectionFallback />}>
+            {/* <Suspense fallback={<SectionFallback />}>
                 <LazyAwardsSection />
-            </Suspense>
+            </Suspense> */}
             <Suspense fallback={<SectionFallback />}>
                 <LazyAboutPreview />
             </Suspense>
-            <Suspense fallback={<SectionFallback />}>
+            {/* <Suspense fallback={<SectionFallback />}>
                 <LazyRealResultsSection />
-            </Suspense>
+            </Suspense> */}
         </>
     )
 }
@@ -196,9 +196,6 @@ function HeroSection() {
                             {slide.description}
                         </Text>
                         <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto">
-                            <Link to={slide.ctaLink} className="btn btn-primary w-full sm:w-auto text-center justify-center py-3.5 md:py-4 flex items-center">
-                                {slide.cta} <ArrowRight size={18} className="ml-2" />
-                            </Link>
                         </div>
                     </div>
                 </div>
@@ -291,28 +288,26 @@ function StatsBar() {
                         return (
                             <RevealWrapper key={i} direction="up" delay={i * 0.1}>
                                 <div className="stats-item-pad text-center py-3 md:py-0">
-                                    <div className="stats-icon mb-3 md:mb-4 flex justify-center">
-                                        <Icon size={32} strokeWidth={1.5} className="text-white mx-auto" />
+                                    <div
+                                        className="text-white font-medium stats-number"
+                                        style={{
+                                            fontFamily: 'var(--font-serif), Georgia, serif',
+                                            fontSize: 'clamp(1.5rem, 5vw, 4rem)',
+                                            lineHeight: 1.1,
+                                            fontWeight: 400,
+                                        }}
+                                    >
+                                        <AnimatedCounter
+                                            target={stat.value}
+                                            suffix={stat.value.includes('+') ? '+' : stat.value.includes('%') ? '%' : ''}
+                                        />
                                     </div>
-                                <div
-                                    className="text-white font-medium stats-number"
-                                    style={{
-                                        fontFamily: 'var(--font-display)',
-                                        fontSize: 'clamp(1.1rem, 4vw, 3.5rem)',
-                                        lineHeight: 1.1,
-                                    }}
-                                >
-                                    <AnimatedCounter
-                                        target={stat.value}
-                                        suffix={stat.value.includes('+') ? '+' : stat.value.includes('%') ? '%' : ''}
-                                    />
+                                    <p className="stats-label mt-1 md:mt-3 text-white text-[0.55rem] md:text-base font-medium opacity-90 uppercase"
+                                        style={{ fontFamily: 'var(--font-body)', letterSpacing: '0.04em' }}>
+                                        {stat.label}
+                                    </p>
                                 </div>
-                                <p className="stats-label mt-1 md:mt-3 text-white text-[0.55rem] md:text-base font-medium opacity-90 uppercase"
-                                    style={{ fontFamily: 'var(--font-body)', letterSpacing: '0.04em' }}>
-                                    {stat.label}
-                                </p>
-                            </div>
-                        </RevealWrapper>
+                            </RevealWrapper>
                         )
                     })}
                 </div>
