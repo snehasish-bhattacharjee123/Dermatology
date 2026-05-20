@@ -279,7 +279,7 @@ function StatsBar() {
     return (
         <div
             className="relative z-10"
-            style={{ background: '#954795' }}
+            style={{ background: '#EDE8D0' }}
         >
             <div className="container py-6 md:py-14">
                 <div className="stats-grid grid grid-cols-4 md:grid-cols-4 gap-2 md:gap-4">
@@ -289,8 +289,9 @@ function StatsBar() {
                             <RevealWrapper key={i} direction="up" delay={i * 0.1}>
                                 <div className="stats-item-pad text-center py-3 md:py-0">
                                     <div
-                                        className="text-white font-medium stats-number"
+                                        className="font-medium stats-number"
                                         style={{
+                                            color: '#954795',
                                             fontFamily: 'var(--font-serif), Georgia, serif',
                                             fontSize: 'clamp(1.5rem, 5vw, 4rem)',
                                             lineHeight: 1.1,
@@ -302,7 +303,7 @@ function StatsBar() {
                                             suffix={stat.value.includes('+') ? '+' : stat.value.includes('%') ? '%' : ''}
                                         />
                                     </div>
-                                    <p className="stats-label mt-1 md:mt-3 text-white text-[0.55rem] md:text-base font-medium opacity-90 uppercase"
+                                    <p className="stats-label mt-1 md:mt-3 text-[#0d1319] text-[0.55rem] md:text-base font-semibold opacity-90 uppercase hidden md:block"
                                         style={{ fontFamily: 'var(--font-body)', letterSpacing: '0.04em' }}>
                                         {stat.label}
                                     </p>

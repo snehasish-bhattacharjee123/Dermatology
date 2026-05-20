@@ -40,7 +40,7 @@ export default function TreatmentsSection() {
     }
 
     return (
-        <section className="section py-20 md:py-32 border-t border-[#d4c8b0] overflow-hidden" style={{ background: '#EDE8D0' }}>
+        <section className="section py-20 md:py-32 border-[#d4c8b0] overflow-hidden" style={{ background: '#EDE8D0' }}>
             <div className="container max-w-6xl">
                 <RevealWrapper>
                     <div className="text-center mb-16 md:mb-20">
@@ -64,7 +64,7 @@ export default function TreatmentsSection() {
             <div className="relative">
                 <div
                     ref={carouselRef}
-                    className="flex gap-6 md:gap-8 scrollbar-hide px-4 md:px-8 lg:px-[max(var(--container-padding),calc((100vw-var(--container-max))/2+var(--container-padding)))] pb-8 pt-4"
+                    className="flex gap-6 md:gap-8 overflow-x-auto scrollbar-hide px-4 md:px-8 lg:px-[max(var(--container-padding),calc((100vw-var(--container-max))/2+var(--container-padding)))] pb-8 pt-4"
                     style={{
                         scrollSnapType: 'x mandatory',
                         WebkitOverflowScrolling: 'touch',

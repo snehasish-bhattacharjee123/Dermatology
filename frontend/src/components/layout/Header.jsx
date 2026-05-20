@@ -173,6 +173,150 @@ export default function Header() {
     const location = useLocation()
     const navigate = useNavigate()
 
+    const [expandedMobileItems, setExpandedMobileItems] = useState({
+        TREATMENTS: false,
+        CONCERNS: false,
+        'SOCIAL MEDIA': false,
+        'CONTACT US': false
+    })
+
+    const [expandedConcerns, setExpandedConcerns] = useState({
+        'Instant glow and Hydration': false,
+        'Acne': false,
+        'IV Infusion Drips': false,
+        'Anti Aging': false,
+        'Lifting & Contouring': false,
+        'Hair': false,
+        'Pigmentation': false,
+        'Body': false
+    })
+
+    const toggleMobileItem = (item) => {
+        setExpandedMobileItems(prev => ({
+            ...prev,
+            [item]: !prev[item]
+        }))
+    }
+
+    const toggleConcernCategory = (category) => {
+        setExpandedConcerns(prev => ({
+            ...prev,
+            [category]: !prev[category]
+        }))
+    }
+
+    const treatmentSubitems = [
+        { name: 'Acne Treatment', path: '/treatments/acne-treatments' },
+        { name: 'Anti aging treatment', path: '/treatments/anti-aging-treatments' },
+        { name: 'Hair Treatment', path: '/treatments/hair-treatments' },
+        { name: 'IV drips', path: '/treatments/iv-drip-therapy' },
+        { name: 'Lifting And Contouring', path: '/treatments/lifting-contouring' },
+        { name: 'Pigmentation', path: '/treatments/pigmentation-treatments' },
+        { name: 'Signature Facials', path: '/treatments/signature-medifacials' },
+        { name: 'Medical Grade Facials', path: '/treatments/medical-grade-facials' },
+        { name: 'All Treatments', path: '/treatments' }
+    ]
+
+    const concernCategories = [
+        {
+            category: 'Instant glow and Hydration',
+            items: [
+                { name: 'Signature Medifacials', path: '/treatments/signature-medifacials' },
+                { name: 'Hitech Facials', path: '/treatments/hitech-facials' },
+                { name: 'Medical Grade Facials', path: '/treatments/medical-grade-facials' },
+                { name: 'Neocollagen Facial', path: '/treatments/neocollagen-facial' },
+                { name: 'Ultrasonic Facial (HIFU)', path: '/treatments/ultrasonic-facial' },
+                { name: 'LaserBrite (QSWITCH)', path: '/treatments/laserbrite' },
+                { name: 'Carbon Glow', path: '/treatments/carbon-glow' },
+                { name: 'Oxyblast', path: '/treatments/oxyblast' },
+                { name: 'Crystal', path: '/treatments/crystal' },
+                { name: 'Glass Gloss', path: '/treatments/glass-gloss' },
+                { name: 'Illuminating', path: '/treatments/illuminating' },
+                { name: 'Dermal Fillers', path: '/treatments/dermal-fillers' }
+            ]
+        },
+        {
+            category: 'Acne',
+            items: [
+                { name: 'Morpheus8', path: '/treatments/morpheus8' },
+                { name: 'Intense Acne Peel', path: '/treatments/intense-acne-peel' },
+                { name: 'eMatrix', path: '/treatments/ematrix' },
+                { name: 'Professional Peels', path: '/treatments/professional-peels' },
+                { name: 'Carbon Glow', path: '/treatments/carbon-glow' }
+            ]
+        },
+        {
+            category: 'IV Infusion Drips',
+            items: [
+                { name: 'IV Drips', path: '/treatments/iv-drips' },
+                { name: 'Immunity Boost IV Infusion', path: '/treatments/immunity-boost-iv' },
+                { name: 'Energy Boost IV Infusion', path: '/treatments/energy-boost-iv' },
+                { name: 'Hair Restore IV Infusion', path: '/treatments/hair-restore-iv' },
+                { name: 'Metaboost IV Infusion', path: '/treatments/metaboost-iv' },
+                { name: 'Radiant Antioxidant IV Wellness Drip', path: '/treatments/radiant-antioxidant-iv' }
+            ]
+        },
+        {
+            category: 'Anti Aging',
+            items: [
+                { name: 'Exosomes Therapy', path: '/treatments/exosomes-therapy' },
+                { name: 'Dermal Fillers', path: '/treatments/dermal-fillers' },
+                { name: 'GFC', path: '/treatments/gfc' },
+                { name: 'Threadlift', path: '/treatments/threadlift' }
+            ]
+        },
+        {
+            category: 'Lifting & Contouring',
+            items: [
+                { name: 'Ultherapy', path: '/treatments/ultherapy' },
+                { name: 'Thermage', path: '/treatments/thermage' },
+                { name: 'Dermalift', path: '/treatments/dermalift' },
+                { name: 'Coolsculpt', path: '/treatments/coolsculpt' },
+                { name: 'Emsculpt', path: '/treatments/emsculpt' }
+            ]
+        },
+        {
+            category: 'Hair',
+            items: [
+                { name: 'Advanced GFC', path: '/treatments/advanced-gfc' },
+                { name: 'Exosomes Therapy', path: '/treatments/exosomes-therapy' },
+                { name: 'Dermaneedling', path: '/treatments/dermaneedling' },
+                { name: 'Hair Transplant', path: '/treatments/hair-transplant' }
+            ]
+        },
+        {
+            category: 'Pigmentation',
+            items: [
+                { name: 'LaserBrite (QSWITCH)', path: '/treatments/laserbrite' },
+                { name: 'Skin Brightening Peel', path: '/treatments/skin-brightening-peel' },
+                { name: 'Chemical Peels', path: '/treatments/chemical-peels' }
+            ]
+        },
+        {
+            category: 'Body',
+            items: [
+                { name: 'Coolsculpting', path: '/treatments/coolsculpting' },
+                { name: 'Emsculpt', path: '/treatments/emsculpt' },
+                { name: 'Laser Hair Reduction', path: '/treatments/laser-hair-reduction' },
+                { name: 'Bridal Skincare', path: '/treatments/bridal-skincare' }
+            ]
+        }
+    ]
+
+    const socialSubitems = [
+        { name: 'Instagram', path: 'https://www.instagram.com/aaynaclinic_official/', isExternal: true },
+        { name: 'Facebook', path: 'https://www.facebook.com/aaynaclinic/', isExternal: true },
+        { name: 'Youtube', path: 'https://www.youtube.com/channel/UCF4-AP5qfQ_VKyNZjhKfb4Q/', isExternal: true }
+    ]
+
+    const contactSubitems = [
+        { name: 'Delhi: +91 11 2634 7890', path: 'tel:+911126347890', isExternal: true },
+        { name: 'Gurugram: +91 1234567890', path: 'tel:+911234567890', isExternal: true },
+        { name: 'Ludhiana: +91 99875 87147', path: 'tel:+919987587147', isExternal: true },
+        { name: 'Book Appointment', path: '/book' },
+        { name: 'Chat on WhatsApp', path: 'https://api.whatsapp.com/send/?phone=917738891858&text=Hello%20there!', isExternal: true }
+    ]
+
     useEffect(() => {
         const handleScroll = () => setIsScrolled(window.scrollY > 50)
         window.addEventListener('scroll', handleScroll)
@@ -184,6 +328,22 @@ export default function Header() {
         setActiveDropdown(null)
         setActiveMobileMenu(null)
         setMobileMenuStack([])
+        setExpandedMobileItems({
+            TREATMENTS: false,
+            CONCERNS: false,
+            'SOCIAL MEDIA': false,
+            'CONTACT US': false
+        })
+        setExpandedConcerns({
+            'Instant glow and Hydration': false,
+            'Acne': false,
+            'IV Infusion Drips': false,
+            'Anti Aging': false,
+            'Lifting & Contouring': false,
+            'Hair': false,
+            'Pigmentation': false,
+            'Body': false
+        })
     }, [location])
 
     const handleMobileMenuClick = (linkName) => {
@@ -225,7 +385,7 @@ export default function Header() {
                         </Caption>
                     </div>
                     <div className="flex items-center gap-4">
-                        {/* Social Icons */}
+                        {/* Social Icons
                         <div className="hidden lg:flex items-center gap-3 mr-2">
                             <a href="https://www.instagram.com/aaynaclinic_official/" target="_blank" rel="noreferrer" className="text-white/80 hover:text-white transition-colors">
                                 <Instagram size={14} />
@@ -236,9 +396,9 @@ export default function Header() {
                             <a href="https://www.youtube.com/channel/UCF4-AP5qfQ_VKyNZjhKfb4Q" target="_blank" rel="noreferrer" className="text-white/80 hover:text-white transition-colors">
                                 <Youtube size={14} />
                             </a>
-                        </div>
+                        </div> */}
                         <div className="hidden sm:flex items-center bg-white/20 px-4 py-1.5 rounded-full backdrop-blur-md border border-white/20 shadow-sm transition-all duration-300 hover:bg-white/30 cursor-default">
-                            <MapPin size={12} className="text-white mr-1.5 flex-shrink-0" />
+                            <MapPin size={12} className="text-white ml-1 mr-3 flex-shrink-0" />
                             <span className="font-body text-[11px] font-bold tracking-[2px] uppercase text-white mt-[1px]">
                                 Delhi <span className="text-white/50 mx-1.5">&bull;</span> Gurugram <span className="text-white/50 mx-1.5">&bull;</span> Ludhiana
                             </span>
@@ -393,9 +553,9 @@ export default function Header() {
                 {/* Full Width Mega Menus */}
                 {navLinks.map((link) => {
                     if (!link.megaMenu && !link.megaMenuWithImages && !link.megaMenuColumns && !link.megaMenuFeatured) return null;
-                    
+
                     const isOpen = activeDropdown === link.name;
-                    
+
                     return (
                         <div
                             key={`${link.name}-mega`}
@@ -414,7 +574,7 @@ export default function Header() {
                                                     <li key={item.name}>
                                                         <Link
                                                             to={item.path}
-                                                            className={`text-[15px] transition-colors hover:text-wine block ${location.pathname === item.path ? 'text-wine font-medium' : 'text-muted'}`}
+                                                            className={`text-[20px] transition-colors hover:text-wine block ${location.pathname === item.path ? 'text-wine font-medium' : 'text-muted'}`}
                                                             style={{ fontFamily: 'var(--font-display)' }}
                                                             onClick={() => setActiveDropdown(null)}
                                                         >
@@ -497,7 +657,7 @@ export default function Header() {
                                     <div className="flex w-full">
                                         <div className="flex-1 py-8 pr-16">
                                             {link.label && (
-                                                <h2 className="text-[13px] font-medium italic text-muted mb-6 tracking-wide" style={{ fontFamily: 'var(--font-display)' }}>
+                                                <h2 className="text-[16px] font-medium italic text-muted mb-6 tracking-wide" style={{ fontFamily: 'var(--font-display)' }}>
                                                     {link.label}
                                                 </h2>
                                             )}
@@ -506,7 +666,7 @@ export default function Header() {
                                                     <div key={col.col} className="col-span-1 flex flex-col gap-6">
                                                         {col.groups.map((group, idx) => (
                                                             <div key={group.category} className={`${idx !== 0 ? 'pt-6 border-t border-black/5' : ''}`}>
-                                                                <h3 className="font-medium text-wine mb-3 text-lg" style={{ fontFamily: 'var(--font-display)' }}>
+                                                                <h3 className="font-medium text-wine mb-3 text-[18px]" style={{ fontFamily: 'var(--font-display)' }}>
                                                                     {group.category}
                                                                 </h3>
                                                                 <ul className="space-y-1.5">
@@ -514,7 +674,7 @@ export default function Header() {
                                                                         <li key={item.name}>
                                                                             <Link
                                                                                 to={item.path}
-                                                                                className={`text-[14px] transition-colors hover:text-wine block ${location.pathname === item.path ? 'text-wine font-medium' : 'text-muted'}`}
+                                                                                className={`text-[16px] transition-colors hover:text-wine block ${location.pathname === item.path ? 'text-wine font-medium' : 'text-muted'}`}
                                                                                 style={{ fontFamily: 'var(--font-body)' }}
                                                                                 onClick={() => setActiveDropdown(null)}
                                                                             >
@@ -579,7 +739,7 @@ export default function Header() {
                                         </div>
                                     </div>
                                 )}
-                                
+
                                 {link.megaMenuWithImages && (
                                     <div className="py-10">
                                         <div className="flex items-center justify-between mb-8 pb-4 border-b border-black/5">
@@ -635,188 +795,282 @@ export default function Header() {
                 })}
             </header>
 
-            {/* Mobile Menu Slide-in Concept */}
+            {/* Mobile Menu Backdrop */}
             <div
-                className={`fixed inset-0 z-[1098] bg-black/50 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${isMobileOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
+                className={`fixed inset-0 z-[1098] bg-black/30 backdrop-blur-md transition-opacity duration-300 lg:hidden ${isMobileOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
                 onClick={() => setIsMobileOpen(false)}
                 aria-hidden="true"
             />
+            {/* Mobile Menu Drawer - Premium Ultra-Sleek Brand Layout */}
             <div
-                className={`fixed top-0 left-0 h-full w-[85vw] max-w-[360px] bg-white z-[1099] overflow-hidden transition-transform duration-500 lg:hidden ${isMobileOpen ? 'translate-x-0' : '-translate-x-full'}`}
+                className={`fixed top-0 right-0 h-full w-[100vw] sm:w-[85vw] max-w-[420px] bg-[#f5f0e1] z-[1099] overflow-y-auto transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] lg:hidden ${isMobileOpen ? 'translate-x-0' : 'translate-x-full'}`}
                 role="dialog"
                 aria-modal="true"
             >
-                {/* Mobile Menu Header */}
-                <div className="flex items-center justify-between h-[50px] border-b border-black/10 px-4 sticky top-0 bg-white z-50">
-                    {activeMobileMenu ? (
-                        <button
-                            onClick={handleMobileMenuBack}
-                            className="h-[50px] w-[50px] flex items-center justify-center -ml-4 border-r border-black/10 hover:bg-black/5"
-                        >
-                            <ChevronDown size={20} className="rotate-90" />
-                        </button>
-                    ) : (
-                        <div className="w-[50px] -ml-4" /> // Placeholder for spacing
-                    )}
-
-                    <span className="font-medium text-[15px] {activeMobileMenu ? 'text-dark' : 'text-transparent'}">
-                        {activeMobileMenu || ''}
-                    </span>
-
+                {/* Header with simple "close" text on the right */}
+                <div className="flex justify-end p-6 pb-4">
                     <button
                         onClick={() => setIsMobileOpen(false)}
-                        className="h-[50px] w-[50px] flex items-center justify-center -mr-4 border-l border-black/10 hover:bg-black/5"
+                        className="text-[#0d1319]/60 hover:text-[#954795] text-[14px] font-medium tracking-widest uppercase transition-colors p-2"
+                        style={{ fontFamily: 'var(--font-body)' }}
                     >
-                        <X size={24} />
+                        close
                     </button>
                 </div>
 
-                {/* Mobile Menu Container with Slider Action */}
-                <div className="relative h-[calc(100%-50px)] overflow-x-hidden overflow-y-auto">
-                    {/* Main Menu Layer */}
-                    <nav className={`absolute w-full top-0 left-0 transition-transform duration-500 ${activeMobileMenu ? '-translate-x-full' : 'translate-x-0'}`}>
-                        <ul className="flex flex-col">
-                            {navLinks.map((link) => (
-                                <li key={link.name} className="border-b border-black/10">
-                                    {(link.dropdown || link.megaMenu || link.megaMenuWithImages) ? (
-                                        <button
-                                            onClick={() => handleMobileMenuClick(link.name)}
-                                            className="w-full flex items-center justify-between h-[50px] px-5 py-0 text-left hover:bg-black/5 transition-colors"
-                                        >
-                                            <span className="text-[15px] font-medium" style={{ fontFamily: 'var(--font-display)' }}>{link.name}</span>
-                                            <ChevronDown size={18} className="-rotate-90 text-dark/50" />
-                                        </button>
-                                    ) : (
-                                        <Link
-                                            to={link.path || '#'}
-                                            className="flex items-center h-[50px] px-5 py-0 text-[15px] font-medium hover:bg-black/5 transition-colors"
-                                            style={{ fontFamily: 'var(--font-display)' }}
-                                            onClick={() => setIsMobileOpen(false)}
-                                        >
-                                            {link.name}
-                                        </Link>
-                                    )}
-                                </li>
-                            ))}
-                        </ul>
-                        <div className="p-5 mt-4">
-                            <Link to="/book" className="btn btn-primary w-full justify-center" onClick={() => setIsMobileOpen(false)}>
-                                Book Appointment
-                            </Link>
-                        </div>
-                    </nav>
+                {/* List of Menu Items - Modern Organic Spacing */}
+                <nav className="px-8 pt-4 pb-12 flex flex-col gap-6">
+                    {/* HOME */}
+                    <div className="py-1">
+                        <Link
+                            to="/"
+                            onClick={() => setIsMobileOpen(false)}
+                            className="text-[#0d1319] text-[20px] tracking-[2px] uppercase font-bold hover:text-[#954795] transition-colors block"
+                            style={{ fontFamily: 'var(--font-heading)' }}
+                        >
+                            HOME
+                        </Link>
+                    </div>
 
-                    {/* Sub-menu Layers */}
-                    {navLinks.map((link) => {
-                        if (!link.dropdown && !link.megaMenu && !link.megaMenuWithImages) return null;
+                    {/* ABOUT */}
+                    <div className="py-1">
+                        <Link
+                            to="/about"
+                            onClick={() => setIsMobileOpen(false)}
+                            className="text-[#0d1319] text-[20px] tracking-[2px] uppercase font-bold hover:text-[#954795] transition-colors block"
+                            style={{ fontFamily: 'var(--font-heading)' }}
+                        >
+                            ABOUT
+                        </Link>
+                    </div>
 
-                        const isActive = mobileMenuStack.includes(link.name);
-                        const isTop = activeMobileMenu === link.name;
-
-                        return (
-                            <div
-                                key={`${link.name}-submenu`}
-                                className={`absolute top-0 left-0 w-full bg-white min-h-full transition-transform duration-500 px-5 py-4
-                                    ${isActive ? (isTop ? 'translate-x-0' : '-translate-x-full') : 'translate-x-full'}`}
-                                style={{
-                                    visibility: isActive ? 'visible' : 'hidden',
-                                    zIndex: isActive ? 10 : -1
-                                }}
+                    {/* TREATMENTS */}
+                    <div className="py-1">
+                        <div
+                            className="flex items-center justify-between cursor-pointer"
+                            onClick={() => toggleMobileItem('TREATMENTS')}
+                        >
+                            <span
+                                className={`text-[20px] tracking-[2px] uppercase font-bold transition-colors ${expandedMobileItems['TREATMENTS'] ? 'text-[#954795]' : 'text-[#0d1319] hover:text-[#954795]'}`}
+                                style={{ fontFamily: 'var(--font-heading)' }}
                             >
-                                {link.dropdown && (
-                                    <ul className="flex flex-col">
-                                        {link.dropdown.map((item) => (
-                                            <li key={item.name}>
-                                                <Link
-                                                    to={item.path}
-                                                    className="block py-3 text-[15px] text-dark hover:text-wine transition-colors"
-                                                    style={{ fontFamily: 'var(--font-body)' }}
-                                                    onClick={() => setIsMobileOpen(false)}
-                                                >
-                                                    {item.name}
-                                                </Link>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                )}
-                                {link.megaMenu && (
-                                    <div className="flex flex-col pb-8">
-                                        {link.megaMenu.map((category) => (
-                                            <div key={category.category} className="mb-6 last:mb-0">
-                                                <h4 className="text-[16px] text-wine font-medium leading-tight py-2 uppercase tracking-wide border-b border-border/30 mb-2">
-                                                    {category.category}
-                                                </h4>
-                                                <ul className="flex flex-col space-y-1">
-                                                    {category.items.map((item) => (
-                                                        <li key={item.name}>
-                                                            <Link
-                                                                to={item.path}
-                                                                className="block py-1.5 text-[15px] text-dark hover:text-wine transition-colors"
-                                                                style={{ fontFamily: 'var(--font-body)' }}
-                                                                onClick={() => setIsMobileOpen(false)}
-                                                            >
-                                                                {item.name}
-                                                            </Link>
-                                                        </li>
-                                                    ))}
-                                                </ul>
-                                            </div>
-                                        ))}
-                                    </div>
-                                )}
-                                {link.megaMenuWithImages && (
-                                    <div className="flex flex-col pb-8">
-                                        <h4 className="text-[16px] text-wine font-medium leading-tight py-2 uppercase tracking-wide border-b border-border/30 mb-4">
-                                            What Bothers You?
-                                        </h4>
-                                        <div className="flex flex-col gap-3">
-                                            {link.megaMenuWithImages.map((item) => (
-                                                <Link
-                                                    key={item.title}
-                                                    to={item.path}
-                                                    className="flex items-center gap-4 p-3 rounded-xl transition-all duration-300 hover:bg-black/5 group"
-                                                    onClick={() => setIsMobileOpen(false)}
-                                                >
-                                                    <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0 shadow-sm">
-                                                        <img
-                                                            src={item.image}
-                                                            alt={item.title}
-                                                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                                        />
-                                                    </div>
-                                                    <div className="flex-1 min-w-0">
-                                                        <h5
-                                                            className="text-[15px] font-medium text-dark group-hover:text-wine transition-colors"
-                                                            style={{ fontFamily: 'var(--font-display)' }}
-                                                        >
-                                                            {item.title}
-                                                        </h5>
-                                                        <p
-                                                            className="text-xs mt-0.5 line-clamp-1"
-                                                            style={{ color: 'var(--color-text-muted)' }}
-                                                        >
-                                                            {item.description}
-                                                        </p>
-                                                    </div>
-                                                    <ArrowRight size={16} className="shrink-0 text-wine opacity-0 group-hover:opacity-100 transition-opacity" />
-                                                </Link>
-                                            ))}
-                                        </div>
+                                TREATMENTS
+                            </span>
+                            <span className={`text-[16px] font-bold select-none transition-colors ${expandedMobileItems['TREATMENTS'] ? 'text-[#954795]' : 'text-[#0d1319]'}`}>
+                                {expandedMobileItems['TREATMENTS'] ? '—' : '+'}
+                            </span>
+                        </div>
+                        {/* Inline list - beautifully organic spacing, no borders */}
+                        <div
+                            className={`overflow-hidden transition-all duration-300 ${expandedMobileItems['TREATMENTS'] ? 'max-h-[500px] mt-4 opacity-100' : 'max-h-0 opacity-0'}`}
+                        >
+                            <ul className="pl-5 space-y-3.5 pb-2 pt-1">
+                                {treatmentSubitems.map((item) => (
+                                    <li key={item.name}>
                                         <Link
-                                            to="/concerns"
-                                            className="mt-4 flex items-center justify-center gap-2 py-3 text-sm font-semibold text-wine border border-wine/30 rounded-xl hover:bg-wine/5 transition-colors"
+                                            to={item.path}
                                             onClick={() => setIsMobileOpen(false)}
+                                            className="text-[#0d1319]/70 hover:text-[#954795] text-[15px] transition-colors block font-semibold py-0.5"
+                                            style={{ fontFamily: 'var(--font-body)' }}
                                         >
-                                            View All Concerns <ArrowRight size={14} />
+                                            {item.name}
                                         </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+
+                    {/* CONCERNS */}
+                    <div className="py-1">
+                        <div
+                            className="flex items-center justify-between cursor-pointer"
+                            onClick={() => toggleMobileItem('CONCERNS')}
+                        >
+                            <span
+                                className={`text-[20px] tracking-[2px] uppercase font-bold transition-colors ${expandedMobileItems['CONCERNS'] ? 'text-[#954795]' : 'text-[#0d1319] hover:text-[#954795]'}`}
+                                style={{ fontFamily: 'var(--font-heading)' }}
+                            >
+                                CONCERNS
+                            </span>
+                            <span className={`text-[16px] font-bold select-none transition-colors ${expandedMobileItems['CONCERNS'] ? 'text-[#954795]' : 'text-[#0d1319]'}`}>
+                                {expandedMobileItems['CONCERNS'] ? '—' : '+'}
+                            </span>
+                        </div>
+                        {/* Nested Concerns Categories Accordion list */}
+                        <div
+                            className={`overflow-hidden transition-all duration-300 ${expandedMobileItems['CONCERNS'] ? 'max-h-[1600px] mt-4 opacity-100' : 'max-h-0 opacity-0'}`}
+                        >
+                            <div className="pl-5 space-y-4 pb-2 pt-1">
+                                {concernCategories.map((group) => (
+                                    <div key={group.category} className="pl-0">
+                                        <div
+                                            className="flex items-center justify-between cursor-pointer py-2"
+                                            onClick={() => toggleConcernCategory(group.category)}
+                                        >
+                                            <span
+                                                className={`text-[15px] font-bold transition-colors ${expandedConcerns[group.category] ? 'text-[#954795]' : 'text-[#0d1319]/80 hover:text-[#954795]'}`}
+                                                style={{ fontFamily: 'var(--font-body)' }}
+                                            >
+                                                {group.category}
+                                            </span>
+                                            <span className={`text-xs font-bold select-none transition-colors ${expandedConcerns[group.category] ? 'text-[#954795]' : 'text-[#0d1319]/60'}`}>
+                                                {expandedConcerns[group.category] ? '—' : '+'}
+                                            </span>
+                                        </div>
+                                        {/* Subitems of this specific concern category */}
+                                        <div
+                                            className={`overflow-hidden transition-all duration-300 ${expandedConcerns[group.category] ? 'max-h-[450px] mt-1 opacity-100' : 'max-h-0 opacity-0'}`}
+                                        >
+                                            <ul className="pl-4 space-y-2.5 pb-2 pt-0.5">
+                                                {group.items.map((item) => (
+                                                    <li key={item.name}>
+                                                        <Link
+                                                            to={item.path}
+                                                            onClick={() => setIsMobileOpen(false)}
+                                                            className="text-[#0d1319]/60 hover:text-[#954795] text-[14px] transition-colors block py-0.5 font-medium"
+                                                            style={{ fontFamily: 'var(--font-body)' }}
+                                                        >
+                                                            {item.name}
+                                                        </Link>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
                                     </div>
-                                )}
+                                ))}
+                                {/* View All Concerns Link */}
+                                <div className="pt-2 pl-0">
+                                    <Link
+                                        to="/concerns"
+                                        onClick={() => setIsMobileOpen(false)}
+                                        className="text-[#954795] hover:text-[#6f346f] text-[15px] font-bold transition-colors block"
+                                        style={{ fontFamily: 'var(--font-body)' }}
+                                    >
+                                        View All Concerns →
+                                    </Link>
+                                </div>
                             </div>
-                        );
-                    })}
+                        </div>
+                    </div>
+
+                    {/* SOCIAL MEDIA */}
+                    <div className="py-1">
+                        <div
+                            className="flex items-center justify-between cursor-pointer"
+                            onClick={() => toggleMobileItem('SOCIAL MEDIA')}
+                        >
+                            <span
+                                className={`text-[20px] tracking-[2px] uppercase font-bold transition-colors ${expandedMobileItems['SOCIAL MEDIA'] ? 'text-[#954795]' : 'text-[#0d1319] hover:text-[#954795]'}`}
+                                style={{ fontFamily: 'var(--font-heading)' }}
+                            >
+                                SOCIAL MEDIA
+                            </span>
+                            <span className={`text-[16px] font-bold select-none transition-colors ${expandedMobileItems['SOCIAL MEDIA'] ? 'text-[#954795]' : 'text-[#0d1319]'}`}>
+                                {expandedMobileItems['SOCIAL MEDIA'] ? '—' : '+'}
+                            </span>
+                        </div>
+                        {/* Inline list */}
+                        <div
+                            className={`overflow-hidden transition-all duration-300 ${expandedMobileItems['SOCIAL MEDIA'] ? 'max-h-[200px] mt-4 opacity-100' : 'max-h-0 opacity-0'}`}
+                        >
+                            <ul className="pl-5 space-y-3.5 pb-2 pt-1">
+                                {socialSubitems.map((item) => (
+                                    <li key={item.name}>
+                                        <a
+                                            href={item.path}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            onClick={() => setIsMobileOpen(false)}
+                                            className="text-[#0d1319]/70 hover:text-[#954795] text-[15px] transition-colors block font-semibold py-0.5"
+                                            style={{ fontFamily: 'var(--font-body)' }}
+                                        >
+                                            {item.name}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+
+                    {/* ACADEMY */}
+                    <div className="py-1">
+                        <Link
+                            to="/about"
+                            onClick={() => setIsMobileOpen(false)}
+                            className="text-[#0d1319] text-[20px] tracking-[2px] uppercase font-bold hover:text-[#954795] transition-colors block"
+                            style={{ fontFamily: 'var(--font-heading)' }}
+                        >
+                            ACADEMY
+                        </Link>
+                    </div>
+
+                    {/* CONTACT US */}
+                    <div className="py-1">
+                        <div
+                            className="flex items-center justify-between cursor-pointer"
+                            onClick={() => toggleMobileItem('CONTACT US')}
+                        >
+                            <span
+                                className={`text-[20px] tracking-[2px] uppercase font-bold transition-colors ${expandedMobileItems['CONTACT US'] ? 'text-[#954795]' : 'text-[#0d1319] hover:text-[#954795]'}`}
+                                style={{ fontFamily: 'var(--font-heading)' }}
+                            >
+                                CONTACT US
+                            </span>
+                            <span className={`text-[16px] font-bold select-none transition-colors ${expandedMobileItems['CONTACT US'] ? 'text-[#954795]' : 'text-[#0d1319]'}`}>
+                                {expandedMobileItems['CONTACT US'] ? '—' : '+'}
+                            </span>
+                        </div>
+                        {/* Inline list */}
+                        <div
+                            className={`overflow-hidden transition-all duration-300 ${expandedMobileItems['CONTACT US'] ? 'max-h-[300px] mt-4 opacity-100' : 'max-h-0 opacity-0'}`}
+                        >
+                            <ul className="pl-5 space-y-3.5 pb-2 pt-1">
+                                {contactSubitems.map((item) => (
+                                    <li key={item.name}>
+                                        {item.isExternal ? (
+                                            <a
+                                                href={item.path}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                onClick={() => setIsMobileOpen(false)}
+                                                className="text-[#0d1319]/70 hover:text-[#954795] text-[15px] transition-colors block font-semibold py-0.5"
+                                                style={{ fontFamily: 'var(--font-body)' }}
+                                            >
+                                                {item.name}
+                                            </a>
+                                        ) : (
+                                            <Link
+                                                to={item.path}
+                                                onClick={() => setIsMobileOpen(false)}
+                                                className="text-[#0d1319]/70 hover:text-[#954795] text-[15px] transition-colors block font-semibold py-0.5"
+                                                style={{ fontFamily: 'var(--font-body)' }}
+                                            >
+                                                {item.name}
+                                            </Link>
+                                        )}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+                {/* Toll Free / Footer Info at bottom of menu - sleek, centered, modern */}
+                <div className="px-8 pb-12 pt-6 mt-4 text-center sm:text-left">
+                    <p className="text-[#0d1319]/80 text-[14px] tracking-widest uppercase font-bold" style={{ fontFamily: 'var(--font-body)' }}>
+                        Toll Free Number
+                    </p>
+                    <a
+                        href="tel:+918080125874"
+                        className="text-[#954795] text-[18px] font-bold block mt-1 hover:text-[#6f346f] transition-colors"
+                        style={{ fontFamily: 'var(--font-body)' }}
+                    >
+                        +91 80801 25874
+                    </a>
                 </div>
             </div>
 
-            </>
+        </>
     )
 }

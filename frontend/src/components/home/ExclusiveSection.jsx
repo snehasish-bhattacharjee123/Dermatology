@@ -60,11 +60,11 @@ export default function ExclusiveSection() {
                             className="text-3xl md:text-5xl font-serif mb-6"
                             style={{ color: 'var(--color-dark)' }}
                         >
-                            D'CosMedis Exclusive
+                            D'CosMedis Exclusive <br /> Treatment At a Glance
                         </h2>
-                        <Text size="md" className="max-w-2xl mx-auto" style={{ color: 'var(--color-text-muted)' }}>
+                        {/* <Text size="md" className="max-w-2xl mx-auto" style={{ color: 'var(--color-text-muted)' }}>
                             We bring some of the best and latest treatments from across the globe exclusively to India.
-                        </Text>
+                        </Text> */}
                     </div>
                 </RevealWrapper>
             </div>
@@ -85,18 +85,18 @@ export default function ExclusiveSection() {
                         <Link
                             key={category.name}
                             to={category.path}
-                            className="relative flex-shrink-0 w-[260px] md:w-[320px] h-[340px] md:h-[420px] overflow-hidden shadow-sm"
+                            className="relative flex-shrink-0 w-[220px] md:w-[320px] h-[300px] md:h-[420px] mx-2 md:mx-0 overflow-hidden shadow-sm"
                             style={{ scrollSnapAlign: 'start' }}
                         >
                             <img src={category.image} alt={category.name} className="absolute inset-0 w-full h-full object-cover" />
                             <div className="absolute inset-0 bg-black/40"></div>
-                            
+
                             <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-center items-center text-center z-10">
                                 <h3 className="text-xl md:text-2xl font-serif tracking-widest text-white uppercase mb-2">
                                     {category.name}
                                 </h3>
                                 {category.subname && (
-                                    <h4 className="text-[10px] md:text-[12px] uppercase font-bold tracking-[3px] text-white/90">
+                                    <h4 className="text-[10px] md:text-[12px] uppercase font-bold tracking-[3px] text-white">
                                         {category.subname}
                                     </h4>
                                 )}
