@@ -7,15 +7,74 @@ import { locations } from '../data/siteData'
 export default function Locations() {
     return (
         <>
+            <style>{`
+                .loc-hero {
+                    position: relative;
+                    min-height: clamp(340px, 60vw, 540px);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    overflow: hidden;
+                }
+                @media (max-width: 640px) {
+                    .loc-hero {
+                        min-height: clamp(280px, 65vw, 400px);
+                        align-items: flex-end;
+                        padding-bottom: 2rem;
+                    }
+                }
+                @media (min-width: 768px) {
+                    .loc-hero {
+                        min-height: clamp(480px, 55vw, 600px);
+                    }
+                }
+                .loc-hero-bg {
+                    position: absolute; inset: 0; z-index: 0;
+                }
+                .loc-hero-bg img {
+                    width: 100%; height: 100%; object-fit: cover; object-position: center;
+                }
+                .loc-hero-overlay {
+                    position: absolute; inset: 0; background: rgba(0,0,0,0.48);
+                }
+                .loc-hero-content {
+                    position: relative; z-index: 1; text-align: center; color: #fff;
+                    width: 100%;
+                    padding: calc(var(--header-total-height) + 1.5rem) 1rem 2rem;
+                }
+            `}</style>
+
             {/* Page Hero - Consistent */}
-            <section className="page-hero">
-                <div className="container">
-                    <RevealWrapper>
-                        <Caption variant="overline">Visit Us</Caption>
-                        <Heading variant="page">Our Locations</Heading>
-                        <Text size="lg" color="muted" className="max-w-2xl mt-5">
+            <section className="loc-hero">
+                <div className="loc-hero-bg">
+                    <img
+                        src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920&q=80"
+                        alt="Our Locations"
+                    />
+                    <div className="loc-hero-overlay" />
+                </div>
+
+                <div className="loc-hero-content container">
+                    <RevealWrapper direction="up">
+                        {/* Breadcrumb */}
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
+                            <Link to="/" style={{ fontSize: 'clamp(0.55rem, 1.5vw, 0.65rem)', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, color: 'rgba(255,255,255,0.45)', textDecoration: 'none' }}>Home</Link>
+                            <span style={{ color: 'rgba(255,255,255,0.25)' }}>/</span>
+                            <span style={{ fontSize: 'clamp(0.55rem, 1.5vw, 0.65rem)', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, color: 'var(--color-wine)' }}>Locations</span>
+                        </div>
+
+                        <span style={{ display: 'inline-block', fontSize: 'clamp(0.5rem, 1.3vw, 0.625rem)', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-wine)', background: 'rgba(114,47,55,0.12)', border: '1px solid rgba(114,47,55,0.3)', borderRadius: '9999px', padding: '0.4rem 1.25rem', marginBottom: '1rem' }}>
+                            Visit Us
+                        </span>
+
+                        <h1 style={{ fontFamily: 'var(--font-heading)', color: '#fff', letterSpacing: 'clamp(2px, 1.5vw, 4px)', textTransform: 'uppercase', fontSize: 'clamp(1.85rem, 7vw, 5rem)', lineHeight: 1.05, marginBottom: '1rem' }}>
+                            <span style={{ fontWeight: 300 }}>OUR </span>
+                            <span style={{ fontWeight: 700, color: 'var(--color-wine)', fontStyle: 'italic' }}>LOCATIONS</span>
+                        </h1>
+
+                        <p style={{ color: 'rgba(255,255,255,0.82)', fontSize: 'clamp(0.82rem, 2vw, 1.1rem)', fontWeight: 300, maxWidth: '38rem', margin: '0 auto', lineHeight: 1.75 }}>
                             D'CosMedis Clinic has state-of-the-art centers across Delhi NCR and Ludhiana. Find a clinic near you.
-                        </Text>
+                        </p>
                     </RevealWrapper>
                 </div>
             </section>

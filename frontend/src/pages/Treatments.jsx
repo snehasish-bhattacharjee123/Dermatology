@@ -51,39 +51,73 @@ export default function Treatments() {
                 /* ── Scrollbar hide ── */
                 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
                 .scrollbar-hide::-webkit-scrollbar { display: none; }
+
+                /* ── Hero ── */
+                .tr-hero {
+                    position: relative;
+                    min-height: clamp(340px, 60vw, 540px);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    overflow: hidden;
+                }
+                @media (max-width: 640px) {
+                    .tr-hero {
+                        min-height: clamp(280px, 65vw, 400px);
+                        align-items: flex-end;
+                        padding-bottom: 2rem;
+                    }
+                }
+                @media (min-width: 768px) {
+                    .tr-hero {
+                        min-height: clamp(480px, 55vw, 600px);
+                    }
+                }
+                .tr-hero-bg {
+                    position: absolute; inset: 0; z-index: 0;
+                }
+                .tr-hero-bg video {
+                    width: 100%; height: 100%; object-fit: cover; object-position: center;
+                }
+                .tr-hero-overlay {
+                    position: absolute; inset: 0; background: rgba(0,0,0,0.48);
+                }
+                .tr-hero-content {
+                    position: relative; z-index: 1; text-align: center; color: #fff;
+                    width: 100%;
+                    padding: calc(var(--header-total-height) + 1.5rem) 1rem 2rem;
+                }
             `}</style>
 
-            {/* ─── HERO (Reduced Height + Video Background) ─── */}
-            <section className="relative flex items-center overflow-hidden mt-[var(--header-total-height)] min-h-[40vh] md:min-h-[45vh] max-h-[500px]">
-                <div className="absolute inset-0">
+            {/* ─── HERO ─── */}
+            <section className="tr-hero">
+                <div className="tr-hero-bg">
                     <video
                         autoPlay
                         loop
                         muted
                         playsInline
-                        className="w-full h-full object-cover object-center"
                     >
                         <source src="https://videos.pexels.com/video-files/6835154/6835154-uhd_2732_1440_25fps.mp4" type="video/mp4" />
                     </video>
-                    {/* Dark gradient overlay for text readability */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
+                    <div className="tr-hero-overlay" />
                 </div>
 
-                <div className="container relative z-10 py-12 md:py-0">
-                    <RevealWrapper direction="left">
+                <div className="tr-hero-content container">
+                    <RevealWrapper direction="up">
                         {/* Breadcrumb */}
-                        <div className="flex items-center gap-2 mb-4 md:mb-6 flex-wrap">
-                            <Link to="/" className="text-[10px] md:text-xs tracking-widest uppercase font-semibold text-white/60 hover:text-white transition-colors">Home</Link>
-                            <span className="text-white/30">/</span>
-                            <span className="text-[10px] md:text-xs tracking-widest uppercase font-semibold text-white">Treatments</span>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
+                            <Link to="/" style={{ fontSize: 'clamp(0.55rem, 1.5vw, 0.65rem)', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, color: 'rgba(255,255,255,0.45)', textDecoration: 'none' }}>Home</Link>
+                            <span style={{ color: 'rgba(255,255,255,0.25)' }}>/</span>
+                            <span style={{ fontSize: 'clamp(0.55rem, 1.5vw, 0.65rem)', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, color: 'var(--color-wine)' }}>Treatments</span>
                         </div>
 
-                        <h1 className="font-heading text-white tracking-wide leading-tight mb-4 text-4xl md:text-5xl lg:text-6xl">
-                            <span className="block font-light text-white/90">Clinical</span>
-                            <span className="block font-medium text-white">Treatments</span>
+                        <h1 style={{ fontFamily: 'var(--font-heading)', color: '#fff', letterSpacing: 'clamp(2px, 1.5vw, 4px)', textTransform: 'uppercase', fontSize: 'clamp(1.85rem, 7vw, 5rem)', lineHeight: 1.05, marginBottom: '1rem' }}>
+                            <span style={{ fontWeight: 300 }}>Clinical </span>
+                            <span style={{ fontWeight: 700, color: 'var(--color-wine)', fontStyle: 'italic' }}>Treatments</span>
                         </h1>
 
-                        <p className="text-white/80 text-sm md:text-base font-light max-w-lg leading-relaxed border-l-2 border-wine pl-4 mb-0">
+                        <p style={{ color: 'rgba(255,255,255,0.82)', fontSize: 'clamp(0.82rem, 2vw, 1.1rem)', fontWeight: 300, maxWidth: '38rem', margin: '0 auto', lineHeight: 1.75 }}>
                             Discover our comprehensive range of advanced aesthetic procedures, powered by cutting-edge technology and delivered by certified experts.
                         </p>
                     </RevealWrapper>

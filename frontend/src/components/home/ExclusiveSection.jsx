@@ -49,22 +49,25 @@ export default function ExclusiveSection() {
     }
 
     return (
-        <section className="section overflow-hidden py-16 md:py-24" style={{ background: '#EDE8D0' }}>
+        <section className="overflow-hidden" style={{ background: '#EDE8D0', padding: 'clamp(2.5rem, 8vw, 6rem) 0' }}>
             <div className="container max-w-6xl">
                 <RevealWrapper>
-                    <div className="text-center mb-16 md:mb-20">
-                        <span className="inline-block text-[10px] tracking-[3px] uppercase font-bold mb-4 text-[#888]">
+                    <div className="text-center mb-8 md:mb-16">
+                        <span className="inline-block text-[10px] tracking-[3px] uppercase font-bold mb-3 md:mb-4 text-[#888]">
                             Global Standards
                         </span>
                         <h2
-                            className="text-3xl md:text-5xl font-serif mb-6"
-                            style={{ color: 'var(--color-dark)' }}
+                            style={{
+                                color: 'var(--color-dark)',
+                                fontFamily: 'var(--font-heading)',
+                                fontSize: 'clamp(1.5rem, 5vw, 3rem)',
+                                fontWeight: 400,
+                                lineHeight: 1.2,
+                                marginBottom: '0'
+                            }}
                         >
                             D'CosMedis Exclusive <br /> Treatment At a Glance
                         </h2>
-                        {/* <Text size="md" className="max-w-2xl mx-auto" style={{ color: 'var(--color-text-muted)' }}>
-                            We bring some of the best and latest treatments from across the globe exclusively to India.
-                        </Text> */}
                     </div>
                 </RevealWrapper>
             </div>
@@ -85,18 +88,43 @@ export default function ExclusiveSection() {
                         <Link
                             key={category.name}
                             to={category.path}
-                            className="relative flex-shrink-0 w-[220px] md:w-[320px] h-[300px] md:h-[420px] mx-2 md:mx-0 overflow-hidden shadow-sm"
-                            style={{ scrollSnapAlign: 'start' }}
+                            className="relative flex-shrink-0 overflow-hidden shadow-sm"
+                            style={{
+                                scrollSnapAlign: 'start',
+                                width: 'clamp(160px, 45vw, 320px)',
+                                height: 'clamp(220px, 60vw, 420px)',
+                                marginLeft: '4px',
+                                marginRight: '4px',
+                            }}
                         >
                             <img src={category.image} alt={category.name} className="absolute inset-0 w-full h-full object-cover" />
-                            <div className="absolute inset-0 bg-black/40"></div>
+                            <div className="absolute inset-0 bg-black/45"></div>
 
-                            <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-center items-center text-center z-10">
-                                <h3 className="text-xl md:text-2xl font-serif tracking-widest text-white uppercase mb-2">
+                            <div className="absolute inset-0 p-4 md:p-8 flex flex-col justify-center items-center text-center z-10">
+                                <h3
+                                    style={{
+                                        fontFamily: 'var(--font-heading)',
+                                        fontSize: 'clamp(0.95rem, 3.5vw, 1.5rem)',
+                                        fontWeight: 500,
+                                        letterSpacing: '0.12em',
+                                        color: '#fff',
+                                        textTransform: 'uppercase',
+                                        marginBottom: '0.25rem',
+                                        lineHeight: 1.2
+                                    }}
+                                >
                                     {category.name}
                                 </h3>
                                 {category.subname && (
-                                    <h4 className="text-[10px] md:text-[12px] uppercase font-bold tracking-[3px] text-white">
+                                    <h4
+                                        style={{
+                                            fontSize: 'clamp(0.55rem, 1.8vw, 0.75rem)',
+                                            textTransform: 'uppercase',
+                                            fontWeight: 700,
+                                            letterSpacing: '0.2em',
+                                            color: 'rgba(255,255,255,0.85)'
+                                        }}
+                                    >
                                         {category.subname}
                                     </h4>
                                 )}

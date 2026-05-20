@@ -40,22 +40,38 @@ export default function TreatmentsSection() {
     }
 
     return (
-        <section className="section py-20 md:py-32 border-[#d4c8b0] overflow-hidden" style={{ background: '#EDE8D0' }}>
+        <section className="border-[#d4c8b0] overflow-hidden" style={{ background: '#EDE8D0', padding: 'clamp(2.5rem, 8vw, 8rem) 0' }}>
             <div className="container max-w-6xl">
                 <RevealWrapper>
-                    <div className="text-center mb-16 md:mb-20">
-                        <span className="inline-block text-xs md:text-sm tracking-[4px] uppercase font-bold mb-4 opacity-90" style={{ color: 'var(--color-wine)' }}>
+                    <div className="text-center mb-8 md:mb-16">
+                        <span
+                            className="inline-block tracking-[4px] uppercase font-bold mb-3 md:mb-4 opacity-90"
+                            style={{ color: 'var(--color-wine)', fontSize: 'clamp(0.55rem, 1.5vw, 0.75rem)' }}
+                        >
                             Our Expertise
                         </span>
                         <h2
-                            className="text-4xl md:text-6xl font-serif mb-6 leading-tight"
-                            style={{ color: 'var(--color-dark)' }}
+                            style={{
+                                fontFamily: 'var(--font-heading)',
+                                fontSize: 'clamp(1.6rem, 5.5vw, 3.75rem)',
+                                fontWeight: 400,
+                                lineHeight: 1.15,
+                                color: 'var(--color-dark)',
+                                marginBottom: '0.75rem'
+                            }}
                         >
                             Premium <span className="italic text-wine">Treatments</span>
                         </h2>
-                        <Text size="md" className="max-w-2xl mx-auto" style={{ color: 'var(--color-text-muted)' }}>
+                        <p
+                            className="max-w-2xl mx-auto"
+                            style={{
+                                color: 'var(--color-text-muted)',
+                                fontSize: 'clamp(0.8rem, 2vw, 1rem)',
+                                lineHeight: 1.65
+                            }}
+                        >
                             Discover our comprehensive range of advanced dermatology and aesthetic treatments.
-                        </Text>
+                        </p>
                     </div>
                 </RevealWrapper>
             </div>
@@ -73,9 +89,15 @@ export default function TreatmentsSection() {
                     }}
                 >
                     {treatments.slice(0, 6).map((treatment, i) => (
-                        <RevealWrapper key={treatment.id} direction="up" delay={i * 0.08} className="flex-shrink-0 w-[260px] md:w-[350px] h-full flex flex-col" style={{ scrollSnapAlign: 'start' }}>
+                        <RevealWrapper
+                            key={treatment.id}
+                            direction="up"
+                            delay={i * 0.08}
+                            className="flex-shrink-0 h-full flex flex-col"
+                            style={{ scrollSnapAlign: 'start', width: 'clamp(220px, 70vw, 350px)' }}
+                        >
                             <Link to={`/treatments/${treatment.slug}`} className="treatment-card card group flex flex-col flex-1 hover-lift h-full border border-[#d4c8b0] rounded-2xl shadow-sm transition-all duration-500 overflow-hidden hover:shadow-2xl hover:border-wine/30" style={{ background: '#F5F0DC' }}>
-                                <div className="overflow-hidden relative h-[180px] md:h-[220px]">
+                                <div className="overflow-hidden relative" style={{ height: 'clamp(150px, 40vw, 220px)' }}>
                                     <img
                                         src={treatment.image}
                                         alt={treatment.title}
@@ -86,28 +108,25 @@ export default function TreatmentsSection() {
                                         srcSet={`${treatment.image.replace(/w=\d+/, 'w=400')} 400w, ${treatment.image.replace(/w=\d+/, 'w=600')} 600w, ${treatment.image} 800w`}
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                    {/* <div
-                                        className="absolute top-4 left-4 px-3.5 py-1.5 text-[9px] tracking-[2px] uppercase text-white rounded-full font-bold shadow-md backdrop-blur-md"
-                                        style={{ background: 'var(--color-wine)' }}
-                                    >
-                                        {treatment.category}
-                                    </div> */}
                                 </div>
-                                <div className="card-body p-6 flex flex-col flex-1">
-                                    <h3 className="transition-colors duration-300 mb-2.5 font-serif group-hover:text-wine" style={{ fontSize: '1.25rem', fontWeight: 600, color: 'var(--color-dark)', lineHeight: 1.3 }}>
+                                <div className="card-body p-4 md:p-6 flex flex-col flex-1">
+                                    <h3
+                                        className="transition-colors duration-300 mb-2 font-serif group-hover:text-wine"
+                                        style={{ fontSize: 'clamp(0.95rem, 3vw, 1.25rem)', fontWeight: 600, color: 'var(--color-dark)', lineHeight: 1.3 }}
+                                    >
                                         {treatment.title}
                                     </h3>
-                                    <p className="mt-1 text-[13px] leading-[1.8] flex-1 text-[#6b4f5a] font-light">
-                                        {treatment.shortDescription.slice(0, 100)}...
+                                    <p className="mt-1 flex-1 text-[#6b4f5a] font-light" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', lineHeight: 1.7 }}>
+                                        {treatment.shortDescription.slice(0, 85)}...
                                     </p>
                                     <div
-                                        className="flex items-center justify-between mt-auto pt-4 border-t border-[#f0ede8]"
+                                        className="flex items-center justify-between mt-auto pt-3 border-t border-[#f0ede8]"
                                     >
-                                        <span className="flex items-center gap-1.5 font-bold tracking-[2px] uppercase text-wine transition-colors text-[10px]">
-                                            {/* View <ArrowRight size={14} className="mt-0.5 transition-transform duration-300 group-hover:translate-x-1" /> */}
+                                        <span className="flex items-center gap-1.5 font-bold tracking-[2px] uppercase text-wine transition-colors" style={{ fontSize: '0.6rem' }}>
                                         </span>
                                         <span
-                                            className="text-[9px] tracking-[1px] uppercase font-bold text-[#8a7f76] bg-[#f8f6f3] px-2 py-1 rounded-sm"
+                                            className="text-[#8a7f76] bg-[#f8f6f3] px-2 py-1 rounded-sm"
+                                            style={{ fontSize: '0.6rem', letterSpacing: '1px', textTransform: 'uppercase', fontWeight: 700 }}
                                         >
                                             {treatment.duration}
                                         </span>

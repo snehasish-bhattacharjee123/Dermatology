@@ -82,26 +82,68 @@ export default function ConcernDetail() {
                 @media (max-width: 640px) {
                     .cd-book-btn { width: 100%; }
                 }
+
+                /* ── Hero ── */
+                .cd-hero {
+                    position: relative;
+                    min-height: clamp(340px, 60vw, 540px);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    overflow: hidden;
+                }
+                @media (max-width: 640px) {
+                    .cd-hero {
+                        min-height: clamp(280px, 65vw, 400px);
+                        align-items: flex-end;
+                        padding-bottom: 2rem;
+                    }
+                }
+                @media (min-width: 768px) {
+                    .cd-hero {
+                        min-height: clamp(480px, 55vw, 600px);
+                    }
+                }
+                .cd-hero-bg {
+                    position: absolute; inset: 0; z-index: 0;
+                }
+                .cd-hero-bg img {
+                    width: 100%; height: 100%; object-fit: cover; object-position: center;
+                }
+                .cd-hero-overlay {
+                    position: absolute; inset: 0; background: rgba(0,0,0,0.48);
+                }
+                .cd-hero-content {
+                    position: relative; z-index: 1; text-align: center; color: #fff;
+                    width: 100%;
+                    padding: calc(var(--header-total-height) + 1.5rem) 1rem 2rem;
+                }
             `}</style>
 
             {/* Hero Section */}
-            <section style={{ position: 'relative', height: '85vh', minHeight: '600px', display: 'flex', alignItems: 'center', overflow: 'hidden', marginTop: 'var(--header-total-height)' }}>
-                <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
-                    <img
-                        src={concern.image}
-                        alt={concern.name}
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                    />
+            <section className="cd-hero">
+                <div className="cd-hero-bg">
+                    <img src={concern.image} alt={concern.name} />
+                    <div className="cd-hero-overlay" />
                 </div>
 
-                <div className="container" style={{ position: 'relative', zIndex: 10 }}>
-                    <RevealWrapper direction="up" className="max-w-3xl">
-                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem 1rem', border: '1px solid rgba(114,47,55,0.4)', borderRadius: '9999px', marginBottom: '2rem', backdropFilter: 'blur(8px)', background: 'rgba(0,0,0,0.2)' }}>
+                <div className="cd-hero-content container">
+                    <RevealWrapper direction="up" className="max-w-3xl" style={{ margin: '0 auto' }}>
+                        {/* Breadcrumb */}
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', marginBottom: '1.25rem' }}>
+                            <Link to="/" style={{ fontSize: 'clamp(0.55rem, 1.5vw, 0.65rem)', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, color: 'rgba(255,255,255,0.45)', textDecoration: 'none' }}>Home</Link>
+                            <span style={{ color: 'rgba(255,255,255,0.25)' }}>/</span>
+                            <Link to="/concerns" style={{ fontSize: 'clamp(0.55rem, 1.5vw, 0.65rem)', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, color: 'rgba(255,255,255,0.45)', textDecoration: 'none' }}>Concerns</Link>
+                            <span style={{ color: 'rgba(255,255,255,0.25)' }}>/</span>
+                            <span style={{ fontSize: 'clamp(0.55rem, 1.5vw, 0.65rem)', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, color: 'var(--color-wine)' }}>{concern.name}</span>
+                        </div>
+
+                        <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', padding: '0.4rem 1rem', border: '1px solid rgba(114,47,55,0.4)', borderRadius: '9999px', marginBottom: '1.5rem', backdropFilter: 'blur(8px)', background: 'rgba(0,0,0,0.2)' }}>
                             <span className="cd-wine" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{concern.icon}</span>
                             <span style={{ fontSize: '0.625rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: '#fff' }}>Targeted Solution</span>
                         </div>
 
-                        <h1 style={{ fontFamily: 'var(--font-display)', textTransform: 'uppercase', letterSpacing: '4px', color: '#fff', marginBottom: '1.5rem', fontSize: 'clamp(3rem, 8vw, 6rem)', lineHeight: 1.05 }}>
+                        <h1 style={{ fontFamily: 'var(--font-heading)', textTransform: 'uppercase', letterSpacing: '4px', color: '#fff', marginBottom: '1rem', fontSize: 'clamp(1.85rem, 7vw, 4.5rem)', lineHeight: 1.05 }}>
                             {(() => {
                                 const words = concern.name.split(' ')
                                 if (words.length === 1) return <span style={{ fontWeight: 300 }}>{words[0]}</span>
@@ -109,14 +151,14 @@ export default function ConcernDetail() {
                                 const restWords = words.slice(1).join(' ')
                                 return (
                                     <>
-                                        <span style={{ display: 'block', fontWeight: 300, color: 'rgba(255,255,255,0.9)' }}>{firstWord}</span>
-                                        <span style={{ display: 'block', fontWeight: 600, color: 'var(--color-wine)' }}>{restWords}</span>
+                                        <span style={{ fontWeight: 300, color: 'rgba(255,255,255,0.9)' }}>{firstWord} </span>
+                                        <span style={{ fontWeight: 700, color: 'var(--color-wine)', fontStyle: 'italic' }}>{restWords}</span>
                                     </>
                                 )
                             })()}
                         </h1>
 
-                        <p style={{ fontSize: '1.125rem', color: 'rgba(255,255,255,0.85)', fontWeight: 300, maxWidth: '40rem', lineHeight: 1.75, marginBottom: '2.5rem', borderLeft: '2px solid var(--color-wine)', paddingLeft: '1.5rem', paddingTop: '0.5rem', paddingBottom: '0.5rem' }}>
+                        <p style={{ color: 'rgba(255,255,255,0.82)', fontSize: 'clamp(0.82rem, 2vw, 1.1rem)', fontWeight: 300, maxWidth: '38rem', margin: '0 auto 2rem', lineHeight: 1.75 }}>
                             {concern.shortDescription}
                         </p>
 

@@ -360,9 +360,9 @@ export default function Header() {
 
     return (
         <>
-            {/* Top Bar - Refined */}
+            {/* Top Bar - Hidden on mobile */}
             <div
-                className="fixed top-0 left-0 w-full z-[1001] transition-all duration-500"
+                className="fixed top-0 left-0 w-full z-[1001] transition-all duration-500 hidden sm:block"
                 style={{
                     background: 'var(--color-wine)',
                     height: isScrolled ? '0px' : 'var(--header-top-bar-height)',

@@ -17,8 +17,8 @@ export default function TestimonialsSection() {
 
     return (
         <section
-            className="section relative overflow-hidden"
-            style={{ background: 'var(--color-bg-dark)' }}
+            className="relative overflow-hidden"
+            style={{ background: 'var(--color-bg-dark)', padding: 'clamp(2.5rem, 8vw, 6rem) 0' }}
         >
             <div
                 className="absolute top-20 right-20 w-64 h-64 rounded-full opacity-5"
@@ -29,78 +29,86 @@ export default function TestimonialsSection() {
                 <RevealWrapper>
                     <div className="section-header">
                         <Caption style={{ color: 'rgba(255,255,255,0.7)' }}>Patient Love</Caption>
-                        <Heading style={{ color: '#ffffff' }}>What Our Patients Say</Heading>
+                        <Heading style={{ color: '#ffffff', fontSize: 'clamp(1.5rem, 5vw, 3rem)' }}>What Our Patients Say</Heading>
                         <div className="accent-line" />
                     </div>
                 </RevealWrapper>
 
                 {/* Celebrity Carousel */}
-                <div className="max-w-5xl mx-auto mt-12">
+                <div className="max-w-5xl mx-auto mt-8 md:mt-12">
                     <div className="relative">
                         {/* Main Card */}
                         <RevealWrapper>
                             <div
-                                className="flex flex-col md:flex-row gap-6 md:gap-12 items-stretch"
-                                style={{ minHeight: '300px' }}
+                                className="flex flex-col md:flex-row gap-5 md:gap-12 items-stretch"
                             >
-                                {/* Content Side (Text left 70%) */}
-                                <div className="w-full md:w-[70%] flex flex-col justify-center order-2 md:order-1 pt-4 md:pt-0">
-                                    <div className="mb-4">
+                                {/* Image Side — top on mobile, right on desktop */}
+                                <div className="w-full md:w-[30%] flex items-center justify-center order-1 md:order-2 mb-2 md:mb-0">
+                                    <img
+                                        src={testimonials[active].image}
+                                        alt={testimonials[active].name}
+                                        className="object-cover rounded-sm shadow-xl"
+                                        loading="lazy"
+                                        decoding="async"
+                                        style={{
+                                            aspectRatio: '1/1',
+                                            width: '100%',
+                                            maxWidth: '180px',
+                                            maxHeight: '180px',
+                                        }}
+                                    />
+                                </div>
+
+                                {/* Content Side — below image on mobile, left on desktop */}
+                                <div className="w-full md:w-[70%] flex flex-col justify-center order-2 md:order-1">
+                                    <div className="mb-3">
                                         <h2
-                                            className="text-2xl md:text-3xl font-bold mb-2 tracking-wide"
+                                            className="font-bold tracking-wide"
                                             style={{
                                                 fontFamily: 'var(--font-display)',
-                                                color: '#EDE8D0'
+                                                color: '#EDE8D0',
+                                                fontSize: 'clamp(1.1rem, 4vw, 1.75rem)',
+                                                marginBottom: '0.25rem'
                                             }}
                                         >
                                             {testimonials[active].name}
                                         </h2>
-                                        <h2
-                                            className="text-lg md:text-xl opacity-80"
-                                            style={{ color: '#EDE8D0', fontFamily: 'var(--font-display)' }}
+                                        <h3
+                                            style={{
+                                                color: 'rgba(237,232,208,0.75)',
+                                                fontFamily: 'var(--font-display)',
+                                                fontSize: 'clamp(0.8rem, 2.5vw, 1.1rem)'
+                                            }}
                                         >
                                             {testimonials[active].role}
-                                        </h2>
+                                        </h3>
                                     </div>
 
                                     <div
-                                        className="w-[30%] h-px mb-6"
+                                        className="w-12 md:w-[30%] h-px mb-4"
                                         style={{ background: 'var(--color-wine)' }}
                                     />
 
                                     <p
-                                        className="text-base md:text-lg leading-relaxed italic"
+                                        className="leading-relaxed italic"
                                         style={{
                                             fontFamily: 'var(--font-display)',
-                                            color: '#EDE8D0'
+                                            color: 'rgba(237,232,208,0.9)',
+                                            fontSize: 'clamp(0.85rem, 2.5vw, 1.1rem)',
+                                            lineHeight: 1.7
                                         }}
                                     >
                                         "{testimonials[active].content}"
                                     </p>
                                 </div>
-
-                                {/* Image Side (Right 30%) */}
-                                <div className="w-full md:w-[30%] flex items-center justify-end order-1 md:order-2">
-                                    <img
-                                        src={testimonials[active].image}
-                                        alt={testimonials[active].name}
-                                        className="w-full h-auto object-cover rounded-sm shadow-xl"
-                                        loading="lazy"
-                                        decoding="async"
-                                        style={{
-                                            aspectRatio: '1/1',
-                                            maxWidth: '400px'
-                                        }}
-                                    />
-                                </div>
                             </div>
                         </RevealWrapper>
 
                         {/* Navigation Arrows */}
-                        <div className="flex items-center justify-center gap-4 mt-8">
+                        <div className="flex items-center justify-center gap-4 mt-6 md:mt-8">
                             <button
                                 onClick={goToPrev}
-                                className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300"
+                                className="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-wine/20"
                                 style={{
                                     border: '1px solid var(--color-wine)',
                                     color: 'var(--color-wine)'
@@ -122,7 +130,7 @@ export default function TestimonialsSection() {
 
                             <button
                                 onClick={goToNext}
-                                className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300"
+                                className="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-wine/20"
                                 style={{
                                     border: '1px solid var(--color-wine)',
                                     color: 'var(--color-wine)'
@@ -144,15 +152,15 @@ export default function TestimonialsSection() {
                         </div>
 
                         {/* Pagination Dots */}
-                        <div className="flex items-center justify-center gap-3 mt-8">
+                        <div className="flex items-center justify-center gap-3 mt-5 md:mt-8">
                             {testimonials.map((_, i) => (
                                 <button
                                     key={i}
                                     onClick={() => setActive(i)}
                                     className="rounded-full transition-all duration-300"
                                     style={{
-                                        width: i === active ? '32px' : '10px',
-                                        height: '10px',
+                                        width: i === active ? '28px' : '8px',
+                                        height: '8px',
                                         background: i === active ? 'var(--color-wine)' : 'rgba(255,255,255,0.2)',
                                     }}
                                     aria-label={`View testimonial ${i + 1}`}

@@ -37,17 +37,22 @@ export default function About() {
                 /* Hero */
                 .about-hero {
                     position: relative;
-                    height: 50vh;
-                    min-height: 400px;
+                    min-height: clamp(340px, 60vw, 540px);
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    margin-top: var(--header-total-height, 0);
+                    /* No margin-top — hero sits behind fixed header, content is padded */
+                }
+                @media (max-width: 640px) {
+                    .about-hero {
+                        min-height: clamp(280px, 65vw, 400px);
+                        align-items: flex-end;
+                        padding-bottom: 2rem;
+                    }
                 }
                 @media (min-width: 768px) {
                     .about-hero {
-                        height: 60vh;
-                        min-height: 500px;
+                        min-height: clamp(480px, 55vw, 600px);
                     }
                 }
                 .about-hero-bg {
@@ -57,23 +62,24 @@ export default function About() {
                     width: 100%; height: 100%; object-fit: cover; object-position: center;
                 }
                 .about-hero-overlay {
-                    position: absolute; inset: 0; background: rgba(0,0,0,0.3);
+                    position: absolute; inset: 0; background: rgba(0,0,0,0.42);
                 }
                 .about-hero-content {
                     position: relative; z-index: 1; text-align: center; color: #fff;
-                    width: 100%; padding: 0 1rem;
+                    width: 100%;
+                    padding: calc(var(--header-total-height) + 1.5rem) 1rem 2rem;
                 }
                 .about-hero-title {
                     font-family: var(--font-heading);
-                    font-size: clamp(2.5rem, 6vw, 5rem);
-                    letter-spacing: 4px;
+                    font-size: clamp(1.85rem, 7vw, 5rem);
+                    letter-spacing: clamp(2px, 1.5vw, 4px);
                     text-transform: uppercase;
-                    margin-bottom: 1rem;
+                    margin-bottom: 0.5rem;
                     font-weight: 300;
-                    text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+                    text-shadow: 0 4px 20px rgba(0,0,0,0.25);
                 }
                 .about-hero-breadcrumb {
-                    font-size: 0.75rem;
+                    font-size: clamp(0.55rem, 1.5vw, 0.75rem);
                     letter-spacing: 3px;
                     text-transform: uppercase;
                     font-weight: 600;
@@ -81,7 +87,7 @@ export default function About() {
 
                 /* Grid Sections */
                 .about-section {
-                    padding: 5rem 0;
+                    padding: clamp(2.5rem, 8vw, 5rem) 0;
                 }
                 @media (min-width: 768px) {
                     .about-section {

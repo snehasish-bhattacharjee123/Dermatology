@@ -50,27 +50,50 @@ export default function Home() {
                     from { opacity: 0; transform: translateY(20px) scale(0.9); }
                     to { opacity: 1; transform: translateY(0) scale(1); }
                 }
+                /* === MOBILE HERO FIXES === */
                 @media (max-width: 640px) {
-                    .hide-on-mobile {
-                        display: none !important;
-                    }
-                    /* Hero: half screen on mobile */
+                    .hide-on-mobile { display: none !important; }
+                    /* Hero: 65vh on mobile — not full screen */
                     .hero-mobile-half {
-                        min-height: 50vh !important;
-                        height: 50vh !important;
+                        min-height: 65vh !important;
+                        height: 65dvh !important;
+                        max-height: 700px !important;
                     }
                     .hero-content-mobile {
-                        min-height: 50vh !important;
+                        min-height: 65dvh !important;
+                        padding-bottom: 3.5rem !important;
                     }
-                    /* Stats: 4 columns on mobile */
+                    /* Hero text — tight but readable */
+                    .hero-title-mobile {
+                        font-size: clamp(1.65rem, 8vw, 2.2rem) !important;
+                        line-height: 1.18 !important;
+                        letter-spacing: -0.01em !important;
+                    }
+                    .hero-subtitle-mobile {
+                        font-size: 0.65rem !important;
+                        letter-spacing: 0.12em !important;
+                        margin-bottom: 0.65rem !important;
+                    }
+                    .hero-desc-mobile {
+                        font-size: 0.82rem !important;
+                        line-height: 1.55 !important;
+                        max-width: 90% !important;
+                        margin-bottom: 1.25rem !important;
+                    }
+                    /* Stats: 4 columns on mobile — compact */
                     .stats-grid {
                         grid-template-columns: repeat(4, 1fr) !important;
-                        gap: 4px !important;
+                        gap: 0 !important;
                     }
-                    .stats-icon svg { width: 20px; height: 20px; }
-                    .stats-number { font-size: 1.1rem !important; }
-                    .stats-label { font-size: 0.55rem !important; letter-spacing: 0.03em !important; }
-                    .stats-item-pad { padding: 10px 2px !important; }
+                    .stats-number { font-size: clamp(1.1rem, 6vw, 1.4rem) !important; }
+                    .stats-label { font-size: 0.5rem !important; letter-spacing: 0.03em !important; display: block !important; }
+                    .stats-item-pad { padding: 12px 4px !important; }
+                }
+                /* === TABLET TWEAKS === */
+                @media (min-width: 641px) and (max-width: 1023px) {
+                    .hero-title-mobile {
+                        font-size: clamp(2.2rem, 5vw, 3.5rem) !important;
+                    }
                 }
             `}</style>
             <HeroSection />
@@ -176,26 +199,53 @@ function HeroSection() {
                         style={{ aspectRatio: '4/3' }}
                     />
                 </picture>
+                {/* Gradient overlay for text legibility on mobile */}
+                <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.38) 60%, rgba(0,0,0,0.12) 100%)' }} />
             </div>
 
             {/* Content */}
             <div
                 className="relative flex items-center hero-content-mobile min-h-[100dvh] pt-[var(--header-total-height)] pb-16 md:pb-24"
             >
-                <div className="container relative z-10 w-full px-4 md:px-8">
-                    <div ref={textRef} className="max-w-3xl mt-[-40px] md:mt-0">
-                        <Caption className="mb-3 md:mb-5 block text-white text-xs md:text-sm" style={{ color: '#ffffff' }}>
+                <div className="container relative z-10 w-full px-4 sm:px-6 md:px-8">
+                    <div ref={textRef} className="max-w-3xl mt-[-20px] md:mt-0">
+                        <Caption
+                            className="hero-subtitle-mobile mb-2 md:mb-5 block text-white"
+                            style={{ color: '#ffffff', fontSize: '0.7rem', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: 600 }}
+                        >
                             {slide.subtitle}
                         </Caption>
-                        <Heading className="mb-4 md:mb-6 text-[2rem] leading-[1.15] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white font-medium" style={{ color: '#ffffff' }}>
+                        <Heading
+                            className="hero-title-mobile mb-3 md:mb-6 leading-[1.15] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white font-medium"
+                            style={{ color: '#ffffff', fontSize: 'clamp(1.75rem, 7.5vw, 4rem)' }}
+                        >
                             {slide.title.split('\n').map((line, i) => (
                                 <span key={i} className="block">{line}</span>
                             ))}
                         </Heading>
-                        <Text size="lg" className="mb-6 md:mb-10 max-w-lg text-white text-sm md:text-base lg:text-xl" style={{ color: '#ffffff' }}>
+                        <Text
+                            size="lg"
+                            className="hero-desc-mobile mb-5 md:mb-10 max-w-lg text-white"
+                            style={{ color: 'rgba(255,255,255,0.9)', fontSize: 'clamp(0.82rem, 2.5vw, 1.15rem)', lineHeight: 1.6 }}
+                        >
                             {slide.description}
                         </Text>
-                        <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto">
+                        {/* CTA Buttons — visible on mobile */}
+                        <div className="flex flex-row items-center gap-2 sm:gap-4 flex-wrap">
+                            <a
+                                href="/book"
+                                className="inline-flex items-center justify-center gap-2 text-white border border-white/60 px-4 sm:px-6 py-2 sm:py-3 rounded-sm backdrop-blur-sm hover:bg-white hover:text-dark transition-all duration-300"
+                                style={{ fontSize: 'clamp(0.6rem, 2vw, 0.75rem)', letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 700 }}
+                            >
+                                Book Now
+                            </a>
+                            <a
+                                href="/treatments"
+                                className="inline-flex items-center justify-center gap-2 text-white/80 hover:text-white transition-colors"
+                                style={{ fontSize: 'clamp(0.6rem, 2vw, 0.75rem)', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 600 }}
+                            >
+                                View Treatments →
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -281,20 +331,23 @@ function StatsBar() {
             className="relative z-10"
             style={{ background: '#EDE8D0' }}
         >
-            <div className="container py-6 md:py-14">
-                <div className="stats-grid grid grid-cols-4 md:grid-cols-4 gap-2 md:gap-4">
+            <div className="container py-5 md:py-14">
+                <div className="stats-grid grid grid-cols-4 md:grid-cols-4 gap-0 md:gap-4">
                     {stats.map((stat, i) => {
                         const Icon = statIcons[i]
                         return (
                             <RevealWrapper key={i} direction="up" delay={i * 0.1}>
-                                <div className="stats-item-pad text-center py-3 md:py-0">
+                                <div
+                                    className="stats-item-pad text-center"
+                                    style={{ padding: '12px 6px', borderRight: i < 3 ? '1px solid rgba(149,71,149,0.15)' : 'none' }}
+                                >
                                     <div
                                         className="font-medium stats-number"
                                         style={{
                                             color: '#954795',
-                                            fontFamily: 'var(--font-serif), Georgia, serif',
-                                            fontSize: 'clamp(1.5rem, 5vw, 4rem)',
-                                            lineHeight: 1.1,
+                                            fontFamily: 'var(--font-heading), Georgia, serif',
+                                            fontSize: 'clamp(1.25rem, 5vw, 4rem)',
+                                            lineHeight: 1.05,
                                             fontWeight: 400,
                                         }}
                                     >
@@ -303,8 +356,15 @@ function StatsBar() {
                                             suffix={stat.value.includes('+') ? '+' : stat.value.includes('%') ? '%' : ''}
                                         />
                                     </div>
-                                    <p className="stats-label mt-1 md:mt-3 text-[#0d1319] text-[0.55rem] md:text-base font-semibold opacity-90 uppercase hidden md:block"
-                                        style={{ fontFamily: 'var(--font-body)', letterSpacing: '0.04em' }}>
+                                    <p
+                                        className="stats-label mt-1 md:mt-3 text-[#0d1319] font-semibold opacity-90 uppercase"
+                                        style={{
+                                            fontFamily: 'var(--font-body)',
+                                            letterSpacing: '0.04em',
+                                            fontSize: 'clamp(0.45rem, 1.5vw, 0.875rem)',
+                                            lineHeight: 1.3
+                                        }}
+                                    >
                                         {stat.label}
                                     </p>
                                 </div>

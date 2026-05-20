@@ -87,7 +87,40 @@ export default function Contact() {
         <div style={{ background: '#EDE8D0' }}>
             <style>{`
                 /* ── Hero ── */
-                .ct-hero-gradient { display: none; }
+                .ct-hero {
+                    position: relative;
+                    min-height: clamp(340px, 60vw, 540px);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    overflow: hidden;
+                }
+                @media (max-width: 640px) {
+                    .ct-hero {
+                        min-height: clamp(280px, 65vw, 400px);
+                        align-items: flex-end;
+                        padding-bottom: 2rem;
+                    }
+                }
+                @media (min-width: 768px) {
+                    .ct-hero {
+                        min-height: clamp(480px, 55vw, 600px);
+                    }
+                }
+                .ct-hero-bg {
+                    position: absolute; inset: 0; z-index: 0;
+                }
+                .ct-hero-bg img {
+                    width: 100%; height: 100%; object-fit: cover; object-position: center 30%;
+                }
+                .ct-hero-overlay {
+                    position: absolute; inset: 0; background: rgba(0,0,0,0.42);
+                }
+                .ct-hero-content {
+                    position: relative; z-index: 1; text-align: center; color: #fff;
+                    width: 100%;
+                    padding: calc(var(--header-total-height) + 1.5rem) 1rem 2rem;
+                }
 
                 /* ── Info cards ── */
                 .ct-info-card { display: flex; align-items: flex-start; gap: 1.25rem; padding: 1.5rem; border: 1px solid #d6cfb3; background: #f5f0e1; transition: all 0.35s ease; }
@@ -118,13 +151,13 @@ export default function Contact() {
             `}</style>
 
             {/* ─── HERO ─── */}
-            <section style={{ position: 'relative', height: '62vh', minHeight: '460px', display: 'flex', alignItems: 'center', overflow: 'hidden', marginTop: 'var(--header-total-height)' }}>
-                <div style={{ position: 'absolute', inset: 0 }}>
-                    <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=1920&q=80" alt="D'CosMedis Clinic" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 30%' }} />
-                    <div className="ct-hero-gradient" />
+            <section className="ct-hero">
+                <div className="ct-hero-bg">
+                    <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=1920&q=80" alt="D'CosMedis Clinic" />
+                    <div className="ct-hero-overlay" />
                 </div>
 
-                <div className="container" style={{ position: 'relative', zIndex: 2, textAlign: 'center' }}>
+                <div className="ct-hero-content container">
                     <RevealWrapper direction="up">
                         <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-wine)', background: 'rgba(86, 58, 86, 0.12)', border: '1px solid rgba(86, 58, 86, 0.3)', borderRadius: '9999px', padding: '0.4rem 1.25rem', marginBottom: '1.5rem' }}>
                             Get In Touch

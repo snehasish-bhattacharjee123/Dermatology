@@ -80,21 +80,71 @@ export default function TreatmentDetail() {
                 .td-play-btn { width: clamp(4rem, 8vw, 5.5rem); height: clamp(4rem, 8vw, 5.5rem); background: rgba(255,255,255,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; }
                 .td-play-btn:hover { transform: scale(1.1); background: var(--color-wine); }
                 .td-play-btn:hover svg { fill: #fff !important; color: #fff !important; }
+
+                /* ── Hero ── */
+                .td-hero {
+                    position: relative;
+                    min-height: clamp(340px, 60vw, 540px);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    overflow: hidden;
+                }
+                @media (max-width: 640px) {
+                    .td-hero {
+                        min-height: clamp(280px, 65vw, 400px);
+                        align-items: flex-end;
+                        padding-bottom: 2rem;
+                    }
+                }
+                @media (min-width: 768px) {
+                    .td-hero {
+                        min-height: clamp(480px, 55vw, 600px);
+                    }
+                }
+                .td-hero-bg {
+                    position: absolute; inset: 0; z-index: 0;
+                }
+                .td-hero-bg img {
+                    width: 100%; height: 100%; object-fit: cover; object-position: center;
+                }
+                .td-hero-overlay {
+                    position: absolute; inset: 0; background: rgba(0,0,0,0.48);
+                }
+                .td-hero-content {
+                    position: relative; z-index: 1; text-align: center; color: #fff;
+                    width: 100%;
+                    padding: calc(var(--header-total-height) + 1.5rem) 1rem 2rem;
+                }
             `}</style>
 
             {/* 1. HERO SECTION */}
-            <section style={{ position: 'relative', height: 'clamp(500px, 70vh, 800px)', display: 'flex', alignItems: 'center', marginTop: 'var(--header-total-height)', overflow: 'hidden' }}>
-                <div style={{ position: 'absolute', inset: 0 }}>
-                    <img src={treatment.image} alt={treatment.title} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
-                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.2) 100%)' }} />
+            <section className="td-hero">
+                <div className="td-hero-bg">
+                    <img src={treatment.image} alt={treatment.title} />
+                    <div className="td-hero-overlay" />
                 </div>
 
-                <div className="td-container" style={{ position: 'relative', zIndex: 2, width: '100%' }}>
+                <div className="td-hero-content container">
                     <RevealWrapper direction="up">
-                        <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(3.5rem, 8vw, 6.5rem)', color: '#fff', textTransform: 'uppercase', letterSpacing: '4px', marginBottom: '1rem', fontStyle: 'italic', lineHeight: 1.1 }}>
+                        {/* Breadcrumb */}
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
+                            <Link to="/" style={{ fontSize: 'clamp(0.55rem, 1.5vw, 0.65rem)', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, color: 'rgba(255,255,255,0.45)', textDecoration: 'none' }}>Home</Link>
+                            <span style={{ color: 'rgba(255,255,255,0.25)' }}>/</span>
+                            <Link to="/treatments" style={{ fontSize: 'clamp(0.55rem, 1.5vw, 0.65rem)', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, color: 'rgba(255,255,255,0.45)', textDecoration: 'none' }}>Treatments</Link>
+                            <span style={{ color: 'rgba(255,255,255,0.25)' }}>/</span>
+                            <span style={{ fontSize: 'clamp(0.55rem, 1.5vw, 0.65rem)', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, color: 'var(--color-wine)' }}>{treatment.title}</span>
+                        </div>
+
+                        <span style={{ display: 'inline-block', fontSize: 'clamp(0.5rem, 1.3vw, 0.625rem)', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-wine)', background: 'rgba(114,47,55,0.12)', border: '1px solid rgba(114,47,55,0.3)', borderRadius: '9999px', padding: '0.4rem 1.25rem', marginBottom: '1rem' }}>
                             {treatment.category}
+                        </span>
+
+                        <h1 style={{ fontFamily: 'var(--font-heading)', color: '#fff', letterSpacing: 'clamp(2px, 1.5vw, 4px)', textTransform: 'uppercase', fontSize: 'clamp(1.85rem, 7vw, 4.5rem)', lineHeight: 1.05, marginBottom: '1rem', fontStyle: 'italic', fontWeight: 700 }}>
+                            {treatment.title}
                         </h1>
-                        <p style={{ color: 'rgba(255,255,255,0.9)', fontSize: 'clamp(1rem, 2vw, 1.25rem)', fontWeight: 300, maxWidth: '45rem', lineHeight: 1.7, letterSpacing: '1px' }}>
+
+                        <p style={{ color: 'rgba(255,255,255,0.82)', fontSize: 'clamp(0.82rem, 2vw, 1.1rem)', fontWeight: 300, maxWidth: '38rem', margin: '0 auto', lineHeight: 1.75 }}>
                             {treatment.shortDescription}
                         </p>
                     </RevealWrapper>

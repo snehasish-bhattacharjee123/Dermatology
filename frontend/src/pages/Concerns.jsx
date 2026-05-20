@@ -43,38 +43,38 @@ export default function Concerns() {
             `}</style>
 
             {/* ─── HERO ─── */}
-            <section style={{ position: 'relative', minHeight: '60vh', display: 'flex', alignItems: 'center', overflow: 'hidden', marginTop: 'var(--header-total-height)' }}>
+            <section style={{ position: 'relative', minHeight: 'clamp(340px, 60vw, 540px)', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
                 <div style={{ position: 'absolute', inset: 0 }}>
                     <img
                         src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=1920&q=80"
                         alt="Skin Concerns"
                         style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 40%' }}
                     />
-                    <div className="cn-hero-overlay" />
+                    <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.48)' }} />
                 </div>
 
-                <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+                <div className="container" style={{ position: 'relative', zIndex: 2, padding: 'calc(var(--header-total-height) + 2rem) 1rem 2.5rem' }}>
                     <RevealWrapper direction="up">
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.5rem' }}>
-                            <Link to="/" style={{ fontSize: '0.65rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, color: 'rgba(255,255,255,0.45)', transition: 'color 0.3s' }}>Home</Link>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
+                            <Link to="/" style={{ fontSize: 'clamp(0.55rem, 1.5vw, 0.65rem)', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, color: 'rgba(255,255,255,0.45)' }}>Home</Link>
                             <span style={{ color: 'rgba(255,255,255,0.25)' }}>/</span>
-                            <span style={{ fontSize: '0.65rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, color: 'var(--color-wine)' }}>Concerns</span>
+                            <span style={{ fontSize: 'clamp(0.55rem, 1.5vw, 0.65rem)', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, color: 'var(--color-wine)' }}>Concerns</span>
                         </div>
 
-                        <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-wine)', background: 'rgba(114,47,55,0.12)', border: '1px solid rgba(114,47,55,0.3)', borderRadius: '9999px', padding: '0.4rem 1.25rem', marginBottom: '1.25rem' }}>
+                        <span style={{ display: 'inline-block', fontSize: 'clamp(0.5rem, 1.3vw, 0.625rem)', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-wine)', background: 'rgba(114,47,55,0.12)', border: '1px solid rgba(114,47,55,0.3)', borderRadius: '9999px', padding: '0.4rem 1.25rem', marginBottom: '1rem' }}>
                             Clinical Dermatology
                         </span>
 
-                        <h1 style={{ fontFamily: 'var(--font-heading)', color: '#fff', letterSpacing: '4px', textTransform: 'uppercase', lineHeight: 1.1, marginBottom: '1.5rem', fontSize: 'clamp(3rem, 7vw, 5.5rem)' }}>
+                        <h1 style={{ fontFamily: 'var(--font-heading)', color: '#fff', letterSpacing: 'clamp(2px,1.5vw,4px)', textTransform: 'uppercase', lineHeight: 1.08, marginBottom: '1rem', fontSize: 'clamp(1.85rem, 7vw, 5rem)' }}>
                             <span style={{ display: 'block', fontWeight: 300 }}>What Bothers</span>
                             <span style={{ display: 'block', fontWeight: 700, color: 'var(--color-wine)', fontStyle: 'italic' }}>You?</span>
                         </h1>
 
-                        <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.125rem', fontWeight: 300, maxWidth: '36rem', lineHeight: 1.8 }}>
-                            At D'CosMedis, we address every skin and hair concern with clinical precision, advanced technology, and personalized care. Find your concern below to explore our targeted solutions.
+                        <p style={{ color: 'rgba(255,255,255,0.82)', fontSize: 'clamp(0.82rem, 2vw, 1.1rem)', fontWeight: 300, maxWidth: '36rem', lineHeight: 1.75, marginBottom: '1.25rem' }}>
+                            At D'CosMedis, we address every skin and hair concern with clinical precision, advanced technology, and personalized care.
                         </p>
 
-                        <div className="cn-search">
+                        <div className="cn-search" style={{ marginTop: '0.5rem' }}>
                             <Search size={18} style={{ color: 'var(--color-wine)', flexShrink: 0 }} />
                             <input
                                 type="text"

@@ -105,7 +105,7 @@ export default function Gallery() {
             `}</style>
 
             {/* ─── HERO ─── */}
-            <section style={{ position: 'relative', height: '60vh', minHeight: '450px', display: 'flex', alignItems: 'center', overflow: 'hidden', marginTop: 'var(--header-total-height)' }}>
+            <section style={{ position: 'relative', minHeight: 'clamp(340px, 60vw, 540px)', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
                 <div className="gl-hero-bg">
                     <img
                         src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1280&q=75"
@@ -115,27 +115,27 @@ export default function Gallery() {
                         sizes="100vw"
                         srcSet="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=640&q=75 640w, https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1280&q=75 1280w, https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920&q=75 1920w"
                     />
-                    <div className="gl-hero-gradient" />
+                    <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.48)' }} />
                 </div>
 
-                <div className="container" style={{ position: 'relative', zIndex: 2, textAlign: 'center' }}>
+                <div className="container" style={{ position: 'relative', zIndex: 2, textAlign: 'center', padding: 'calc(var(--header-total-height) + 2rem) 1rem 2.5rem' }}>
                     <RevealWrapper direction="up">
-                        <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-accent)', background: 'rgba(84,56,86,0.18)', border: '1px solid rgba(205,191,204,0.4)', borderRadius: '9999px', padding: '0.4rem 1.25rem', marginBottom: '1.5rem' }}>
+                        <span style={{ display: 'inline-block', fontSize: 'clamp(0.5rem, 1.3vw, 0.625rem)', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-accent)', background: 'rgba(84,56,86,0.18)', border: '1px solid rgba(205,191,204,0.4)', borderRadius: '9999px', padding: '0.4rem 1.25rem', marginBottom: '1rem' }}>
                             Visual Stories
                         </span>
-                        <h1 style={{ fontFamily: 'var(--font-heading)', color: '#fff', letterSpacing: '6px', textTransform: 'uppercase', fontSize: 'clamp(2.5rem, 7vw, 5.5rem)', lineHeight: 1.05, marginBottom: '1.5rem' }}>
+                        <h1 style={{ fontFamily: 'var(--font-heading)', color: '#fff', letterSpacing: 'clamp(2px, 1.5vw, 6px)', textTransform: 'uppercase', fontSize: 'clamp(1.85rem, 7vw, 5rem)', lineHeight: 1.05, marginBottom: '1rem' }}>
                             <span style={{ fontWeight: 300 }}>OUR </span>
                             <span style={{ fontWeight: 700, color: 'var(--color-accent)' }}>GALLERY</span>
                         </h1>
-                        <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 'clamp(0.9375rem, 2vw, 1.125rem)', fontWeight: 300, maxWidth: '38rem', margin: '0 auto', lineHeight: 1.75 }}>
+                        <p style={{ color: 'rgba(255,255,255,0.82)', fontSize: 'clamp(0.82rem, 2vw, 1.1rem)', fontWeight: 300, maxWidth: '38rem', margin: '0 auto', lineHeight: 1.75 }}>
                             Explore our cutting-edge clinic spaces, advanced treatment sessions, and transformative results through our visual portfolio.
                         </p>
                     </RevealWrapper>
                 </div>
 
                 {/* Scroll indicator */}
-                <div style={{ position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.4rem' }}>
-                    <div style={{ width: '1px', height: '2.5rem', background: 'linear-gradient(to bottom, transparent, var(--color-wine))' }} />
+                <div style={{ position: 'absolute', bottom: '1.5rem', left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.4rem' }}>
+                    <div style={{ width: '1px', height: '2rem', background: 'linear-gradient(to bottom, transparent, var(--color-wine))' }} />
                 </div>
             </section>
 
