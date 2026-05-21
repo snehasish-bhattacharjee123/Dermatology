@@ -1,8 +1,9 @@
 import { useState, useEffect, useCallback } from 'react'
-import { X, ChevronLeft, ChevronRight, ZoomIn, ArrowRight } from 'lucide-react'
+import { X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { RevealWrapper } from '../hooks/useAnimations'
 import { galleryImages } from '../data/siteData'
+import CtaBanner from '../components/ui/CtaBanner'
 
 const categories = [
     { key: 'all', label: 'All' },
@@ -281,27 +282,12 @@ export default function Gallery() {
             )}
 
             {/* ─── CTA ─── */}
-            <section style={{ background: 'var(--color-wine)', padding: '5rem 0', textAlign: 'center' }}>
-                <div className="container" style={{ maxWidth: '44rem' }}>
-                    <RevealWrapper>
-                        <span style={{ display: 'block', fontSize: '0.625rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: 'rgba(255,255,255,0.7)', marginBottom: '1rem' }}>Ready to Begin?</span>
-                        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 2.75rem)', color: '#fff', marginBottom: '1.25rem', lineHeight: 1.2 }}>
-                            Experience the Transformation Yourself
-                        </h2>
-                        <p style={{ color: 'var(--color-bg-cream)', fontSize: '1rem', lineHeight: 1.75, marginBottom: '2.5rem', fontWeight: 400 }}>
-                            Book a consultation with our expert dermatologists and start your personalised skin journey today.
-                        </p>
-                        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-                            <Link to="/book" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: '#fff', color: 'var(--color-wine)', padding: '1rem 2.5rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700 }}>
-                                BOOK CONSULTATION <ArrowRight size={14} />
-                            </Link>
-                            <Link to="/treatments" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'transparent', color: '#fff', padding: '1rem 2.5rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, border: '1px solid rgba(255,255,255,0.5)' }}>
-                                Our Treatments
-                            </Link>
-                        </div>
-                    </RevealWrapper>
-                </div>
-            </section>
+            <CtaBanner
+                primaryLabel="Book Consultation"
+                primaryTo="/book"
+                secondaryLabel="Our Treatments"
+                secondaryTo="/treatments"
+            />
         </div>
     )
 }

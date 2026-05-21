@@ -587,11 +587,10 @@ export default function Header() {
                                                 <div className="mt-8 pt-6">
                                                     <Link
                                                         to={link.megaMenuFeatured.sidebarBtnLink}
-                                                        className="inline-flex items-center justify-center bg-[#6a6a7c] text-white px-6 py-2.5 text-sm hover:bg-wine transition-colors rounded-sm"
-                                                        style={{ fontFamily: 'var(--font-body)' }}
+                                                        className="btn btn-primary w-full"
                                                         onClick={() => setActiveDropdown(null)}
                                                     >
-                                                        {link.megaMenuFeatured.sidebarBtnText} <ArrowRight size={14} className="ml-2 -rotate-45" />
+                                                        {link.megaMenuFeatured.sidebarBtnText} <ArrowRight size={16} className="ml-2" />
                                                     </Link>
                                                 </div>
                                             )}
@@ -643,11 +642,10 @@ export default function Header() {
                                                     href={link.megaMenuFeatured.promoLink}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="px-6 py-2.5 border border-white text-white text-sm hover:bg-white hover:text-dark transition-colors backdrop-blur-sm"
-                                                    style={{ fontFamily: 'var(--font-body)' }}
+                                                    className="btn btn-primary"
                                                     onClick={() => setActiveDropdown(null)}
                                                 >
-                                                    {link.megaMenuFeatured.promoBtnText} <ArrowRight size={14} className="inline ml-1 -rotate-45" />
+                                                    {link.megaMenuFeatured.promoBtnText} <ArrowRight size={16} className="ml-2" />
                                                 </a>
                                             </div>
                                         </div>
@@ -703,11 +701,10 @@ export default function Header() {
                                                     href={link.promoLink}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="px-6 py-2 border border-white text-white text-sm hover:bg-white hover:text-dark transition-colors backdrop-blur-sm"
-                                                    style={{ fontFamily: 'var(--font-body)' }}
+                                                    className="btn btn-primary"
                                                     onClick={() => setActiveDropdown(null)}
                                                 >
-                                                    {link.promoBtnText} <ArrowRight size={14} className="inline ml-1" />
+                                                    {link.promoBtnText} <ArrowRight size={16} className="ml-2" />
                                                 </a>
                                             </div>
                                         </div>

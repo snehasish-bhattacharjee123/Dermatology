@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Search, Stethoscope } from 'lucide-react'
+import { Search, Stethoscope } from 'lucide-react'
 import { RevealWrapper } from '../hooks/useAnimations'
 import { concerns } from '../data/siteData'
+import CtaBanner from '../components/ui/CtaBanner'
 
 export default function Concerns() {
     const [searchQuery, setSearchQuery] = useState('')
@@ -168,31 +169,13 @@ export default function Concerns() {
             </section>
 
             {/* ─── CTA BANNER ─── */}
-            <section style={{ position: 'relative', padding: '7rem 0', overflow: 'hidden' }}>
-                <div style={{ position: 'absolute', inset: 0 }}>
-                    <img
-                        src="https://images.unsplash.com/photo-1552693673-1bf958298935?w=1920&q=80"
-                        alt="Consultation"
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                    />
-                </div>
-                <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center', maxWidth: '50rem' }}>
-                    <RevealWrapper>
-                        <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-wine)', marginBottom: '1.25rem' }}>
-                            Unsure Where To Start?
-                        </span>
-                        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 3.25rem)', color: '#fff', marginBottom: '1.5rem', lineHeight: 1.2 }}>
-                            Get a Clinical <span style={{ fontStyle: 'italic', color: 'var(--color-wine)' }}>Assessment</span>
-                        </h2>
-                        <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '1.0625rem', lineHeight: 1.8, marginBottom: '3rem', fontWeight: 300 }}>
-                            Let our dermatologists analyze your skin or hair condition and recommend a tailored, evidence-based treatment protocol.
-                        </p>
-                        <Link to="/book" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'var(--color-wine)', color: '#fff', padding: '1.1rem 2.75rem', fontSize: '0.8rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, transition: 'all 0.3s' }}>
-                            BOOK CONSULTATION <ArrowRight size={15} />
-                        </Link>
-                    </RevealWrapper>
-                </div>
-            </section>
+            <CtaBanner
+                primaryLabel="Book Consultation"
+                primaryTo="/book"
+                secondaryLabel="Browse Treatments"
+                secondaryTo="/treatments"
+                image="https://images.unsplash.com/photo-1552693673-1bf958298935?w=1920&q=80"
+            />
         </div>
     )
 }

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Play, ChevronDown } from 'lucide-react'
 import { RevealWrapper } from '../hooks/useAnimations'
 import { Heading, Text, Caption } from '../components/ui/Typography'
+import CtaBanner from '../components/ui/CtaBanner'
 
 export default function ExosomesTherapy() {
     const [openFaq, setOpenFaq] = useState(0)
@@ -328,7 +329,14 @@ export default function ExosomesTherapy() {
                 </div>
             </section>
 
-
+            {/* ─── CTA ─── */}
+            <CtaBanner
+                primaryLabel="Book Consultation"
+                primaryTo="/book"
+                secondaryLabel="Browse Treatments"
+                secondaryTo="/treatments"
+                image="https://images.unsplash.com/photo-1629909615184-74f495363b67?w=1920&q=80"
+            />
         </div>
     )
 }

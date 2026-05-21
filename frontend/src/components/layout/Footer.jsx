@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Instagram, Facebook, Youtube, Twitter, ArrowUpRight } from 'lucide-react'
 import { RevealWrapper } from '../../hooks/useAnimations'
 
@@ -47,13 +47,17 @@ const footerLinks = {
 }
 
 export default function Footer() {
+    const location = useLocation()
+    const isHomePage = location.pathname === '/'
+
     return (
         <footer style={{ background: 'var(--color-bg-dark)' }} className="text-white relative z-10">
             {/* CTA Strip */}
-            <div
-                className="py-10 md:py-16"
-                style={{ background: 'var(--color-wine)' }}
-            >
+            {/* {!isHomePage && (
+                <div
+                    className="py-10 md:py-16"
+                    style={{ background: 'var(--color-wine)' }}
+                >
                 <div className="container mx-auto text-center px-4 md:px-6">
                     <RevealWrapper>
                         <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif text-white mb-3 md:mb-4">
@@ -74,7 +78,8 @@ export default function Footer() {
                         </Link>
                     </RevealWrapper>
                 </div>
-            </div>
+                </div>
+            )} */}
 
             {/* Main Footer */}
             <div className="container mx-auto py-12 lg:py-16 px-5 md:px-6">
@@ -119,14 +124,14 @@ export default function Footer() {
                     </div>
 
                     {/* Links Grid - 2 columns on mobile, 4 on desktop */}
-                    <div className="lg:w-2/3 grid grid-cols-2 md:grid-cols-4 gap-x-4 md:gap-x-6 gap-y-8 lg:gap-y-0">
+                    <div className="lg:w-2/3 grid grid-cols-2 md:grid-cols-4 gap-x-4 md:gap-x-6 gap-y-10 lg:gap-y-0">
                         {/* CONCERNS */}
                         <div>
-                            <h4 className="text-white font-serif text-sm tracking-wide mb-3 md:mb-5">CONCERNS</h4>
-                            <ul className="space-y-2.5 md:space-y-3">
+                            <h4 className="text-white font-serif text-sm md:text-base tracking-widest mb-4 md:mb-6" style={{ color: 'white' }}>CONCERNS</h4>
+                            <ul className="space-y-3 md:space-y-4">
                                 {footerLinks.concerns.map(link => (
                                     <li key={link.name}>
-                                        <Link to={link.path} className="text-white/60 hover:text-wine text-[11px] md:text-xs transition-all duration-300 hover:pl-1 inline-block" style={{ fontFamily: 'var(--font-body)' }}>
+                                        <Link to={link.path} className="text-white hover:text-wine text-xs md:text-sm transition-colors duration-300 inline-block" style={{ fontFamily: 'var(--font-body)' }}>
                                             {link.name}
                                         </Link>
                                     </li>
@@ -136,11 +141,11 @@ export default function Footer() {
 
                         {/* TREATMENTS */}
                         <div>
-                            <h4 className="text-white font-serif text-sm tracking-wide mb-3 md:mb-5">TREATMENTS</h4>
-                            <ul className="space-y-2.5 md:space-y-3">
+                            <h4 className="text-white font-serif text-sm md:text-base tracking-widest mb-4 md:mb-6" style={{ color: 'white' }}>TREATMENTS</h4>
+                            <ul className="space-y-3 md:space-y-4">
                                 {footerLinks.treatments.map(link => (
                                     <li key={link.name}>
-                                        <Link to={link.path} className="text-white/60 hover:text-wine text-[11px] md:text-xs transition-all duration-300 hover:pl-1 inline-block" style={{ fontFamily: 'var(--font-body)' }}>
+                                        <Link to={link.path} className="text-white hover:text-wine text-xs md:text-sm transition-colors duration-300 inline-block" style={{ fontFamily: 'var(--font-body)' }}>
                                             {link.name}
                                         </Link>
                                     </li>
@@ -150,11 +155,11 @@ export default function Footer() {
 
                         {/* NAVIGATION */}
                         <div>
-                            <h4 className="text-white font-serif text-sm tracking-wide mb-3 md:mb-5">NAVIGATION</h4>
-                            <ul className="space-y-2.5 md:space-y-3">
+                            <h4 className="text-white font-serif text-sm md:text-base tracking-widest mb-4 md:mb-6" style={{ color: 'white' }}>NAVIGATION</h4>
+                            <ul className="space-y-3 md:space-y-4">
                                 {footerLinks.navigation.map(link => (
                                     <li key={link.name}>
-                                        <Link to={link.path} className="text-white/60 hover:text-wine text-[11px] md:text-xs transition-all duration-300 hover:pl-1 inline-block" style={{ fontFamily: 'var(--font-body)' }}>
+                                        <Link to={link.path} className="text-white hover:text-wine text-xs md:text-sm transition-colors duration-300 inline-block" style={{ fontFamily: 'var(--font-body)' }}>
                                             {link.name}
                                         </Link>
                                     </li>
@@ -164,13 +169,13 @@ export default function Footer() {
 
                         {/* CONTACT */}
                         <div>
-                            <h4 className="text-white font-serif text-sm tracking-wide mb-3 md:mb-5">CONTACT</h4>
-                            <ul className="space-y-3.5 md:space-y-4">
+                            <h4 className="text-white font-serif text-sm md:text-base tracking-widest mb-4 md:mb-6" style={{ color: 'white' }}>CONTACT</h4>
+                            <ul className="space-y-4 md:space-y-5">
                                 {footerLinks.contact.map(loc => (
                                     <li key={loc.name}>
-                                        <a href={`tel:${loc.phone.replace(/\s+/g, '')}`} className="group flex flex-col items-start text-white/50 hover:text-wine transition-colors duration-300" style={{ fontFamily: 'var(--font-body)' }}>
-                                            <span className="text-[11px] md:text-xs font-medium text-white/80 group-hover:text-wine transition-colors duration-300 mb-0.5">{loc.name}:</span>
-                                            <span className="text-[10px] md:text-[11px]">{loc.phone}</span>
+                                        <a href={`tel:${loc.phone.replace(/\\s+/g, '')}`} className="group flex flex-col items-start text-white hover:text-wine transition-colors duration-300" style={{ fontFamily: 'var(--font-body)' }}>
+                                            <span className="text-xs md:text-sm font-medium text-white group-hover:text-wine transition-colors duration-300 mb-0.5">{loc.name}:</span>
+                                            <span className="text-[11px] md:text-xs">{loc.phone}</span>
                                         </a>
                                     </li>
                                 ))}

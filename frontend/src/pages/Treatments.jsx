@@ -1,8 +1,9 @@
 import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Clock, Search, SlidersHorizontal } from 'lucide-react'
+import { Clock, Search } from 'lucide-react'
 import { RevealWrapper } from '../hooks/useAnimations'
 import { treatments, treatmentCategories } from '../data/siteData'
+import CtaBanner from '../components/ui/CtaBanner'
 
 export default function Treatments() {
     const [activeCategory, setActiveCategory] = useState('all')
@@ -23,136 +24,216 @@ export default function Treatments() {
 
     const activeCategoryLabel = activeCategory === 'all'
         ? 'All Treatments'
-        : treatmentCategories.find(c => c.slug === activeCategory)?.name + ' Treatments'
+        : (treatmentCategories.find(c => c.slug === activeCategory)?.name || '') + ' Treatments'
 
     return (
-        <div className="bg-white">
+        <div style={{ background: '#faf9f7' }}>
             <style>{`
-                /* ── Filter pills ── */
-                .tr-cat-btn { padding: 0.6rem 1.25rem; font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; cursor: pointer; border-radius: 9999px; border: 1px solid #e0dbd5; background: transparent; color: #888; transition: all 0.3s; white-space: nowrap; font-family: var(--font-body); }
-                .tr-cat-btn:hover { border-color: var(--color-wine); color: var(--color-dark); }
-                .tr-cat-btn.active { background: var(--color-wine); color: #fff; border-color: var(--color-wine); box-shadow: 0 4px 12px rgba(114,47,55,0.2); }
-
-                /* ── Treatment cards ── */
-                .tr-card { display: block; background: #fff; border: 1px solid #f0ede8; overflow: hidden; transition: all 0.45s ease; position: relative; }
-                .tr-card:hover { box-shadow: 0 24px 60px rgba(0,0,0,0.08); transform: translateY(-4px); border-color: transparent; }
-                .tr-card-img { width: 100%; height: 260px; object-fit: cover; transition: transform 1.2s ease; display: block; }
-                .tr-card:hover .tr-card-img { transform: scale(1.05); }
-                
-                /* ── Empty state ── */
-                .tr-empty { text-align: center; padding: 6rem 1rem; color: var(--color-text-muted); }
-
-                /* ── Search box ── */
-                .tr-search { display: flex; align-items: center; gap: 0.75rem; background: #f9f8f6; border: 1px solid transparent; padding: 0.75rem 1.25rem; width: 100%; transition: all 0.3s; border-radius: 999px; }
-                .tr-search:focus-within { border-color: var(--color-wine); background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-                .tr-search input { border: none; outline: none; font-size: 0.875rem; color: var(--color-dark); background: transparent; width: 100%; font-family: var(--font-body); }
-                .tr-search input::placeholder { color: #999; }
-
-                /* ── Scrollbar hide ── */
-                .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-                .scrollbar-hide::-webkit-scrollbar { display: none; }
-
                 /* ── Hero ── */
                 .tr-hero {
                     position: relative;
-                    min-height: clamp(340px, 60vw, 540px);
+                    min-height: clamp(380px, 55vw, 560px);
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     overflow: hidden;
                 }
                 @media (max-width: 640px) {
-                    .tr-hero {
-                        min-height: clamp(280px, 65vw, 400px);
-                        align-items: flex-end;
-                        padding-bottom: 2rem;
-                    }
+                    .tr-hero { min-height: clamp(300px, 70vw, 420px); }
                 }
-                @media (min-width: 768px) {
-                    .tr-hero {
-                        min-height: clamp(480px, 55vw, 600px);
-                    }
-                }
-                .tr-hero-bg {
-                    position: absolute; inset: 0; z-index: 0;
-                }
-                .tr-hero-bg video {
-                    width: 100%; height: 100%; object-fit: cover; object-position: center;
+                .tr-hero video {
+                    position: absolute; inset: 0;
+                    width: 100%; height: 100%;
+                    object-fit: cover; object-position: center;
                 }
                 .tr-hero-overlay {
-                    position: absolute; inset: 0; background: rgba(0,0,0,0.48);
+                    position: absolute; inset: 0;
+                    background: linear-gradient(to bottom, rgba(13,19,25,0.42) 0%, rgba(13,19,25,0.68) 100%);
                 }
                 .tr-hero-content {
-                    position: relative; z-index: 1; text-align: center; color: #fff;
+                    position: relative; z-index: 1;
+                    text-align: center; color: #fff;
+                    padding: calc(var(--header-total-height) + 2rem) 1.25rem 3rem;
                     width: 100%;
-                    padding: calc(var(--header-total-height) + 1.5rem) 1rem 2rem;
+                }
+
+                /* ── Filter pills ── */
+                .tr-pills {
+                    display: flex;
+                    gap: 0.5rem;
+                    overflow-x: auto;
+                    scrollbar-width: none;
+                    -ms-overflow-style: none;
+                    padding-bottom: 2px;
+                }
+                .tr-pills::-webkit-scrollbar { display: none; }
+
+                .tr-pill {
+                    flex-shrink: 0;
+                    padding: 0.5rem 1.15rem;
+                    font-size: 0.7rem;
+                    letter-spacing: 1.5px;
+                    text-transform: uppercase;
+                    font-weight: 600;
+                    cursor: pointer;
+                    border-radius: 9999px;
+                    border: none;
+                    background: transparent;
+                    color: #888;
+                    transition: all 0.25s ease;
+                    font-family: var(--font-body);
+                }
+                .tr-pill:hover { color: var(--color-wine); }
+                .tr-pill.active {
+                    background: var(--color-wine);
+                    color: #fff;
+                    box-shadow: 0 4px 14px rgba(149,71,149,0.25);
+                }
+
+                /* ── Search ── */
+                .tr-search {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.6rem;
+                    background: #fff;
+                    border: 1px solid #e8e3dc;
+                    padding: 0.6rem 1.1rem;
+                    border-radius: 9999px;
+                    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+                }
+                .tr-search:focus-within {
+                    border-color: var(--color-wine);
+                    box-shadow: 0 0 0 3px rgba(149,71,149,0.08);
+                }
+                .tr-search input {
+                    border: none; outline: none;
+                    font-size: 0.85rem;
+                    color: var(--color-dark);
+                    background: transparent;
+                    width: 100%;
+                    font-family: var(--font-body);
+                }
+                .tr-search input::placeholder { color: #bbb; }
+
+                /* ── Card ── */
+                .tr-card {
+                    display: flex;
+                    flex-direction: column;
+                    background: #fff;
+                    overflow: hidden;
+                    border-radius: 12px;
+                    transition: transform 0.4s ease, box-shadow 0.4s ease;
+                }
+                .tr-card:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 0 20px 48px rgba(13,19,25,0.09);
+                }
+                .tr-card-img {
+                    width: 100%;
+                    height: 220px;
+                    object-fit: cover;
+                    display: block;
+                    transition: transform 1.4s ease;
+                }
+                @media (max-width: 640px) {
+                    .tr-card-img { height: 190px; }
+                }
+                .tr-card:hover .tr-card-img { transform: scale(1.04); }
+                .tr-card-img-wrap { overflow: hidden; position: relative; }
+                .tr-card-overlay {
+                    position: absolute; inset: 0;
+                    background: linear-gradient(to top, rgba(13,19,25,0.45), transparent);
+                    opacity: 0;
+                    transition: opacity 0.35s ease;
+                    display: flex; align-items: flex-end; padding: 1.25rem;
+                }
+                .tr-card:hover .tr-card-overlay { opacity: 1; }
+
+                /* ── Empty state ── */
+                .tr-empty {
+                    text-align: center;
+                    padding: 6rem 1rem;
+                }
+
+                /* ── Stats ── */
+                .tr-stat-grid {
+                    display: grid;
+                    grid-template-columns: repeat(4, 1fr);
+                }
+                @media (max-width: 640px) {
+                    .tr-stat-grid { grid-template-columns: repeat(2, 1fr); }
+                }
+                .tr-stat {
+                    text-align: center;
+                    padding: 2rem 1rem;
                 }
             `}</style>
 
             {/* ─── HERO ─── */}
             <section className="tr-hero">
-                <div className="tr-hero-bg">
-                    <video
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                    >
-                        <source src="https://videos.pexels.com/video-files/6835154/6835154-uhd_2732_1440_25fps.mp4" type="video/mp4" />
-                    </video>
-                    <div className="tr-hero-overlay" />
-                </div>
-
+                <video autoPlay loop muted playsInline>
+                    <source src="https://videos.pexels.com/video-files/6835154/6835154-uhd_2732_1440_25fps.mp4" type="video/mp4" />
+                </video>
+                <div className="tr-hero-overlay" />
                 <div className="tr-hero-content container">
                     <RevealWrapper direction="up">
                         {/* Breadcrumb */}
-                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
-                            <Link to="/" style={{ fontSize: 'clamp(0.55rem, 1.5vw, 0.65rem)', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, color: 'rgba(255,255,255,0.45)', textDecoration: 'none' }}>Home</Link>
-                            <span style={{ color: 'rgba(255,255,255,0.25)' }}>/</span>
-                            <span style={{ fontSize: 'clamp(0.55rem, 1.5vw, 0.65rem)', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, color: 'var(--color-wine)' }}>Treatments</span>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', marginBottom: '1.5rem' }}>
+                            <Link to="/" style={{ fontSize: '0.65rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, color: 'rgba(255,255,255,0.4)', textDecoration: 'none' }}>Home</Link>
+                            <span style={{ color: 'rgba(255,255,255,0.2)' }}>·</span>
+                            <span style={{ fontSize: '0.65rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, color: 'rgba(255,255,255,0.6)' }}>Treatments</span>
                         </div>
 
-                        <h1 style={{ fontFamily: 'var(--font-heading)', color: '#fff', letterSpacing: 'clamp(2px, 1.5vw, 4px)', textTransform: 'uppercase', fontSize: 'clamp(1.85rem, 7vw, 5rem)', lineHeight: 1.05, marginBottom: '1rem' }}>
-                            <span style={{ fontWeight: 300 }}>Clinical </span>
-                            <span style={{ fontWeight: 700, color: 'var(--color-wine)', fontStyle: 'italic' }}>Treatments</span>
+                        <h1 style={{
+                            fontFamily: 'var(--font-heading)',
+                            color: '#fff',
+                            fontSize: 'clamp(2.4rem, 8vw, 5.5rem)',
+                            fontWeight: 300,
+                            lineHeight: 1.05,
+                            letterSpacing: 'clamp(3px, 1.5vw, 8px)',
+                            textTransform: 'uppercase',
+                            marginBottom: '1.25rem',
+                        }}>
+                            Clinical{' '}
+                            <span style={{ fontStyle: 'italic', fontWeight: 400, color: 'var(--color-wine-light)' }}>Treatments</span>
                         </h1>
 
-                        <p style={{ color: 'rgba(255,255,255,0.82)', fontSize: 'clamp(0.82rem, 2vw, 1.1rem)', fontWeight: 300, maxWidth: '38rem', margin: '0 auto', lineHeight: 1.75 }}>
-                            Discover our comprehensive range of advanced aesthetic procedures, powered by cutting-edge technology and delivered by certified experts.
+                        <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: 'clamp(0.875rem, 2vw, 1.1rem)', fontWeight: 300, maxWidth: '36rem', margin: '0 auto', lineHeight: 1.8 }}>
+                            Advanced aesthetic procedures, powered by cutting-edge technology and delivered by certified dermatologists.
                         </p>
                     </RevealWrapper>
                 </div>
             </section>
 
             {/* ─── STATS BAR ─── */}
-            <section className="bg-dark py-0">
+            <section style={{ background: 'var(--color-bg-dark)' }}>
                 <div className="container px-0 sm:px-4">
-                    <div className="grid grid-cols-2 md:grid-cols-4">
+                    <div className="tr-stat-grid">
                         {[
                             { val: '50+', label: 'Treatments' },
                             { val: '30+', label: 'Years Expert' },
                             { val: '15', label: 'Locations' },
                             { val: '50K+', label: 'Patients' },
                         ].map((s, i) => (
-                            <div key={i} className={`text-center py-6 md:py-8 px-4 border-b md:border-b-0 md:border-r border-white/10 ${i % 2 === 0 ? 'border-r' : ''} ${i === 3 ? 'border-none' : ''}`}>
-                                <span className="block font-heading text-2xl md:text-3xl lg:text-4xl text-wine font-light leading-none mb-2">{s.val}</span>
-                                <span className="block text-[9px] md:text-[10px] tracking-widest uppercase font-bold text-white/40">{s.label}</span>
+                            <div key={i} className="tr-stat">
+                                <span style={{ display: 'block', fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--color-wine)', fontWeight: 300, lineHeight: 1, marginBottom: '0.5rem' }}>{s.val}</span>
+                                <span style={{ display: 'block', fontSize: '0.625rem', letterSpacing: '2.5px', textTransform: 'uppercase', fontWeight: 600, color: 'rgba(255,255,255,0.35)' }}>{s.label}</span>
                             </div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* ─── FILTER + SEARCH BAR (Mobile Optimized) ─── */}
-            <section className="bg-white/90 py-4 border-b border-border/20 sticky top-[var(--header-total-height)] z-20 backdrop-blur-xl">
+            {/* ─── FILTER + SEARCH ─── */}
+            <div style={{ background: '#fff', borderBottom: '1px solid #f0ece6', position: 'sticky', top: 'var(--header-total-height)', zIndex: 20 }}>
                 <div className="container">
-                    <div className="flex flex-col md:flex-row items-center justify-between gap-4 w-full">
-                        {/* Category pills */}
-                        <div className="flex items-center gap-2 overflow-x-auto pb-1 w-full md:w-auto scrollbar-hide">
+                    <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', paddingTop: '1rem', paddingBottom: '1rem', flexWrap: 'wrap' }}>
+                        {/* Pills */}
+                        <div className="tr-pills" style={{ flex: 1, minWidth: 0 }}>
                             {treatmentCategories.map((cat) => (
                                 <button
                                     key={cat.slug}
-                                    className={`tr-cat-btn flex-shrink-0 ${activeCategory === cat.slug ? ' active' : ''}`}
+                                    className={`tr-pill${activeCategory === cat.slug ? ' active' : ''}`}
                                     onClick={() => setActiveCategory(cat.slug)}
                                 >
                                     {cat.name}
@@ -161,85 +242,84 @@ export default function Treatments() {
                         </div>
 
                         {/* Search */}
-                        <div className="tr-search max-w-full md:max-w-xs shrink-0">
-                            <Search size={16} className="text-muted/50 shrink-0" />
+                        <div className="tr-search" style={{ flexShrink: 0, width: '100%', maxWidth: '220px' }}>
+                            <Search size={14} style={{ color: '#ccc', flexShrink: 0 }} />
                             <input
                                 type="text"
-                                placeholder="Search treatments..."
+                                placeholder="Search..."
                                 value={searchQuery}
                                 onChange={e => setSearchQuery(e.target.value)}
                             />
                             {searchQuery && (
-                                <button onClick={() => setSearchQuery('')} className="text-muted hover:text-dark">✕</button>
+                                <button onClick={() => setSearchQuery('')} style={{ color: '#aaa', fontSize: '0.8rem', lineHeight: 1, background: 'none', border: 'none', cursor: 'pointer', padding: '0 2px' }}>✕</button>
                             )}
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
 
-            {/* ─── RESULTS HEADER ─── */}
-            <section className="bg-cream pt-10 pb-4">
-                <div className="container flex flex-col md:flex-row md:items-end justify-between gap-4">
-                    <div>
-                        <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl text-dark mb-1">
+            {/* ─── RESULTS LABEL ─── */}
+            <div style={{ background: '#faf9f7', paddingTop: '3rem', paddingBottom: '1.5rem' }}>
+                <div className="container">
+                    <RevealWrapper direction="up">
+                        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.6rem, 4vw, 2.6rem)', fontWeight: 400, color: '#0d1319', marginBottom: '0.35rem', letterSpacing: '1px' }}>
                             {activeCategoryLabel}
                         </h2>
-                        <span className="text-xs md:text-sm text-muted tracking-wide font-body">
-                            {filtered.length} treatment{filtered.length !== 1 ? 's' : ''} available
-                            {searchQuery ? ` for "${searchQuery}"` : ''}
-                        </span>
-                    </div>
-                    <div className="flex items-center gap-2 text-muted text-xs md:text-sm font-body bg-white/50 px-4 py-2 rounded-full border border-border/30 w-fit">
-                        <SlidersHorizontal size={14} />
-                        <span>Filtered by: <strong className="text-dark font-medium">{activeCategoryLabel}</strong></span>
-                    </div>
+                        <p style={{ fontSize: '0.8rem', color: '#aaa', fontWeight: 400, letterSpacing: '0.5px' }}>
+                            {filtered.length} treatment{filtered.length !== 1 ? 's' : ''}{searchQuery ? ` for "${searchQuery}"` : ''}
+                        </p>
+                    </RevealWrapper>
                 </div>
-            </section>
+            </div>
 
             {/* ─── TREATMENT GRID ─── */}
-            <section className="bg-cream pb-24">
-                <div className="container max-w-[90rem]">
+            <section style={{ background: '#faf9f7', paddingBottom: '6rem' }}>
+                <div className="container">
                     {filtered.length === 0 ? (
                         <div className="tr-empty">
-                            <p className="text-lg mb-4 font-body">No treatments found matching your criteria.</p>
-                            <button onClick={() => { setActiveCategory('all'); setSearchQuery('') }} className="bg-wine text-white px-8 py-3 text-xs tracking-widest uppercase font-bold hover:bg-dark transition-colors">
+                            <p style={{ fontSize: '1.1rem', fontFamily: 'var(--font-heading)', color: '#aaa', marginBottom: '1.5rem' }}>No treatments found.</p>
+                            <button
+                                onClick={() => { setActiveCategory('all'); setSearchQuery('') }}
+                                style={{ background: 'var(--color-wine)', color: '#fff', padding: '0.75rem 2rem', fontSize: '0.7rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, border: 'none', borderRadius: '4px', cursor: 'pointer' }}
+                            >
                                 Clear Filters
                             </button>
                         </div>
                     ) : (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.75rem' }}>
                             {filtered.map((treatment, i) => (
-                                <RevealWrapper key={treatment.id} direction="up" delay={(i % 8) * 0.05}>
-                                    <Link to={`/treatments/${treatment.slug}`} className="tr-card group">
+                                <RevealWrapper key={treatment.id} direction="up" delay={(i % 6) * 0.06}>
+                                    <Link to={`/treatments/${treatment.slug}`} className="tr-card group" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', height: '100%' }}>
                                         {/* Image */}
-                                        <div className="relative overflow-hidden bg-white">
+                                        <div className="tr-card-img-wrap">
                                             <img src={treatment.image} alt={treatment.title} className="tr-card-img" />
-                                            <div className="absolute inset-0 bg-dark/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                                <span className="text-white text-[10px] tracking-[3px] uppercase font-bold flex items-center gap-2 border border-white/30 px-6 py-2 backdrop-blur-sm">
-                                                    Discover More <ArrowRight size={12} className="-rotate-45" />
-                                                </span>
+                                            <div className="tr-card-overlay">
+                                                {/* <span style={{ fontSize: '0.65rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, color: '#fff', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                                                    View Treatment <ArrowRight size={11} />
+                                                </span> */}
                                             </div>
-                                            <span className="absolute top-4 left-4 bg-dark text-white text-[9px] tracking-[2px] uppercase font-bold px-3 py-1.5 shadow-sm">
-                                                {treatment.category}
-                                            </span>
                                         </div>
 
                                         {/* Body */}
-                                        <div className="p-6 md:p-8 flex flex-col h-[200px]">
-                                            <h3 className="font-heading text-xl text-dark mb-3 group-hover:text-wine transition-colors line-clamp-2">
+                                        <div style={{ padding: '1.4rem 1.5rem 1.5rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                                            <span style={{ fontSize: '0.6rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-wine)', display: 'block', marginBottom: '0.5rem', opacity: 0.8 }}>
+                                                {treatment.category}
+                                            </span>
+
+                                            <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.05rem, 2.5vw, 1.25rem)', color: '#0d1319', fontWeight: 500, lineHeight: 1.3, marginBottom: '0.75rem' }}>
                                                 {treatment.title}
                                             </h3>
-                                            <p className="text-sm text-muted leading-relaxed font-light mb-auto line-clamp-2">
+
+                                            <p style={{ fontSize: '0.82rem', color: '#888', lineHeight: 1.7, fontWeight: 400, flex: 1, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
                                                 {treatment.shortDescription}
                                             </p>
 
-                                            {/* Footer meta */}
-                                            <div className="flex items-center justify-between pt-5 border-t border-border/30 mt-4">
-                                                <div className="flex items-center gap-1.5 text-xs text-muted font-medium">
-                                                    <Clock size={12} className="text-wine" />
-                                                    <span>{treatment.duration}</span>
-                                                </div>
-                                                <span className="text-xs font-bold text-wine tracking-wide">
+                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '1.25rem', paddingTop: '1rem', borderTop: '1px solid #f5f2ed' }}>
+                                                <span style={{ fontSize: '0.72rem', color: '#bbb', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                                                    <Clock size={11} style={{ color: 'var(--color-wine)', opacity: 0.7 }} />
+                                                    {treatment.duration}
+                                                </span>
+                                                <span style={{ fontSize: '0.72rem', fontWeight: 600, color: 'var(--color-wine)' }}>
                                                     {treatment.price}
                                                 </span>
                                             </div>
@@ -252,39 +332,8 @@ export default function Treatments() {
                 </div>
             </section>
 
-            {/* ─── CTA BANNER ─── */}
-            <section className="relative py-24 md:py-32 overflow-hidden">
-                <div className="absolute inset-0">
-                    <img
-                        src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=1920&q=80"
-                        alt="Begin Your Journey"
-                        className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-dark/60" />
-                </div>
-                <div className="container relative z-10 text-center max-w-3xl">
-                    <RevealWrapper>
-                        <span className="inline-block text-[10px] md:text-xs tracking-[3px] uppercase font-bold text-cream mb-4 border border-cream/30 px-4 py-1 rounded-full">
-                            Begin Your Transformation
-                        </span>
-                        <h2 className="font-heading text-3xl md:text-5xl text-white mb-6 leading-tight">
-                            Ready to Begin Your <br />
-                            <span className="italic text-cream font-light">Skin Journey?</span>
-                        </h2>
-                        <p className="text-white/80 text-base md:text-lg leading-relaxed mb-10 font-light px-4">
-                            Discover personalised treatments designed by our expert dermatologists to address your unique skin concerns and help you achieve radiant, healthy skin.
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Link to="/book" className="inline-flex items-center justify-center gap-2 bg-cream text-dark px-8 py-3.5 text-xs tracking-[2px] uppercase font-bold hover:bg-white transition-colors w-full sm:w-auto">
-                                BOOK CONSULTATION <ArrowRight size={14} />
-                            </Link>
-                            <Link to="/concerns" className="inline-flex items-center justify-center gap-2 border border-white/30 text-white px-8 py-3.5 text-xs tracking-[2px] uppercase font-bold bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-colors w-full sm:w-auto">
-                                Browse Concerns
-                            </Link>
-                        </div>
-                    </RevealWrapper>
-                </div>
-            </section>
+            {/* ─── CTA ─── */}
+            <CtaBanner />
         </div>
     )
 }

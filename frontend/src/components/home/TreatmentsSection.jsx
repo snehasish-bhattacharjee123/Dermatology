@@ -1,171 +1,130 @@
-import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { RevealWrapper } from '../../hooks/useAnimations'
-import { Text } from '../ui/Typography'
-import { treatments } from '../../data/siteData'
 
-// ===== TREATMENTS SECTION - PREMIUM CARDS =====
+const featuredTreatments = [
+    {
+        title: 'Scar Reduction Treatments',
+        slug: 'scar-reduction-treatments',
+        image: 'https://wizderm.in/wp-content/uploads/2025/03/Scar-Reduction-Treatments.png',
+        alt: 'Scar Reduction Treatments'
+    },
+    {
+        title: 'Phototherapy',
+        slug: 'phototherapy',
+        image: 'https://wizderm.in/wp-content/uploads/2025/03/phototherapy.png',
+        alt: 'Phototherapy'
+    },
+    {
+        title: 'Laser Hair Reduction',
+        slug: 'laser-hair-reduction',
+        image: 'https://wizderm.in/wp-content/uploads/2025/03/Laser-Hair-Reduction.png',
+        alt: 'Laser Hair Reduction'
+    },
+    {
+        title: 'Carbon Peels',
+        slug: 'carbon-peels',
+        image: 'https://wizderm.in/wp-content/uploads/2025/03/Carbon-Peels.png',
+        alt: 'Carbon Peels'
+    },
+    {
+        title: 'Exosome Therapy',
+        slug: 'exosome-therapy-for-skin',
+        image: 'https://wizderm.in/wp-content/uploads/2025/03/Exosome-for-Skin.png',
+        alt: 'Exosome for Skin'
+    },
+    {
+        title: 'Dermal Fillers',
+        slug: 'dermal-fillers',
+        image: 'https://wizderm.in/wp-content/uploads/2025/03/Dermal-Fillers.png',
+        alt: 'Dermal Fillers'
+    },
+    {
+        title: 'Chemical Peels',
+        slug: 'chemical-peels',
+        image: 'https://wizderm.in/wp-content/uploads/2025/03/Chemical-Peels.png',
+        alt: 'Chemical Peels'
+    },
+    {
+        title: 'Acne Treatments',
+        slug: 'acne-treatments',
+        image: 'https://wizderm.in/wp-content/uploads/2025/03/Acne-Treatments.png',
+        alt: 'Acne Treatments'
+    }
+]
+
 export default function TreatmentsSection() {
-    const carouselRef = useRef(null)
-    const [canScrollLeft, setCanScrollLeft] = useState(false)
-    const [canScrollRight, setCanScrollRight] = useState(true)
-
-    const checkScrollButtons = () => {
-        if (carouselRef.current) {
-            const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current
-            setCanScrollLeft(scrollLeft > 0)
-            setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10)
-        }
-    }
-
-    useEffect(() => {
-        checkScrollButtons()
-        const carousel = carouselRef.current
-        if (carousel) {
-            carousel.addEventListener('scroll', checkScrollButtons)
-            return () => carousel.removeEventListener('scroll', checkScrollButtons)
-        }
-    }, [])
-
-    const scroll = (direction) => {
-        if (carouselRef.current) {
-            // scroll width approximately width of a card + gap
-            const scrollAmount = window.innerWidth < 768 ? 280 : 380
-            carouselRef.current.scrollBy({
-                left: direction === 'left' ? -scrollAmount : scrollAmount,
-                behavior: 'smooth'
-            })
-        }
-    }
-
     return (
-        <section className="border-[#d4c8b0] overflow-hidden" style={{ background: '#EDE8D0', padding: 'clamp(2.5rem, 8vw, 8rem) 0' }}>
-            <div className="container max-w-6xl">
+        <section className="overflow-hidden" style={{ background: 'var(--color-bg-secondary)', padding: 'clamp(4rem, 8vw, 8rem) 0' }}>
+            <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <RevealWrapper>
-                    <div className="text-center mb-8 md:mb-16">
+                    <div className="text-center mb-12 md:mb-16">
                         <span
                             className="inline-block tracking-[4px] uppercase font-bold mb-3 md:mb-4 opacity-90"
-                            style={{ color: 'var(--color-wine)', fontSize: 'clamp(0.55rem, 1.5vw, 0.75rem)' }}
+                            style={{ color: 'var(--color-wine)', fontSize: 'clamp(0.6rem, 1.5vw, 0.75rem)' }}
                         >
                             Our Expertise
                         </span>
                         <h2
+                            className="font-serif mb-2"
                             style={{
-                                fontFamily: 'var(--font-heading)',
-                                fontSize: 'clamp(1.6rem, 5.5vw, 3.75rem)',
+                                fontSize: 'clamp(2.2rem, 5vw, 3.5rem)',
                                 fontWeight: 400,
-                                lineHeight: 1.15,
                                 color: 'var(--color-dark)',
-                                marginBottom: '0.75rem'
+                                lineHeight: 1.15
                             }}
                         >
-                            Premium <span className="italic text-wine">Treatments</span>
+                            Explore Our <span className="italic text-wine">Treatments</span>
                         </h2>
+                        <div className="w-[60px] h-[2px] bg-wine/80 mx-auto mb-6 md:mb-8"></div>
                         <p
-                            className="max-w-2xl mx-auto"
+                            className="max-w-3xl mx-auto"
                             style={{
                                 color: 'var(--color-text-muted)',
-                                fontSize: 'clamp(0.8rem, 2vw, 1rem)',
-                                lineHeight: 1.65
+                                fontSize: 'clamp(0.95rem, 2vw, 1.125rem)',
+                                lineHeight: 1.7
                             }}
                         >
-                            Discover our comprehensive range of advanced dermatology and aesthetic treatments.
+                            Discover a range of advanced treatments designed to address all your skin & hair concerns, backed by Expert Dermatologists, World Class Technology and Skilled Professionals.
                         </p>
                     </div>
                 </RevealWrapper>
-            </div>
 
-            {/* Carousel Container */}
-            <div className="relative">
-                <div
-                    ref={carouselRef}
-                    className="flex gap-6 md:gap-8 overflow-x-auto scrollbar-hide px-4 md:px-8 lg:px-[max(var(--container-padding),calc((100vw-var(--container-max))/2+var(--container-padding)))] pb-8 pt-4"
-                    style={{
-                        scrollSnapType: 'x mandatory',
-                        WebkitOverflowScrolling: 'touch',
-                        scrollbarWidth: 'none',
-                        msOverflowStyle: 'none'
-                    }}
-                >
-                    {treatments.slice(0, 6).map((treatment, i) => (
-                        <RevealWrapper
-                            key={treatment.id}
-                            direction="up"
-                            delay={i * 0.08}
-                            className="flex-shrink-0 h-full flex flex-col"
-                            style={{ scrollSnapAlign: 'start', width: 'clamp(220px, 70vw, 350px)' }}
-                        >
-                            <Link to={`/treatments/${treatment.slug}`} className="treatment-card card group flex flex-col flex-1 hover-lift h-full border border-[#d4c8b0] rounded-2xl shadow-sm transition-all duration-500 overflow-hidden hover:shadow-2xl hover:border-wine/30" style={{ background: '#F5F0DC' }}>
-                                <div className="overflow-hidden relative" style={{ height: 'clamp(150px, 40vw, 220px)' }}>
-                                    <img
-                                        src={treatment.image}
-                                        alt={treatment.title}
-                                        className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.08]"
-                                        loading="lazy"
-                                        decoding="async"
-                                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                                        srcSet={`${treatment.image.replace(/w=\d+/, 'w=400')} 400w, ${treatment.image.replace(/w=\d+/, 'w=600')} 600w, ${treatment.image} 800w`}
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                </div>
-                                <div className="card-body p-4 md:p-6 flex flex-col flex-1">
-                                    <h3
-                                        className="transition-colors duration-300 mb-2 font-serif group-hover:text-wine"
-                                        style={{ fontSize: 'clamp(0.95rem, 3vw, 1.25rem)', fontWeight: 600, color: 'var(--color-dark)', lineHeight: 1.3 }}
-                                    >
-                                        {treatment.title}
-                                    </h3>
-                                    <p className="mt-1 flex-1 text-[#6b4f5a] font-light" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', lineHeight: 1.7 }}>
-                                        {treatment.shortDescription.slice(0, 85)}...
-                                    </p>
-                                    <div
-                                        className="flex items-center justify-between mt-auto pt-3 border-t border-[#f0ede8]"
-                                    >
-                                        <span className="flex items-center gap-1.5 font-bold tracking-[2px] uppercase text-wine transition-colors" style={{ fontSize: '0.6rem' }}>
-                                        </span>
-                                        <span
-                                            className="text-[#8a7f76] bg-[#f8f6f3] px-2 py-1 rounded-sm"
-                                            style={{ fontSize: '0.6rem', letterSpacing: '1px', textTransform: 'uppercase', fontWeight: 700 }}
-                                        >
-                                            {treatment.duration}
-                                        </span>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-x-8 md:gap-y-12">
+                    {featuredTreatments.map((treatment, i) => (
+                        <RevealWrapper key={treatment.slug} direction="up" delay={i * 0.1}>
+                            <Link to={`/treatments/${treatment.slug}`} className="flex flex-col items-center text-center group h-full cursor-pointer">
+                                <div className="w-36 h-36 md:w-48 md:h-48 rounded-full mb-6 p-2 bg-white shadow-sm border border-[#e8dfc3] transition-all duration-500 group-hover:shadow-[0_15px_35px_rgba(149,71,149,0.15)] group-hover:-translate-y-2 group-hover:border-wine/30">
+                                    <div className="w-full h-full rounded-full overflow-hidden">
+                                        <img 
+                                            src={treatment.image} 
+                                            alt={treatment.alt} 
+                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                            loading="lazy"
+                                        />
                                     </div>
                                 </div>
+                                <h5 
+                                    className="font-serif transition-colors duration-300 group-hover:text-wine px-2"
+                                    style={{ 
+                                        fontSize: 'clamp(1.1rem, 2vw, 1.35rem)', 
+                                        fontWeight: 500, 
+                                        color: 'var(--color-dark)', 
+                                        lineHeight: 1.3,
+                                        marginBottom: '1rem'
+                                    }}
+                                >
+                                    {treatment.title}
+                                </h5>
+                                {/* <span 
+                                    className="mt-auto inline-flex items-center justify-center border border-wine/30 text-wine group-hover:bg-wine group-hover:text-white transition-all duration-300 rounded-full px-6 py-2 text-[0.75rem] uppercase tracking-[1.5px] font-semibold"
+                                >
+                                    Know More
+                                </span> */}
                             </Link>
                         </RevealWrapper>
                     ))}
                 </div>
-
-                {/* Navigation Arrows */}
-                <button
-                    onClick={() => scroll('left')}
-                    className={`absolute left-2 md:left-8 top-[calc(50%-16px)] -translate-y-1/2 w-12 h-12 md:w-16 md:h-16 rounded-full bg-white shadow-lg flex items-center justify-center border border-[#f0ede8]
-                               transition-all duration-300 z-10 hover:border-wine hover:bg-wine group
-                               ${canScrollLeft ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
-                    aria-label="Previous slide"
-                >
-                    <ChevronLeft size={24} className="text-wine group-hover:text-white transition-colors" />
-                </button>
-                <button
-                    onClick={() => scroll('right')}
-                    className={`absolute right-2 md:right-8 top-[calc(50%-16px)] -translate-y-1/2 w-12 h-12 md:w-16 md:h-16 rounded-full bg-white shadow-lg flex items-center justify-center border border-[#f0ede8]
-                               transition-all duration-300 z-10 hover:border-wine hover:bg-wine group
-                               ${canScrollRight ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
-                    aria-label="Next slide"
-                >
-                    <ChevronRight size={24} className="text-wine group-hover:text-white transition-colors" />
-                </button>
             </div>
-
-            <div className="container mt-8 md:mt-12 text-center">
-            </div>
-
-            <style>{`
-                .scrollbar-hide::-webkit-scrollbar {
-                    display: none;
-                }
-            `}</style>
         </section>
     )
 }

@@ -26,8 +26,8 @@ export default function RealResultsSection() {
                     <div className="w-full lg:w-1/2 flex justify-center">
                         <RevealWrapper direction="left" className="w-full max-w-[500px]">
                             <BeforeAfterSlider
-                                beforeImage="https://skinlab.in/wp-content/uploads/2025/09/face-before.webp"
-                                afterImage="https://skinlab.in/wp-content/uploads/2025/09/2-1.webp"
+                                beforeImage="https://dcosmedics.in/wp-content/uploads/2025/09/face-before.webp"
+                                afterImage="https://dcosmedics.in/wp-content/uploads/2025/09/2-1.webp"
                             />
                         </RevealWrapper>
                     </div>

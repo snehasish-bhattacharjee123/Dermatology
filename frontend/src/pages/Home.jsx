@@ -4,6 +4,7 @@ import { ArrowRight, ChevronLeft, ChevronRight, Award, Smile, MapPin, Sparkles }
 import { RevealWrapper, ParallaxImage } from '../hooks/useAnimations'
 import { Heading, Text, Caption } from '../components/ui/Typography'
 import { heroSlides, stats } from '../data/homeData'
+import CtaBanner from '../components/ui/CtaBanner'
 
 // Lazy-load below-fold data to reduce initial bundle
 const loadSiteData = () => import('../data/siteData')
@@ -108,23 +109,25 @@ export default function Home() {
                 <LazyTreatmentsSection />
             </Suspense>
             <Suspense fallback={<SectionFallback />}>
+                <LazyAboutPreview />
+            </Suspense>
+            <Suspense fallback={<SectionFallback />}>
                 <LazyTestimonialsSection />
             </Suspense>
             <Suspense fallback={<SectionFallback />}>
                 <LazyContactSection />
             </Suspense>
-            <Suspense fallback={<SectionFallback />}>
+            {/* <Suspense fallback={<SectionFallback />}>
                 <LazyConnectWithUs />
-            </Suspense>
+            </Suspense> */}
             {/* <Suspense fallback={<SectionFallback />}>
                 <LazyAwardsSection />
             </Suspense> */}
-            <Suspense fallback={<SectionFallback />}>
-                <LazyAboutPreview />
-            </Suspense>
+            
             {/* <Suspense fallback={<SectionFallback />}>
                 <LazyRealResultsSection />
             </Suspense> */}
+            <CtaBanner />
         </>
     )
 }
@@ -231,21 +234,33 @@ function HeroSection() {
                             {slide.description}
                         </Text>
                         {/* CTA Buttons — visible on mobile */}
-                        <div className="flex flex-row items-center gap-2 sm:gap-4 flex-wrap">
+                        <div className="flex flex-row items-center gap-3 sm:gap-5 flex-wrap">
                             <a
                                 href="/book"
-                                className="inline-flex items-center justify-center gap-2 text-white border border-white/60 px-4 sm:px-6 py-2 sm:py-3 rounded-sm backdrop-blur-sm hover:bg-white hover:text-dark transition-all duration-300"
-                                style={{ fontSize: 'clamp(0.6rem, 2vw, 0.75rem)', letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 700 }}
+                                className="inline-flex items-center justify-center gap-2 text-white transition-all duration-300"
+                                style={{
+                                    background: 'var(--color-wine)',
+                                    fontSize: 'clamp(0.65rem, 1.4vw, 0.9rem)',
+                                    letterSpacing: '0.14em',
+                                    textTransform: 'uppercase',
+                                    fontWeight: 700,
+                                    padding: 'clamp(0.55rem, 1.5vw, 0.9rem) clamp(1.2rem, 3vw, 2.2rem)',
+                                    borderRadius: '2px',
+                                    boxShadow: '0 4px 24px rgba(149,71,149,0.35)',
+                                    border: '1px solid transparent',
+                                }}
+                                onMouseEnter={e => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = 'var(--color-wine)'; e.currentTarget.style.borderColor = 'var(--color-wine)'; }}
+                                onMouseLeave={e => { e.currentTarget.style.background = 'var(--color-wine)'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = 'transparent'; }}
                             >
-                                Book Now
+                                Get Your Appointment
                             </a>
-                            <a
+                            {/* <a
                                 href="/treatments"
                                 className="inline-flex items-center justify-center gap-2 text-white/80 hover:text-white transition-colors"
-                                style={{ fontSize: 'clamp(0.6rem, 2vw, 0.75rem)', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 600 }}
+                                style={{ fontSize: 'clamp(0.62rem, 1.2vw, 0.82rem)', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 600 }}
                             >
                                 View Treatments →
-                            </a>
+                            </a> */}
                         </div>
                     </div>
                 </div>
@@ -338,17 +353,19 @@ function StatsBar() {
                         return (
                             <RevealWrapper key={i} direction="up" delay={i * 0.1}>
                                 <div
-                                    className="stats-item-pad text-center"
-                                    style={{ padding: '12px 6px', borderRight: i < 3 ? '1px solid rgba(149,71,149,0.15)' : 'none' }}
+                                    className="stats-item-pad text-center flex flex-col items-center justify-start"
+                                    style={{ padding: 'clamp(10px,2.5vw,28px) clamp(4px,1.5vw,16px)', borderRight: i < 3 ? '1px solid rgba(149,71,149,0.18)' : 'none' }}
                                 >
+                                    {/* Number row — fixed height so all 4 numbers sit on same baseline */}
                                     <div
-                                        className="font-medium stats-number"
+                                        className="font-medium stats-number flex items-end justify-center"
                                         style={{
                                             color: '#954795',
                                             fontFamily: 'var(--font-heading), Georgia, serif',
                                             fontSize: 'clamp(1.25rem, 5vw, 4rem)',
-                                            lineHeight: 1.05,
+                                            lineHeight: 1.0,
                                             fontWeight: 400,
+                                            minHeight: 'clamp(2rem, 6vw, 5rem)',
                                         }}
                                     >
                                         <AnimatedCounter
@@ -356,13 +373,16 @@ function StatsBar() {
                                             suffix={stat.value.includes('+') ? '+' : stat.value.includes('%') ? '%' : ''}
                                         />
                                     </div>
+                                    {/* Label row — fixed height so all 4 labels sit at the same level */}
                                     <p
-                                        className="stats-label mt-1 md:mt-3 text-[#0d1319] font-semibold opacity-90 uppercase"
+                                        className="stats-label text-[#0d1319] font-semibold opacity-90 uppercase flex items-start justify-center text-center"
                                         style={{
                                             fontFamily: 'var(--font-body)',
-                                            letterSpacing: '0.04em',
-                                            fontSize: 'clamp(0.45rem, 1.5vw, 0.875rem)',
-                                            lineHeight: 1.3
+                                            letterSpacing: '0.06em',
+                                            fontSize: 'clamp(0.48rem, 1.4vw, 0.8rem)',
+                                            lineHeight: 1.35,
+                                            marginTop: 'clamp(4px, 1vw, 12px)',
+                                            minHeight: 'clamp(1.8rem, 3vw, 2.8rem)',
                                         }}
                                     >
                                         {stat.label}

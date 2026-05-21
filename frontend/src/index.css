@@ -50,8 +50,8 @@
   /* Lite beige sections */
   --color-bg-light: #f9f5ea;
   /* Light lavender — card/alternating bg */
-  --color-bg-dark: #0d1319;
-  /* Near-black for footer/dark sections */
+  --color-bg-dark: #2d1530;
+  /* Near-black / dark plum for footer/dark sections */
 
   /* ── BORDERS ── */
   --color-border: #d6cfb3;
@@ -636,7 +636,7 @@ img {
 
 .section-dark {
   background: var(--color-bg-dark);
-  /* #0d1319 near-black */
+  /* #2d1530 dark plum */
   color: #fff;
 }
 
@@ -722,12 +722,14 @@ img {
   transition: all var(--duration-normal) var(--ease-out-expo);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
   border: 1px solid var(--color-border-light);
+  cursor: pointer;
 }
 
 .card:hover {
   transform: translateY(-6px);
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.1);
   border-color: var(--color-border);
+  cursor: pointer;
 }
 
 .card-img {
@@ -778,10 +780,12 @@ img {
     padding-top: calc(var(--header-total-height) + var(--space-8));
     padding-bottom: var(--space-10);
   }
+
   .page-hero h1 {
     font-size: clamp(1.75rem, 8vw, 2.5rem) !important;
   }
-  .page-hero > p {
+
+  .page-hero>p {
     font-size: 0.9rem !important;
   }
 }
@@ -991,10 +995,21 @@ img {
   }
 
   /* ── Mobile typography tightening ── */
-  h1 { font-size: clamp(1.75rem, 8vw, 2.5rem); }
-  h2 { font-size: clamp(1.5rem, 7vw, 2.2rem); }
-  h3 { font-size: clamp(1.2rem, 6vw, 1.75rem); }
-  h4 { font-size: clamp(1rem, 5vw, 1.4rem); }
+  h1 {
+    font-size: clamp(1.75rem, 8vw, 2.5rem);
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 7vw, 2.2rem);
+  }
+
+  h3 {
+    font-size: clamp(1.2rem, 6vw, 1.75rem);
+  }
+
+  h4 {
+    font-size: clamp(1rem, 5vw, 1.4rem);
+  }
 
   /* ── Mobile section-header tightening ── */
   .section-header {
@@ -1132,6 +1147,7 @@ img {
 .hover-lift:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
 }
 
 /* ===== 12-COLUMN GRID SYSTEM ===== */

@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
-import { Award, Heart, Users, Sparkles, ArrowRight } from 'lucide-react'
+import { Award, Heart, Users, Sparkles } from 'lucide-react'
 import { RevealWrapper } from '../hooks/useAnimations'
 import { teamMembers, stats } from '../data/siteData'
+import CtaBanner from '../components/ui/CtaBanner'
 
 const values = [
     {
@@ -460,35 +461,13 @@ export default function About() {
             </section> */}
 
             {/* ─── CTA BANNER ─── */}
-            <section style={{ position: 'relative', padding: '8rem 0', overflow: 'hidden' }}>
-                <div style={{ position: 'absolute', inset: 0 }}>
-                    <img
-                        src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1920&q=80"
-                        alt=""
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                    />
-                    <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.5)' }} />
-                </div>
-                <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center', maxWidth: '52rem' }}>
-                    <RevealWrapper>
-                        <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: '#fff', marginBottom: '1.25rem', padding: '0.5rem 1rem', border: '1px solid rgba(255,255,255,0.5)' }}>
-                            Begin Your Journey
-                        </span>
-                        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 3.25rem)', color: '#fff', marginBottom: '1.5rem', lineHeight: 1.25 }}>
-                            Interested in consulting with D'CosMedis Clinic? <br />
-                            <span style={{ fontStyle: 'italic', color: '#ffebf0' }}>We have great deals for you.</span>
-                        </h2>
-                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center', marginTop: '2.5rem' }}>
-                            <Link to="/book" className="about-cta-btn">
-                                Book Free Consultation <ArrowRight size={16} />
-                            </Link>
-                            <Link to="/treatments" className="about-cta-btn-outline">
-                                Explore Treatments
-                            </Link>
-                        </div>
-                    </RevealWrapper>
-                </div>
-            </section>
+            <CtaBanner
+                primaryLabel="Book Free Consultation"
+                primaryTo="/book"
+                secondaryLabel="Explore Treatments"
+                secondaryTo="/treatments"
+                image="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1920&q=80"
+            />
         </div>
     )
 }

@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import { ChevronDown, Play, MessageCircle, Calendar, Instagram, Facebook, Youtube } from 'lucide-react'
 import { RevealWrapper } from '../hooks/useAnimations'
 import { treatments } from '../data/siteData'
+import CtaBanner from '../components/ui/CtaBanner'
 
 const faqs = [
     {
@@ -166,7 +167,7 @@ export default function TreatmentDetail() {
                 <div className="td-container-sm">
                     <RevealWrapper direction="up">
                         <div className="td-heading-sm">The D'CosMedis New Image</div>
-                        <h2 className="td-heading-lg">SkinLab <span style={{ color: 'var(--color-wine)', fontStyle: 'italic' }}>Advantage</span></h2>
+                        <h2 className="td-heading-lg">Dcosmedics <span style={{ color: 'var(--color-wine)', fontStyle: 'italic' }}>Advantage</span></h2>
                         <p className="td-text-center">
                             With over 30 years of experience, D'CosMedis offers science-led solutions that deliver results. We work to identify the underlying cause before treatment. We combine medical-grade treatments with advanced technologies tailored specifically for your skin. Every treatment plan is customised for visible, long-lasting results—with minimal downtime and maximum care.
                         </p>
@@ -257,29 +258,14 @@ export default function TreatmentDetail() {
                 </div>
             </section>
 
-            {/* 7. CTA BANNER (Image Background like screenshot) */}
-            <section style={{ position: 'relative', padding: 'clamp(4rem, 8vw, 6rem) 0', overflow: 'hidden' }}>
-                <div style={{ position: 'absolute', inset: 0 }}>
-                    <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=1920&q=80" alt="Consultation" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                    <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.65)' }} />
-                </div>
-                
-                <div className="td-container" style={{ position: 'relative', zIndex: 2, textAlign: 'center' }}>
-                    <RevealWrapper direction="up">
-                        <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.75rem, 4vw, 2.75rem)', color: '#fff', marginBottom: '2.5rem', fontWeight: 300, fontStyle: 'italic', letterSpacing: '1px' }}>
-                            Interested in consulting with D'CosMedis Clinic? We have great deals for you.
-                        </h3>
-                        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem' }}>
-                            <a href="https://wa.me/917738891858" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'transparent', color: '#fff', border: '1px solid rgba(255,255,255,0.6)', padding: '1rem 2rem', fontSize: '0.875rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px', backdropFilter: 'blur(4px)', transition: 'background 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'} onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}>
-                                Chat on WhatsApp
-                            </a>
-                            <Link to="/book" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'transparent', color: '#fff', border: '1px solid rgba(255,255,255,0.6)', padding: '1rem 2rem', fontSize: '0.875rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px', backdropFilter: 'blur(4px)', transition: 'background 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'} onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}>
-                                Get your Appointment
-                            </Link>
-                        </div>
-                    </RevealWrapper>
-                </div>
-            </section>
+            {/* 7. CTA BANNER */}
+            <CtaBanner
+                primaryLabel="Book Consultation"
+                primaryTo="/book"
+                secondaryLabel="All Treatments"
+                secondaryTo="/treatments"
+                image="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=1920&q=80"
+            />
         </div>
     )
 }

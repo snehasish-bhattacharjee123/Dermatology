@@ -7,7 +7,7 @@ const socials = [
     {
         name: 'Instagram',
         handle: '@dcosmedis',
-        href: 'https://www.instagram.com/skinlabindia/',
+        href: 'https://www.instagram.com/dcosmedicsindia/',
         icon: Instagram,
         bg: 'linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)',
         cta: 'Get in Touch',
@@ -15,7 +15,7 @@ const socials = [
     {
         name: 'Facebook',
         handle: '/dcosmedis',
-        href: 'https://www.facebook.com/skinlabindia',
+        href: 'https://www.facebook.com/dcosmedicsindia',
         icon: Facebook,
         bg: 'linear-gradient(135deg, #1877f2, #42a5f5)',
         cta: 'Get in Touch',
@@ -33,19 +33,19 @@ const socials = [
 // Award images — using Dr Jamuna Pai / clinic award placeholders
 const awards = [
     {
-        image: 'https://skinlab.in/wp-content/uploads/2025/01/award-elle-beauty.webp',
+        image: 'https://dcosmedics.in/wp-content/uploads/2025/01/award-elle-beauty.webp',
         alt: 'ELLE Beauty Award',
         title: 'ELLE Beauty Award',
         year: '2024',
     },
     {
-        image: 'https://skinlab.in/wp-content/uploads/2025/01/award-femina.webp',
+        image: 'https://dcosmedics.in/wp-content/uploads/2025/01/award-femina.webp',
         alt: 'Femina Beauty Award',
         title: 'Femina Beauty Award',
         year: '2023',
     },
     {
-        image: 'https://skinlab.in/wp-content/uploads/2025/01/award-vogue.webp',
+        image: 'https://dcosmedics.in/wp-content/uploads/2025/01/award-vogue.webp',
         alt: 'Vogue Beauty Award',
         title: 'Vogue Beauty Award',
         year: '2023',
@@ -188,15 +188,15 @@ export function HomeContactSection() {
                                     <MessageCircle size={14} style={{ color: '#954795' }} /> +91 7738 891 858
                                 </a>
                             </div>
-                            <a href="mailto:query@skinlab.in" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem', color: 'var(--color-dark)', fontWeight: 500 }}>
-                                <Mail size={14} style={{ color: '#954795' }} /> query@skinlab.in
+                            <a href="mailto:query@dcosmedics.in" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem', color: 'var(--color-dark)', fontWeight: 500 }}>
+                                <Mail size={14} style={{ color: '#954795' }} /> query@dcosmedics.in
                             </a>
                         </div>
 
                         {/* Book Appointment CTA */}
                         <div style={{ marginTop: '2rem', textAlign: 'center', padding: '2rem', background: '#F5F0DC', border: '1px solid #c8bc9c' }}>
                             <p style={{ fontSize: '0.65rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, color: '#954795', marginBottom: '0.5rem' }}>
-                                Interested in consulting with SkinLab Clinic
+                                Interested in consulting with Dcosmedics Clinic
                             </p>
                             <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.5rem, 4vw, 2rem)', color: 'var(--color-dark)', marginBottom: '1.25rem', letterSpacing: '2px', textTransform: 'uppercase' }}>
                                 BOOK AN<br />APPOINTMENT

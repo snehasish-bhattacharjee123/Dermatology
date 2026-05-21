@@ -4,6 +4,7 @@ import { ChevronDown, ArrowRight, Calendar, Phone } from 'lucide-react'
 import { RevealWrapper } from '../hooks/useAnimations'
 import { Heading, Text, Caption } from '../components/ui/Typography'
 import { concerns, treatments } from '../data/siteData'
+import CtaBanner from '../components/ui/CtaBanner'
 
 export default function ConcernDetail() {
     const { slug } = useParams()
@@ -317,27 +318,12 @@ export default function ConcernDetail() {
             </section>
 
             {/* CTA Banner */}
-            <section style={{ padding: '5rem 0', background: 'var(--color-wine)', textAlign: 'center' }}>
-                <div className="container" style={{ maxWidth: '48rem' }}>
-                    <RevealWrapper>
-                        <span style={{ display: 'block', fontSize: '0.625rem', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, color: 'rgba(255,255,255,0.75)', marginBottom: '1rem' }}>
-                            Ready to Begin?
-                        </span>
-                        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 2.75rem)', color: '#fff', marginBottom: '1.25rem' }}>
-                            Ready to Begin Your Skin Journey?
-                        </h2>
-                        <p style={{ fontSize: '1rem', color: 'var(--color-bg-cream)', marginBottom: '2.5rem', lineHeight: 1.75, fontWeight: 400 }}>
-                            Book a consultation with our expert dermatologists and discover treatments tailored to your unique needs.
-                        </p>
-                        <Link
-                            to="/book"
-                            style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', background: '#fff', color: 'var(--color-wine)', padding: '1rem 2.5rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, transition: 'all 0.3s' }}
-                        >
-                            BOOK YOUR CONSULTATION →
-                        </Link>
-                    </RevealWrapper>
-                </div>
-            </section>
+            <CtaBanner
+                primaryLabel="Book Your Consultation"
+                primaryTo="/book"
+                secondaryLabel="Browse Treatments"
+                secondaryTo="/treatments"
+            />
         </div>
     )
 }
