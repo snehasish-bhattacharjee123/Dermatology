@@ -925,7 +925,7 @@ export default function Header() {
                                                         <Link
                                                             to={item.path}
                                                             onClick={() => setIsMobileOpen(false)}
-                                                            className="text-[#0d1319]/60 hover:text-[#954795] text-[14px] transition-colors block py-0.5 font-medium"
+                                                            className="text-[#0d1319]/60 hover:text-[#954795] text-[14px] transition-colors block py-0.8 font-medium"
                                                             style={{ fontFamily: 'var(--font-body)' }}
                                                         >
                                                             {item.name}
@@ -937,7 +937,7 @@ export default function Header() {
                                     </div>
                                 ))}
                                 {/* View All Concerns Link */}
-                                <div className="pt-2 pl-0">
+                                {/* <div className="pt-2 pl-0">
                                     <Link
                                         to="/concerns"
                                         onClick={() => setIsMobileOpen(false)}
@@ -946,7 +946,7 @@ export default function Header() {
                                     >
                                         View All Concerns →
                                     </Link>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>
@@ -990,15 +990,15 @@ export default function Header() {
                         </div>
                     </div>
 
-                    {/* ACADEMY */}
+                    {/* GALLERY */}
                     <div className="py-1">
                         <Link
-                            to="/about"
+                            to="/gallery"
                             onClick={() => setIsMobileOpen(false)}
                             className="text-[#0d1319] text-[20px] tracking-[2px] uppercase font-bold hover:text-[#954795] transition-colors block"
                             style={{ fontFamily: 'var(--font-heading)' }}
                         >
-                            ACADEMY
+                            GALLERY
                         </Link>
                     </div>
 
