@@ -132,17 +132,17 @@ export default function BookAppointment() {
                     <div>
                         <Link to="/" style={{ display: 'inline-block', marginBottom: '3rem' }}>
                             {/* Logo stand-in */}
-                            <span style={{ fontSize: '1.5rem', fontFamily: 'var(--font-heading)', color: '#fff', letterSpacing: '4px' }}>D'COSMEDIS</span>
+                            <span style={{ fontSize: '1.5rem', fontFamily: 'var(--font-heading)', color: '#EDE8D0', letterSpacing: '4px' }}>D'COSMEDIS</span>
                         </Link>
                         
                         <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-wine)', marginBottom: '1.25rem' }}>
                             Concierge Services
                         </span>
-                        <h1 style={{ fontFamily: 'var(--font-heading)', color: '#fff', fontSize: '3.5rem', lineHeight: 1.1, marginBottom: '2rem' }}>
+                        <h1 style={{ fontFamily: 'var(--font-heading)', color: '#EDE8D0', fontSize: '3.5rem', lineHeight: 1.1, marginBottom: '2rem' }}>
                             <span style={{ display: 'block', fontWeight: 300 }}>Request</span>
                             <span style={{ display: 'block', fontWeight: 700, color: 'var(--color-wine)' }}>Consultation</span>
                         </h1>
-                        <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '1.05rem', lineHeight: 1.7, maxWidth: '24rem', fontWeight: 300 }}>
+                        <p style={{ color: 'rgba(237,232,208,0.7)', fontSize: '1.05rem', lineHeight: 1.7, maxWidth: '24rem', fontWeight: 300 }}>
                             Experience clinical excellence and tailored aesthetic treatments in a setting designed for absolute comfort and privacy.
                         </p>
                     </div>
@@ -152,7 +152,7 @@ export default function BookAppointment() {
                         <div style={{ display: 'flex', gap: '0.25rem', marginBottom: '1rem' }}>
                             {[...Array(5)].map((_, j) => <Star key={j} size={14} style={{ color: 'var(--color-wine)', fill: 'var(--color-wine)' }} />)}
                         </div>
-                        <p style={{ color: '#fff', fontSize: '0.95rem', fontStyle: 'italic', lineHeight: 1.6, marginBottom: '1rem' }}>
+                        <p style={{ color: '#EDE8D0', fontSize: '0.95rem', fontStyle: 'italic', lineHeight: 1.6, marginBottom: '1rem' }}>
                             "From the moment you walk in, the level of care is exceptional. A truly premium clinical experience."
                         </p>
                         <span style={{ fontSize: '0.7rem', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--color-wine)' }}>— Verified Patient</span>

@@ -13,6 +13,7 @@ const loadSiteData = () => import('../data/siteData')
 const LazyConcernsSection = lazy(() => import('../components/home/ConcernsSection'))
 const LazyTreatmentsSection = lazy(() => import('../components/home/TreatmentsSection'))
 const LazyAboutPreview = lazy(() => import('../components/home/AboutPreview'))
+const LazyWhyUsSection = lazy(() => import('../components/home/WhyUsSection'))
 const LazyRealResultsSection = lazy(() => import('../components/home/RealResultsSection'))
 const LazyTestimonialsSection = lazy(() => import('../components/home/TestimonialsSection'))
 const LazyExclusiveSection = lazy(() => import('../components/home/ExclusiveSection'))
@@ -54,7 +55,7 @@ export default function Home() {
                 /* === MOBILE HERO FIXES === */
                 @media (max-width: 640px) {
                     .hide-on-mobile { display: none !important; }
-                    /* Hero: 65vh on mobile — not full screen */
+                    /* Hero: keep original 65dvh height */
                     .hero-mobile-half {
                         min-height: 65vh !important;
                         height: 65dvh !important;
@@ -63,6 +64,10 @@ export default function Home() {
                     .hero-content-mobile {
                         min-height: 65dvh !important;
                         padding-bottom: 3.5rem !important;
+                        /* Push text a little lower from the header */
+                        padding-top: calc(var(--header-total-height, 80px) + 1.5rem) !important;
+                        align-items: flex-start !important;
+                        justify-content: center !important;
                     }
                     /* Hero text — tight but readable */
                     .hero-title-mobile {
@@ -81,6 +86,10 @@ export default function Home() {
                         max-width: 90% !important;
                         margin-bottom: 1.25rem !important;
                     }
+                    /* Remove negative margin on mobile */
+                    .hero-text-offset {
+                        margin-top: 0 !important;
+                    }
                     /* Stats: 4 columns on mobile — compact */
                     .stats-grid {
                         grid-template-columns: repeat(4, 1fr) !important;
@@ -98,10 +107,13 @@ export default function Home() {
                 }
             `}</style>
             <HeroSection />
-            <StatsBar />
+            {/* <StatsBar /> */}
             {/* <Suspense fallback={<SectionFallback />}>
                 <LazyConcernsSection />
             </Suspense> */}
+            <Suspense fallback={<SectionFallback />}>
+                <LazyWhyUsSection />
+            </Suspense>
             <Suspense fallback={<SectionFallback />}>
                 <LazyExclusiveSection />
             </Suspense>
@@ -109,21 +121,23 @@ export default function Home() {
                 <LazyTreatmentsSection />
             </Suspense>
             <Suspense fallback={<SectionFallback />}>
+                <LazyContactSection />
+            </Suspense>
+            <Suspense fallback={<SectionFallback />}>
                 <LazyAboutPreview />
             </Suspense>
+
             <Suspense fallback={<SectionFallback />}>
                 <LazyTestimonialsSection />
             </Suspense>
-            <Suspense fallback={<SectionFallback />}>
-                <LazyContactSection />
-            </Suspense>
+
             {/* <Suspense fallback={<SectionFallback />}>
                 <LazyConnectWithUs />
             </Suspense> */}
             {/* <Suspense fallback={<SectionFallback />}>
                 <LazyAwardsSection />
             </Suspense> */}
-            
+
             {/* <Suspense fallback={<SectionFallback />}>
                 <LazyRealResultsSection />
             </Suspense> */}
@@ -202,16 +216,21 @@ function HeroSection() {
                         style={{ aspectRatio: '4/3' }}
                     />
                 </picture>
-                {/* Gradient overlay for text legibility on mobile */}
-                <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.38) 60%, rgba(0,0,0,0.12) 100%)' }} />
+                {/* Gradient overlay for text legibility — stronger on mobile */}
+                <div
+                    className="absolute inset-0"
+                    style={{
+                        background: 'linear-gradient(to right, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.18) 100%)'
+                    }}
+                />
             </div>
 
             {/* Content */}
             <div
                 className="relative flex items-center hero-content-mobile min-h-[100dvh] pt-[var(--header-total-height)] pb-16 md:pb-24"
             >
-                <div className="container relative z-10 w-full px-4 sm:px-6 md:px-8">
-                    <div ref={textRef} className="max-w-3xl mt-[-20px] md:mt-0">
+                <div className="container relative z-10 w-full px-5 sm:px-6 md:px-8">
+                    <div ref={textRef} className="hero-text-offset max-w-3xl mt-[-20px] md:mt-0">
                         <Caption
                             className="hero-subtitle-mobile mb-2 md:mb-5 block text-white"
                             style={{ color: '#ffffff', fontSize: '0.7rem', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: 600 }}
@@ -360,7 +379,7 @@ function StatsBar() {
                                     <div
                                         className="font-medium stats-number flex items-end justify-center"
                                         style={{
-                                            color: '#954795',
+                                            color: '#5A262C',
                                             fontFamily: 'var(--font-heading), Georgia, serif',
                                             fontSize: 'clamp(1.25rem, 5vw, 4rem)',
                                             lineHeight: 1.0,

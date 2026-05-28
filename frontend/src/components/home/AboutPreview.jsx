@@ -111,7 +111,7 @@ export default function AboutPreview() {
                                 </Link>
                                 <Link
                                     to="/book"
-                                    className="text-center inline-flex items-center justify-center border border-[#ccc] px-6 py-3 text-xs tracking-[2px] uppercase font-semibold text-dark hover:border-wine hover:text-wine bg-transparent transition-all duration-300 rounded-sm"
+                                    className="text-center inline-flex items-center justify-center border border-wine px-6 py-3 text-xs tracking-[2px] uppercase font-semibold text-wine hover:bg-wine hover:text-white bg-transparent transition-all duration-300 rounded-sm"
                                     style={{ minHeight: '48px' }}
                                 >
                                     Book Now

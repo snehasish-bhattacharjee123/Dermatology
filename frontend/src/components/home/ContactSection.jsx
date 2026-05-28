@@ -88,13 +88,13 @@ export function HomeContactSection() {
                     border-radius: 0;
                     transition: border-color 0.3s, box-shadow 0.3s;
                 }
-                .hct-input:focus { border-color: #954795; box-shadow: 0 0 0 3px rgba(149, 71, 149, 0.12); }
+                .hct-input:focus { border-color: #5A262C; box-shadow: 0 0 0 3px rgba(149, 71, 149, 0.12); }
                 .hct-input::placeholder { color: #a09880; }
                 .hct-submit {
                     width: 100%;
                     padding: 1rem;
-                    background: var(--color-dark);
-                    color: #EDE8D0;
+                    background: var(--color-wine);
+                    color: var(--color-accent);
                     font-size: 0.7rem;
                     letter-spacing: 3px;
                     text-transform: uppercase;
@@ -105,11 +105,57 @@ export function HomeContactSection() {
                     align-items: center;
                     justify-content: center;
                     gap: 0.75rem;
-                    transition: all 0.3s;
+                    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
                     margin-top: 0.5rem;
                 }
-                .hct-submit:hover { background: #954795; }
+                .hct-submit:hover { 
+                    background: var(--color-wine-dark); 
+                    transform: translateY(-2px);
+                    box-shadow: 0 6px 16px rgba(90, 38, 44, 0.25);
+                }
                 .hct-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+                
+                .hct-reset-btn {
+                    background: transparent;
+                    border: 1px solid var(--color-wine);
+                    color: var(--color-wine);
+                    padding: 0.65rem 1.75rem;
+                    font-size: 0.65rem;
+                    letter-spacing: 2px;
+                    text-transform: uppercase;
+                    font-weight: 700;
+                    cursor: pointer;
+                    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+                }
+                .hct-reset-btn:hover {
+                    background: var(--color-wine);
+                    color: var(--color-accent);
+                    transform: translateY(-1px);
+                    box-shadow: 0 4px 10px rgba(90, 38, 44, 0.15);
+                }
+
+                .hct-book-btn {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    background: var(--color-wine);
+                    color: var(--color-accent);
+                    padding: 0.85rem 2.25rem;
+                    font-size: 0.7rem;
+                    letter-spacing: 2px;
+                    text-transform: uppercase;
+                    font-weight: 700;
+                    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+                    border: none;
+                    cursor: pointer;
+                    text-decoration: none;
+                }
+                .hct-book-btn:hover {
+                    background: var(--color-wine-dark);
+                    color: var(--color-accent);
+                    transform: translateY(-2px);
+                    box-shadow: 0 6px 16px rgba(90, 38, 44, 0.25);
+                }
             `}</style>
             <div className="container max-w-6xl">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
@@ -128,7 +174,7 @@ export function HomeContactSection() {
                     <div className="w-full max-w-[44rem] mx-auto">
                         <RevealWrapper>
                     <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-                        <span style={{ display: 'block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: '#954795', marginBottom: '0.75rem' }}>
+                        <span style={{ display: 'block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: '#5A262C', marginBottom: '0.75rem' }}>
                             Get In Touch
                         </span>
                         <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 5vw, 2.75rem)', color: 'var(--color-dark)', marginBottom: '0.5rem', lineHeight: 1.15 }}>
@@ -141,15 +187,15 @@ export function HomeContactSection() {
                     <RevealWrapper>
                         <div style={{ textAlign: 'center', padding: '3rem 2rem', background: '#F5F0DC', border: '1px solid #c8bc9c' }}>
                             <div style={{ width: '4rem', height: '4rem', borderRadius: '50%', background: 'rgba(149, 71, 149,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.25rem' }}>
-                                <CheckCircle size={28} style={{ color: '#954795' }} />
+                                <CheckCircle size={28} style={{ color: '#5A262C' }} />
                             </div>
                             <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.5rem', color: 'var(--color-dark)', marginBottom: '0.5rem' }}>Message Received!</h3>
                             <p style={{ color: 'var(--color-text-muted)', marginBottom: '1.5rem', lineHeight: 1.7 }}>
                                 Thank you! Our team will get back to you within 24 hours.
                             </p>
-                            <button onClick={() => setSubmitted(false)} style={{ background: 'none', border: '1px solid #954795', color: '#954795', padding: '0.65rem 1.75rem', fontSize: '0.65rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, cursor: 'pointer' }}>
+                             <button onClick={() => setSubmitted(false)} className="hct-reset-btn">
                                 Send Another
-                            </button>
+                             </button>
                         </div>
                     </RevealWrapper>
                 ) : (
@@ -182,28 +228,28 @@ export function HomeContactSection() {
                         <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column', gap: '0.6rem', alignItems: 'center' }}>
                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', justifyContent: 'center' }}>
                                 <a href="tel:+918080125874" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem', color: 'var(--color-dark)', fontWeight: 500 }}>
-                                    <Phone size={14} style={{ color: '#954795' }} /> +91 8080 125 874
+                                    <Phone size={14} style={{ color: '#5A262C' }} /> +91 8080 125 874
                                 </a>
                                 <a href="tel:+917738891858" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem', color: 'var(--color-dark)', fontWeight: 500 }}>
-                                    <MessageCircle size={14} style={{ color: '#954795' }} /> +91 7738 891 858
+                                    <MessageCircle size={14} style={{ color: '#5A262C' }} /> +91 7738 891 858
                                 </a>
                             </div>
                             <a href="mailto:query@dcosmedics.in" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem', color: 'var(--color-dark)', fontWeight: 500 }}>
-                                <Mail size={14} style={{ color: '#954795' }} /> query@dcosmedics.in
+                                <Mail size={14} style={{ color: '#5A262C' }} /> query@dcosmedics.in
                             </a>
                         </div>
 
                         {/* Book Appointment CTA */}
                         <div style={{ marginTop: '2rem', textAlign: 'center', padding: '2rem', background: '#F5F0DC', border: '1px solid #c8bc9c' }}>
-                            <p style={{ fontSize: '0.65rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, color: '#954795', marginBottom: '0.5rem' }}>
+                            <p style={{ fontSize: '0.65rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, color: '#5A262C', marginBottom: '0.5rem' }}>
                                 Interested in consulting with Dcosmedics Clinic
                             </p>
                             <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.5rem, 4vw, 2rem)', color: 'var(--color-dark)', marginBottom: '1.25rem', letterSpacing: '2px', textTransform: 'uppercase' }}>
                                 BOOK AN<br />APPOINTMENT
                             </h3>
-                            <Link to="/book" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'var(--color-dark)', color: '#EDE8D0', padding: '0.85rem 2rem', fontSize: '0.7rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, transition: 'background 0.3s' }}>
-                                Click here <ArrowRight size={13} />
-                            </Link>
+                             <Link to="/book" className="hct-book-btn">
+                                 Click here <ArrowRight size={13} />
+                             </Link>
                         </div>
                     </RevealWrapper>
                 )}
@@ -217,7 +263,7 @@ export function HomeContactSection() {
 // ===== CONNECT WITH US SECTION =====
 export function ConnectWithUsSection() {
     return (
-        <section style={{ background: '#954795', padding: '4.5rem 0', color: '#EDE8D0' }}>
+        <section style={{ background: '#5A262C', padding: '4.5rem 0', color: '#EDE8D0' }}>
             <div className="container" style={{ maxWidth: '50rem' }}>
                 <RevealWrapper>
                     <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
@@ -241,7 +287,7 @@ export function ConnectWithUsSection() {
                                 aria-label={s.name}
                             >
                                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" style={{ background: s.bg }}></div>
-                                <div className="relative z-10 w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center mr-4 md:mr-0 md:mb-5 transition-transform duration-500 group-hover:scale-110 group-hover:bg-white group-hover:text-[#954795]" style={{ background: 'rgba(237, 232, 208, 0.1)', color: '#EDE8D0' }}>
+                                <div className="relative z-10 w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center mr-4 md:mr-0 md:mb-5 transition-transform duration-500 group-hover:scale-110 group-hover:bg-white group-hover:text-[#5A262C]" style={{ background: 'rgba(237, 232, 208, 0.1)', color: '#EDE8D0' }}>
                                     <s.icon size={22} strokeWidth={1.5} />
                                 </div>
                                 <div className="relative z-10 flex flex-col items-start md:items-center flex-1">
@@ -267,13 +313,13 @@ export function AwardsSection() {
             <div className="container" style={{ maxWidth: '50rem' }}>
                 <RevealWrapper>
                     <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-                        <span style={{ display: 'block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: '#954795', marginBottom: '0.75rem' }}>
+                        <span style={{ display: 'block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: '#5A262C', marginBottom: '0.75rem' }}>
                             Our Achievements
                         </span>
                         <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.75rem, 5vw, 2.75rem)', color: 'var(--color-dark)', letterSpacing: '3px', textTransform: 'uppercase', lineHeight: 1.15 }}>
                             AWARDS AND<br />RECOGNITION
                         </h2>
-                        <div style={{ width: '50px', height: '2px', background: '#954795', margin: '1.25rem auto 0' }} />
+                        <div style={{ width: '50px', height: '2px', background: '#5A262C', margin: '1.25rem auto 0' }} />
                     </div>
                 </RevealWrapper>
 

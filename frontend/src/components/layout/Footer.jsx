@@ -82,7 +82,7 @@ export default function Footer() {
             )} */}
 
             {/* Main Footer */}
-            <div className="container mx-auto py-12 lg:py-16 px-5 md:px-6">
+            <div className="container mx-auto py-16 md:py-20 lg:py-24 px-5 md:px-6">
                 <div className="flex flex-col lg:flex-row gap-10 lg:gap-12">
 
                     {/* Brand & Disclaimer Column */}
@@ -91,11 +91,11 @@ export default function Footer() {
                         <Link to="/" className="inline-block mb-6 flex flex-col items-center lg:items-start" aria-label="D'CosMedis Clinic - Home">
                             <span
                                 className="text-xl md:text-2xl tracking-[4px] md:tracking-[6px] uppercase font-medium"
-                                style={{ fontFamily: 'var(--font-display)', color: 'var(--color-accent)' }}
+                                style={{ fontFamily: 'var(--font-display)', color: '#EDE8D0' }}
                             >
                                 D'COSMEDIS
                             </span>
-                            <span className="mt-1" style={{ color: 'rgba(205, 191, 204, 0.6)', letterSpacing: '2px', fontSize: '0.45rem', textTransform: 'uppercase', fontWeight: 600 }}>
+                            <span className="mt-1" style={{ color: 'rgba(237, 232, 208, 0.5)', letterSpacing: '2px', fontSize: '0.45rem', textTransform: 'uppercase', fontWeight: 600 }}>
                                 SKIN &bull; HAIR &bull; WELLNESS
                             </span>
                         </Link>
@@ -117,8 +117,8 @@ export default function Footer() {
                         </div>
 
                         {/* Disclaimer */}
-                        <div className="text-white/50 text-[10px] md:text-[11px] leading-relaxed max-w-sm" style={{ fontFamily: 'var(--font-body)' }}>
-                            <strong className="text-white/70 font-medium">Disclaimer: </strong>
+                        <div className="text-[10px] md:text-[11px] leading-relaxed max-w-sm" style={{ fontFamily: 'var(--font-body)', color: 'rgba(237,232,208,0.45)' }}>
+                            <strong style={{ color: 'rgba(237,232,208,0.65)', fontWeight: 500 }}>Disclaimer: </strong>
                             Results may vary from person to person based on factors such as age, gender, skin type, skin condition, lifestyle, health history, and other products used. All images shown on this website are for illustrative purposes only.
                         </div>
                     </div>
@@ -127,11 +127,11 @@ export default function Footer() {
                     <div className="lg:w-2/3 grid grid-cols-2 md:grid-cols-4 gap-x-4 md:gap-x-6 gap-y-10 lg:gap-y-0">
                         {/* CONCERNS */}
                         <div>
-                            <h4 className="text-white font-serif text-sm md:text-base tracking-widest mb-4 md:mb-6" style={{ color: 'white' }}>CONCERNS</h4>
+                            <h4 className="font-serif text-sm md:text-base tracking-widest mb-4 md:mb-6" style={{ color: '#EDE8D0' }}>CONCERNS</h4>
                             <ul className="space-y-3 md:space-y-4">
                                 {footerLinks.concerns.map(link => (
                                     <li key={link.name}>
-                                        <Link to={link.path} className="text-white hover:text-wine text-xs md:text-sm transition-colors duration-300 inline-block" style={{ fontFamily: 'var(--font-body)' }}>
+                                        <Link to={link.path} className="hover:text-wine text-xs md:text-sm transition-colors duration-300 inline-block" style={{ fontFamily: 'var(--font-body)', color: 'rgba(237,232,208,0.65)' }}>
                                             {link.name}
                                         </Link>
                                     </li>
@@ -141,11 +141,11 @@ export default function Footer() {
 
                         {/* TREATMENTS */}
                         <div>
-                            <h4 className="text-white font-serif text-sm md:text-base tracking-widest mb-4 md:mb-6" style={{ color: 'white' }}>TREATMENTS</h4>
+                            <h4 className="font-serif text-sm md:text-base tracking-widest mb-4 md:mb-6" style={{ color: '#EDE8D0' }}>TREATMENTS</h4>
                             <ul className="space-y-3 md:space-y-4">
                                 {footerLinks.treatments.map(link => (
                                     <li key={link.name}>
-                                        <Link to={link.path} className="text-white hover:text-wine text-xs md:text-sm transition-colors duration-300 inline-block" style={{ fontFamily: 'var(--font-body)' }}>
+                                        <Link to={link.path} className="hover:text-wine text-xs md:text-sm transition-colors duration-300 inline-block" style={{ fontFamily: 'var(--font-body)', color: 'rgba(237,232,208,0.65)' }}>
                                             {link.name}
                                         </Link>
                                     </li>
@@ -155,11 +155,11 @@ export default function Footer() {
 
                         {/* NAVIGATION */}
                         <div>
-                            <h4 className="text-white font-serif text-sm md:text-base tracking-widest mb-4 md:mb-6" style={{ color: 'white' }}>NAVIGATION</h4>
+                            <h4 className="font-serif text-sm md:text-base tracking-widest mb-4 md:mb-6" style={{ color: '#EDE8D0' }}>NAVIGATION</h4>
                             <ul className="space-y-3 md:space-y-4">
                                 {footerLinks.navigation.map(link => (
                                     <li key={link.name}>
-                                        <Link to={link.path} className="text-white hover:text-wine text-xs md:text-sm transition-colors duration-300 inline-block" style={{ fontFamily: 'var(--font-body)' }}>
+                                        <Link to={link.path} className="hover:text-wine text-xs md:text-sm transition-colors duration-300 inline-block" style={{ fontFamily: 'var(--font-body)', color: 'rgba(237,232,208,0.65)' }}>
                                             {link.name}
                                         </Link>
                                     </li>
@@ -169,12 +169,12 @@ export default function Footer() {
 
                         {/* CONTACT */}
                         <div>
-                            <h4 className="text-white font-serif text-sm md:text-base tracking-widest mb-4 md:mb-6" style={{ color: 'white' }}>CONTACT</h4>
+                            <h4 className="font-serif text-sm md:text-base tracking-widest mb-4 md:mb-6" style={{ color: '#EDE8D0' }}>CONTACT</h4>
                             <ul className="space-y-4 md:space-y-5">
                                 {footerLinks.contact.map(loc => (
                                     <li key={loc.name}>
-                                        <a href={`tel:${loc.phone.replace(/\\s+/g, '')}`} className="group flex flex-col items-start text-white hover:text-wine transition-colors duration-300" style={{ fontFamily: 'var(--font-body)' }}>
-                                            <span className="text-xs md:text-sm font-medium text-white group-hover:text-wine transition-colors duration-300 mb-0.5">{loc.name}:</span>
+                                        <a href={`tel:${loc.phone.replace(/\s+/g, '')}`} className="group flex flex-col items-start hover:text-wine transition-colors duration-300" style={{ fontFamily: 'var(--font-body)', color: 'rgba(237,232,208,0.65)' }}>
+                                            <span className="text-xs md:text-sm font-medium group-hover:text-wine transition-colors duration-300 mb-0.5" style={{ color: 'rgba(237,232,208,0.85)' }}>{loc.name}:</span>
                                             <span className="text-[11px] md:text-xs">{loc.phone}</span>
                                         </a>
                                     </li>
@@ -186,12 +186,12 @@ export default function Footer() {
             </div>
 
             {/* Copyright Strip */}
-            <div className="border-t border-white/10">
+            <div className="border-t border-[#EDE8D0]/10">
                 <div className="container mx-auto px-5 md:px-6 py-5 flex flex-col md:flex-row items-center justify-between gap-3">
-                    <p className="text-[9px] md:text-[10px] text-white/40 font-semibold uppercase tracking-[0.15em] text-center md:text-left" style={{ fontFamily: 'var(--font-body)' }}>
+                    <p className="text-[9px] md:text-[10px] font-semibold uppercase tracking-[0.15em] text-center md:text-left" style={{ fontFamily: 'var(--font-body)', color: 'rgba(237,232,208,0.35)' }}>
                         D'COSMEDIS © {new Date().getFullYear()}
                     </p>
-                    <p className="text-[9px] md:text-[10px] text-white/40 font-semibold uppercase tracking-[0.15em] text-center md:text-right" style={{ fontFamily: 'var(--font-body)' }}>
+                    <p className="text-[9px] md:text-[10px] font-semibold uppercase tracking-[0.15em] text-center md:text-right" style={{ fontFamily: 'var(--font-body)', color: 'rgba(237,232,208,0.35)' }}>
                         WEBSITE BY UNHIDE
                     </p>
                 </div>
@@ -203,7 +203,7 @@ export default function Footer() {
                 .hover\\:border-wine:hover { border-color: var(--color-wine); }
                 .hover\\:text-wine:hover { color: var(--color-wine); }
                 .group-hover\\:text-wine { color: var(--color-wine); }
-                .hover\\:bg-wine\\/10:hover { background-color: rgba(86, 58, 86, 0.1); }
+                .hover\\:bg-wine\\/10:hover { background-color: rgba(90, 38, 44, 0.1); }
                 .hover\\:pl-1:hover { padding-left: 0.25rem; }
             `}</style>
         </footer>

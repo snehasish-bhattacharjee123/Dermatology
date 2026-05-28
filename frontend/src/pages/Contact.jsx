@@ -355,7 +355,7 @@ Other Details: ${formData.other || 'None'}`,
                 /* ── Dropdown Select Styling ── */
                 .ct-select { 
                     appearance: none; 
-                    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9' fill='none'%3E%3Cpath d='M1 1.5L7 7.5L13 1.5' stroke='%23954795' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); 
+                    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9' fill='none'%3E%3Cpath d='M1 1.5L7 7.5L13 1.5' stroke='%235A262C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); 
                     background-repeat: no-repeat; 
                     background-position: right 1.25rem center; 
                     cursor: pointer; 
@@ -555,7 +555,7 @@ Other Details: ${formData.other || 'None'}`,
 
                 <div className="ct-hero-content container">
                     <RevealWrapper direction="up">
-                        <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-wine)', background: 'rgba(86, 58, 86, 0.12)', border: '1px solid rgba(86, 58, 86, 0.3)', borderRadius: '9999px', padding: '0.4rem 1.25rem', marginBottom: '1.5rem' }}>
+                        <span style={{ display: 'inline-block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-wine)', background: 'rgba(90, 38, 44, 0.12)', border: '1px solid rgba(90, 38, 44, 0.3)', borderRadius: '9999px', padding: '0.4rem 1.25rem', marginBottom: '1.5rem' }}>
                             Get In Touch
                         </span>
                         <h1 style={{ fontFamily: 'var(--font-heading)', color: '#fff', letterSpacing: '6px', textTransform: 'uppercase', fontSize: 'clamp(2.75rem, 8vw, 6rem)', lineHeight: 1.05, marginBottom: '1.5rem' }}>
@@ -566,7 +566,7 @@ Other Details: ${formData.other || 'None'}`,
                             We're here to help. Reach out for appointments, treatment inquiries, or any aesthetic assistance you need.
                         </p>
                         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-                            <a href="tel:+911126347890" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'var(--color-wine)', color: '#fff', padding: '0.9rem 2rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, boxShadow: '0 8px 28px rgba(86, 58, 86, 0.4)' }}>
+                            <a href="tel:+911126347890" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'var(--color-wine)', color: '#fff', padding: '0.9rem 2rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, boxShadow: '0 8px 28px rgba(90, 38, 44, 0.4)' }}>
                                 <Phone size={14} /> Call Now
                             </a>
                             <a href="https://wa.me/911126347890" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(255,255,255,0.08)', color: '#fff', padding: '0.9rem 2rem', fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700, backdropFilter: 'blur(6px)', border: '1px solid rgba(255,255,255,0.2)' }}>
@@ -629,7 +629,7 @@ Other Details: ${formData.other || 'None'}`,
 
                                 {submitted ? (
                                     <div style={{ textAlign: 'center', padding: '4rem 2rem', background: 'var(--color-bg-cream)', border: '1px solid #f0ede8' }}>
-                                        <div style={{ width: '4.5rem', height: '4.5rem', borderRadius: '50%', background: 'rgba(86, 58, 86, 0.1)', display: 'flex', alignItems: 'center', justify: 'center', margin: '0 auto 1.5rem' }}>
+                                        <div style={{ width: '4.5rem', height: '4.5rem', borderRadius: '50%', background: 'rgba(90, 38, 44, 0.1)', display: 'flex', alignItems: 'center', justify: 'center', margin: '0 auto 1.5rem' }}>
                                             <CheckCircle size={32} style={{ color: 'var(--color-wine)' }} />
                                         </div>
                                         <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.75rem', color: 'var(--color-dark)', marginBottom: '0.75rem' }}>Message Received!</h3>
@@ -884,10 +884,10 @@ Other Details: ${formData.other || 'None'}`,
                 <div className="container" style={{ maxWidth: '70rem' }}>
                     <RevealWrapper>
                         <span style={{ display: 'block', fontSize: '0.625rem', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 700, color: '#888', marginBottom: '1rem' }}>Stay Connected</span>
-                        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#fff', marginBottom: '0.75rem' }}>
+                        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#EDE8D0', marginBottom: '0.75rem' }}>
                             Connect With <span style={{ fontStyle: 'italic', color: 'var(--color-wine)' }}>Us</span>
                         </h2>
-                        <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '1rem', marginBottom: '3.5rem' }}>
+                        <p style={{ color: 'rgba(237,232,208,0.55)', fontSize: '1rem', marginBottom: '3.5rem' }}>
                             Follow us for skincare tips, before-and-after stories, and exclusive offers.
                         </p>
                     </RevealWrapper>

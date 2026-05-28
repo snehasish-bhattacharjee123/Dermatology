@@ -260,10 +260,10 @@ export default function ConcernDetail() {
                         <span style={{ display: 'inline-block', padding: '0.25rem 1rem', fontSize: '0.625rem', fontWeight: 700, letterSpacing: '4px', textTransform: 'uppercase', marginBottom: '2rem', color: 'var(--color-wine)', border: '1px solid rgba(114,47,55,0.35)', borderRadius: '9999px' }}>
                             Why Choose Us
                         </span>
-                        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2.25rem, 5vw, 3.75rem)', color: '#fff', marginBottom: '2rem', lineHeight: 1.2 }}>
+                        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2.25rem, 5vw, 3.75rem)', color: '#EDE8D0', marginBottom: '2rem', lineHeight: 1.2 }}>
                             The D'CosMedis <br /><span style={{ fontStyle: 'italic', color: 'var(--color-wine)' }}>Advantage</span>
                         </h2>
-                        <p style={{ fontSize: '1.125rem', color: 'rgba(255,255,255,0.8)', fontWeight: 300, maxWidth: '48rem', margin: '0 auto 2.5rem', lineHeight: 1.85 }}>
+                        <p style={{ fontSize: '1.125rem', color: 'rgba(237,232,208,0.8)', fontWeight: 300, maxWidth: '48rem', margin: '0 auto 2.5rem', lineHeight: 1.85 }}>
                             We treat true causes, not simply masking symptoms. With over 15 years of expertise, Dr. Dolly Gupta and our expert team will recommend a tailored blend of treatments based on your specific needs. Our aim is to achieve a natural, enhanced result safely and effectively.
                         </p>
                         <Link to="/book" className="cd-book-btn">

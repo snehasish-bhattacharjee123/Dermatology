@@ -217,7 +217,7 @@ export default function Treatments() {
                         ].map((s, i) => (
                             <div key={i} className="tr-stat">
                                 <span style={{ display: 'block', fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--color-wine)', fontWeight: 300, lineHeight: 1, marginBottom: '0.5rem' }}>{s.val}</span>
-                                <span style={{ display: 'block', fontSize: '0.625rem', letterSpacing: '2.5px', textTransform: 'uppercase', fontWeight: 600, color: 'rgba(255,255,255,0.35)' }}>{s.label}</span>
+                                <span style={{ display: 'block', fontSize: '0.625rem', letterSpacing: '2.5px', textTransform: 'uppercase', fontWeight: 600, color: 'rgba(237,232,208,0.5)' }}>{s.label}</span>
                             </div>
                         ))}
                     </div>

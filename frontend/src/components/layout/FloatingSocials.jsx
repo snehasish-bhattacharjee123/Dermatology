@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Instagram, Youtube, Bot } from 'lucide-react'
+import { Bot } from 'lucide-react'
 
 // Custom WhatsApp Icon for accuracy
 const WhatsAppIcon = ({ size = 20 }) => (
@@ -20,39 +20,17 @@ export default function FloatingSocials() {
 
     return (
         <>
-            {/* Left Side Social Column */}
-            <div 
-                className="fixed left-4 md:left-6 bottom-6 flex flex-col gap-3 z-[100]"
+            {/* Left Side - WhatsApp only */}
+            <a
+                href="https://api.whatsapp.com/send/?phone=917738891858&text=Hello%20there!"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="fixed left-4 md:left-6 bottom-6 w-10 h-10 md:w-12 md:h-12 bg-white text-wine border border-[#e8e4db] rounded-full flex items-center justify-center shadow-lg hover:bg-wine hover:text-white hover:border-wine hover:scale-110 transition-all z-[100]"
+                aria-label="WhatsApp"
                 style={{ animation: 'floatInLeft 0.6s ease-out' }}
             >
-                <a
-                    href="https://instagram.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 md:w-12 md:h-12 bg-white text-wine border border-[#e8e4db] rounded-full flex items-center justify-center shadow-lg hover:bg-wine hover:text-white hover:border-wine hover:scale-110 transition-all"
-                    aria-label="Instagram"
-                >
-                    <Instagram size={20} strokeWidth={1.5} />
-                </a>
-                <a
-                    href="https://wa.me/911234567890"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 md:w-12 md:h-12 bg-white text-wine border border-[#e8e4db] rounded-full flex items-center justify-center shadow-lg hover:bg-wine hover:text-white hover:border-wine hover:scale-110 transition-all"
-                    aria-label="WhatsApp"
-                >
-                    <WhatsAppIcon size={20} />
-                </a>
-                <a
-                    href="https://youtube.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 md:w-12 md:h-12 bg-white text-wine border border-[#e8e4db] rounded-full flex items-center justify-center shadow-lg hover:bg-wine hover:text-white hover:border-wine hover:scale-110 transition-all"
-                    aria-label="YouTube"
-                >
-                    <Youtube size={20} strokeWidth={1.5} />
-                </a>
-            </div>
+                <WhatsAppIcon size={20} />
+            </a>
 
             {/* Right Side Chatbot */}
             <button

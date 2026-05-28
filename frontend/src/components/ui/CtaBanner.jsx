@@ -44,7 +44,7 @@ export default function CtaBanner({
                         letterSpacing: '3px',
                         textTransform: 'uppercase',
                         fontWeight: 600,
-                        color: 'rgba(255,255,255,0.5)',
+                        color: 'rgba(237,232,208,0.55)',
                         display: 'block',
                         marginBottom: '1.25rem',
                     }}>
@@ -54,7 +54,7 @@ export default function CtaBanner({
                     <h2 style={{
                         fontFamily: 'var(--font-heading)',
                         fontSize: 'clamp(2rem, 5vw, 3.5rem)',
-                        color: '#fff',
+                        color: '#EDE8D0',
                         fontWeight: 300,
                         lineHeight: 1.15,
                         marginBottom: '1.25rem',
@@ -67,7 +67,7 @@ export default function CtaBanner({
                     </h2>
 
                     <p style={{
-                        color: 'rgba(255,255,255,0.65)',
+                        color: 'rgba(237,232,208,0.72)',
                         fontSize: 'clamp(0.875rem, 2vw, 1.05rem)',
                         lineHeight: 1.8,
                         fontWeight: 300,
@@ -107,21 +107,21 @@ export default function CtaBanner({
                                 display: 'inline-flex',
                                 alignItems: 'center',
                                 gap: '0.5rem',
-                                color: '#fff',
+                                color: '#EDE8D0',
                                 padding: '0.9rem 2.25rem',
                                 fontSize: '0.7rem',
                                 letterSpacing: '2px',
                                 textTransform: 'uppercase',
                                 fontWeight: 700,
-                                border: '1px solid rgba(255,255,255,0.25)',
+                                border: '1px solid rgba(237,232,208,0.3)',
                                 borderRadius: '4px',
                                 textDecoration: 'none',
                                 backdropFilter: 'blur(4px)',
                                 transition: 'border-color 0.2s',
                                 cursor: 'pointer',
                             }}
-                            onMouseEnter={e => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.65)'}
-                            onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.25)'}
+                            onMouseEnter={e => e.currentTarget.style.borderColor = 'rgba(237,232,208,0.7)'}
+                            onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(237,232,208,0.3)'}
                         >
                             {secondaryLabel}
                         </Link>

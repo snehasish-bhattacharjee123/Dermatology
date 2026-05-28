@@ -3,6 +3,34 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Menu, X, Phone, ChevronDown, ArrowRight, Flame, Palette, Sparkles, Scissors, Eye, Sun, Search, MapPin, Instagram, Facebook, Youtube } from 'lucide-react'
 import { Caption } from '../ui/Typography'
 
+// Custom WhatsApp Icon
+const WhatsAppIcon = ({ size = 14, ...props }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" {...props}>
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+    </svg>
+)
+
+// Custom Instagram Icon
+const InstagramIcon = ({ size = 14, ...props }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" {...props}>
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+    </svg>
+)
+
+// Custom Facebook Icon
+const FacebookIcon = ({ size = 14, ...props }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" {...props}>
+        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+    </svg>
+)
+
+// Custom YouTube Icon
+const YoutubeIcon = ({ size = 14, ...props }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" {...props}>
+        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+    </svg>
+)
+
 const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
@@ -360,9 +388,9 @@ export default function Header() {
 
     return (
         <>
-            {/* Top Bar - Hidden on mobile */}
+            {/* Top Bar - Visible on ALL screens including mobile */}
             <div
-                className="fixed top-0 left-0 w-full z-[1001] transition-all duration-500 hidden sm:block"
+                className="fixed top-0 left-0 w-full z-[1001] transition-all duration-500 block"
                 style={{
                     background: 'var(--color-wine)',
                     height: isScrolled ? '0px' : 'var(--header-top-bar-height)',
@@ -370,40 +398,85 @@ export default function Header() {
                     opacity: isScrolled ? 0 : 1,
                 }}
             >
-                <div className="container h-full flex items-center justify-between">
-                    <div className="flex items-center gap-6">
+                <div className="container h-full flex items-center justify-between gap-4">
+
+                    {/* LEFT: Social Icons — exact brand colors */}
+                    <div className="flex items-center gap-2">
+                        {/* WhatsApp — #25D366 */}
+                        <a
+                            href="https://api.whatsapp.com/send/?phone=917738891858&text=Hello%20there!"
+                            target="_blank" rel="noreferrer"
+                            aria-label="WhatsApp"
+                            className="flex items-center justify-center w-8 h-8 rounded-full transition-all duration-200 hover:scale-110 hover:opacity-85 shadow-sm"
+                            style={{ background: '#25D366' }}
+                        >
+                            <WhatsAppIcon size={16} style={{ color: '#fff' }} />
+                        </a>
+                        {/* Instagram — brand gradient */}
+                        <a
+                            href="https://www.instagram.com/dcosmedicsindia/"
+                            target="_blank" rel="noreferrer"
+                            aria-label="Instagram"
+                            className="flex items-center justify-center w-8 h-8 rounded-full transition-all duration-200 hover:scale-110 hover:opacity-85 shadow-sm"
+                            style={{ background: 'radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%)' }}
+                        >
+                            <InstagramIcon size={16} style={{ color: '#fff' }} />
+                        </a>
+                        {/* Facebook — #1877F2 */}
+                        <a
+                            href="https://www.facebook.com/aaynaclinic/"
+                            target="_blank" rel="noreferrer"
+                            aria-label="Facebook"
+                            className="flex items-center justify-center w-8 h-8 rounded-full transition-all duration-200 hover:scale-110 hover:opacity-85 shadow-sm"
+                            style={{ background: '#1877F2' }}
+                        >
+                            <FacebookIcon size={16} style={{ color: '#fff' }} />
+                        </a>
+                        {/* YouTube — #FF0000 */}
+                        <a
+                            href="https://www.youtube.com/channel/UCF4-AP5qfQ_VKyNZjhKfb4Q"
+                            target="_blank" rel="noreferrer"
+                            aria-label="YouTube"
+                            className="flex items-center justify-center w-8 h-8 rounded-full transition-all duration-200 hover:scale-110 hover:opacity-85 shadow-sm"
+                            style={{ background: '#FF0000' }}
+                        >
+                            <YoutubeIcon size={16} style={{ color: '#fff' }} />
+                        </a>
+                    </div>
+
+                    {/* CENTER: Phone + Hours (hidden on mobile) */}
+                    <div className="hidden sm:flex items-center gap-3">
                         <a
                             href="tel:+911234567890"
-                            className="flex items-center gap-2 text-white tracking-wide text-xs font-medium hover:text-white/80 transition-colors"
+                            className="flex items-center gap-1.5 text-white tracking-wide text-[11px] font-medium transition-colors"
                         >
-                            <Phone size={12} strokeWidth={2.5} />
-                            <span>+91 11 2634 7890</span>
+                            <Phone size={11} strokeWidth={2.5} className="text-[#C9BFA6]" />
+                            <span className="text-[#C9BFA6] hover:text-white transition-colors">+91 11 2634 7890</span>
                         </a>
-                        <span className="text-white/50 text-xs hidden md:inline" aria-hidden="true">|</span>
-                        <Caption variant="label-white" className="hidden md:inline opacity-90">
-                            Mon - Sat: 10 AM - 7 PM
-                        </Caption>
+                        <span className="text-white/30 text-xs" aria-hidden="true">|</span>
+                        <span className="text-white/70 text-[11px] font-medium tracking-wide">Mon – Sat: 10 AM – 7 PM</span>
                     </div>
-                    <div className="flex items-center gap-4">
-                        {/* Social Icons
-                        <div className="hidden lg:flex items-center gap-3 mr-2">
-                            <a href="https://www.instagram.com/aaynaclinic_official/" target="_blank" rel="noreferrer" className="text-white/80 hover:text-white transition-colors">
-                                <Instagram size={14} />
-                            </a>
-                            <a href="https://www.facebook.com/aaynaclinic/" target="_blank" rel="noreferrer" className="text-white/80 hover:text-white transition-colors">
-                                <Facebook size={14} />
-                            </a>
-                            <a href="https://www.youtube.com/channel/UCF4-AP5qfQ_VKyNZjhKfb4Q" target="_blank" rel="noreferrer" className="text-white/80 hover:text-white transition-colors">
-                                <Youtube size={14} />
-                            </a>
-                        </div> */}
-                        <div className="hidden sm:flex items-center bg-white/20 px-4 py-1.5 rounded-full backdrop-blur-md border border-white/20 shadow-sm transition-all duration-300 hover:bg-white/30 cursor-default">
-                            <MapPin size={12} className="text-white ml-1 mr-3 flex-shrink-0" />
-                            <span className="font-body text-[11px] font-bold tracking-[2px] uppercase text-white mt-[1px]">
-                                Delhi <span className="text-white/50 mx-1.5">&bull;</span> Gurugram <span className="text-white/50 mx-1.5">&bull;</span> Ludhiana
-                            </span>
-                        </div>
-                    </div>
+
+                    {/* RIGHT: Chat With Us CTA */}
+                    <a
+                        href="https://api.whatsapp.com/send/?phone=917738891858&text=Hello%20there!"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex items-center gap-2 font-bold uppercase shrink-0 rounded-full transition-all duration-200 hover:scale-105 hover:shadow-lg"
+                        style={{
+                            background: '#EDE8D0',
+                            color: 'var(--color-wine)',
+                            fontSize: '11px',
+                            letterSpacing: '0.8px',
+                            padding: '6px 16px',
+                        }}
+                    >
+                        <span style={{ color: '#25D366', display: 'flex', alignItems: 'center' }}>
+                            <WhatsAppIcon size={14} />
+                        </span>
+                        <span>Chat with us</span>
+                    </a>
+
                 </div>
             </div>
 
@@ -808,7 +881,7 @@ export default function Header() {
                 <div className="flex justify-end p-6 pb-4">
                     <button
                         onClick={() => setIsMobileOpen(false)}
-                        className="text-[#0d1319]/60 hover:text-[#954795] text-[14px] font-medium tracking-widest uppercase transition-colors p-2"
+                        className="text-[#0d1319]/60 hover:text-[#5A262C] text-[14px] font-medium tracking-widest uppercase transition-colors p-2"
                         style={{ fontFamily: 'var(--font-body)' }}
                     >
                         close
@@ -822,7 +895,7 @@ export default function Header() {
                         <Link
                             to="/"
                             onClick={() => setIsMobileOpen(false)}
-                            className="text-[#0d1319] text-[20px] tracking-[2px] uppercase font-bold hover:text-[#954795] transition-colors block"
+                            className="text-[#0d1319] text-[20px] tracking-[2px] uppercase font-bold hover:text-[#5A262C] transition-colors block"
                             style={{ fontFamily: 'var(--font-heading)' }}
                         >
                             HOME
@@ -834,7 +907,7 @@ export default function Header() {
                         <Link
                             to="/about"
                             onClick={() => setIsMobileOpen(false)}
-                            className="text-[#0d1319] text-[20px] tracking-[2px] uppercase font-bold hover:text-[#954795] transition-colors block"
+                            className="text-[#0d1319] text-[20px] tracking-[2px] uppercase font-bold hover:text-[#5A262C] transition-colors block"
                             style={{ fontFamily: 'var(--font-heading)' }}
                         >
                             ABOUT
@@ -848,12 +921,12 @@ export default function Header() {
                             onClick={() => toggleMobileItem('TREATMENTS')}
                         >
                             <span
-                                className={`text-[20px] tracking-[2px] uppercase font-bold transition-colors ${expandedMobileItems['TREATMENTS'] ? 'text-[#954795]' : 'text-[#0d1319] hover:text-[#954795]'}`}
+                                className={`text-[20px] tracking-[2px] uppercase font-bold transition-colors ${expandedMobileItems['TREATMENTS'] ? 'text-[#5A262C]' : 'text-[#0d1319] hover:text-[#5A262C]'}`}
                                 style={{ fontFamily: 'var(--font-heading)' }}
                             >
                                 TREATMENTS
                             </span>
-                            <span className={`text-[16px] font-bold select-none transition-colors ${expandedMobileItems['TREATMENTS'] ? 'text-[#954795]' : 'text-[#0d1319]'}`}>
+                            <span className={`text-[16px] font-bold select-none transition-colors ${expandedMobileItems['TREATMENTS'] ? 'text-[#5A262C]' : 'text-[#0d1319]'}`}>
                                 {expandedMobileItems['TREATMENTS'] ? '—' : '+'}
                             </span>
                         </div>
@@ -867,7 +940,7 @@ export default function Header() {
                                         <Link
                                             to={item.path}
                                             onClick={() => setIsMobileOpen(false)}
-                                            className="text-[#0d1319]/70 hover:text-[#954795] text-[15px] transition-colors block font-semibold py-0.5"
+                                            className="text-[#0d1319]/70 hover:text-[#5A262C] text-[15px] transition-colors block font-semibold py-0.5"
                                             style={{ fontFamily: 'var(--font-body)' }}
                                         >
                                             {item.name}
@@ -885,12 +958,12 @@ export default function Header() {
                             onClick={() => toggleMobileItem('CONCERNS')}
                         >
                             <span
-                                className={`text-[20px] tracking-[2px] uppercase font-bold transition-colors ${expandedMobileItems['CONCERNS'] ? 'text-[#954795]' : 'text-[#0d1319] hover:text-[#954795]'}`}
+                                className={`text-[20px] tracking-[2px] uppercase font-bold transition-colors ${expandedMobileItems['CONCERNS'] ? 'text-[#5A262C]' : 'text-[#0d1319] hover:text-[#5A262C]'}`}
                                 style={{ fontFamily: 'var(--font-heading)' }}
                             >
                                 CONCERNS
                             </span>
-                            <span className={`text-[16px] font-bold select-none transition-colors ${expandedMobileItems['CONCERNS'] ? 'text-[#954795]' : 'text-[#0d1319]'}`}>
+                            <span className={`text-[16px] font-bold select-none transition-colors ${expandedMobileItems['CONCERNS'] ? 'text-[#5A262C]' : 'text-[#0d1319]'}`}>
                                 {expandedMobileItems['CONCERNS'] ? '—' : '+'}
                             </span>
                         </div>
@@ -906,12 +979,12 @@ export default function Header() {
                                             onClick={() => toggleConcernCategory(group.category)}
                                         >
                                             <span
-                                                className={`text-[15px] font-bold transition-colors ${expandedConcerns[group.category] ? 'text-[#954795]' : 'text-[#0d1319]/80 hover:text-[#954795]'}`}
+                                                className={`text-[15px] font-bold transition-colors ${expandedConcerns[group.category] ? 'text-[#5A262C]' : 'text-[#0d1319]/80 hover:text-[#5A262C]'}`}
                                                 style={{ fontFamily: 'var(--font-body)' }}
                                             >
                                                 {group.category}
                                             </span>
-                                            <span className={`text-xs font-bold select-none transition-colors ${expandedConcerns[group.category] ? 'text-[#954795]' : 'text-[#0d1319]/60'}`}>
+                                            <span className={`text-xs font-bold select-none transition-colors ${expandedConcerns[group.category] ? 'text-[#5A262C]' : 'text-[#0d1319]/60'}`}>
                                                 {expandedConcerns[group.category] ? '—' : '+'}
                                             </span>
                                         </div>
@@ -925,7 +998,7 @@ export default function Header() {
                                                         <Link
                                                             to={item.path}
                                                             onClick={() => setIsMobileOpen(false)}
-                                                            className="text-[#0d1319]/60 hover:text-[#954795] text-[14px] transition-colors block py-0.8 font-medium"
+                                                            className="text-[#0d1319]/60 hover:text-[#5A262C] text-[14px] transition-colors block py-0.8 font-medium"
                                                             style={{ fontFamily: 'var(--font-body)' }}
                                                         >
                                                             {item.name}
@@ -941,7 +1014,7 @@ export default function Header() {
                                     <Link
                                         to="/concerns"
                                         onClick={() => setIsMobileOpen(false)}
-                                        className="text-[#954795] hover:text-[#6f346f] text-[15px] font-bold transition-colors block"
+                                        className="text-[#5A262C] hover:text-[#3d1a1c] text-[15px] font-bold transition-colors block"
                                         style={{ fontFamily: 'var(--font-body)' }}
                                     >
                                         View All Concerns →
@@ -958,12 +1031,12 @@ export default function Header() {
                             onClick={() => toggleMobileItem('SOCIAL MEDIA')}
                         >
                             <span
-                                className={`text-[20px] tracking-[2px] uppercase font-bold transition-colors ${expandedMobileItems['SOCIAL MEDIA'] ? 'text-[#954795]' : 'text-[#0d1319] hover:text-[#954795]'}`}
+                                className={`text-[20px] tracking-[2px] uppercase font-bold transition-colors ${expandedMobileItems['SOCIAL MEDIA'] ? 'text-[#5A262C]' : 'text-[#0d1319] hover:text-[#5A262C]'}`}
                                 style={{ fontFamily: 'var(--font-heading)' }}
                             >
                                 SOCIAL MEDIA
                             </span>
-                            <span className={`text-[16px] font-bold select-none transition-colors ${expandedMobileItems['SOCIAL MEDIA'] ? 'text-[#954795]' : 'text-[#0d1319]'}`}>
+                            <span className={`text-[16px] font-bold select-none transition-colors ${expandedMobileItems['SOCIAL MEDIA'] ? 'text-[#5A262C]' : 'text-[#0d1319]'}`}>
                                 {expandedMobileItems['SOCIAL MEDIA'] ? '—' : '+'}
                             </span>
                         </div>
@@ -979,7 +1052,7 @@ export default function Header() {
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             onClick={() => setIsMobileOpen(false)}
-                                            className="text-[#0d1319]/70 hover:text-[#954795] text-[15px] transition-colors block font-semibold py-0.5"
+                                            className="text-[#0d1319]/70 hover:text-[#5A262C] text-[15px] transition-colors block font-semibold py-0.5"
                                             style={{ fontFamily: 'var(--font-body)' }}
                                         >
                                             {item.name}
@@ -995,7 +1068,7 @@ export default function Header() {
                         <Link
                             to="/gallery"
                             onClick={() => setIsMobileOpen(false)}
-                            className="text-[#0d1319] text-[20px] tracking-[2px] uppercase font-bold hover:text-[#954795] transition-colors block"
+                            className="text-[#0d1319] text-[20px] tracking-[2px] uppercase font-bold hover:text-[#5A262C] transition-colors block"
                             style={{ fontFamily: 'var(--font-heading)' }}
                         >
                             GALLERY
@@ -1009,12 +1082,12 @@ export default function Header() {
                             onClick={() => toggleMobileItem('CONTACT US')}
                         >
                             <span
-                                className={`text-[20px] tracking-[2px] uppercase font-bold transition-colors ${expandedMobileItems['CONTACT US'] ? 'text-[#954795]' : 'text-[#0d1319] hover:text-[#954795]'}`}
+                                className={`text-[20px] tracking-[2px] uppercase font-bold transition-colors ${expandedMobileItems['CONTACT US'] ? 'text-[#5A262C]' : 'text-[#0d1319] hover:text-[#5A262C]'}`}
                                 style={{ fontFamily: 'var(--font-heading)' }}
                             >
                                 CONTACT US
                             </span>
-                            <span className={`text-[16px] font-bold select-none transition-colors ${expandedMobileItems['CONTACT US'] ? 'text-[#954795]' : 'text-[#0d1319]'}`}>
+                            <span className={`text-[16px] font-bold select-none transition-colors ${expandedMobileItems['CONTACT US'] ? 'text-[#5A262C]' : 'text-[#0d1319]'}`}>
                                 {expandedMobileItems['CONTACT US'] ? '—' : '+'}
                             </span>
                         </div>
@@ -1031,7 +1104,7 @@ export default function Header() {
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 onClick={() => setIsMobileOpen(false)}
-                                                className="text-[#0d1319]/70 hover:text-[#954795] text-[15px] transition-colors block font-semibold py-0.5"
+                                                className="text-[#0d1319]/70 hover:text-[#5A262C] text-[15px] transition-colors block font-semibold py-0.5"
                                                 style={{ fontFamily: 'var(--font-body)' }}
                                             >
                                                 {item.name}
@@ -1040,7 +1113,7 @@ export default function Header() {
                                             <Link
                                                 to={item.path}
                                                 onClick={() => setIsMobileOpen(false)}
-                                                className="text-[#0d1319]/70 hover:text-[#954795] text-[15px] transition-colors block font-semibold py-0.5"
+                                                className="text-[#0d1319]/70 hover:text-[#5A262C] text-[15px] transition-colors block font-semibold py-0.5"
                                                 style={{ fontFamily: 'var(--font-body)' }}
                                             >
                                                 {item.name}
@@ -1060,7 +1133,7 @@ export default function Header() {
                     </p>
                     <a
                         href="tel:+918080125874"
-                        className="text-[#954795] text-[18px] font-bold block mt-1 hover:text-[#6f346f] transition-colors"
+                        className="text-[#5A262C] text-[18px] font-bold block mt-1 hover:text-[#3d1a1c] transition-colors"
                         style={{ fontFamily: 'var(--font-body)' }}
                     >
                         +91 80801 25874

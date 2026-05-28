@@ -1,8 +1,67 @@
+import { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Award, Heart, Users, Sparkles } from 'lucide-react'
 import { RevealWrapper } from '../hooks/useAnimations'
 import { teamMembers, stats } from '../data/siteData'
 import CtaBanner from '../components/ui/CtaBanner'
+
+function AnimatedCounter({ target, suffix = '' }) {
+    const [count, setCount] = useState(0)
+    const ref = useRef(null)
+    const hasAnimated = useRef(false)
+
+    useEffect(() => {
+        const el = ref.current
+        if (!el) return
+        const observer = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting && !hasAnimated.current) {
+                hasAnimated.current = true
+                const num = parseInt(target.replace(/[^0-9]/g, ''), 10)
+                if (isNaN(num)) { setCount(target); return }
+                const duration = 1800
+                const steps = 50
+                const increment = num / steps
+                let current = 0
+                const timer = setInterval(() => {
+                    current += increment
+                    if (current >= num) { setCount(num); clearInterval(timer) }
+                    else setCount(Math.floor(current))
+                }, duration / steps)
+            }
+        }, { threshold: 0.3 })
+        observer.observe(el)
+        return () => observer.disconnect()
+    }, [target])
+
+    const display = typeof count === 'number' ? count.toLocaleString() + suffix : count
+    return <span ref={ref}>{display}</span>
+}
+
+const StatsBar = () => {
+    return (
+        <section className="about-stats-section">
+            <div className="container" style={{ maxWidth: '80rem' }}>
+                <div className="about-stats-grid">
+                    {stats.map((stat, i) => {
+                        const match = stat.value.match(/([^0-9]*)$/);
+                        const suffix = match ? match[1] : '';
+                        
+                        return (
+                            <RevealWrapper key={i} direction="up" delay={i * 0.1}>
+                                <div>
+                                    <div className="about-stat-value">
+                                        <AnimatedCounter target={stat.value} suffix={suffix} />
+                                    </div>
+                                    <div className="about-stat-label">{stat.label}</div>
+                                </div>
+                            </RevealWrapper>
+                        )
+                    })}
+                </div>
+            </div>
+        </section>
+    )
+}
 
 const values = [
     {
@@ -88,11 +147,11 @@ export default function About() {
 
                 /* Grid Sections */
                 .about-section {
-                    padding: clamp(2.5rem, 8vw, 5rem) 0;
+                    padding: clamp(2rem, 6vw, 4rem) 0;
                 }
                 @media (min-width: 768px) {
                     .about-section {
-                        padding: 8rem 0;
+                        padding: 5.5rem 0;
                     }
                 }
                 .about-grid {
@@ -144,10 +203,11 @@ export default function About() {
                     display: inline-block;
                 }
                 .about-text {
-                    color: var(--color-text-muted, #555);
-                    line-height: 1.8;
-                    font-size: 1rem;
-                    margin-bottom: 1.5rem;
+                    color: #555;
+                    line-height: 1.65;
+                    font-size: 0.9625rem;
+                    font-family: var(--font-body);
+                    margin-bottom: 0.9rem;
                 }
                 
                 /* Image Wrappers */
@@ -182,9 +242,7 @@ export default function About() {
                 /* Stats Section */
                 .about-stats-section {
                     padding: 5rem 0;
-                    background: #fff;
-                    border-top: 1px solid rgba(86,58,86,0.1);
-                    border-bottom: 1px solid rgba(86,58,86,0.1);
+                    background: var(--color-wine);
                 }
                 .about-stats-grid {
                     display: grid;
@@ -200,17 +258,17 @@ export default function About() {
                 .about-stat-value {
                     font-family: var(--font-heading);
                     font-size: clamp(3rem, 6vw, 4.5rem);
-                    color: var(--color-dark);
+                    color: #fff;
                     margin-bottom: 0.5rem;
                     font-weight: 300;
                     line-height: 1;
                 }
                 .about-stat-label {
-                    font-size: 0.75rem;
+                    color: rgba(255, 255, 255, 0.8);
+                    font-size: 0.95rem;
                     text-transform: uppercase;
                     letter-spacing: 2px;
-                    color: #888;
-                    font-weight: 600;
+                    font-weight: 500;
                 }
 
                 /* Values Section */
@@ -299,8 +357,8 @@ export default function About() {
                         </RevealWrapper>
                         <RevealWrapper direction="right" className="order-1-mob order-2-desk">
                             <div>
-                                <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '2.5rem', color: 'var(--color-wine)', marginBottom: '0.5rem', fontWeight: 400 }}>Dr. Dolly Gupta</h3>
-                                <h2 className="about-heading-md" style={{ fontSize: 'clamp(1.25rem, 2vw, 1.75rem)' }}>
+                                <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.8rem, 3.5vw, 2.5rem)', color: 'var(--color-wine)', marginBottom: '0.4rem', fontWeight: 400, lineHeight: 1.2 }}>Dr. Dolly Gupta</h3>
+                                <h2 className="about-heading-md" style={{ fontSize: 'clamp(1rem, 1.8vw, 1.5rem)', marginBottom: '1.25rem', lineHeight: 1.35 }}>
                                     Pioneer of Cosmetology • Award-Winning Cosmetic Physician • Author & Educator
                                 </h2>
                                 <p className="about-text">
@@ -368,20 +426,7 @@ export default function About() {
             </section>
 
             {/* ─── STATS ─── */}
-            <section className="about-stats-section">
-                <div className="container" style={{ maxWidth: '80rem' }}>
-                    <div className="about-stats-grid">
-                        {stats.map((stat, i) => (
-                            <RevealWrapper key={i} direction="up" delay={i * 0.1}>
-                                <div>
-                                    <div className="about-stat-value">{stat.value}</div>
-                                    <div className="about-stat-label">{stat.label}</div>
-                                </div>
-                            </RevealWrapper>
-                        ))}
-                    </div>
-                </div>
-            </section>
+            <StatsBar />
 
             {/* ─── VALUES ─── */}
             <section className="about-section" style={{ background: 'var(--color-bg-cream)' }}>
@@ -389,7 +434,7 @@ export default function About() {
                     <RevealWrapper>
                         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
                             <span className="about-subtitle">Our Values</span>
-                            <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--color-dark)' }}>
+                            <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)', color: 'var(--color-dark)', fontWeight: 300, lineHeight: 1.2, textTransform: 'uppercase' }}>
                                 What Sets Us Apart
                             </h2>
                         </div>
@@ -402,10 +447,10 @@ export default function About() {
                                     <div className="about-value-icon">
                                         <val.icon size={24} style={{ color: 'var(--color-wine)', transition: 'color 0.3s' }} />
                                     </div>
-                                    <h4 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', color: 'var(--color-dark)', marginBottom: '0.75rem' }}>
+                                    <h4 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.2rem', color: 'var(--color-dark)', marginBottom: '0.6rem', fontWeight: 500, lineHeight: 1.25 }}>
                                         {val.title}
                                     </h4>
-                                    <p style={{ fontSize: '0.9375rem', color: 'var(--color-text-muted)', lineHeight: 1.75 }}>
+                                    <p style={{ fontSize: '0.9rem', color: '#666', lineHeight: 1.6, fontFamily: 'var(--font-body)' }}>
                                         {val.desc}
                                     </p>
                                 </div>

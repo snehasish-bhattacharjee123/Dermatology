@@ -99,7 +99,7 @@ export default function Concerns() {
                         { icon: Search, t: 'Root Cause Analysis' },
                         { icon: ArrowRight, t: 'Customized Protocols' }
                     ].map((Item, i) => (
-                        <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: '#fff' }}>
+                        <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: '#EDE8D0' }}>
                             <Item.icon size={20} style={{ color: 'var(--color-wine)' }} />
                             <span style={{ fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700 }}>{Item.t}</span>
                         </div>
