@@ -378,64 +378,7 @@ export default function WhyUsSection() {
                             </div>
 
                             {/* Spaced Piped Cities List arranged in a clean horizontal flexbox row */}
-                            <div style={{ paddingTop: '2.5rem', borderTop: '1px solid #d4c8b0' }}>
-                                <div className="city-finder-row">
-                                    <h3
-                                        style={{
-                                            fontFamily: 'var(--font-heading)',
-                                            fontSize: '1.25rem',
-                                            fontWeight: 400,
-                                            color: '#5A262C',
-                                            margin: 0,
-                                            letterSpacing: '0.5px',
-                                            whiteSpace: 'nowrap'
-                                        }}
-                                    >
-                                        Find your City:
-                                    </h3>
 
-                                    <div className="city-list-container">
-                                        {/* Mumbai Dropdown */}
-                                        <div ref={dropdownRef} className="relative inline-block">
-                                            <button
-                                                onClick={() => setMumbaiOpen(!mumbaiOpen)}
-                                                className={`city-dropdown-trigger ${mumbaiOpen ? 'active' : ''}`}
-                                            >
-                                                Mumbai
-                                                <ChevronDown size={14} style={{ transform: mumbaiOpen ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.3s' }} />
-                                            </button>
-
-                                            {mumbaiOpen && (
-                                                <div className="dropdown-menu-custom">
-                                                    <h5 style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '1.5px', color: '#888', padding: '0.5rem 1.25rem 0.25rem', margin: 0 }}>Mumbai Branches</h5>
-                                                    {mumbaiBranches.map((branch) => (
-                                                        <Link
-                                                            key={branch.slug}
-                                                            to={`/book?location=${branch.slug}`}
-                                                            className="dropdown-item-custom"
-                                                            onClick={() => setMumbaiOpen(false)}
-                                                        >
-                                                            - {branch.name}
-                                                        </Link>
-                                                    ))}
-                                                </div>
-                                            )}
-                                        </div>
-
-                                        {locations.map((loc, i) => (
-                                            <div key={loc.slug} className="inline-flex items-center">
-                                                <span className="city-divider">|</span>
-                                                <Link
-                                                    to={`/book?location=${loc.slug}`}
-                                                    className="city-list-link"
-                                                >
-                                                    {loc.name}
-                                                </Link>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
                         </RevealWrapper>
                     </div>
 

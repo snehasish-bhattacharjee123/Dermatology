@@ -95,20 +95,20 @@ export default function TreatmentsSection() {
                             <Link to={`/treatments/${treatment.slug}`} className="flex flex-col items-center text-center group h-full cursor-pointer">
                                 <div className="w-36 h-36 md:w-48 md:h-48 rounded-full mb-6 p-2 bg-white shadow-sm border border-[#e8dfc3] transition-all duration-500 group-hover:shadow-[0_15px_35px_rgba(149,71,149,0.15)] group-hover:-translate-y-2 group-hover:border-wine/30">
                                     <div className="w-full h-full rounded-full overflow-hidden">
-                                        <img 
-                                            src={treatment.image} 
-                                            alt={treatment.alt} 
+                                        <img
+                                            src={treatment.image}
+                                            alt={treatment.alt}
                                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                             loading="lazy"
                                         />
                                     </div>
                                 </div>
-                                <h5 
+                                <h5
                                     className="font-serif transition-colors duration-300 group-hover:text-wine px-2"
-                                    style={{ 
-                                        fontSize: 'clamp(1.1rem, 2vw, 1.35rem)', 
-                                        fontWeight: 500, 
-                                        color: 'var(--color-dark)', 
+                                    style={{
+                                        fontSize: 'clamp(1.1rem, 2vw, 1.35rem)',
+                                        fontWeight: 500,
+                                        color: 'var(--color-dark)',
                                         lineHeight: 1.3,
                                         marginBottom: '1rem'
                                     }}

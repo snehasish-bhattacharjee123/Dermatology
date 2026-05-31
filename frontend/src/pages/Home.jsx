@@ -114,9 +114,9 @@ export default function Home() {
             <Suspense fallback={<SectionFallback />}>
                 <LazyWhyUsSection />
             </Suspense>
-            <Suspense fallback={<SectionFallback />}>
+            {/* <Suspense fallback={<SectionFallback />}>
                 <LazyExclusiveSection />
-            </Suspense>
+            </Suspense> */}
             <Suspense fallback={<SectionFallback />}>
                 <LazyTreatmentsSection />
             </Suspense>
