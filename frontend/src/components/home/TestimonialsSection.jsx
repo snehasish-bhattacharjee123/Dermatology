@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { RevealWrapper } from '../../hooks/useAnimations'
 import { Heading, Caption } from '../ui/Typography'
-import { testimonials } from '../../data/siteData'
+import { testimonials } from '../../data/homeData'
 
 // ===== TESTIMONIALS — PREMIUM CELEBRITY & PATIENT SHOWCASE =====
 export default function TestimonialsSection() {
@@ -81,7 +81,7 @@ export default function TestimonialsSection() {
                         <Caption style={{ color: 'var(--color-accent)', opacity: 0.8, letterSpacing: '4px' }}>
                             Patient Testimonials
                         </Caption>
-                        <Heading style={{
+                        <Heading level={2} style={{
                             color: 'var(--color-accent)',
                             fontSize: 'clamp(2rem, 5vw, 3.5rem)',
                             fontWeight: 300,
@@ -208,7 +208,7 @@ export default function TestimonialsSection() {
                                         <p
                                             style={{
                                                 fontFamily: 'var(--font-body)',
-                                                color: 'rgba(237, 232, 208, 0.5)',
+                                                color: 'rgba(237, 232, 208, 0.8)',
                                                 fontSize: 'clamp(0.7rem, 1.8vw, 0.8rem)',
                                                 fontWeight: 500,
                                                 letterSpacing: '0.15em',
@@ -346,7 +346,7 @@ export default function TestimonialsSection() {
                                 style={{
                                     fontFamily: 'var(--font-body)',
                                     fontSize: '0.85rem',
-                                    color: 'rgba(237,232,208,0.5)',
+                                    color: 'rgba(237,232,208,0.8)',
                                     letterSpacing: '0.15em',
                                     fontWeight: 400
                                 }}

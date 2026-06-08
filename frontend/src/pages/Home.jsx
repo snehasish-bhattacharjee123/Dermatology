@@ -258,7 +258,8 @@ function HeroSection() {
                                 href="/book"
                                 className="inline-flex items-center justify-center gap-2 text-white transition-all duration-300"
                                 style={{
-                                    background: 'var(--color-wine)',
+                                    background: '#5A262C',
+                                    color: '#fff',
                                     fontSize: 'clamp(0.65rem, 1.4vw, 0.9rem)',
                                     letterSpacing: '0.14em',
                                     textTransform: 'uppercase',
@@ -268,8 +269,8 @@ function HeroSection() {
                                     boxShadow: '0 4px 24px rgba(149,71,149,0.35)',
                                     border: '1px solid transparent',
                                 }}
-                                onMouseEnter={e => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = 'var(--color-wine)'; e.currentTarget.style.borderColor = 'var(--color-wine)'; }}
-                                onMouseLeave={e => { e.currentTarget.style.background = 'var(--color-wine)'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = 'transparent'; }}
+                                onMouseEnter={e => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = '#5A262C'; e.currentTarget.style.borderColor = '#5A262C'; }}
+                                onMouseLeave={e => { e.currentTarget.style.background = '#5A262C'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = 'transparent'; }}
                             >
                                 Get Your Appointment
                             </a>

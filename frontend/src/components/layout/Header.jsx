@@ -46,7 +46,7 @@ const navLinks = [
                 { name: 'Laser hair reduction', path: '/treatments/laser-hair-reduction' },
                 { name: 'Lifting And Contouring', path: '/treatments/lifting-and-contouring' },
                 { name: 'Pigmentation', path: '/treatments/pigmentation' },
-                { name: 'Signature Facial', path: '/treatments/signature-medifacials' },
+                { name: 'Signature Medifacials', path: '/treatments/signature-medifacials' },
                 { name: 'Medical Grade Facials', path: '/treatments/medical-grade-facials' },
             ],
             sidebarBtnText: 'All Treatments',
@@ -332,7 +332,7 @@ export default function Header() {
     ]
 
     const socialSubitems = [
-        { name: 'Instagram', path: 'https://www.instagram.com/aaynaclinic_official/', isExternal: true },
+        { name: 'Instagram', path: 'https://www.instagram.com/dcosmedicsindia/', isExternal: true },
         { name: 'Facebook', path: 'https://www.facebook.com/aaynaclinic/', isExternal: true },
         { name: 'Youtube', path: 'https://www.youtube.com/channel/UCF4-AP5qfQ_VKyNZjhKfb4Q/', isExternal: true }
     ]
@@ -406,7 +406,7 @@ export default function Header() {
                         <a
                             href="https://api.whatsapp.com/send/?phone=917738891858&text=Hello%20there!"
                             target="_blank" rel="noreferrer"
-                            aria-label="WhatsApp"
+                            aria-label="Chat with us on WhatsApp"
                             className="flex items-center justify-center w-8 h-8 rounded-full transition-all duration-200 hover:scale-110 hover:opacity-85 shadow-sm"
                             style={{ background: '#25D366' }}
                         >
@@ -838,7 +838,8 @@ export default function Header() {
                                                     <div className="relative h-48 overflow-hidden">
                                                         <img
                                                             src={item.image}
-                                                            alt={item.title}
+                                                            alt=""
+                                                            aria-hidden="true"
                                                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                                         />
                                                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity" />
@@ -876,6 +877,7 @@ export default function Header() {
                 className={`fixed top-0 right-0 h-full w-[100vw] sm:w-[85vw] max-w-[420px] bg-[#f5f0e1] z-[1099] overflow-y-auto transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] lg:hidden ${isMobileOpen ? 'translate-x-0' : 'translate-x-full'}`}
                 role="dialog"
                 aria-modal="true"
+                aria-label="Mobile Navigation Menu"
             >
                 {/* Header with simple "close" text on the right */}
                 <div className="flex justify-end p-6 pb-4">

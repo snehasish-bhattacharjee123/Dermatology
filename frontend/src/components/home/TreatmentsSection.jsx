@@ -5,49 +5,49 @@ const featuredTreatments = [
     {
         title: 'Scar Reduction Treatments',
         slug: 'scar-reduction-treatments',
-        image: 'https://wizderm.in/wp-content/uploads/2025/03/Scar-Reduction-Treatments.png',
+        image: 'https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=500&q=65&fm=webp',
         alt: 'Scar Reduction Treatments'
     },
     {
         title: 'Phototherapy',
         slug: 'phototherapy',
-        image: 'https://wizderm.in/wp-content/uploads/2025/03/phototherapy.png',
+        image: 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=500&q=65&fm=webp',
         alt: 'Phototherapy'
     },
     {
         title: 'Laser Hair Reduction',
         slug: 'laser-hair-reduction',
-        image: 'https://wizderm.in/wp-content/uploads/2025/03/Laser-Hair-Reduction.png',
+        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=65&fm=webp',
         alt: 'Laser Hair Reduction'
     },
     {
         title: 'Carbon Peels',
         slug: 'carbon-peels',
-        image: 'https://wizderm.in/wp-content/uploads/2025/03/Carbon-Peels.png',
+        image: 'https://images.unsplash.com/photo-1560564560-a55c22b2e9a5?w=500&q=65&fm=webp',
         alt: 'Carbon Peels'
     },
     {
         title: 'Exosome Therapy',
         slug: 'exosome-therapy-for-skin',
-        image: 'https://wizderm.in/wp-content/uploads/2025/03/Exosome-for-Skin.png',
+        image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=500&q=65&fm=webp',
         alt: 'Exosome for Skin'
     },
     {
         title: 'Dermal Fillers',
         slug: 'dermal-fillers',
-        image: 'https://wizderm.in/wp-content/uploads/2025/03/Dermal-Fillers.png',
+        image: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=500&q=65&fm=webp',
         alt: 'Dermal Fillers'
     },
     {
         title: 'Chemical Peels',
         slug: 'chemical-peels',
-        image: 'https://wizderm.in/wp-content/uploads/2025/03/Chemical-Peels.png',
+        image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=500&q=65&fm=webp',
         alt: 'Chemical Peels'
     },
     {
         title: 'Acne Treatments',
         slug: 'acne-treatments',
-        image: 'https://wizderm.in/wp-content/uploads/2025/03/Acne-Treatments.png',
+        image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&q=65&fm=webp',
         alt: 'Acne Treatments'
     }
 ]
@@ -97,13 +97,14 @@ export default function TreatmentsSection() {
                                     <div className="w-full h-full rounded-full overflow-hidden">
                                         <img
                                             src={treatment.image}
-                                            alt={treatment.alt}
+                                            alt=""
+                                            aria-hidden="true"
                                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                             loading="lazy"
                                         />
                                     </div>
                                 </div>
-                                <h5
+                                <h3
                                     className="font-serif transition-colors duration-300 group-hover:text-wine px-2"
                                     style={{
                                         fontSize: 'clamp(1.1rem, 2vw, 1.35rem)',
@@ -114,7 +115,7 @@ export default function TreatmentsSection() {
                                     }}
                                 >
                                     {treatment.title}
-                                </h5>
+                                </h3>
                                 {/* <span 
                                     className="mt-auto inline-flex items-center justify-center border border-wine/30 text-wine group-hover:bg-wine group-hover:text-white transition-all duration-300 rounded-full px-6 py-2 text-[0.75rem] uppercase tracking-[1.5px] font-semibold"
                                 >

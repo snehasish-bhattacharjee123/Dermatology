@@ -26,7 +26,7 @@ export default function CtaBanner({
     primaryTo      = '/book',
     secondaryLabel = 'Browse Concerns',
     secondaryTo    = '/concerns',
-    image          = 'https://images.unsplash.com/photo-1612817288484-6f916006741a?w=1920&q=80',
+    image          = 'https://images.unsplash.com/photo-1612817288484-6f916006741a?w=1280&q=60&fm=webp',
     overlayColor   = 'rgba(13,19,25,0.65)',
 }) {
     return (

@@ -26,7 +26,7 @@ export default function AboutPreview() {
                                 style={{ background: 'var(--color-wine)' }}
                             >
                                 <div className="text-center" style={{ color: '#ffffff' }}>
-                                    <h3
+                                    <div
                                         style={{
                                             fontFamily: 'var(--font-heading)',
                                             fontSize: 'clamp(2rem, 8vw, 4.5rem)',
@@ -34,7 +34,7 @@ export default function AboutPreview() {
                                             lineHeight: 1,
                                             marginBottom: '0.25rem'
                                         }}
-                                    >15+</h3>
+                                    >15+</div>
                                     <span
                                         style={{
                                             display: 'block',

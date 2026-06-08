@@ -248,7 +248,7 @@ export function HomeContactSection() {
                                 BOOK AN<br />APPOINTMENT
                             </h3>
                              <Link to="/book" className="hct-book-btn">
-                                 Click here <ArrowRight size={13} />
+                                 Book An Appointment <ArrowRight size={13} />
                              </Link>
                         </div>
                     </RevealWrapper>
