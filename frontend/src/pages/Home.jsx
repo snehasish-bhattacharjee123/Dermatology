@@ -266,7 +266,6 @@ function HeroSection() {
                                     fontWeight: 700,
                                     padding: 'clamp(0.55rem, 1.5vw, 0.9rem) clamp(1.2rem, 3vw, 2.2rem)',
                                     borderRadius: '2px',
-                                    boxShadow: '0 4px 24px rgba(149,71,149,0.35)',
                                     border: '1px solid transparent',
                                 }}
                                 onMouseEnter={e => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = '#5A262C'; e.currentTarget.style.borderColor = '#5A262C'; }}
